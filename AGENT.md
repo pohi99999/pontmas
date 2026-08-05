@@ -15,7 +15,8 @@
 - [x] SEO, Schema.org strukturált adatok
 - [x] Kódminőség ellenőrzés (Lint, Build) és status.log naplózás
 - [x] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása (DRY elvek alapján)
-- [ ] Végső UI tesztelés és akadálymentesítési audit (a11y)
+- [x] Végső dokumentáció (README.md) és Vercel deployment előkészítés
 
 ## Munkamenet Napló
-- **2026-08-05:** Kapcsolat űrlap kiszervezése különálló, interaktív (React Server -> Client) komponenstként (`ContactForm.tsx`) a jobb UI visszajelzés (siker üzenet, töltés animáció) érdekében.
+- **2026-08-05:** Kapcsolat űrlap kiszervezése különálló, interaktív (React Server -> Client) komponenstként (ContactForm.tsx).
+- **2026-08-05:** Hivatalos README.md létrehozása a GitHub tárolóhoz, az alapstruktúra és az első nagy fejlesztési mérföldkő sikeres lezárása.

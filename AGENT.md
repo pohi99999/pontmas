@@ -11,10 +11,10 @@
 - [x] Autizmus aloldal edukációs tartalommal való feltöltése
 - [x] Programok aloldal kidolgozása (Kártyás eseménylista)
 - [x] Támogatás aloldal kidolgozása (Adó 1%, Banki utalás, Céges CSR)
-- [ ] Tartalom-migráció: Kapcsolat oldal és űrlap
+- [x] Kapcsolat aloldal és üzenetküldő űrlap kialakítása
 - [ ] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása
 - [ ] SEO, Schema.org strukturált adatok és teljesítmény-optimalizálás
 
 ## Munkamenet Napló
-- **2026-08-05:** "Programok" aloldal (programok/page.tsx) kialakítása flexibilis, kártyás megjelenéssel.
-- **2026-08-05:** "Támogatás" aloldal (tamogatas/page.tsx) kiépítése letisztult és bizalomkeltő designnal, kiemelve a számlaszámot és az adószámot.
+- **2026-08-05:** "Támogatás" aloldal (tamogatas/page.tsx) kiépítése letisztult és bizalomkeltő designnal.
+- **2026-08-05:** "Kapcsolat" aloldal (kapcsolat/page.tsx) kidolgozása, címmel, AOSZ Info-Pont hivatkozással és egy letisztult üzenetküldő form UI-val.

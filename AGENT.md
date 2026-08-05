@@ -8,10 +8,11 @@
 - [x] Aloldalak routing struktúrájának (vázlatok) létrehozása
 - [x] Kezdőoldal (Home) felépítése premium UI/UX elemekkel
 - [x] Rólunk aloldal kidolgozása (Küldetés, Történet, Szakmai háttér)
-- [ ] Tartalom-migráció és specifikus komponensek építése a többi aloldalhoz (Autizmus, Programok, stb.)
+- [x] Autizmus aloldal edukációs tartalommal való feltöltése (Spektrum bemutatása, Tények és Tévhitek)
+- [ ] Tartalom-migráció: Programok, Támogatás, Kapcsolat oldalak
 - [ ] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása
 - [ ] SEO, Schema.org strukturált adatok és teljesítmény-optimalizálás
 
 ## Munkamenet Napló
-- **2026-08-05:** Kezdőoldal (page.tsx) bővítése Hero szekcióval, CTA gombokkal és tevékenységeket bemutató kártyákkal.
-- **2026-08-05:** "Rólunk" aloldal (rolunk/page.tsx) tartalommal való feltöltése, alapítványi adatok integrálása kétoszlopos Tailwind elrendezésben.
+- **2026-08-05:** "Rólunk" aloldal (rolunk/page.tsx) tartalommal való feltöltése, alapítványi adatok integrálása.
+- **2026-08-05:** "Autizmus" aloldal (autizmus/page.tsx) létrehozása edukációs fókusszal. Spektrum jellemzők kártyás megjelenítése és vizuális Tények/Tévhitek szekció kialakítása.

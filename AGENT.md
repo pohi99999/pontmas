@@ -9,11 +9,12 @@
 - [x] Kezdőoldal (Home) felépítése premium UI/UX elemekkel
 - [x] Rólunk aloldal kidolgozása (Küldetés, Történet, Szakmai háttér)
 - [x] Autizmus aloldal edukációs tartalommal való feltöltése
-- [x] Programok aloldal kidolgozása (Kártyás eseménylista kialakítása)
-- [ ] Tartalom-migráció: Támogatás, Kapcsolat oldalak
+- [x] Programok aloldal kidolgozása (Kártyás eseménylista)
+- [x] Támogatás aloldal kidolgozása (Adó 1%, Banki utalás, Céges CSR)
+- [ ] Tartalom-migráció: Kapcsolat oldal és űrlap
 - [ ] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása
 - [ ] SEO, Schema.org strukturált adatok és teljesítmény-optimalizálás
 
 ## Munkamenet Napló
-- **2026-08-05:** "Autizmus" aloldal (autizmus/page.tsx) létrehozása edukációs fókusszal.
-- **2026-08-05:** "Programok" aloldal (programok/page.tsx) kialakítása flexibilis, kártyás megjelenéssel (Kék séta, táborok, családi napok bemutatása).
+- **2026-08-05:** "Programok" aloldal (programok/page.tsx) kialakítása flexibilis, kártyás megjelenéssel.
+- **2026-08-05:** "Támogatás" aloldal (tamogatas/page.tsx) kiépítése letisztult és bizalomkeltő designnal, kiemelve a számlaszámot és az adószámot.

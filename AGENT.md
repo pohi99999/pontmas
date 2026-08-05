@@ -12,9 +12,10 @@
 - [x] Programok aloldal kidolgozása (Kártyás eseménylista)
 - [x] Támogatás aloldal kidolgozása (Adó 1%, Banki utalás, Céges CSR)
 - [x] Kapcsolat aloldal és üzenetküldő űrlap kialakítása
+- [x] SEO, Schema.org strukturált adatok és teljesítmény-optimalizálás alapjai
 - [ ] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása
-- [ ] SEO, Schema.org strukturált adatok és teljesítmény-optimalizálás
+- [ ] Végső tesztelés, akadálymentesítési audit és launch előkészítés
 
 ## Munkamenet Napló
-- **2026-08-05:** "Támogatás" aloldal (tamogatas/page.tsx) kiépítése letisztult és bizalomkeltő designnal.
-- **2026-08-05:** "Kapcsolat" aloldal (kapcsolat/page.tsx) kidolgozása, címmel, AOSZ Info-Pont hivatkozással és egy letisztult üzenetküldő form UI-val.
+- **2026-08-05:** "Kapcsolat" aloldal (kapcsolat/page.tsx) kidolgozása űrlappal és elérhetőségekkel.
+- **2026-08-05:** Globális SEO metaadatok (Open Graph, Title, Description) és Schema.org (NGO) strukturált adatok beépítése a `layout.tsx`-be.

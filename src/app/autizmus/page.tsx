@@ -63,7 +63,7 @@ export default function AutizmusPage() {
                 <AlertCircle className="text-red-400 mr-3 mt-1 flex-shrink-0" size={24} />
                 <div>
                   <h4 className="font-bold text-slate-900 mb-1">Tévhit: Az autizmus egy betegség, ami gyógyítható.</h4>
-                  <p className="text-slate-600 text-sm">Tény: Az autizmus egy idegrendszeri fejlődési eltérés. Nem betegség, amit "meg kell gyógyítani", hanem egy állapot, ami megfelelő támogatással és elfogadással élhető.</p>
+                  <p className="text-slate-600 text-sm">Tény: Az autizmus egy idegrendszeri fejlődési eltérés. Nem betegség, amit &quot;meg kell gyógyítani&quot;, hanem egy állapot, ami megfelelő támogatással és elfogadással élhető.</p>
                 </div>
               </div>
             </div>

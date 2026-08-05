@@ -14,8 +14,8 @@
 - [x] Kapcsolat aloldal és üzenetküldő űrlap kialakítása
 - [x] SEO, Schema.org strukturált adatok
 - [x] Kódminőség ellenőrzés (Lint, Build) és status.log naplózás
-- [ ] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása (DRY elvek alapján)
+- [x] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása (DRY elvek alapján)
 - [ ] Végső UI tesztelés és akadálymentesítési audit (a11y)
 
 ## Munkamenet Napló
-- **2026-08-05:** SEO és Schema.org adatok beállítása. Linter és Build teszt lefuttatva, `status.log` inicializálva a stabil állapot rögzítésére.
+- **2026-08-05:** Kapcsolat űrlap kiszervezése különálló, interaktív (React Server -> Client) komponenstként (`ContactForm.tsx`) a jobb UI visszajelzés (siker üzenet, töltés animáció) érdekében.

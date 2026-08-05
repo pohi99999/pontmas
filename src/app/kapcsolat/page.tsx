@@ -1,4 +1,5 @@
-import { MapPin, Mail, MessageSquare, Send } from 'lucide-react';
+import { MapPin, Mail, MessageSquare } from 'lucide-react';
+import ContactForm from '@/components/forms/ContactForm';
 
 export default function KapcsolatPage() {
   return (
@@ -51,27 +52,8 @@ export default function KapcsolatPage() {
             </div>
           </div>
 
-          {/* Üzenetküldő űrlap */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
-            <h2 className="text-2xl font-bold text-slate-900 mb-6">Írjon nekünk</h2>
-            <form className="space-y-4">
-              <div>
-                <label htmlFor="nev" className="block text-sm font-medium text-slate-700 mb-1">Név</label>
-                <input type="text" id="nev" className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all" placeholder="Az Ön neve" />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">E-mail cím</label>
-                <input type="email" id="email" className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all" placeholder="pelda@email.hu" />
-              </div>
-              <div>
-                <label htmlFor="uzenet" className="block text-sm font-medium text-slate-700 mb-1">Üzenet</label>
-                <textarea id="uzenet" rows={4} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none" placeholder="Miben segíthetünk?"></textarea>
-              </div>
-              <button type="button" className="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
-                Üzenet küldése <Send size={18} className="ml-2" />
-              </button>
-            </form>
-          </div>
+          {/* Dinamikus Üzenetküldő űrlap */}
+          <ContactForm />
 
         </div>
       </section>

@@ -6,11 +6,12 @@
 - [x] Next.js + Tailwind CSS projekt előkészítése és inicializálása
 - [x] Információs architektúra, UI/UX alapok (Header, Footer, Layout) kialakítása
 - [x] Aloldalak routing struktúrájának (vázlatok) létrehozása
-- [x] Kezdőoldal (Home) felépítése premium UI/UX elemekkel (Hero, Kártyák)
-- [ ] Tartalom-migráció és specifikus komponensek építése aloldalanként
+- [x] Kezdőoldal (Home) felépítése premium UI/UX elemekkel
+- [x] Rólunk aloldal kidolgozása (Küldetés, Történet, Szakmai háttér)
+- [ ] Tartalom-migráció és specifikus komponensek építése a többi aloldalhoz (Autizmus, Programok, stb.)
 - [ ] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása
 - [ ] SEO, Schema.org strukturált adatok és teljesítmény-optimalizálás
 
 ## Munkamenet Napló
-- **2026-08-05:** Fő menüpontokhoz tartozó aloldalak (Rólunk, Autizmus, Programok, Támogatás, Kapcsolat) vázának létrehozása és routing beállítása.
-- **2026-08-05:** Kezdőoldal (page.tsx) bővítése Hero szekcióval, CTA gombokkal és tevékenységeket bemutató kártyákkal, letisztult Tailwind designnal.
+- **2026-08-05:** Kezdőoldal (page.tsx) bővítése Hero szekcióval, CTA gombokkal és tevékenységeket bemutató kártyákkal.
+- **2026-08-05:** "Rólunk" aloldal (rolunk/page.tsx) tartalommal való feltöltése, alapítványi adatok integrálása kétoszlopos Tailwind elrendezésben.

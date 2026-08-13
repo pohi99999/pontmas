@@ -7,16 +7,12 @@
 - [x] Információs architektúra, UI/UX alapok (Header, Footer, Layout) kialakítása
 - [x] Aloldalak routing struktúrájának (vázlatok) létrehozása
 - [x] Kezdőoldal (Home) felépítése premium UI/UX elemekkel
-- [x] Rólunk aloldal kidolgozása
-- [x] Autizmus aloldal edukációs tartalommal való feltöltése
-- [x] Programok aloldal kidolgozása
-- [x] Támogatás aloldal kidolgozása
-- [x] Kapcsolat aloldal és üzenetküldő űrlap kialakítása
-- [x] SEO, Schema.org strukturált adatok
-- [x] Kódminőség ellenőrzés (Lint, Build) és status.log naplózás
-- [x] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása
-- [x] Globális akadálymentesítési stílusok (Sensory Mode CSS) és egyedi Favicon élesítése
+- [x] Rólunk aloldal véglegesítése és szöveges tartalommigrációja
+- [ ] Edukációs és program-oldalak (Autizmus, Programok) végleges tartalommigrációja
+- [ ] Képek és médiafájlok Next.js Image optimalizációja
+- [ ] SEO, Schema.org strukturált adatok
+- [ ] Kódminőség ellenőrzés (Lint, Build) és status.log naplózás
 
 ## Munkamenet Napló
-- **2026-08-13:** Dokumentumtár aloldal létrehozása és Footer navigáció frissítése.
-- **2026-08-13:** Globális `.sensory-friendly` CSS szabályok implementálása az animációk letiltásához és a színek tompításához, valamint egyedi `icon.svg` (favicon) generálása.
+- **2026-08-13:** Globális `.sensory-friendly` stílusok és egyedi `icon.svg` beállítása.
+- **2026-08-13:** "Rólunk" aloldal (rolunk/page.tsx) teljes tartalommigrációja a régi honlap adatai alapján, szétválasztott komponens/adat struktúrával.

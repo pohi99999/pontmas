@@ -5,4 +5,5 @@
 [2026-08-05] SensoryContext (Akadálymentesítési mód) és egy-kattintásos másolási funkciók implementálva.
 [2026-08-13] Dokumentumtár és Pályázatok aloldal (/dokumentumok) létrehozva, Footer navigációba kötve.
 [2026-08-13] Globális Sensory Friendly CSS szabályok és egyedi SVG Favicon hozzáadva.
-STATUS: Vizuálisan csiszolt, teljesen akadálymentesített prémium verzió kész.
+[2026-08-13] Rólunk oldal tartalommigrációja és véglegesítése megtörtént (adatvezérelt struktúra).
+STATUS: Első aloldal tartalommigrációja sikeresen lezárva.

@@ -1,11 +1,30 @@
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, Target, Award, Users } from 'lucide-react';
 
 export default function RolunkPage() {
-  const celok = [
-    'Oktatási intézmények támogatása',
-    'Szülőklubok és szakmai továbbképzések szervezése',
-    'Családi napok és nyári táborok lebonyolítása',
-    'Szemléletformáló programok (pl. Kék Séta) indítása'
+  // Adatstruktúra a könnyebb karbantarthatóságért
+  const alapelvek = [
+    {
+      icon: <Target className="text-blue-600" size={24} />,
+      title: "Célzott támogatás",
+      desc: "Anyagi, eszközbeli és szakmai segítségnyújtás a Vas vármegyében élő autista gyermekeknek és családjaiknak."
+    },
+    {
+      icon: <Users className="text-blue-600" size={24} />,
+      title: "Közösségi erő",
+      desc: "Közel 40 családdal állunk közvetlen kapcsolatban, szülőklubokat és családi napokat szervezve a mindennapok megkönnyítésére."
+    },
+    {
+      icon: <Award className="text-blue-600" size={24} />,
+      title: "Szakmai hitelesség",
+      desc: "Csapatunk autizmus-specifikus gyógypedagógusokból, asszisztensekből és elhivatott, érintett szülőkből áll."
+    }
+  ];
+
+  const tevekenysegek = [
+    "Autizmus-specifikus oktatási-nevelési intézmények támogatása fejlesztő eszközökkel.",
+    "Rendszeres szülőklubok és szakmai továbbképzések biztosítása szakembereknek.",
+    "Integrált és szegregált oktatásban részt vevő gyermekek esélyegyenlőségének elősegítése.",
+    "Krízis alap fenntartása a váratlanul nehéz helyzetbe került családok gyors megsegítésére."
   ];
 
   return (
@@ -13,45 +32,75 @@ export default function RolunkPage() {
       {/* Fejléc szekció */}
       <section className="bg-slate-50 pt-12 pb-16 border-b border-slate-200">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Rólunk</h1>
-          <p className="max-w-2xl mx-auto text-lg text-slate-600">
-            Ismerje meg a PontMás Vas Megyei Autista Gyermekekért Alapítvány történetét, küldetését és a mögötte álló elhivatott csapatot.
+          <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Kik vagyunk mi?</h1>
+          <p className="max-w-3xl mx-auto text-lg text-slate-600 leading-relaxed">
+            A PontMás Vas Megyei Autista Gyermekekért Alapítvány egy 2015 óta aktívan működő, civil szervezet. Küldetésünk, hogy hidat képezzünk az érintett családok, a szakemberek és a társadalom között.
           </p>
         </div>
       </section>
 
-      {/* Tartalmi szekció */}
+      {/* Történetünk és Elnökség szekció */}
       <section className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Küldetés és Történet */}
-          <div>
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">Küldetésünk és Történetünk</h2>
-            <p className="text-slate-600 mb-4 leading-relaxed">
-              A PontMás Alapítványt 2015-ben hoztuk létre azzal a határozott céllal, hogy a Vas vármegyében élő autista gyermekek és családjaik számára átfogó támogatást nyújtsunk.
-            </p>
-            <p className="text-slate-600 mb-6 leading-relaxed">
-              Legyen szó anyagi segítségről, eszközbeszerzésről, szakmai programokról vagy közösségépítésről, hiszünk abban, hogy közös erővel élhetőbb és elfogadóbb környezetet teremthetünk.
-            </p>
-            <ul className="space-y-3">
-              {celok.map((item, i) => (
-                <li key={i} className="flex items-center text-slate-700 font-medium">
-                  <CheckCircle2 className="text-blue-600 mr-3 flex-shrink-0" size={20} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="grid md:grid-cols-12 gap-12 items-center max-w-6xl mx-auto">
           
-          {/* Szakmai Háttér kártya */}
-          <div className="bg-blue-50 rounded-2xl p-8 border border-blue-100 shadow-sm h-full flex flex-col justify-center">
-            <h3 className="text-2xl font-bold text-blue-900 mb-4">Szakmai Háttér és Hitelesség</h3>
-            <p className="text-blue-800 mb-4 leading-relaxed">
-              A kuratórium elnöke <strong>Pohánka Edit</strong>, aki egyben az Autisták Országos Szövetségének (AOSZ) alelnöke is. Ez a kapcsolat biztosítja az országos szintű szakmai hálózatba ágyazottságot és a naprakész tudást.
+          {/* Szöveges tartalom */}
+          <div className="md:col-span-7 space-y-6">
+            <h2 className="text-3xl font-bold text-slate-900">Történetünk és küldetésünk</h2>
+            <p className="text-slate-600 leading-relaxed">
+              Alapítványunkat az élet hívta életre. Olyan szülők és szakemberek fogtak össze, akik a saját bőrükön tapasztalták meg, milyen kihívásokkal kell szembenéznie egy autizmussal élő gyermeknek és családjának Vas vármegyében.
             </p>
-            <p className="text-blue-800 leading-relaxed">
-              Alapítványunk tagjai maguk is autizmussal érintett szülők, valamint a spektrumzavarra specializálódott gyógypedagógusok és asszisztensek. Közel 40 Vas vármegyei családdal és számos oktatási-nevelési intézménnyel állunk napi kapcsolatban.
+            <p className="text-slate-600 leading-relaxed">
+              Nem csupán egy szervezet vagyunk: egy támogató és megtartó közösséget építünk, ahol a szülők megoszthatják tapasztalataikat, a gyermekek pedig biztonságos, megértő közegben fejlődhetnek.
             </p>
+            
+            <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6 mt-6">
+              <h3 className="text-lg font-bold text-blue-900 mb-2">Országos szakmai háttér</h3>
+              <p className="text-blue-800 text-sm leading-relaxed">
+                A kuratórium elnöke <strong>Pohánka Edit</strong>, aki egyben az Autisták Országos Szövetségének (AOSZ) alelnöke is. Ez a tisztség és szakmai beágyazottság garantálja, hogy alapítványunk a legfrissebb módszertanok és országos szintű lehetőségek mentén segítse a helyi közösséget.
+              </p>
+            </div>
           </div>
+
+          {/* Vizuális/Kép helykitöltő - Később ide jön a csapatfotó */}
+          <div className="md:col-span-5 bg-slate-100 border border-slate-200 rounded-2xl p-8 flex flex-col justify-center items-center text-center min-h-[300px] text-slate-400">
+            <div className="w-20 h-20 bg-slate-200 rounded-full flex items-center justify-center mb-4 text-slate-300">
+              <Users size={40} />
+            </div>
+            <p className="font-medium text-slate-600">Alapítványi Csapatfotó</p>
+            <p className="text-xs text-slate-400 mt-1">`/public/images/csapat.jpg` helye</p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Alapelvek grid */}
+      <section className="bg-white border-y border-slate-100 py-16">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-3xl font-bold text-slate-900 text-center mb-12">Értékeink</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {alapelvek.map((elv, i) => (
+              <div key={i} className="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                <div className="mb-4 bg-white w-12 h-12 rounded-lg flex items-center justify-center shadow-sm">
+                  {elv.icon}
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">{elv.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{elv.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Részletes tevékenységi lista */}
+      <section className="container mx-auto px-4 py-16 max-w-4xl">
+        <h2 className="text-3xl font-bold text-slate-900 text-center mb-8">Mivel foglalkozunk kiemelten?</h2>
+        <div className="grid gap-4">
+          {tevekenysegek.map((item, i) => (
+            <div key={i} className="flex items-start bg-white p-4 rounded-xl border border-slate-100 shadow-xs">
+              <CheckCircle2 className="text-green-500 mr-3 mt-0.5 flex-shrink-0" size={20} />
+              <p className="text-slate-700 font-medium text-sm sm:text-base">{item}</p>
+            </div>
+          ))}
         </div>
       </section>
     </div>

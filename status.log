@@ -2,6 +2,6 @@
 [2026-08-05] Globális architektúra felállítva (Header, Footer, Layout).
 [2026-08-05] Aloldalak tartalommal feltöltve.
 [2026-08-05] SEO metaadatok és Schema.org adatok integrálva.
-[2026-08-05] Kódminőség ellenőrzés (Lint & Build) sikeresen lefutott.
 [2026-08-05] SensoryContext (Akadálymentesítési mód) és egy-kattintásos másolási funkciók implementálva.
-STATUS: Prémium interaktív funkciók integrálva, élesítésre kész.
+[2026-08-13] Dokumentumtár és Pályázatok aloldal (/dokumentumok) létrehozva, Footer navigációba kötve.
+STATUS: Átláthatósági és hivatalos dokumentációs szekció kialakítva.

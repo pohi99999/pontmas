@@ -8,11 +8,11 @@
 - [x] Aloldalak routing struktúrájának (vázlatok) létrehozása
 - [x] Kezdőoldal (Home) felépítése premium UI/UX elemekkel
 - [x] Rólunk aloldal véglegesítése és szöveges tartalommigrációja
-- [ ] Edukációs és program-oldalak (Autizmus, Programok) végleges tartalommigrációja
+- [x] Autizmus aloldal végleges tartalommigrációja (szülői útmutatóval)
+- [ ] Programok aloldal végleges tartalommigrációja
 - [ ] Képek és médiafájlok Next.js Image optimalizációja
 - [ ] SEO, Schema.org strukturált adatok
-- [ ] Kódminőség ellenőrzés (Lint, Build) és status.log naplózás
 
 ## Munkamenet Napló
-- **2026-08-13:** Globális `.sensory-friendly` stílusok és egyedi `icon.svg` beállítása.
-- **2026-08-13:** "Rólunk" aloldal (rolunk/page.tsx) teljes tartalommigrációja a régi honlap adatai alapján, szétválasztott komponens/adat struktúrával.
+- **2026-08-13:** "Rólunk" aloldal (rolunk/page.tsx) teljes tartalommigrációja.
+- **2026-08-13:** "Autizmus" aloldal (autizmus/page.tsx) kibővítése: bekerült a szülőknek szóló gyakorlati tanácsadó szekció, a kód adatvezérelt tömbökre lett refaktorálva.

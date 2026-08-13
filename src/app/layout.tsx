@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SensoryProvider } from "@/context/SensoryContext";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
@@ -24,7 +25,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Schema.org strukturált adat (JSON-LD)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "NGO",
@@ -49,9 +49,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} flex min-h-screen flex-col bg-slate-50 text-slate-900 antialiased`}>
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SensoryProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SensoryProvider>
       </body>
     </html>
   );

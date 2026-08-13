@@ -4,4 +4,5 @@
 [2026-08-05] SEO metaadatok és Schema.org adatok integrálva.
 [2026-08-05] SensoryContext (Akadálymentesítési mód) és egy-kattintásos másolási funkciók implementálva.
 [2026-08-13] Dokumentumtár és Pályázatok aloldal (/dokumentumok) létrehozva, Footer navigációba kötve.
-STATUS: Átláthatósági és hivatalos dokumentációs szekció kialakítva.
+[2026-08-13] Globális Sensory Friendly CSS szabályok és egyedi SVG Favicon hozzáadva.
+STATUS: Vizuálisan csiszolt, teljesen akadálymentesített prémium verzió kész.

@@ -14,9 +14,9 @@
 - [x] Kapcsolat aloldal és üzenetküldő űrlap kialakítása
 - [x] SEO, Schema.org strukturált adatok
 - [x] Kódminőség ellenőrzés (Lint, Build) és status.log naplózás
-- [x] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása (DRY elvek alapján)
-- [x] Végső dokumentáció (README.md) és Vercel deployment előkészítés
+- [x] Komponensrendszer (Kártyák, Gombok, Formok) kiszervezése és refaktorálása
+- [x] Globális akadálymentesítési stílusok (Sensory Mode CSS) és egyedi Favicon élesítése
 
 ## Munkamenet Napló
-- **2026-08-05:** Kapcsolat űrlap kiszervezése különálló, interaktív (React Server -> Client) komponenstként (ContactForm.tsx).
-- **2026-08-05:** Hivatalos README.md létrehozása a GitHub tárolóhoz, az alapstruktúra és az első nagy fejlesztési mérföldkő sikeres lezárása.
+- **2026-08-13:** Dokumentumtár aloldal létrehozása és Footer navigáció frissítése.
+- **2026-08-13:** Globális `.sensory-friendly` CSS szabályok implementálása az animációk letiltásához és a színek tompításához, valamint egyedi `icon.svg` (favicon) generálása.

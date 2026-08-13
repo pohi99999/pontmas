@@ -24,3 +24,30 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Sensory Friendly (Csökkentett ingerű) mód globális szabályai */
+.sensory-friendly {
+  --tw-bg-opacity: 1;
+}
+
+.sensory-friendly *,
+.sensory-friendly *::before,
+.sensory-friendly *::after {
+  animation-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0s !important;
+  scroll-behavior: auto !important;
+}
+
+.sensory-friendly .text-blue-700 {
+  color: #1e40af !important; /* Mélyebb, kevésbé világító kék */
+}
+
+.sensory-friendly .bg-blue-600 {
+  background-color: #1e40af !important;
+}
+
+.sensory-friendly .bg-blue-50 {
+  background-color: #f1f5f9 !important; /* Szürkébb, semlegesebb háttér */
+}

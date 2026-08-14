@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { CheckCircle2, Target, Award, Users } from 'lucide-react';
 

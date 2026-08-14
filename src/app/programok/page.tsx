@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { Calendar, MapPin, ArrowRight, Image as ImageIcon, School, GraduationCap } from 'lucide-react';
 import Link from 'next/link';

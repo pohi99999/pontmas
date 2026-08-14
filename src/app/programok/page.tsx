@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Calendar, MapPin, ArrowRight, Image as ImageIcon, School, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 
@@ -8,21 +9,21 @@ export default function ProgramokPage() {
       date: 'Minden év áprilisában',
       location: 'Szombathely',
       description: 'Hagyományos figyelemfelhívó sétánk, amellyel az autizmussal élők társadalmi elfogadását hirdetjük. Programunkkal célunk, hogy láthatóvá tegyük az érintett családokat, lebontsuk az előítéleteket és közelebb hozzuk egymáshoz a közösséget.',
-      imagePlaceholder: 'kek-seta.jpg'
+      imageSrc: '/images/kek-seta.jpg'
     },
     {
       title: 'Képességfejlesztő Nyári Táborok',
       date: 'Nyári szünet idején',
       location: 'Vas vármegye',
       description: 'Kifejezetten autizmussal élő gyermekek számára szervezett táboraink biztonságos, elfogadó és kiszámítható környezetet nyújtanak. A táborok során a gyermekek szakértői felügyelet mellett fejlődhetnek és kapcsolódhatnak ki.',
-      imagePlaceholder: 'nyari-tabor.jpg'
+      imageSrc: '/images/nyari-tabor.jpg'
     },
     {
       title: 'Szülőklub és Családi Napok',
       date: 'Folyamatosan szervezve',
       location: 'Változó helyszínek',
       description: 'Lehetőség a tapasztalatcserére, szakemberekkel való találkozásra és a kötetlen feltöltődésre az érintett családok számára. Együtt könnyebb megküzdeni a mindennapok kihívásaival.',
-      imagePlaceholder: 'csaladi-nap.jpg'
+      imageSrc: '/images/csaladi-nap.jpg'
     }
   ];
 
@@ -50,11 +51,21 @@ export default function ProgramokPage() {
         <div className="max-w-5xl mx-auto grid gap-8">
           {programok.map((program, index) => (
             <div key={index} className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col md:flex-row transition-shadow hover:shadow-md">
-              {/* Kép helykitöltő - Később Next.js Image komponensre cserélve */}
-              <div className="bg-slate-100 md:w-2/5 flex flex-col items-center justify-center p-12 text-slate-400 border-b md:border-b-0 md:border-r border-slate-100 min-h-[250px]">
-                <ImageIcon size={48} className="mb-3 text-slate-300" />
-                <span className="text-sm font-medium">Kép helye</span>
-                <span className="text-xs text-slate-400">`/public/images/{program.imagePlaceholder}`</span>
+              
+              {/* Kép keret Next.js Image-dzsel */}
+              <div className="relative md:w-2/5 min-h-[240px] bg-slate-100 border-b md:border-b-0 md:border-r border-slate-100 flex flex-col items-center justify-center p-6 text-slate-400">
+                <Image
+                  src={program.imageSrc}
+                  alt={program.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+                <ImageIcon size={40} className="mb-2 text-slate-300" />
+                <span className="text-xs font-mono bg-slate-200 text-slate-700 px-2 py-1 rounded">{program.imageSrc}</span>
               </div>
               
               {/* Tartalom */}

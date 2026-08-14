@@ -7,11 +7,10 @@
 - [x] Információs architektúra, UI/UX alapok
 - [x] Kezdőoldal (Home) felépítése premium UI/UX elemekkel
 - [x] Rólunk aloldal véglegesítése és szöveges tartalommigrációja
-- [x] Autizmus aloldal végleges tartalommigrációja (szülői útmutatóval)
-- [x] Programok aloldal végleges tartalommigrációja (intézményi támogatásokkal)
-- [ ] Képek és médiafájlok Next.js Image optimalizációja
-- [ ] Végleges tesztelés (a11y)
+- [x] Autizmus aloldal végleges tartalommigrációja
+- [x] Programok aloldal végleges tartalommigrációja
+- [x] Képek és médiafájlok Next.js Image optimalizációja
+- [ ] Végleges tesztelés (a11y) és átadás
 
 ## Munkamenet Napló
-- **2026-08-13:** "Autizmus" aloldal (autizmus/page.tsx) kibővítve szülői útmutatókkal.
-- **2026-08-13:** "Programok" aloldal (programok/page.tsx) kibővítve a támogatott intézmények listájával, a kód struktúrája optimalizálva a későbbi képfeltöltésekhez.
+- **2026-08-14:** `next/image` komponensek felkészítése a `rolunk` és `programok` oldalakon a reszponzív, WebP-optimalizált képbetöltésekhez.

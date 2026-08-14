@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import { CheckCircle2, Target, Award, Users } from 'lucide-react';
 
 export default function RolunkPage() {
-  // Adatstruktúra a könnyebb karbantarthatóságért
   const alapelvek = [
     {
       icon: <Target className="text-blue-600" size={24} />,
@@ -34,7 +34,7 @@ export default function RolunkPage() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Kik vagyunk mi?</h1>
           <p className="max-w-3xl mx-auto text-lg text-slate-600 leading-relaxed">
-            A PontMás Vas Megyei Autista Gyermekekért Alapítvány egy 2015 óta aktívan működő, civil szervezet. Küldetésünk, hogy hidat képezzünk az érintett családok, a szakemberek és a társadalom között.
+            A PontMás Vas Megyei Autista Gyermekekért Alapítvány egy 2015 óta aktívan működő civil szervezet. Küldetésünk, hogy hidat képezzünk az érintett családok, a szakemberek és a társadalom között.
           </p>
         </div>
       </section>
@@ -47,7 +47,7 @@ export default function RolunkPage() {
           <div className="md:col-span-7 space-y-6">
             <h2 className="text-3xl font-bold text-slate-900">Történetünk és küldetésünk</h2>
             <p className="text-slate-600 leading-relaxed">
-              Alapítványunkat az élet hívta életre. Olyan szülők és szakemberek fogtak össze, akik a saját bőrükön tapasztalták meg, milyen kihívásokkal kell szembenéznie egy autizmussal élő gyermeknek és családjának Vas vármegyében.
+              Alapítványunkat az élet hívta életre. Oynchron szülők és szakemberek fogtak össze, akik a saját bőrükön tapasztalták meg, milyen kihívásokkal kell szembenéznie egy autizmussal élő gyermeknek és családjának Vas vármegyében.
             </p>
             <p className="text-slate-600 leading-relaxed">
               Nem csupán egy szervezet vagyunk: egy támogató és megtartó közösséget építünk, ahol a szülők megoszthatják tapasztalataikat, a gyermekek pedig biztonságos, megértő közegben fejlődhetnek.
@@ -61,13 +61,24 @@ export default function RolunkPage() {
             </div>
           </div>
 
-          {/* Vizuális/Kép helykitöltő - Később ide jön a csapatfotó */}
-          <div className="md:col-span-5 bg-slate-100 border border-slate-200 rounded-2xl p-8 flex flex-col justify-center items-center text-center min-h-[300px] text-slate-400">
-            <div className="w-20 h-20 bg-slate-200 rounded-full flex items-center justify-center mb-4 text-slate-300">
-              <Users size={40} />
+          {/* Vizuális Kép keret Next.js Image támogatással */}
+          <div className="md:col-span-5 relative w-full h-[320px] bg-slate-100 border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex items-center justify-center">
+            <Image
+              src="/images/csapat.jpg"
+              alt="PontMás Alapítvány Csapatfotó"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 40vw"
+              onError={(e) => {
+                // Helykitöltő vizuális elem, amíg a fájl nem létezik a public/images mappa alatt
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+            <div className="p-6 text-center text-slate-400">
+              <Users size={48} className="mx-auto mb-2 text-slate-300" />
+              <p className="font-semibold text-slate-600">Alapítványi Csapatfotó</p>
+              <p className="text-xs text-slate-400 mt-1">Helyezze el a képet:<br/><code className="bg-slate-200 px-1 py-0.5 rounded text-slate-700">/public/images/csapat.jpg</code></p>
             </div>
-            <p className="font-medium text-slate-600">Alapítványi Csapatfotó</p>
-            <p className="text-xs text-slate-400 mt-1">`/public/images/csapat.jpg` helye</p>
           </div>
 
         </div>

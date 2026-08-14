@@ -10,7 +10,7 @@
 - [x] Autizmus aloldal végleges tartalommigrációja
 - [x] Programok aloldal végleges tartalommigrációja
 - [x] Képek és médiafájlok Next.js Image optimalizációja
-- [ ] Végleges tesztelés (a11y) és átadás
+- [x] Végleges tesztelés (a11y), képmappa felkészítése és 1.0 átadás
 
 ## Munkamenet Napló
-- **2026-08-14:** `next/image` komponensek felkészítése a `rolunk` és `programok` oldalakon a reszponzív, WebP-optimalizált képbetöltésekhez.
+- **2026-08-14:** `public/images` könyvtár és a `README-kepek.txt` útmutató létrehozása. Az 1.0-s fejlesztési mérföldkő adminisztratív lezárása. A projekt éles használatra kész.

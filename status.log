@@ -1,8 +1,7 @@
 [2026-08-05] Projekt inicializálva (Next.js + Tailwind CSS).
 [2026-08-05] Globális architektúra felállítva.
 [2026-08-13] Prémium UX, SEO, Schema.org és Akadálymentesítési funkciók implementálva.
-[2026-08-13] Rólunk oldal tartalommigrációja és véglegesítése megtörtént.
-[2026-08-13] Autizmus (Edukációs) oldal kibővítése megtörtént.
-[2026-08-13] Programok oldal kibővítése intézményi támogatásokkal megtörtént.
-[2026-08-14] Next.js Image (<Image />) komponensek beillesztve a rolunk és programok oldalakon.
-STATUS: Képi és média infrastruktúra felkészítve a végleges fájlok fogadására.
+[2026-08-13] A fő információs aloldalak (Rólunk, Autizmus, Programok) tartalommigrációja lezárva.
+[2026-08-14] Next.js Image infrastruktúra implementálva.
+[2026-08-14] Képkönyvtár struktúra (public/images) és útmutató előkészítve.
+STATUS: A PontMás Alapítvány weboldalának v1.0 fejlesztési fázisa SIKERESEN LEZÁRVA. Készen áll a végleges tartalomfogadásra.

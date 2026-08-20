@@ -7,7 +7,7 @@
 
 ## Phase 2: Kezdőlap & Rólunk Megújítása
 - [x] Task 2.1: Kezdőlap (Hero, Misszió, Kiemelt programok, 1% felhívás, Partnerek) felújítása [4e5fb03]
-- [ ] Task 2.2: Rólunk aloldal (`/rolunk`) tartalmi és vizuális felépítése (Történet, Kuratórium, Hitelesség).
+- [x] Task 2.2: Rólunk aloldal (`/rolunk`) tartalmi és vizuális felépítése (Történet, Kuratórium, Hitelesség) [5cf33ad]
 
 ## Phase 3: Autizmus Ismerettár & Programok
 - [ ] Task 3.1: Autizmus tudástár (`/autizmus`) strukturálása (Tények/Tévhitek, Gyakori kérdések, Szülői útmutatók).

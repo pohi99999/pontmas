@@ -2,7 +2,7 @@
 
 ## Phase 1: Design System & Shared Components
 - [x] Task 1.1: Globális stílusok és autizmus-barát színpaletta finomhangolása (`globals.css`, Tailwind konfig) [6f1445a]
-- [ ] Task 1.2: Navigációs fejléc (Navbar) és Lábléc (Footer) modernizálása akadálymentes mobil menüvel.
+- [x] Task 1.2: Navigációs fejléc (Navbar) és Lábléc (Footer) modernizálása akadálymentes mobil menüvel [4e4d424]
 - [ ] Task 1.3: Újrafelhasználható UI komponensek készítése (SectionHeader, FeatureCard, ActionCard, Badge, Button, CopyButton).
 
 ## Phase 2: Kezdőlap & Rólunk Megújítása

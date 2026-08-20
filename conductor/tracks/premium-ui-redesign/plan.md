@@ -17,4 +17,4 @@
 - [x] Task 4.1: Támogatás aloldal (`/tamogatas`) interaktív 1% másoló funkcióval és adományozási tájékoztatóval [81ecd59]
 - [x] Task 4.2: Kapcsolat aloldal (`/kapcsolat`) AOSZ Info-Pont adatokkal és űrlappal [0052fc3]
 - [x] Task 4.3: Teljes körű build, lint, TypeScript ellenőrzés és akadálymentességi audit [0ef4af7]
-- [ ] Task 4.4: Projekt és track dokumentáció szinkronizálása az Obsidian rendszerbe MCP-n keresztül.
+- [x] Task 4.4: Projekt és track dokumentáció szinkronizálása az Obsidian rendszerbe MCP-n keresztül [a3f8f5d]

@@ -6,7 +6,7 @@
 - [x] Task 1.3: Újrafelhasználható UI komponensek készítése (SectionHeader, FeatureCard, ActionCard, Badge, Button, CopyButton) [0c52902]
 
 ## Phase 2: Kezdőlap & Rólunk Megújítása
-- [ ] Task 2.1: Kezdőlap (Hero, Misszió, Kiemelt programok, 1% felhívás, Partnerek) felújítása.
+- [x] Task 2.1: Kezdőlap (Hero, Misszió, Kiemelt programok, 1% felhívás, Partnerek) felújítása [4e5fb03]
 - [ ] Task 2.2: Rólunk aloldal (`/rolunk`) tartalmi és vizuális felépítése (Történet, Kuratórium, Hitelesség).
 
 ## Phase 3: Autizmus Ismerettár & Programok

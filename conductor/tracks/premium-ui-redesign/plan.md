@@ -5,7 +5,7 @@
 - [x] Task 1.2: Navigációs fejléc (Navbar) és Lábléc (Footer) modernizálása akadálymentes mobil menüvel [4e4d424]
 - [x] Task 1.3: Újrafelhasználható UI komponensek készítése (SectionHeader, FeatureCard, ActionCard, Badge, Button, CopyButton) [0c52902]
 
-## Phase 2: Kezdőlap & Rólunk Megújítása
+## Phase 2: Kezdőlap & Rólunk Megújítása [checkpoint: 75a71da]
 - [x] Task 2.1: Kezdőlap (Hero, Misszió, Kiemelt programok, 1% felhívás, Partnerek) felújítása [4e5fb03]
 - [x] Task 2.2: Rólunk aloldal (`/rolunk`) tartalmi és vizuális felépítése (Történet, Kuratórium, Hitelesség) [5cf33ad]
 

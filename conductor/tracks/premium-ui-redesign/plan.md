@@ -14,7 +14,7 @@
 - [x] Task 3.2: Programok és események aloldal (`/programok`) naptárral és archív beszámolókkal [4793a75]
 
 ## Phase 4: Támogatás, Kapcsolat és Végleges Ellenőrzés
-- [ ] Task 4.1: Támogatás aloldal (`/tamogatas`) interaktív 1% másoló funkcióval és adományozási tájékoztatóval.
+- [x] Task 4.1: Támogatás aloldal (`/tamogatas`) interaktív 1% másoló funkcióval és adományozási tájékoztatóval [81ecd59]
 - [ ] Task 4.2: Kapcsolat aloldal (`/kapcsolat`) AOSZ Info-Pont adatokkal és űrlappal.
 - [ ] Task 4.3: Teljes körű build, lint, TypeScript ellenőrzés és akadálymentességi audit.
 - [ ] Task 4.4: Projekt és track dokumentáció szinkronizálása az Obsidian rendszerbe MCP-n keresztül.

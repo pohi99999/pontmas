@@ -1,135 +1,222 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { Calendar, MapPin, ArrowRight, Image as ImageIcon, School, GraduationCap } from 'lucide-react';
-import Link from 'next/link';
+import { useState } from 'react';
+import { Calendar, MapPin, Sparkles, School, GraduationCap, Heart, ArrowRight } from 'lucide-react';
+import SectionHeader from '@/components/ui/SectionHeader';
+import Button from '@/components/ui/Button';
 
 export default function ProgramokPage() {
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'event' | 'family' | 'camp'>('all');
+
   const programok = [
     {
+      category: 'event',
       title: 'Autizmus Világnapi "Kék Séta"',
-      date: 'Minden év áprilisában',
-      location: 'Szombathely',
-      description: 'Hagyományos figyelemfelhívó sétánk, amellyel az autizmussal élők társadalmi elfogadását hirdetjük. Programunkkal célunk, hogy láthatóvá tegyük az érintett családokat, lebontsuk az előítéleteket és közelebb hozzuk egymáshoz a közösséget.',
-      imageSrc: '/images/kek-seta.jpg'
+      date: 'Minden év április 2. körül',
+      location: 'Szombathely Fő tér és belváros',
+      badge: 'Kiemelt éves esemény',
+      description: 'Hagyományos és nagyszabású figyelemfelhívó sétánk, amellyel az autizmussal élők társadalmi elfogadását, láthatóságát hirdetjük. Célunk az előítéletek lebontása és a helyi közösség összefogása.',
+      highlights: ['Kék lufik és szalagok', 'Közös séta érintett családokkal', 'Szakmai és szülői felszólalások']
     },
     {
+      category: 'camp',
       title: 'Képességfejlesztő Nyári Táborok',
-      date: 'Nyári szünet idején',
-      location: 'Vas vármegye',
-      description: 'Kifejezetten autizmussal élő gyermekek számára szervezett táboraink biztonságos, elfogadó és kiszámítható környezetet nyújtanak. A táborok során a gyermekek szakértői felügyelet mellett fejlődhetnek és kapcsolódhatnak ki.',
-      imageSrc: '/images/nyari-tabor.jpg'
+      date: 'Július - Augusztus (évente több turnusban)',
+      location: 'Vas vármegyei élményhelyszínek',
+      badge: 'Fejlesztő tábor',
+      description: 'Kifejezetten autizmussal élő gyermekek számára megálmodott táboraink kiszámítható, biztonságos és elfogadó közeget nyújtanak. Gyógypedagógusok és képzett asszisztensek felügyeletével biztosítunk játékos készségfejlesztést és igazi kikapcsolódást.',
+      highlights: ['Alacsony gyermek-felnőtt arány', 'Egyéni szenzoros igényekhez igazított programok', 'Közösségi élmények']
     },
     {
-      title: 'Szülőklub és Családi Napok',
-      date: 'Folyamatosan szervezve',
-      location: 'Változó helyszínek',
-      description: 'Lehetőség a tapasztalatcserére, szakemberekkel való találkozásra és a kötetlen feltöltődésre az érintett családok számára. Együtt könnyebb megküzdeni a mindennapok kihívásaival.',
-      imageSrc: '/images/csaladi-nap.jpg'
+      category: 'family',
+      title: 'Szülőklub és Tapasztalatcsere',
+      date: 'Havonta rendszeresen',
+      location: 'Szombathely, AOSZ Info-Pont / Közösségi tér',
+      badge: 'Sorstársi közösség',
+      description: 'Biztonságos és támogató beszélgetőfórum az érintett szülők számára. Meghívott szakemberek, gyógypedagógusok és egymást segítő szülők segítségével vitatjuk meg a mindennapi kihívásokat, intézményi kérdéseket.',
+      highlights: ['Ingyenes részvétel', 'Szakértői témák és kötetlen beszélgetések', 'Érzelmi és gyakorlati támasz']
+    },
+    {
+      category: 'family',
+      title: 'Autizmus-barát Családi Napok',
+      date: 'Tavaszi és őszi időszakban',
+      location: 'Szombathely és környéke',
+      badge: 'Családi program',
+      description: 'Olyan kötetlen szabadidős programok, ahol a testvérek, szülők és a spektrumon lévő gyermekek együtt tölthetnek el egy élménydús napot, anélkül, hogy a környezet ítélkezésétől kellene tartaniuk.',
+      highlights: ['Nyugtató pihenősátrak', 'Kreatív és mozgásos játékok', 'Családi kapcsolatépítés']
     }
   ];
 
   const tamogatottIntezmenyek = [
-    "Aranyhíd EGYMI (Szombathely)",
-    "Micimackó Óvoda (Szombathely)",
-    "Vas Vármegyei Pedagógiai Szakszolgálat",
-    "Integráltan oktató általános és középiskolák Vas vármegyében"
+    { nev: "Aranyhíd EGYMI (Szombathely)", reszlet: "Speciális oktatási-nevelési fejlesztőeszközök, szenzoros szobák felszerelésének támogatása." },
+    { nev: "Micimackó Óvoda (Szombathely)", reszlet: "Autizmus-specifikus korai fejlesztő játékok és vizuális támogató eszközök biztosítása." },
+    { nev: "Vas Vármegyei Pedagógiai Szakszolgálat", reszlet: "Szakmai együttműködés, diagnosztikai és tanácsadási folyamatok támogatása." },
+    { nev: "Integráló általános és középiskolák", reszlet: "Módszertani segítségnyújtás és érzékenyítő előadások a pedagógusok és osztályközösségek számára." }
   ];
 
+  const filteredPrograms = selectedCategory === 'all' 
+    ? programok 
+    : programok.filter(p => p.category === selectedCategory);
+
   return (
-    <div className="pb-16">
-      {/* Fejléc szekció */}
-      <section className="bg-slate-50 pt-12 pb-16 border-b border-slate-200">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Programok és Események</h1>
-          <p className="max-w-2xl mx-auto text-lg text-slate-600 leading-relaxed">
-            Közösséget építünk és támogatunk. Fedezze fel állandó programjainkat, rendezvényeinket, és ismerje meg intézményfejlesztési munkánkat!
-          </p>
+    <div className="pb-20">
+      
+      {/* 1. Fejléc szekció */}
+      <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <SectionHeader
+            badge="Események & Kezdeményezések"
+            badgeIcon={<Sparkles size={14} />}
+            title="Programjaink és Rendezvényeink"
+            subtitle="Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!"
+            align="center"
+          />
         </div>
       </section>
 
-      {/* Programok listája */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="max-w-5xl mx-auto grid gap-8">
-          {programok.map((program, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col md:flex-row transition-shadow hover:shadow-md">
-              
-              {/* Kép keret Next.js Image-dzsel */}
-              <div className="relative md:w-2/5 min-h-[240px] bg-slate-100 border-b md:border-b-0 md:border-r border-slate-100 flex flex-col items-center justify-center p-6 text-slate-400">
-                <Image
-                  src={program.imageSrc}
-                  alt={program.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-                <ImageIcon size={40} className="mb-2 text-slate-300" />
-                <span className="text-xs font-mono bg-slate-200 text-slate-700 px-2 py-1 rounded">{program.imageSrc}</span>
+      {/* 2. Programok és Események Kategóriaválasztóval */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        {/* Kategória szűrő gombok */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12 max-w-2xl mx-auto" role="tablist" aria-label="Programkategóriák">
+          {[
+            { id: 'all', label: 'Összes program' },
+            { id: 'event', label: 'Kiemelt Események' },
+            { id: 'camp', label: 'Nyári Táborok' },
+            { id: 'family', label: 'Szülőklub & Családok' },
+          ].map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id as typeof selectedCategory)}
+              role="tab"
+              aria-selected={selectedCategory === cat.id}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                selectedCategory === cat.id
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Esemény kártyák listája */}
+        <div className="max-w-5xl mx-auto space-y-8">
+          {filteredPrograms.map((program, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all space-y-6"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                <div>
+                  <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 mb-2 inline-block">
+                    {program.badge}
+                  </span>
+                  <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                    {program.title}
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
+                  <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
+                    <Calendar size={14} className="text-blue-600" />
+                    <span>{program.date}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
+                    <MapPin size={14} className="text-slate-400" />
+                    <span>{program.location}</span>
+                  </div>
+                </div>
               </div>
-              
-              {/* Tartalom */}
-              <div className="p-8 md:w-3/5 flex flex-col justify-center">
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">{program.title}</h2>
-                <div className="flex flex-wrap gap-4 mb-4 text-sm font-medium text-slate-600">
-                  <div className="flex items-center bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full">
-                    <Calendar size={16} className="mr-2 flex-shrink-0" />
-                    {program.date}
-                  </div>
-                  <div className="flex items-center bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200">
-                    <MapPin size={16} className="mr-2 text-slate-400 flex-shrink-0" />
-                    {program.location}
-                  </div>
-                </div>
-                <p className="text-slate-600 leading-relaxed mb-6">
-                  {program.description}
-                </p>
-                <div className="mt-auto">
-                  <Link href="/kapcsolat" className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors">
-                    Érdeklődöm a program iránt <ArrowRight className="ml-1.5" size={18} />
-                  </Link>
-                </div>
+
+              <p className="text-slate-600 text-base leading-relaxed">
+                {program.description}
+              </p>
+
+              <div className="bg-slate-50/70 p-4 rounded-2xl border border-slate-100">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Főbb jellemzők:</span>
+                <ul className="grid sm:grid-cols-3 gap-2">
+                  {program.highlights.map((h, i) => (
+                    <li key={i} className="flex items-center gap-2 text-xs font-medium text-slate-700">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex justify-end pt-2">
+                <Button href="/kapcsolat" variant="ghost" size="sm" rightIcon={<ArrowRight size={14} />}>
+                  Érdeklődés & Részletek
+                </Button>
               </div>
             </div>
           ))}
         </div>
+
       </section>
 
-      {/* Intézményi támogatások */}
-      <section className="bg-blue-50 py-16 border-y border-blue-100">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="md:w-1/2">
-              <div className="flex items-center mb-6">
-                <School className="text-blue-600 mr-4" size={32} />
-                <h2 className="text-3xl font-bold text-slate-900">Intézményi támogatások</h2>
+      {/* 3. Intézményi Támogatások Modul */}
+      <section className="bg-gradient-to-b from-slate-100/80 to-slate-50 border-y border-slate-200/80 py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <SectionHeader
+            badge="Együttműködés"
+            badgeIcon={<School size={14} />}
+            title="Támogatott intézmények Vas vármegyében"
+            subtitle="Nemcsak közvetlenül a családokat segítjük, hanem azokat a szakmai intézményeket is, ahol a gyermekek a mindennapjaikat töltik."
+          />
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {tamogatottIntezmenyek.map((intezmeny, index) => (
+              <div key={index} className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-2xs flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-blue-50 text-blue-600 flex-shrink-0">
+                  <GraduationCap size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-lg mb-1">{intezmeny.nev}</h4>
+                  <p className="text-slate-600 text-sm leading-relaxed">{intezmeny.reszlet}</p>
+                </div>
               </div>
-              <p className="text-slate-600 leading-relaxed mb-6">
-                Az események szervezése mellett kiemelt célunk a Vas vármegyei autizmus-specifikus oktatási-nevelési intézmények, valamint az integráltan oktató iskolák segítése. Eszközbeszerzésekkel és szakmai programokkal támogatjuk az alábbi intézményeket:
-              </p>
-              <ul className="space-y-3">
-                {tamogatottIntezmenyek.map((intezmeny, index) => (
-                  <li key={index} className="flex items-start bg-white px-4 py-3 rounded-lg shadow-sm border border-slate-100">
-                    <GraduationCap className="text-blue-500 mr-3 mt-0.5 flex-shrink-0" size={20} />
-                    <span className="font-medium text-slate-700">{intezmeny}</span>
-                  </li>
-                ))}
-              </ul>
+            ))}
+          </div>
+
+          <div className="mt-12 bg-white rounded-2xl p-8 border border-slate-200 text-center max-w-3xl mx-auto space-y-4 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900">
+              Szeretné, hogy az Ön intézménye is részesüljön támogatásban?
+            </h3>
+            <p className="text-slate-600 text-sm leading-relaxed max-w-xl mx-auto">
+              Vegye fel velünk a kapcsolatot a konkrét szakmai igények, eszközbeszerzések és érzékenyítő tréningek egyeztetéséhez.
+            </p>
+            <div className="pt-2">
+              <Button href="/kapcsolat" variant="primary" size="md">
+                Intézményi megkeresés
+              </Button>
             </div>
-            <div className="md:w-1/2 w-full">
-               <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center">
-                  <h3 className="text-xl font-bold text-slate-900 mb-4">Szeretné intézményét támogatottjaink között látni?</h3>
-                  <p className="text-slate-600 text-sm mb-6">Vegye fel velünk a kapcsolatot, hogy egyeztethessünk a szakmai igényekről és a lehetséges támogatási formákról.</p>
-                  <Link href="/kapcsolat" className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors w-full sm:w-auto">
-                    Kapcsolatfelvétel
-                  </Link>
-               </div>
-            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4. Támogatási felhívás */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+        <div className="max-w-4xl mx-auto bg-gradient-to-r from-blue-700 to-sky-600 rounded-3xl p-8 sm:p-12 text-white text-center shadow-lg space-y-6">
+          <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center mx-auto text-white">
+            <Heart size={24} className="fill-white/30" />
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            Segítsen megvalósítani programjainkat!
+          </h2>
+          <p className="max-w-2xl mx-auto text-blue-100 text-base leading-relaxed">
+            Adója 1%-ával vagy közvetlen támogatással Ön is hozzájárulhat a táborok, a Kék séta és a szülőklubok sikeres megszervezéséhez.
+          </p>
+          <div className="flex justify-center pt-2">
+            <Button href="/tamogatas" variant="secondary" size="lg" className="bg-white text-blue-900 hover:bg-blue-50 border-0">
+              Támogatási tudnivalók (1%)
+            </Button>
           </div>
         </div>
       </section>
+
     </div>
   );
 }

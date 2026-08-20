@@ -8,4 +8,4 @@
 - **Code Styleguides:** [code_styleguides/](./code_styleguides/)
 
 ## Active Tracks
-- [~] **[premium-ui-redesign](./tracks/premium-ui-redesign/plan.md)**: Prémium UI/UX és aloldalak megújítása (Státusz: `in_progress`)
+- [x] **[premium-ui-redesign](./tracks/premium-ui-redesign/plan.md)**: Prémium UI/UX és aloldalak megújítása (Státusz: `completed`)

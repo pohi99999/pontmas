@@ -9,7 +9,7 @@
 - [x] Task 2.1: Kezdőlap (Hero, Misszió, Kiemelt programok, 1% felhívás, Partnerek) felújítása [4e5fb03]
 - [x] Task 2.2: Rólunk aloldal (`/rolunk`) tartalmi és vizuális felépítése (Történet, Kuratórium, Hitelesség) [5cf33ad]
 
-## Phase 3: Autizmus Ismerettár & Programok
+## Phase 3: Autizmus Ismerettár & Programok [checkpoint: 8572971]
 - [x] Task 3.1: Autizmus tudástár (`/autizmus`) strukturálása (Tények/Tévhitek, Gyakori kérdések, Szülői útmutatók) [6f61c5c]
 - [x] Task 3.2: Programok és események aloldal (`/programok`) naptárral és archív beszámolókkal [4793a75]
 

@@ -1,6 +1,6 @@
 # Track Plan: Prémium UI/UX és aloldalak megújítása
 
-## Phase 1: Design System & Shared Components
+## Phase 1: Design System & Shared Components [checkpoint: 0f63727]
 - [x] Task 1.1: Globális stílusok és autizmus-barát színpaletta finomhangolása (`globals.css`, Tailwind konfig) [6f1445a]
 - [x] Task 1.2: Navigációs fejléc (Navbar) és Lábléc (Footer) modernizálása akadálymentes mobil menüvel [4e4d424]
 - [x] Task 1.3: Újrafelhasználható UI komponensek készítése (SectionHeader, FeatureCard, ActionCard, Badge, Button, CopyButton) [0c52902]

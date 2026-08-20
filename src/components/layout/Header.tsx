@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Eye, EyeOff, Heart, Sparkles } from 'lucide-react';
@@ -10,11 +10,6 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isSensoryFriendly, toggleSensoryMode } = useSensory();
   const pathname = usePathname();
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
 
   const navItems = [
     { label: 'Kezdőlap', href: '/' },
@@ -34,6 +29,7 @@ export default function Header() {
           href="/" 
           className="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none rounded-lg p-1"
           aria-label="PontMás Alapítvány Kezdőlap"
+          onClick={() => setIsMobileMenuOpen(false)}
         >
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-sky-500 flex items-center justify-center text-white shadow-sm shadow-blue-500/20 group-hover:scale-105 transition-transform">
             <Sparkles size={22} className="text-white" />
@@ -144,6 +140,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${
                     isActive
                       ? 'text-blue-700 bg-blue-50 font-semibold'
@@ -158,6 +155,7 @@ export default function Header() {
             <div className="pt-3 mt-2 border-t border-slate-100">
               <Link
                 href="/tamogatas"
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-sm text-center transition-colors"
               >
                 <Heart size={18} />

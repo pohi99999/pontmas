@@ -13,7 +13,7 @@
 - [x] Task 3.1: Autizmus tudástár (`/autizmus`) strukturálása (Tények/Tévhitek, Gyakori kérdések, Szülői útmutatók) [6f61c5c]
 - [x] Task 3.2: Programok és események aloldal (`/programok`) naptárral és archív beszámolókkal [4793a75]
 
-## Phase 4: Támogatás, Kapcsolat és Végleges Ellenőrzés
+## Phase 4: Támogatás, Kapcsolat és Végleges Ellenőrzés [checkpoint: 6292ef9]
 - [x] Task 4.1: Támogatás aloldal (`/tamogatas`) interaktív 1% másoló funkcióval és adományozási tájékoztatóval [81ecd59]
 - [x] Task 4.2: Kapcsolat aloldal (`/kapcsolat`) AOSZ Info-Pont adatokkal és űrlappal [0052fc3]
 - [x] Task 4.3: Teljes körű build, lint, TypeScript ellenőrzés és akadálymentességi audit [0ef4af7]

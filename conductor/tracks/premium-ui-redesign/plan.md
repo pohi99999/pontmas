@@ -11,7 +11,7 @@
 
 ## Phase 3: Autizmus Ismerettár & Programok
 - [x] Task 3.1: Autizmus tudástár (`/autizmus`) strukturálása (Tények/Tévhitek, Gyakori kérdések, Szülői útmutatók) [6f61c5c]
-- [ ] Task 3.2: Programok és események aloldal (`/programok`) naptárral és archív beszámolókkal.
+- [x] Task 3.2: Programok és események aloldal (`/programok`) naptárral és archív beszámolókkal [4793a75]
 
 ## Phase 4: Támogatás, Kapcsolat és Végleges Ellenőrzés
 - [ ] Task 4.1: Támogatás aloldal (`/tamogatas`) interaktív 1% másoló funkcióval és adományozási tájékoztatóval.

@@ -4,4 +4,6 @@
 [2026-08-13] A fő információs aloldalak (Rólunk, Autizmus, Programok) tartalommigrációja lezárva.
 [2026-08-14] Next.js Image infrastruktúra implementálva.
 [2026-08-14] Képkönyvtár struktúra (public/images) és útmutató előkészítve.
-STATUS: A PontMás Alapítvány weboldalának v1.0 fejlesztési fázisa SIKERESEN LEZÁRVA. Készen áll a végleges tartalomfogadásra.
+[2026-08-20] Conductor 'premium-ui-redesign' track sikeresen befejezve: egységes design tokenek, UI komponens készlet (Button, Badge, SectionHeader, FeatureCard, ActionCard, CopyButton), Kezdőlap, Rólunk, Autizmus tudástár, Programok, Támogatás (1% másoló funkcióval) és Kapcsolat (AOSZ Info-Pont, ContactForm) megújítva.
+[2026-08-20] 13/13 automatizált teszt sikeres (Node.js test runner), 0 lint hiba, zéró TypeScript hiba, Next.js 16 production build sikeresen legenerálva.
+STATUS: Prémium UI/UX redesign fázis 100%-ban lezárva, Obsidian tudásbázis szinkronizálva.

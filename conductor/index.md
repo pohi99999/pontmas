@@ -9,4 +9,4 @@
 
 ## Active Tracks
 - [x] **[premium-ui-redesign](./tracks/premium-ui-redesign/plan.md)**: Prémium UI/UX és aloldalak megújítása (Státusz: `completed`)
-- [~] **[content-modernization](./tracks/content-modernization/plan.md)**: Teljes Valós Tartalomátültetés és Prémium Portál (pontmas.hu) (Státusz: `in_progress`)
+- [x] **[content-modernization](./tracks/content-modernization/plan.md)**: Teljes Valós Tartalomátültetés és Prémium Portál (pontmas.hu) (Státusz: `completed`)

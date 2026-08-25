@@ -15,8 +15,8 @@
 - [x] Task 3.2: Lapozható és szűrhető médiakártyák és idézetkomponensek kidolgozása [8a4b0de]
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Rólunk Írták, Sajtó & Médiamegjelenések' (Protocol in workflow.md)
 
-## Phase 4: Hírek, Események, Szülőklub & Pályázati Archívum (`/hirek`, `/programok`, `/dokumentumok`)
+## Phase 4: Hírek, Események, Szülőklub & Pályázati Archívum (`/hirek`, `/programok`, `/dokumentumok`) [checkpoint: dd9195f]
 - [x] Task 4.1: `/hirek` aloldal és gazdag hírfolyam megvalósítása (Szülőklub események, Vasi Skanzen Családi Nap, Pedagógus képzések, Önkéntes toborzás) [3bf6829]
 - [x] Task 4.2: `/programok` és `/dokumentumok` frissítése a hivatalos pályázati és beszámolási adatokkal [0dabf3f]
 - [x] Task 4.3: Teljes körű build, TypeScript típusellenőrzés, a11y ellenőrzés és Obsidian szinkronizáció [ccc5d27]
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Hírek, Események, Szülőklub & Pályázati Archívum' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Hírek, Események, Szülőklub & Pályázati Archívum' (Protocol in workflow.md)

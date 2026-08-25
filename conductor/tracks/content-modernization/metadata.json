@@ -1,7 +1,7 @@
 {
   "track_id": "content-modernization",
   "type": "feature",
-  "status": "new",
+  "status": "completed",
   "created_at": "2026-08-25T14:10:30Z",
   "updated_at": "2026-08-25T14:10:30Z",
   "description": "A pontmas.hu teljes valós tartalmának (hírek, események, szülőklub, segítségnyújtás, rólunk írták, pályázatok) átemelése a modern portálba prémium UI/UX és akadálymentes megoldásokkal."

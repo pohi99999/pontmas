@@ -15,10 +15,14 @@ A PontMás Vas Megyei Autista Gyermekekért Alapítvány hivatalos weboldalának
 ## 3. Core Capabilities & Key Features (Fő funkciók)
 - **Rólunk & Alapítványi profil:** Küldetés, kuratórium bemutatása, szakmai háttér.
 - **Autizmus ismerettár:** Tájékoztató anyagok, letölthető segédletek, tévhitek és tények.
+- **Amiben segíteni tudunk (/segitseg):** Mentorszülő hálózat, AOSZ Info-Pont iroda, DATA applikáció támogatás, Vas vármegyei szakkönyvtár kölcsönzés, intézményi kalauz.
+- **Rólunk írták & Sajtó (/rolunk-irtak):** Média- és televíziós megjelenések (VAOL, SZTV), szülői köszönőlevelek és intézményi elismerések.
+- **Hírek & Aktualitások (/hirek):** Szülőklub meghívók, Családi Nap 2024 beszámolók, pedagógus továbbképzések és önkéntes toborzás.
 - **Programok & Események:** Éves naptár, táborok, családi napok, fotógalériák, eseménybeszámolók.
 - **Támogatási központ (Adó 1% és Adományozás):** 1% rendelkezési nyilatkozat, bankszámlaszám, transzparens célok.
-- **Dokumentumtár & Átláthatóság:** Közhasznúsági jelentések, alapdokumentumok.
-- **Kapcsolat & AOSZ Info-Pont:** Elérhetőségek, kapcsolatfelvételi űrlap.
+- **Dokumentumtár & Átláthatóság:** Közhasznúsági jelentések, alapító okirat, GDPR szabályzat, Szombathely MJV Önkormányzati Támogatási Rendszer elszámolások.
+- **Kapcsolat & AOSZ Info-Pont:** Elérhetőségek, kapcsolatfelvételi űrlap dinamikus témaválasztással.
+- **Globális Szenzoros & Akadálymentességi Eszköztár:** Magas kontraszt, betűméret-skálázás, olvasóvonalzó sáv, mozgáscsökkentés és perzisztens beállítások.
 
 ## 4. Success Criteria (Sikerkritériumok)
 - Akadálymentes, autizmus-barát UX (nyugodt színvilág, kiváló olvashatóság, alacsony kognitív terhelés).

@@ -15,6 +15,7 @@ test('Audit: All main routes and layout contain semantic structure and metadata'
     'src/app/dokumentumok/page.tsx',
     'src/app/segitseg/page.tsx',
     'src/app/rolunk-irtak/page.tsx',
+    'src/app/hirek/page.tsx',
   ];
 
   for (const route of routes) {

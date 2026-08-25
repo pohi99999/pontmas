@@ -1,13 +1,13 @@
 # Track Plan: pontmas-full-content-modernization
 
-## Phase 1: Szenzoros & Akadálymentességi Eszköztár (Accessibility & Sensory Toolbar)
+## Phase 1: Szenzoros & Akadálymentességi Eszköztár (Accessibility & Sensory Toolbar) [checkpoint: a0befad]
 - [x] Task 1.1: Interaktív akadálymentességi vezérlősáv és kontextus készítése (`AccessibilityContext`, lebegő/navigációs sáv: kontrasztmód, betűméret, mozgáscsökkentés, olvasóvonalzó) [8e89e14]
 - [x] Task 1.2: Navigáció és lábléc frissítése az új menüpontokkal és akadálymentes mobil menüvel (`Navbar`, `Footer`, `globals.css`) [a572a16]
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Szenzoros & Akadálymentességi Eszköztár' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Szenzoros & Akadálymentességi Eszköztár' (Protocol in workflow.md)
 
 ## Phase 2: Segítségnyújtás és Tanácsadási Központ (`/segitseg`)
-- [ ] Task 2.1: Új `/segitseg` aloldal megvalósítása a pontmas.hu tartalmaival (Mentorszülő hálózat, AOSZ Info-Pont, DATA app, Szakkönyvtár, Intézményi kalauz)
-- [ ] Task 2.2: Interaktív tanácsadás-kérő és időpontfoglaló kártyák és kapcsolatfelvételi elemek integrálása
+- [x] Task 2.1: Új `/segitseg` aloldal megvalósítása a pontmas.hu tartalmaival (Mentorszülő hálózat, AOSZ Info-Pont, DATA app, Szakkönyvtár, Intézményi kalauz) [a3ccdb1]
+- [x] Task 2.2: Interaktív tanácsadás-kérő és időpontfoglaló kártyák és kapcsolatfelvételi elemek integrálása [f394b7e]
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Segítségnyújtás és Tanácsadási Központ' (Protocol in workflow.md)
 
 ## Phase 3: Rólunk Írták, Sajtó & Médiamegjelenések (`/rolunk-irtak`)

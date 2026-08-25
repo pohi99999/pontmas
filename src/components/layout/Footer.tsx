@@ -32,7 +32,7 @@ export default function Footer() {
           {/* Oszlop 2: Gyorslinkek */}
           <div className="space-y-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Oldaltérkép</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 text-sm">
               <li>
                 <Link href="/rolunk" className="hover:text-white transition-colors">Rólunk és Értékeink</Link>
               </li>
@@ -40,7 +40,16 @@ export default function Footer() {
                 <Link href="/autizmus" className="hover:text-white transition-colors">Autizmus Ismerettár & FAQ</Link>
               </li>
               <li>
-                <Link href="/programok" className="hover:text-white transition-colors">Programok és Kék Séta</Link>
+                <Link href="/segitseg" className="hover:text-white transition-colors">Amiben segíteni tudunk</Link>
+              </li>
+              <li>
+                <Link href="/rolunk-irtak" className="hover:text-white transition-colors">Rólunk írták & Sajtó</Link>
+              </li>
+              <li>
+                <Link href="/hirek" className="hover:text-white transition-colors">Hírek & Szülőklub</Link>
+              </li>
+              <li>
+                <Link href="/programok" className="hover:text-white transition-colors">Programok és Események</Link>
               </li>
               <li>
                 <Link href="/tamogatas" className="hover:text-white transition-colors">Támogatás és Adó 1%</Link>

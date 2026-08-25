@@ -13,8 +13,11 @@ export default function Header() {
 
   const navItems = [
     { label: 'Kezdőlap', href: '/' },
+    { label: 'Autizmusról', href: '/autizmus' },
+    { label: 'Segítség', href: '/segitseg' },
     { label: 'Rólunk', href: '/rolunk' },
-    { label: 'Autizmus', href: '/autizmus' },
+    { label: 'Rólunk írták', href: '/rolunk-irtak' },
+    { label: 'Hírek', href: '/hirek' },
     { label: 'Programok', href: '/programok' },
     { label: 'Dokumentumok', href: '/dokumentumok' },
     { label: 'Kapcsolat', href: '/kapcsolat' },

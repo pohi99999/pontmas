@@ -90,3 +90,48 @@ body {
 .sensory-friendly img {
   filter: brightness(95%) saturate(90%);
 }
+
+/* Magas kontraszt mód (High Contrast) */
+.contrast-high {
+  --background: #ffffff;
+  --foreground: #000000;
+  --color-card-bg: #ffffff;
+  --color-border: #000000;
+  filter: contrast(125%);
+}
+
+.contrast-high a {
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+}
+
+.contrast-high .bg-blue-50,
+.contrast-high .bg-slate-50 {
+  background-color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+/* Nagyobb betűméretek (Font scaling) */
+.font-large {
+  font-size: 115%;
+}
+
+.font-larger {
+  font-size: 130%;
+}
+
+/* Mozgáscsökkentés (Reduced Motion) */
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Jó olvashatóságú diszlexia-barát beállítás */
+.font-dyslexic {
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+  line-height: 1.8 !important;
+}
+

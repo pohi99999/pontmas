@@ -1,8 +1,8 @@
 # Track Plan: pontmas-full-content-modernization
 
 ## Phase 1: Szenzoros & Akadálymentességi Eszköztár (Accessibility & Sensory Toolbar)
-- [ ] Task 1.1: Interaktív akadálymentességi vezérlősáv és kontextus készítése (`AccessibilityContext`, lebegő/navigációs sáv: kontrasztmód, betűméret, mozgáscsökkentés, olvasóvonalzó)
-- [ ] Task 1.2: Navigáció és lábléc frissítése az új menüpontokkal és akadálymentes mobil menüvel (`Navbar`, `Footer`, `globals.css`)
+- [x] Task 1.1: Interaktív akadálymentességi vezérlősáv és kontextus készítése (`AccessibilityContext`, lebegő/navigációs sáv: kontrasztmód, betűméret, mozgáscsökkentés, olvasóvonalzó) [8e89e14]
+- [x] Task 1.2: Navigáció és lábléc frissítése az új menüpontokkal és akadálymentes mobil menüvel (`Navbar`, `Footer`, `globals.css`) [a572a16]
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Szenzoros & Akadálymentességi Eszköztár' (Protocol in workflow.md)
 
 ## Phase 2: Segítségnyújtás és Tanácsadási Központ (`/segitseg`)

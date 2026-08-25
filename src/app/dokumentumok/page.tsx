@@ -4,6 +4,7 @@ import { FileText, Download, Archive, Award, ShieldCheck, Sparkles, CheckCircle2
 import SectionHeader from '@/components/ui/SectionHeader';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+import DocDownloadButton from '@/components/ui/DocDownloadButton';
 
 export const metadata: Metadata = {
   title: "Dokumentumtár & Pályázatok | PontMás Alapítvány",
@@ -91,7 +92,7 @@ export default function DokumentumokPage() {
         <SectionHeader
           title="Hivatalos Iratok és Éves Beszámolók"
           subtitle="Minden törvényi előírásnak és közhasznúsági követelménynek maradéktalanul eleget teszünk."
-          center
+          align="center"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -120,14 +121,7 @@ export default function DokumentumokPage() {
 
               <div className="pt-6 mt-4 border-t border-slate-100 flex items-center justify-between">
                 <span className="text-xs text-slate-500 font-medium">Hivatalos PDF formátum</span>
-                <button
-                  type="button"
-                  onClick={() => alert("A dokumentum letöltése hamarosan elérhető, vagy kérhető az info@pontmas.hu címen!")}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors p-2 rounded-lg hover:bg-blue-50 cursor-pointer"
-                >
-                  <Download className="h-4 w-4" />
-                  <span>Letöltés</span>
-                </button>
+                <DocDownloadButton docTitle={doc.title} />
               </div>
             </div>
           ))}
@@ -139,7 +133,7 @@ export default function DokumentumokPage() {
         <SectionHeader
           title="Megvalósult Pályázatok és Elszámolások"
           subtitle="Tudjon meg többet a támogatások célszerű és szakszerű felhasználásáról."
-          center
+          align="center"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">

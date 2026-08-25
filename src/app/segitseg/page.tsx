@@ -147,7 +147,7 @@ export default function HelpPage() {
         <SectionHeader
           title="Amiben segíteni tudunk Önnek és családjának"
           subtitle="Átfogó segítségnyújtás a gyanú felmerülésétől a diagnózison át az iskolai integrációig és mindennapi életviteli támogatásig."
-          center
+          align="center"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

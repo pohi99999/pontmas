@@ -115,7 +115,7 @@ export default function RolunkIrtakPage() {
         <SectionHeader
           title="Sajtómegjelenések, tudósítások és szülői köszönőlevelek"
           subtitle="Összegyűjtöttük az elmúlt évek legfontosabb médiamegjelenéseit, televíziós tudósításait és személyes történeteit."
-          center
+          align="center"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

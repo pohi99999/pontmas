@@ -13,6 +13,7 @@ test('Audit: All main routes and layout contain semantic structure and metadata'
     'src/app/tamogatas/page.tsx',
     'src/app/kapcsolat/page.tsx',
     'src/app/dokumentumok/page.tsx',
+    'src/app/segitseg/page.tsx',
   ];
 
   for (const route of routes) {

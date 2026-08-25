@@ -10,13 +10,13 @@
 - [x] Task 2.2: Interaktív tanácsadás-kérő és időpontfoglaló kártyák és kapcsolatfelvételi elemek integrálása [f394b7e]
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Segítségnyújtás és Tanácsadási Központ' (Protocol in workflow.md)
 
-## Phase 3: Rólunk Írták, Sajtó & Médiamegjelenések (`/rolunk-irtak`)
+## Phase 3: Rólunk Írták, Sajtó & Médiamegjelenések (`/rolunk-irtak`) [checkpoint: 86b124b]
 - [x] Task 3.1: Új `/rolunk-irtak` aloldal megvalósítása (Köszönetnyilvánítások, Sajtóhírek, Közösségi elismerések) [8a4b0de]
 - [x] Task 3.2: Lapozható és szűrhető médiakártyák és idézetkomponensek kidolgozása [8a4b0de]
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Rólunk Írták, Sajtó & Médiamegjelenések' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Rólunk Írták, Sajtó & Médiamegjelenések' (Protocol in workflow.md)
 
 ## Phase 4: Hírek, Események, Szülőklub & Pályázati Archívum (`/hirek`, `/programok`, `/dokumentumok`)
-- [ ] Task 4.1: `/hirek` aloldal és gazdag hírfolyam megvalósítása (Szülőklub események, Vasi Skanzen Családi Nap, Pedagógus képzések, Önkéntes toborzás)
-- [ ] Task 4.2: `/programok` és `/dokumentumok` frissítése a hivatalos pályázati és beszámolási adatokkal
-- [ ] Task 4.3: Teljes körű build, TypeScript típusellenőrzés, a11y ellenőrzés és Obsidian szinkronizáció
+- [x] Task 4.1: `/hirek` aloldal és gazdag hírfolyam megvalósítása (Szülőklub események, Vasi Skanzen Családi Nap, Pedagógus képzések, Önkéntes toborzás) [3bf6829]
+- [x] Task 4.2: `/programok` és `/dokumentumok` frissítése a hivatalos pályázati és beszámolási adatokkal [0dabf3f]
+- [x] Task 4.3: Teljes körű build, TypeScript típusellenőrzés, a11y ellenőrzés és Obsidian szinkronizáció [ccc5d27]
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Hírek, Események, Szülőklub & Pályázati Archívum' (Protocol in workflow.md)

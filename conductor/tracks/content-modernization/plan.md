@@ -5,14 +5,14 @@
 - [x] Task 1.2: Navigáció és lábléc frissítése az új menüpontokkal és akadálymentes mobil menüvel (`Navbar`, `Footer`, `globals.css`) [a572a16]
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Szenzoros & Akadálymentességi Eszköztár' (Protocol in workflow.md)
 
-## Phase 2: Segítségnyújtás és Tanácsadási Központ (`/segitseg`)
+## Phase 2: Segítségnyújtás és Tanácsadási Központ (`/segitseg`) [checkpoint: e31c3e1]
 - [x] Task 2.1: Új `/segitseg` aloldal megvalósítása a pontmas.hu tartalmaival (Mentorszülő hálózat, AOSZ Info-Pont, DATA app, Szakkönyvtár, Intézményi kalauz) [a3ccdb1]
 - [x] Task 2.2: Interaktív tanácsadás-kérő és időpontfoglaló kártyák és kapcsolatfelvételi elemek integrálása [f394b7e]
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Segítségnyújtás és Tanácsadási Központ' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Segítségnyújtás és Tanácsadási Központ' (Protocol in workflow.md)
 
 ## Phase 3: Rólunk Írták, Sajtó & Médiamegjelenések (`/rolunk-irtak`)
-- [ ] Task 3.1: Új `/rolunk-irtak` aloldal megvalósítása (Köszönetnyilvánítások, Sajtóhírek, Közösségi elismerések)
-- [ ] Task 3.2: Lapozható és szűrhető médiakártyák és idézetkomponensek kidolgozása
+- [x] Task 3.1: Új `/rolunk-irtak` aloldal megvalósítása (Köszönetnyilvánítások, Sajtóhírek, Közösségi elismerések) [8a4b0de]
+- [x] Task 3.2: Lapozható és szűrhető médiakártyák és idézetkomponensek kidolgozása [8a4b0de]
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Rólunk Írták, Sajtó & Médiamegjelenések' (Protocol in workflow.md)
 
 ## Phase 4: Hírek, Események, Szülőklub & Pályázati Archívum (`/hirek`, `/programok`, `/dokumentumok`)

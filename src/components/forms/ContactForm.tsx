@@ -1,10 +1,14 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Send, CheckCircle2, Sparkles, AlertCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
 
-export default function ContactForm() {
+function ContactFormInner() {
+  const searchParams = useSearchParams();
+  const initialTopic = searchParams?.get('topic') || 'altalanos';
+
   const [formData, setFormData] = useState({
     nev: '',
     email: '',
@@ -12,6 +16,13 @@ export default function ContactForm() {
     tema: 'altalanos',
     uzenet: '',
   });
+
+  useEffect(() => {
+    if (initialTopic) {
+      setFormData(prev => ({ ...prev, tema: initialTopic }));
+    }
+  }, [initialTopic]);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -145,14 +156,17 @@ export default function ContactForm() {
             name="tema"
             value={formData.tema}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-sm text-slate-900 bg-slate-50/50 cursor-pointer"
+            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-sm text-slate-900 bg-slate-50/50 cursor-pointer font-medium"
           >
-            <option value="altalanos">Általános érdeklődés</option>
-            <option value="szulo">Szülői segítségkérés / Szülőklub</option>
-            <option value="aosz">AOSZ Info-Pont tanácsadás</option>
-            <option value="tabor">Nyári tábor és rendezvények</option>
-            <option value="intezmeny">Intézményi együttműködés</option>
-            <option value="tamogatas">Támogatás és Céges CSR</option>
+            <option value="altalanos">Általános megkeresés / Kérdés</option>
+            <option value="mentorszuloi-tanacsadas">Mentorszülői tanácsadás kérése</option>
+            <option value="aosz">AOSZ Info-Pont személyes időpont (Sugár út 9.)</option>
+            <option value="data-applikacio">DATA applikáció letöltési & használati segítség</option>
+            <option value="szakkonyvtar">Szakkönyvtári kölcsönzés</option>
+            <option value="intezmenyi-tanacsadas">Intézményi & iskolai integrációs tájékoztatás</option>
+            <option value="szulo">Szülőklub regisztráció & részvétel</option>
+            <option value="onkentes">Önkéntes segítőnek jelentkezem</option>
+            <option value="tamogatas">Támogatás és Céges adományozás</option>
           </select>
         </div>
 
@@ -186,5 +200,13 @@ export default function ContactForm() {
         </div>
       </form>
     </div>
+  );
+}
+
+export default function ContactForm() {
+  return (
+    <Suspense fallback={<div className="bg-white rounded-3xl p-8 text-center text-slate-500">Űrlap betöltése...</div>}>
+      <ContactFormInner />
+    </Suspense>
   );
 }

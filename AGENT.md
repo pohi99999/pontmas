@@ -14,3 +14,4 @@
 
 ## Munkamenet Napló
 - **2026-08-14:** `public/images` könyvtár és a `README-kepek.txt` útmutató létrehozása. Az 1.0-s fejlesztési mérföldkő adminisztratív lezárása. A projekt éles használatra kész.
+- **2026-08-18:** Conductor spec-driven fejlesztési keretrendszer beállítása (`conductor/`). Új irányelv: **Minden mérföldkövet és dokumentációs frissítést kötelező MCP-n keresztül szinkronizálni az Obsidian rendszerbe.**

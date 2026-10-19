@@ -26,6 +26,8 @@ function ContactFormInner() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  // Honeypot: a field people never see. Bots fill it, and the server then sends nothing.
+  const [honeypot, setHoneypot] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -43,14 +45,28 @@ function ContactFormInner() {
 
     setIsSubmitting(true);
 
+    // Real send through /api/kapcsolat (src/lib/contact.ts). Success is shown ONLY when the server
+    // answered { ok: true }, i.e. the mail service accepted the message; every other outcome is an error.
     try {
-      // Szimulált kliensoldali beküldés (későbbi API bővíthetőséggel)
-      await new Promise(resolve => setTimeout(resolve, 800));
+      const res = await fetch('/api/kapcsolat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, website: honeypot }),
+      });
+      const data = await res.json().catch(() => null);
       setIsSubmitting(false);
-      setIsSuccess(true);
+      if (res.ok && data?.ok === true) {
+        setIsSuccess(true);
+      } else if (res.status === 429) {
+        setErrorMsg('Túl sok üzenet érkezett rövid idő alatt. Kérjük, próbálja újra néhány perc múlva.');
+      } else if (res.status === 400) {
+        setErrorMsg('Kérjük, ellenőrizze a megadott adatokat (név, e-mail cím, üzenet).');
+      } else {
+        setErrorMsg('Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy írjon az info@pontmas.hu címre.');
+      }
     } catch {
       setIsSubmitting(false);
-      setErrorMsg('Hiba történt az üzenet küldése során. Kérjük, próbálja újra később.');
+      setErrorMsg('Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy írjon az info@pontmas.hu címre.');
     }
   };
 
@@ -98,6 +114,10 @@ function ContactFormInner() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4" noValidate={false}>
+        <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
+          <label htmlFor="website">Weboldal (hagyja üresen)</label>
+          <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+        </div>
         <div>
           <label htmlFor="nev" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
             Teljes név <span className="text-red-500">*</span>

@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import AccessibilityToolbar from "@/components/ui/AccessibilityToolbar";
 import ReadingRuler from "@/components/ui/ReadingRuler";
 import { SensoryProvider } from "@/context/SensoryContext";
+import { jsonLdScript } from "@/lib/jsonLd";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
@@ -47,7 +48,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
         />
       </head>
       <body className={`${inter.className} flex min-h-screen flex-col bg-slate-50 text-slate-900 antialiased`}>

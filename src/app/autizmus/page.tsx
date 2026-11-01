@@ -123,7 +123,7 @@ export default function AutizmusPage() {
                 <div className="flex items-start gap-3 bg-red-50 text-red-900 p-3.5 rounded-xl border border-red-100">
                   <AlertCircle className="text-red-500 flex-shrink-0 mt-0.5" size={20} />
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-red-600 block mb-0.5">Tévhit</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-red-700 block mb-0.5">Tévhit</span>
                     <p className="text-sm font-semibold text-slate-800">{item.myth}</p>
                   </div>
                 </div>

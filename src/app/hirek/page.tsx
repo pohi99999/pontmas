@@ -155,7 +155,7 @@ export default function HirekPage() {
           </p>
 
           <div className="space-y-2 border-t border-blue-100 pt-4">
-            <h4 className="font-bold text-slate-900 text-sm">Főbb témák és program:</h4>
+            <h3 className="font-bold text-slate-900 text-sm">Főbb témák és program:</h3>
             <div className="grid sm:grid-cols-3 gap-3">
               {newsItems[0].highlights.map((h, i) => (
                 <div key={i} className="flex items-start gap-2 text-xs text-slate-700 bg-white p-3 rounded-xl border border-slate-100">
@@ -208,7 +208,7 @@ export default function HirekPage() {
                   <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full">
                     {item.badge}
                   </span>
-                  <span className="text-xs text-slate-400 font-mono">
+                  <span className="text-xs text-slate-600 font-mono">
                     {item.date}
                   </span>
                 </div>

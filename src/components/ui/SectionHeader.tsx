@@ -8,6 +8,8 @@ export interface SectionHeaderProps {
   subtitle?: string;
   align?: 'center' | 'left';
   className?: string;
+  /** The page's own title is the h1 (one per page); every other section header stays h2. */
+  as?: 'h1' | 'h2';
 }
 
 export default function SectionHeader({
@@ -17,6 +19,7 @@ export default function SectionHeader({
   subtitle,
   align = 'center',
   className = '',
+  as: Heading = 'h2',
 }: SectionHeaderProps) {
   const alignmentClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
 
@@ -29,9 +32,9 @@ export default function SectionHeader({
           </Badge>
         </div>
       )}
-      <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+      <Heading className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
         {title}
-      </h2>
+      </Heading>
       {subtitle && (
         <p className="text-base md:text-lg text-slate-600 leading-relaxed">
           {subtitle}

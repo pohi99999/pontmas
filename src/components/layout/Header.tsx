@@ -46,8 +46,10 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Fő navigáció">
+        {/* Desktop Navigation: from 1360 px only. The full bar (9 items + 2 buttons) needs about 1310 px;
+            from lg (1024 px) it overflowed and pushed "Támogatás" off screen, so narrower windows keep the
+            hamburger menu. */}
+        <nav className="hidden min-[1360px]:flex items-center gap-1 xl:gap-2" aria-label="Fő navigáció">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -68,7 +70,7 @@ export default function Header() {
         </nav>
 
         {/* Action Controls & CTA */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden min-[1360px]:flex items-center gap-3">
           {/* Sensory Toggle */}
           <button
             onClick={toggleSensoryMode}
@@ -105,7 +107,7 @@ export default function Header() {
         </div>
 
         {/* Mobile controls: Sensory Toggle + Hamburger */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-2 min-[1360px]:hidden">
           <button
             onClick={toggleSensoryMode}
             type="button"
@@ -133,7 +135,7 @@ export default function Header() {
 
       {/* Mobile Navigation Drawer */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-150">
+        <div className="min-[1360px]:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-150">
           <nav className="flex flex-col gap-1" aria-label="Mobil navigáció">
             {navItems.map((item) => {
               const isActive = pathname === item.href;

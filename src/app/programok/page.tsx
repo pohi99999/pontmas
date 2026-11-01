@@ -65,6 +65,7 @@ export default function ProgramokPage() {
       <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeader
+            as="h1"
             badge="Események & Kezdeményezések"
             badgeIcon={<Sparkles size={14} />}
             title="Programjaink és Rendezvényeink"
@@ -113,9 +114,9 @@ export default function ProgramokPage() {
                   <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 mb-2 inline-block">
                     {program.badge}
                   </span>
-                  <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                  <h2 className="text-2xl font-black text-slate-900 tracking-tight">
                     {program.title}
-                  </h3>
+                  </h2>
                 </div>
                 <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
                   <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
@@ -199,14 +200,14 @@ export default function ProgramokPage() {
 
       {/* 4. Támogatási felhívás */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-blue-700 to-sky-600 rounded-3xl p-8 sm:p-12 text-white text-center shadow-lg space-y-6">
+        <div className="max-w-4xl mx-auto bg-gradient-to-r from-blue-700 to-sky-700 rounded-3xl p-8 sm:p-12 text-white text-center shadow-lg space-y-6">
           <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center mx-auto text-white">
             <Heart size={24} className="fill-white/30" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             Segítsen megvalósítani programjainkat!
           </h2>
-          <p className="max-w-2xl mx-auto text-blue-100 text-base leading-relaxed">
+          <p className="max-w-2xl mx-auto text-white text-base leading-relaxed">
             Adója 1%-ával vagy közvetlen támogatással Ön is hozzájárulhat a táborok, a Kék séta és a szülőklubok sikeres megszervezéséhez.
           </p>
           <div className="flex justify-center pt-2">

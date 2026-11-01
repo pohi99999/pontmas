@@ -82,7 +82,7 @@ function ContactFormInner() {
         <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-6">
           <CheckCircle2 size={36} />
         </div>
-        <h3 className="text-2xl font-bold text-slate-900 mb-2">Köszönjük megkeresését!</h3>
+        <h2 className="text-2xl font-bold text-slate-900 mb-2">Köszönjük megkeresését!</h2>
         <p className="text-slate-600 text-sm sm:text-base max-w-md mb-6 leading-relaxed">
           Üzenetét sikeresen megkaptuk. Alapítványunk munkatársai hamarosan felveszik Önnel a kapcsolatot a megadott elérhetőségeken.
         </p>
@@ -107,7 +107,7 @@ function ContactFormInner() {
           <Sparkles size={20} />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-slate-900">Írjon nekünk üzenetet</h3>
+          <h2 className="text-xl font-bold text-slate-900">Írjon nekünk üzenetet</h2>
           <p className="text-xs text-slate-500">Munkatársunk 1-2 munkanapon belül válaszol</p>
         </div>
       </div>

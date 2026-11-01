@@ -36,6 +36,7 @@ export default function TamogatasPage() {
       <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeader
+            as="h1"
             badge="Támogatási Központ"
             badgeIcon={<HeartHandshake size={14} />}
             title="Támogassa munkánkat – Minden segítség számít!"
@@ -59,9 +60,9 @@ export default function TamogatasPage() {
               <Receipt size={28} />
             </div>
 
-            <h3 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">
+            <h2 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">
               Személyi jövedelemadó 1%
-            </h3>
+            </h2>
 
             <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
               Rendelkezzen adója 1%-áról a május 20-i határidőig! Ez a felajánlás Önnek semmibe sem kerül, számunkra viszont alapvető működési biztonságot jelent.
@@ -82,9 +83,9 @@ export default function TamogatasPage() {
               <Landmark size={28} />
             </div>
 
-            <h3 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">
+            <h2 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">
               Banki átutalás & Adomány
-            </h3>
+            </h2>
 
             <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
               Egyszeri vagy rendszeres átutalással azonnal segítheti krízis alapunkat, valamint a nyári táborok és intézményi fejlesztőeszközök finanszírozását.
@@ -105,9 +106,9 @@ export default function TamogatasPage() {
               <Briefcase size={28} />
             </div>
 
-            <h3 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">
+            <h2 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">
               Vállalati CSR & Partnerség
-            </h3>
+            </h2>
 
             <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
               Céges adományozás esetén hivatalos adóigazolást állítunk ki, amellyel vállalkozása társasági adókedvezményt vehet igénybe. Célzott eseményszponzorációra is lehetőség van.

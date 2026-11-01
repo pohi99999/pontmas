@@ -204,7 +204,7 @@ export default function HelpPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold">1</div>
-              <h4 className="font-bold text-slate-900 text-lg">Gyermekorvos & Védőnő</h4>
+              <h3 className="font-bold text-slate-900 text-lg">Gyermekorvos & Védőnő</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
                 Első lépésként jelezze észrevételeit a házi gyermekorvosnak vagy a védőnőnek, kérjen fejlődésneurológiai vagy gyermekpszichiátriai beutalót.
               </p>
@@ -212,7 +212,7 @@ export default function HelpPage() {
 
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold">2</div>
-              <h4 className="font-bold text-slate-900 text-lg">Szakszolgálat & Diagnosztika</h4>
+              <h3 className="font-bold text-slate-900 text-lg">Szakszolgálat & Diagnosztika</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
                 A Vas Vármegyei Pedagógiai Szakszolgálat Megyei Szakértői Bizottsága végzi a pedagógiai diagnosztikát és javaslatot tesz a fejlesztésekre.
               </p>
@@ -220,7 +220,7 @@ export default function HelpPage() {
 
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold">3</div>
-              <h4 className="font-bold text-slate-900 text-lg">PontMás Alapítvány & AOSZ</h4>
+              <h3 className="font-bold text-slate-900 text-lg">PontMás Alapítvány & AOSZ</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
                 Keresse fel szombathelyi AOSZ Info-Pont irodánkat vagy vegyen részt Szülőklubunkon: sorstársi közösséget, tanácsokat és gyakorlati segítséget kap.
               </p>
@@ -234,7 +234,7 @@ export default function HelpPage() {
         <div className="rounded-3xl bg-blue-600 p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
           <div className="space-y-3 max-w-2xl">
             <h3 className="text-2xl sm:text-3xl font-black">Személyes vagy telefonos segítségre van szüksége?</h3>
-            <p className="text-blue-100 text-sm sm:text-base leading-relaxed">
+            <p className="text-white text-sm sm:text-base leading-relaxed">
               Várjuk szeretettel az AOSZ Info-Pont irodánkban Szombathelyen (Sugár út 9.), vagy írjon nekünk üzenetet online űrlapunkon keresztül!
             </p>
           </div>

@@ -126,7 +126,7 @@ function ContactFormInner() {
         </div>
         <div>
           <label htmlFor="nev" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-            Teljes név <span className="text-red-500">*</span>
+            Teljes név <span className="text-red-700">*</span>
           </label>
           <input
             required
@@ -143,7 +143,7 @@ function ContactFormInner() {
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-              E-mail cím <span className="text-red-500">*</span>
+              E-mail cím <span className="text-red-700">*</span>
             </label>
             <input
               required
@@ -198,7 +198,7 @@ function ContactFormInner() {
 
         <div>
           <label htmlFor="uzenet" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-            Üzenet szövege <span className="text-red-500">*</span>
+            Üzenet szövege <span className="text-red-700">*</span>
           </label>
           <textarea
             required

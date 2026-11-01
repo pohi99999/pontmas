@@ -107,7 +107,7 @@ export default function DokumentumokPage() {
                     <FileText className="h-3.5 w-3.5" />
                     {doc.category}
                   </span>
-                  <span className="text-xs text-slate-400 font-mono">{doc.date}</span>
+                  <span className="text-xs text-slate-600 font-mono">{doc.date}</span>
                 </div>
 
                 <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">

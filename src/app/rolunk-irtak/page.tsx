@@ -132,7 +132,7 @@ export default function RolunkIrtakPage() {
                       <Icon className="h-3.5 w-3.5" />
                       <span>{item.badge}</span>
                     </span>
-                    <span className="text-xs text-slate-400 font-mono flex items-center gap-1">
+                    <span className="text-xs text-slate-600 font-mono flex items-center gap-1">
                       <Calendar className="h-3.5 w-3.5" />
                       {item.date}
                     </span>
@@ -177,7 +177,7 @@ export default function RolunkIrtakPage() {
             <Button href="/kapcsolat" variant="primary" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3">
               Kapcsolatfelvétel
             </Button>
-            <Button href="/rolunk" variant="outline" className="bg-transparent border-slate-700 text-slate-200 hover:bg-slate-800 hover:text-white">
+            <Button href="/rolunk" variant="outline" className="bg-transparent border-slate-400 text-slate-200 hover:bg-slate-800 hover:text-white">
               Alapítványunkról
             </Button>
           </div>

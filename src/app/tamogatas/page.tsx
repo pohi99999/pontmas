@@ -138,7 +138,7 @@ export default function TamogatasPage() {
               <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between">
                 <div>
                   <span className="text-3xl font-black text-blue-600 mb-3 block">{lep.szam}</span>
-                  <h4 className="font-bold text-slate-900 text-base mb-2">{lep.cim}</h4>
+                  <h3 className="font-bold text-slate-900 text-base mb-2">{lep.cim}</h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{lep.leiras}</p>
                 </div>
               </div>
@@ -167,7 +167,7 @@ export default function TamogatasPage() {
             <Button href="/dokumentumok" variant="secondary" size="md" leftIcon={<FileText size={16} />} className="bg-white text-slate-900 hover:bg-slate-100 border-0">
               Beszámolók megtekintése
             </Button>
-            <Button href="/kapcsolat" variant="outline" size="md" className="bg-transparent border-slate-700 text-slate-200 hover:bg-slate-800 hover:text-white">
+            <Button href="/kapcsolat" variant="outline" size="md" className="bg-transparent border-slate-400 text-slate-200 hover:bg-slate-800 hover:text-white">
               Kérdése van? Írjon nekünk
             </Button>
           </div>

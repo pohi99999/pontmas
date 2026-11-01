@@ -173,7 +173,7 @@ export default function ProgramokPage() {
                   <GraduationCap size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-lg mb-1">{intezmeny.nev}</h4>
+                  <h3 className="font-bold text-slate-900 text-lg mb-1">{intezmeny.nev}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{intezmeny.reszlet}</p>
                 </div>
               </div>

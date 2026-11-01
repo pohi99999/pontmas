@@ -40,6 +40,7 @@ export default function RolunkPage() {
       <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeader
+            as="h1"
             badge="Kik vagyunk mi?"
             badgeIcon={<Sparkles size={14} />}
             title="A PontMás Alapítvány története és küldetése"
@@ -169,11 +170,11 @@ export default function RolunkPage() {
 
       {/* 5. Csatlakozás és Kapcsolat CTA */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-blue-700 to-sky-600 rounded-3xl p-8 sm:p-12 text-white text-center shadow-lg space-y-6">
+        <div className="max-w-4xl mx-auto bg-gradient-to-r from-blue-700 to-sky-700 rounded-3xl p-8 sm:p-12 text-white text-center shadow-lg space-y-6">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             Legyen része közösségünknek!
           </h2>
-          <p className="max-w-2xl mx-auto text-blue-100 text-base leading-relaxed">
+          <p className="max-w-2xl mx-auto text-white text-base leading-relaxed">
             Akár érintett szülőként, akár szakemberként vagy támogatóként keres minket, szeretettel várjuk megkeresését.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">

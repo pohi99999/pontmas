@@ -78,6 +78,7 @@ export default function AutizmusPage() {
       <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeader
+            as="h1"
             badge="Tudástár & Útmutató"
             badgeIcon={<Sparkles size={14} />}
             title="Mi az az autizmus?"

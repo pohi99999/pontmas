@@ -1,8 +1,13 @@
-// Text contrast and heading order on the BUILT site, in a real browser (npm run test:a11y, after
-// npm run build). A class-name check cannot do this: text-slate-400 is fine on the dark footer and
-// 2.63:1 on a white card, so the rendered colours are measured instead. Every visible text node on
-// a solid background must reach WCAG AA (4.5:1, or 3:1 for large text), and no page may skip a
-// heading level. Text over a gradient or image is skipped (no single background colour to measure).
+// Text contrast, headings and page width on the BUILT site, in a real browser (npm run test:a11y,
+// after npm run build). A class-name check cannot do this: text-slate-400 is fine on the dark footer
+// and 2.63:1 on a white card, so the rendered colours are measured instead.
+// - Every visible text node must reach WCAG AA (4.5:1, or 3:1 for large text). On a solid background
+//   against that colour; over a gradient against its WORST colour stop (each stop laid over the solid
+//   background underneath), so a pass is a pass everywhere along the gradient. Text over an image is
+//   skipped (no colour to measure).
+// - Exactly one h1 per page, and no skipped heading level.
+// - No horizontal scrolling at any tested width: the desktop header used to overflow 1024-1310 px
+//   and push the "Támogatás" button off screen.
 //
 // Uses the Chrome already on the machine (CHROME_PATH, or the usual install paths); GitHub's
 // ubuntu runners have it, so nothing is downloaded.
@@ -33,17 +38,25 @@ function measure() {
   const cv = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
   const rgba = (c) => { cv.clearRect(0, 0, 1, 1); cv.fillStyle = '#000'; cv.fillStyle = c; cv.fillRect(0, 0, 1, 1); const d = cv.getImageData(0, 0, 1, 1).data; return [d[0], d[1], d[2], d[3] / 255]; };
   const lum = ([r, g, b]) => [r, g, b].map((x) => { x /= 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }).reduce((s, v, i) => s + v * [0.2126, 0.7152, 0.0722][i], 0);
-  const solidBg = (el) => {
+  const over = (top, under) => [0, 1, 2].map((i) => top[i] * top[3] + under[i] * (1 - top[3]));
+  const COLOR = /(?:rgba?|hsla?|oklch|oklab|lab|lch|color)\([^()]*\)|#[0-9a-f]{3,8}\b/gi;
+  // the background(s) a text sits on: one colour, or every stop of a gradient; null over an image
+  const backgrounds = (el) => {
     const layers = [];
+    let stops = null;
     for (let e = el; e; e = e.parentElement) {
       const s = getComputedStyle(e);
-      if (s.backgroundImage && s.backgroundImage !== 'none') return null;
+      if (s.backgroundImage && s.backgroundImage !== 'none') {
+        if (/url\(/.test(s.backgroundImage)) return null;
+        if (!stops) stops = (s.backgroundImage.match(COLOR) || []).map(rgba);
+        continue;
+      }
       const c = rgba(s.backgroundColor);
       if (c[3] > 0) { layers.push(c); if (c[3] >= 0.99) break; }
     }
-    let bg = [255, 255, 255];
-    for (const [r, g, b, a] of layers.reverse()) bg = [r * a + bg[0] * (1 - a), g * a + bg[1] * (1 - a), b * a + bg[2] * (1 - a)];
-    return bg;
+    let base = [255, 255, 255];
+    for (const c of layers.reverse()) base = over(c, base);
+    return stops && stops.length ? stops.map((c) => over(c, base)) : [base];
   };
   const low = [];
   const seen = new Set();
@@ -54,18 +67,23 @@ function measure() {
     seen.add(el);
     const s = getComputedStyle(el), r = el.getBoundingClientRect();
     if (!r.width || !r.height || s.visibility === 'hidden' || parseFloat(s.opacity) === 0 || el.closest('[aria-hidden="true"],.sr-only')) continue;
-    const bg = solidBg(el);
-    if (!bg) continue;
+    const bgs = backgrounds(el);
+    if (!bgs) continue;
     const fg = rgba(s.color);
-    const f = [0, 1, 2].map((i) => fg[i] * fg[3] + bg[i] * (1 - fg[3]));
-    const a = lum(f), b = lum(bg);
-    const ratio = (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+    const ratio = Math.min(...bgs.map((bg) => {
+      const a = lum(over(fg, bg)), b = lum(bg);
+      return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+    }));
     const size = parseFloat(s.fontSize), bold = parseInt(s.fontWeight, 10) >= 700;
     const need = size >= 24 || (bold && size >= 18.66) ? 3 : 4.5;
-    if (ratio < need) low.push(`${ratio.toFixed(2)}:1 < ${need} "${n.textContent.trim().slice(0, 40)}"`);
+    if (ratio < need) low.push(`${ratio.toFixed(2)}:1 < ${need}${bgs.length > 1 ? ' (gradient)' : ''} "${n.textContent.trim().slice(0, 40)}"`);
   }
   const levels = [...document.querySelectorAll('h1,h2,h3,h4,h5,h6')].map((h) => Number(h.tagName[1]));
   const skips = levels.flatMap((l, i) => (i && l > levels[i - 1] + 1 ? [`h${levels[i - 1]} -> h${l}`] : []));
+  const h1 = levels.filter((l) => l === 1).length;
+  if (h1 !== 1) skips.push(`${h1} h1 on the page (exactly 1 expected)`);
+  const width = document.documentElement.scrollWidth, view = document.documentElement.clientWidth;
+  if (width > view) skips.push(`horizontal scroll: page ${width} px wide in a ${view} px window`);
   return { low, skips };
 }
 
@@ -73,7 +91,7 @@ let failures = 0;
 try {
   await waitForServer();
   const browser = await chromium.launch({ executablePath: CHROME, headless: true });
-  for (const width of [1440, 375]) {
+  for (const width of [1440, 1366, 1280, 1180, 1024, 768, 375]) {
     const page = await browser.newPage({ viewport: { width, height: 900 } });
     for (const route of ROUTES) {
       await page.goto(BASE + route, { waitUntil: 'networkidle' });
@@ -86,5 +104,5 @@ try {
 } finally {
   stop();
 }
-console.log(failures ? `${failures} contrast/heading problem(s)` : `contrast and heading order OK on ${ROUTES.length} routes at 1440 and 375 px`);
+console.log(failures ? `${failures} contrast/heading/width problem(s)` : `contrast, headings and width OK on ${ROUTES.length} routes at 1440, 1366, 1280, 1180, 1024, 768 and 375 px`);
 process.exit(failures ? 1 : 0);

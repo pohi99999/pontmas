@@ -10,6 +10,7 @@ export default function KapcsolatPage() {
       <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeader
+            as="h1"
             badge="Elérhetőség"
             badgeIcon={<Sparkles size={14} />}
             title="Lépjen kapcsolatba velünk!"
@@ -33,7 +34,7 @@ export default function KapcsolatPage() {
                   <ShieldCheck size={22} />
                 </div>
                 <div>
-                  <h3 className="font-extrabold text-lg">AOSZ Info-Pont Szombathely</h3>
+                  <h2 className="font-extrabold text-lg">AOSZ Info-Pont Szombathely</h2>
                   <span className="text-xs text-blue-200">Hivatalos információs iroda</span>
                 </div>
               </div>
@@ -61,7 +62,7 @@ export default function KapcsolatPage() {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-base">Székhely & Cím</h4>
+                  <h3 className="font-bold text-slate-900 text-base">Székhely & Cím</h3>
                   <p className="text-slate-600 text-sm mt-0.5">9700 Szombathely, Váci M. utca 12. 3./15.</p>
                 </div>
               </div>
@@ -71,7 +72,7 @@ export default function KapcsolatPage() {
                   <Mail size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-base">E-mail cím</h4>
+                  <h3 className="font-bold text-slate-900 text-base">E-mail cím</h3>
                   <a href="mailto:info@pontmas.hu" className="text-blue-600 hover:text-blue-800 font-semibold text-sm mt-0.5 block">
                     info@pontmas.hu
                   </a>
@@ -83,7 +84,7 @@ export default function KapcsolatPage() {
                   <MessageSquare size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-base">Közösségi Csoport</h4>
+                  <h3 className="font-bold text-slate-900 text-base">Közösségi Csoport</h3>
                   <a 
                     href="https://www.facebook.com/groups/1622445488007296/?locale=hu_HU" 
                     target="_blank" 

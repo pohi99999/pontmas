@@ -98,7 +98,7 @@ export default function Footer() {
                 <span className="font-mono font-bold text-white text-sm">18654996-1-18</span>
               </div>
               <div className="pt-1 border-t border-slate-700/60">
-                <span className="text-slate-400 block">Bankszámlaszám (CIB Bank):</span>
+                <span className="text-slate-400 block">Bankszámlaszám:</span>
                 <span className="font-mono font-bold text-white text-xs block break-all">11600006-00000000-75701521</span>
               </div>
             </div>

@@ -42,7 +42,7 @@ export default function CopyButton({
             {label}
           </span>
         )}
-        <span className="block text-base sm:text-lg font-mono font-bold text-slate-900 tracking-tight truncate">
+        <span className="block text-base sm:text-lg font-mono font-bold text-slate-900 tracking-tight break-words">
           {textToCopy}
         </span>
         {sublabel && (

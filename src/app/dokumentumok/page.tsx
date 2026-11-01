@@ -4,7 +4,7 @@ import { FileText, Download, Archive, Award, ShieldCheck, Sparkles, CheckCircle2
 import SectionHeader from '@/components/ui/SectionHeader';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
-import DocDownloadButton from '@/components/ui/DocDownloadButton';
+import DocAvailability from '@/components/ui/DocAvailability';
 
 export const metadata: Metadata = {
   title: "Dokumentumtár & Pályázatok | PontMás Alapítvány",
@@ -121,7 +121,7 @@ export default function DokumentumokPage() {
 
               <div className="pt-6 mt-4 border-t border-slate-100 flex items-center justify-between">
                 <span className="text-xs text-slate-500 font-medium">Hivatalos PDF formátum</span>
-                <DocDownloadButton docTitle={doc.title} />
+                <DocAvailability />
               </div>
             </div>
           ))}

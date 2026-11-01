@@ -1,27 +1,33 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Send, CheckCircle2, Sparkles, AlertCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
+import { TOPICS } from '@/lib/contact';
+
+// ?topic= preselects the subject, but only a value the server also accepts (SECURITY_AUDIT L-1)
+const topicFrom = (t: string | null | undefined) => ((TOPICS as readonly string[]).includes(t ?? '') ? (t as string) : 'altalanos');
 
 function ContactFormInner() {
   const searchParams = useSearchParams();
-  const initialTopic = searchParams?.get('topic') || 'altalanos';
+  const initialTopic = topicFrom(searchParams?.get('topic'));
 
   const [formData, setFormData] = useState({
     nev: '',
     email: '',
     telefon: '',
-    tema: 'altalanos',
+    tema: initialTopic,
     uzenet: '',
   });
 
-  useEffect(() => {
-    if (initialTopic) {
-      setFormData(prev => ({ ...prev, tema: initialTopic }));
-    }
-  }, [initialTopic]);
+  // A later ?topic= change (client-side navigation to another prefilled link) is adopted during
+  // render, React's pattern for state derived from props, instead of a setState in an effect.
+  const [seenTopic, setSeenTopic] = useState(initialTopic);
+  if (seenTopic !== initialTopic) {
+    setSeenTopic(initialTopic);
+    setFormData(prev => ({ ...prev, tema: initialTopic }));
+  }
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);

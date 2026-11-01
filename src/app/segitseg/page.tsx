@@ -242,9 +242,6 @@ export default function HelpPage() {
             <Button href="/kapcsolat" variant="primary" className="bg-white text-blue-700 hover:bg-blue-50 font-bold px-6 py-3">
               Kapcsolatfelvétel
             </Button>
-            <Button href="tel:+36301234567" variant="outline" className="border-white text-white hover:bg-blue-700">
-              Telefonálás
-            </Button>
           </div>
         </div>
       </section>

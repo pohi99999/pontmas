@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useSyncExternalStore } from 'react';
 
 export type FontSizeOption = 'normal' | 'large' | 'larger';
 
@@ -40,73 +40,88 @@ const defaultContext: AccessibilityContextType = {
 
 const AccessibilityContext = createContext<AccessibilityContextType>(defaultContext);
 
-export function SensoryProvider({ children }: { children: React.ReactNode }) {
-  const [isSensoryFriendly, setIsSensoryFriendly] = useState(false);
-  const [highContrast, setHighContrast] = useState(false);
-  const [fontSize, setFontSize] = useState<FontSizeOption>('normal');
-  const [readingRuler, setReadingRuler] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [dyslexicFont, setDyslexicFont] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+type Prefs = {
+  isSensoryFriendly: boolean;
+  highContrast: boolean;
+  fontSize: FontSizeOption;
+  readingRuler: boolean;
+  reducedMotion: boolean;
+  dyslexicFont: boolean;
+};
 
-  // Load from localStorage on mount
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('pontmas_a11y_prefs');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.isSensoryFriendly !== undefined) setIsSensoryFriendly(parsed.isSensoryFriendly);
-        if (parsed.highContrast !== undefined) setHighContrast(parsed.highContrast);
-        if (parsed.fontSize) setFontSize(parsed.fontSize);
-        if (parsed.readingRuler !== undefined) setReadingRuler(parsed.readingRuler);
-        if (parsed.reducedMotion !== undefined) setReducedMotion(parsed.reducedMotion);
-        if (parsed.dyslexicFont !== undefined) setDyslexicFont(parsed.dyslexicFont);
+const STORAGE_KEY = 'pontmas_a11y_prefs';
+const DEFAULT_PREFS: Prefs = {
+  isSensoryFriendly: false,
+  highContrast: false,
+  fontSize: 'normal',
+  readingRuler: false,
+  reducedMotion: false,
+  dyslexicFont: false,
+};
+
+// The preferences live in a small module-level store read through useSyncExternalStore: the server
+// and the hydration pass render the defaults, then the browser's saved values take over. This is
+// the same behaviour as the earlier "load in an effect, then setState", without the cascading
+// render the react-hooks lint rule flags. If localStorage is unavailable the choice still works
+// for the visit, it is just not remembered.
+let current: Prefs | null = null;
+const listeners = new Set<() => void>();
+
+function load(): Prefs {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null');
+    if (parsed && typeof parsed === 'object') {
+      const next = { ...DEFAULT_PREFS };
+      for (const key of Object.keys(DEFAULT_PREFS) as (keyof Prefs)[]) {
+        if (parsed[key] !== undefined && parsed[key] !== null) (next as Record<string, unknown>)[key] = parsed[key];
       }
-    } catch {
-      // Ignore localStorage errors
+      return next;
     }
-    setIsLoaded(true);
-  }, []);
+  } catch {
+    // Ignore localStorage errors
+  }
+  return DEFAULT_PREFS;
+}
 
-  // Save to localStorage
-  useEffect(() => {
-    if (!isLoaded) return;
-    try {
-      localStorage.setItem('pontmas_a11y_prefs', JSON.stringify({
-        isSensoryFriendly,
-        highContrast,
-        fontSize,
-        readingRuler,
-        reducedMotion,
-        dyslexicFont,
-      }));
-    } catch {
-      // Ignore localStorage errors
-    }
-  }, [isSensoryFriendly, highContrast, fontSize, readingRuler, reducedMotion, dyslexicFont, isLoaded]);
+function getSnapshot(): Prefs {
+  if (current === null) current = load();
+  return current;
+}
 
-  const toggleSensoryMode = () => setIsSensoryFriendly(prev => !prev);
-  const toggleHighContrast = () => setHighContrast(prev => !prev);
-  const toggleReadingRuler = () => setReadingRuler(prev => !prev);
-  const toggleReducedMotion = () => setReducedMotion(prev => !prev);
-  const toggleDyslexicFont = () => setDyslexicFont(prev => !prev);
+const getServerSnapshot = (): Prefs => DEFAULT_PREFS;
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => { listeners.delete(listener); };
+}
+
+function update(change: (prev: Prefs) => Partial<Prefs>) {
+  const prev = getSnapshot();
+  current = { ...prev, ...change(prev) };
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
+  } catch {
+    // Ignore localStorage errors
+  }
+  listeners.forEach((l) => l());
+}
+
+export function SensoryProvider({ children }: { children: React.ReactNode }) {
+  const { isSensoryFriendly, highContrast, fontSize, readingRuler, reducedMotion, dyslexicFont } =
+    useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  const toggleSensoryMode = () => update(p => ({ isSensoryFriendly: !p.isSensoryFriendly }));
+  const toggleHighContrast = () => update(p => ({ highContrast: !p.highContrast }));
+  const toggleReadingRuler = () => update(p => ({ readingRuler: !p.readingRuler }));
+  const toggleReducedMotion = () => update(p => ({ reducedMotion: !p.reducedMotion }));
+  const toggleDyslexicFont = () => update(p => ({ dyslexicFont: !p.dyslexicFont }));
+  const setFontSize = (size: FontSizeOption) => update(() => ({ fontSize: size }));
 
   const cycleFontSize = () => {
-    setFontSize(prev => {
-      if (prev === 'normal') return 'large';
-      if (prev === 'large') return 'larger';
-      return 'normal';
-    });
+    update(p => ({ fontSize: p.fontSize === 'normal' ? 'large' : p.fontSize === 'large' ? 'larger' : 'normal' }));
   };
 
-  const resetAll = () => {
-    setIsSensoryFriendly(false);
-    setHighContrast(false);
-    setFontSize('normal');
-    setReadingRuler(false);
-    setReducedMotion(false);
-    setDyslexicFont(false);
-  };
+  const resetAll = () => update(() => DEFAULT_PREFS);
 
   const classNames = [
     isSensoryFriendly ? 'sensory-friendly' : '',

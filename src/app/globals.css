@@ -30,13 +30,12 @@
   --color-border: var(--color-border);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #090d16;
-    --foreground: #f1f5f9;
-    --color-card-bg: #111827;
-    --color-border: #1f2937;
-  }
+/* One light theme on purpose. The old prefers-color-scheme: dark block darkened only the page
+   background while the components keep fixed dark text (text-slate-900), so on a phone in dark
+   mode headings went dark-on-dark (about 1:1). A single predictable look also suits the audience;
+   color-scheme keeps the browser's own controls (form fields, scrollbars) light as well. */
+:root {
+  color-scheme: light;
 }
 
 body {
@@ -126,6 +125,20 @@ body {
 .reduced-motion *::after {
   animation: none !important;
   transition: none !important;
+}
+
+/* The same for visitors who asked for less motion in their operating system */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* Jó olvashatóságú diszlexia-barát beállítás */

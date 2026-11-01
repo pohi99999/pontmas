@@ -47,7 +47,7 @@ export default function TamogatasPage() {
 
       {/* 2. Három Fő Támogatási Forma (Kártyák) */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8 items-stretch">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch *:min-w-0">
           
           {/* 1. Adó 1% Kártya */}
           <div className="bg-white rounded-3xl p-8 border-2 border-blue-600 shadow-md flex flex-col relative overflow-hidden">
@@ -93,7 +93,7 @@ export default function TamogatasPage() {
             <div className="space-y-4 pt-4 border-t border-slate-100">
               <CopyButton
                 textToCopy="11600006-00000000-75701521"
-                label="Bankszámlaszám (CIB Bank)"
+                label="Bankszámlaszám"
                 sublabel="Közlemény: Adomány"
               />
             </div>

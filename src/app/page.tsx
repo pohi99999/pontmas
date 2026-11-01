@@ -123,7 +123,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
           
           <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
-            <div className="lg:col-span-7 space-y-4">
+            <div className="lg:col-span-7 min-w-0 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-200 text-xs font-bold border border-blue-400/30">
                 <Heart size={14} className="fill-blue-300" />
                 <span>Rendelkezzen adója 1%-áról!</span>
@@ -145,7 +145,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 bg-white rounded-2xl p-6 text-slate-900 shadow-lg space-y-4">
+            <div className="lg:col-span-5 min-w-0 bg-white rounded-2xl p-6 text-slate-900 shadow-lg space-y-4">
               <h3 className="font-extrabold text-lg text-slate-900 border-b border-slate-100 pb-2">
                 PontMás Alapítvány Adatok
               </h3>
@@ -161,7 +161,7 @@ export default function Home() {
               <div>
                 <CopyButton
                   textToCopy="11600006-00000000-75701521"
-                  label="Bankszámlaszám (CIB Bank)"
+                  label="Bankszámlaszám"
                   sublabel="Közvetlen banki átutaláshoz"
                 />
               </div>

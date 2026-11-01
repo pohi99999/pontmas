@@ -21,8 +21,8 @@ A **PontMás Vas Megyei Autista Gyermekekért Alapítvány** (székhely: 9700 Sz
 - **Rólunk írták (`/rolunk-irtak`):** Sajtómegjelenések (VAOL, Szombathelyi Televízió), köszönőlevelek, szakmai elismerések és intézményi visszajelzések (Aranyhíd EGYMI).
 - **Hírek & Aktualitások (`/hirek`):** Részletes szülőklub meghívók (pl. Bárdosi Emőke gyógypedagógus előadása), Családi Nap 2024 (Vasi Skanzen) beszámoló, továbbképzési tudósítások és önkéntes toborzás.
 - **Programok & Események (`/programok`):** Kategóriaszűrős naptár (Kék Séta, Nyári Táborok, Szülőklubok), valamint a támogatott Vas vármegyei intézmények listája (Aranyhíd EGYMI, Micimackó Óvoda stb.).
-- **Támogatási Központ (`/tamogatas`):** Egykattintásos vágólapra másoló gombok az adószámhoz (`18654996-1-18`) és CIB számlaszámhoz (`11600006-00000000-75701521`), 4-lépéses eSZJA útmutató és vállalati CSR adókedvezmény tájékoztatás.
-- **Dokumentumtár & Pályázatok (`/dokumentumok`):** Alapító okirat, Közhasznúsági beszámolók, Szombathely MJV Önkormányzati Támogatási Rendszer elszámolás (800.000 Ft önkormányzati támogatás, 13 pedagógus képzése) és `DocDownloadButton`.
+- **Támogatási Központ (`/tamogatas`):** Egykattintásos vágólapra másoló gombok az adószámhoz (`18654996-1-18`) és a bankszámlaszámhoz (`11600006-00000000-75701521`), 4-lépéses eSZJA útmutató és vállalati CSR adókedvezmény tájékoztatás.
+- **Dokumentumtár & Pályázatok (`/dokumentumok`):** Alapító okirat, Közhasznúsági beszámolók, Szombathely MJV Önkormányzati Támogatási Rendszer elszámolás (800.000 Ft önkormányzati támogatás, 13 pedagógus képzése) és `DocAvailability` (a PDF-ek feltöltéséig „Hamarosan elérhető” állapot).
 - **Kapcsolat & AOSZ Info-Pont (`/kapcsolat`):** Szombathelyi irodai elérhetőségek, nyitvatartás és dinamikus téma-előválasztós (`?topic=...`) kapcsolatfelvételi űrlap.
 
 ---
@@ -67,5 +67,5 @@ npm run build
 - **Székhely:** 9700 Szombathely, Váci M. utca 12. 3./15.
 - **AOSZ Info-Pont:** 9700 Szombathely, Sugár út 9.
 - **Adószám (Adó 1%):** `18654996-1-18`
-- **Bankszámlaszám (CIB Bank):** `11600006-00000000-75701521`
+- **Bankszámlaszám:** `11600006-00000000-75701521`
 - **E-mail:** `info@pontmas.hu`

@@ -8,6 +8,9 @@
 // - Exactly one h1 per page, and no skipped heading level.
 // - No horizontal scrolling at any tested width: the desktop header used to overflow 1024-1310 px
 //   and push the "Támogatás" button off screen.
+// - Where the full desktop header shows (1360 px and up), every item in it stays on one line.
+// - The menu (hamburger, 1280 px): opens as a narrow panel, Escape closes it and returns the focus to
+//   the menu button; the first Tab on a page lands on the "Ugrás a tartalomra" skip link.
 //
 // Uses the Chrome already on the machine (CHROME_PATH, or the usual install paths); GitHub's
 // ubuntu runners have it, so nothing is downloaded.
@@ -82,6 +85,16 @@ function measure() {
   const skips = levels.flatMap((l, i) => (i && l > levels[i - 1] + 1 ? [`h${levels[i - 1]} -> h${l}`] : []));
   const h1 = levels.filter((l) => l === 1).length;
   if (h1 !== 1) skips.push(`${h1} h1 on the page (exactly 1 expected)`);
+  if (window.innerWidth >= 1360) {
+    const header = document.querySelector('header');
+    for (const el of header.querySelectorAll('a, button, span')) {
+      if (el.children.length || !el.textContent.trim() || !el.offsetParent || el.closest('.sr-only')) continue;
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      const lines = new Set([...range.getClientRects()].map((r) => Math.round(r.top))).size;
+      if (lines > 1) skips.push(`header item on ${lines} lines: "${el.textContent.trim()}"`);
+    }
+  }
   const width = document.documentElement.scrollWidth, view = document.documentElement.clientWidth;
   if (width > view) skips.push(`horizontal scroll: page ${width} px wide in a ${view} px window`);
   return { low, skips };
@@ -100,9 +113,39 @@ try {
     }
     await page.close();
   }
+
+  // the menu and the skip link, driven with the keyboard
+  const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  const fail = (m) => { failures++; console.log(`FAIL menu/skip 1280px: ${m}`); };
+  await page.goto(BASE + '/', { waitUntil: 'networkidle' });
+  await page.keyboard.press('Tab');
+  const first = await page.evaluate(() => document.activeElement?.textContent?.trim());
+  if (first !== 'Ugrás a tartalomra') fail(`first Tab lands on "${first}", not the skip link`);
+  await page.keyboard.press('Enter');
+  if (!(await page.evaluate(() => document.activeElement?.id === 'tartalom'))) fail('the skip link does not move the focus to the content');
+  const button = page.locator('button[aria-controls="fo-menu"]');
+  if (!(await button.count())) fail('menu button without aria-controls="fo-menu"');
+  else {
+    await button.click();
+    const panel = await page.evaluate(() => {
+      const m = document.getElementById('fo-menu'); if (!m) return null;
+      const r = m.getBoundingClientRect(); return { width: Math.round(r.width), right: Math.round(window.innerWidth - r.right) };
+    });
+    if (!panel) fail('the menu does not open');
+    else if (panel.width > 400) fail(`the open menu is ${panel.width} px wide, not a narrow panel`);
+    await page.keyboard.press('Escape');
+    const after = await page.evaluate(() => ({
+      open: !!document.getElementById('fo-menu'),
+      expanded: document.querySelector('button[aria-controls="fo-menu"]')?.getAttribute('aria-expanded'),
+      focusOnButton: document.activeElement?.getAttribute('aria-controls') === 'fo-menu',
+    }));
+    if (after.open || after.expanded !== 'false') fail('Escape does not close the menu');
+    if (!after.focusOnButton) fail('after Escape the focus is not back on the menu button');
+  }
+  await page.close();
   await browser.close();
 } finally {
   stop();
 }
-console.log(failures ? `${failures} contrast/heading/width problem(s)` : `contrast, headings and width OK on ${ROUTES.length} routes at 1440, 1366, 1280, 1180, 1024, 768 and 375 px`);
+console.log(failures ? `${failures} contrast/heading/width/menu problem(s)` : `contrast, headings, width, one-line header and menu keyboard OK on ${ROUTES.length} routes at 1440, 1366, 1280, 1180, 1024, 768 and 375 px`);
 process.exit(failures ? 1 : 0);

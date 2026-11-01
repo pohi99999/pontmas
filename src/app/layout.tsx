@@ -53,9 +53,16 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} flex min-h-screen flex-col bg-slate-50 text-slate-900 antialiased`}>
         <SensoryProvider>
+          {/* First stop for keyboard users: past the header straight to the page content */}
+          <a
+            href="#tartalom"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-xl focus:bg-white focus:px-4 focus:py-3 focus:text-sm focus:font-bold focus:text-blue-700 focus:shadow-lg"
+          >
+            Ugrás a tartalomra
+          </a>
           <ReadingRuler />
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="tartalom" tabIndex={-1} className="flex-1 focus:outline-none">{children}</main>
           <AccessibilityToolbar />
           <Footer />
         </SensoryProvider>

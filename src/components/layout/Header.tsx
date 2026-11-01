@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Eye, EyeOff, Heart, Sparkles } from 'lucide-react';
@@ -10,6 +10,28 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isSensoryFriendly, toggleSensoryMode } = useSensory();
   const pathname = usePathname();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  // While the menu is open: Escape closes it and gives the focus back to the menu button, and a
+  // click or tap outside the header closes it too.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setIsMobileMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    const onPointer = (e: PointerEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) setIsMobileMenuOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointer);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
+    };
+  }, [isMobileMenuOpen]);
 
   const navItems = [
     { label: 'Kezdőlap', href: '/' },
@@ -24,7 +46,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 transition-colors">
+    <header ref={headerRef} className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 transition-colors">
       <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
         
         {/* Brand Logo */}
@@ -40,23 +62,24 @@ export default function Header() {
             <span className="text-xl font-black text-slate-900 tracking-tight leading-none group-hover:text-blue-700 transition-colors">
               Pont<span className="text-blue-600">Más</span>
             </span>
-            <span className="text-[11px] font-medium text-slate-500 tracking-wide uppercase mt-0.5">
+            <span className="text-[11px] font-medium text-slate-500 tracking-wide uppercase mt-0.5 whitespace-nowrap">
               Vas Megyei Alapítvány
             </span>
           </div>
         </Link>
 
-        {/* Desktop Navigation: from 1360 px only. The full bar (9 items + 2 buttons) needs about 1310 px;
-            from lg (1024 px) it overflowed and pushed "Támogatás" off screen, so narrower windows keep the
-            hamburger menu. */}
-        <nav className="hidden min-[1360px]:flex items-center gap-1 xl:gap-2" aria-label="Fő navigáció">
+        {/* Desktop Navigation: from 1360 px only. The full bar (9 items + 2 buttons) did not fit from lg
+            (1024 px) and pushed "Támogatás" off screen, so narrower windows keep the hamburger menu.
+            Every item stays on one line: tighter padding and no gap below 2xl (1536 px), and the
+            "Lágy mód" button shows only its icon there (the text stays for screen readers). */}
+        <nav className="hidden min-[1360px]:flex items-center gap-0 2xl:gap-2" aria-label="Fő navigáció">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
+                className={`px-2.5 2xl:px-3.5 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
                   isActive
                     ? 'text-blue-700 bg-blue-50/80 font-semibold'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
@@ -75,7 +98,7 @@ export default function Header() {
           <button
             onClick={toggleSensoryMode}
             type="button"
-            className={`px-3 py-2 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer ${
+            className={`px-3 py-2 rounded-xl border text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer ${
               isSensoryFriendly
                 ? 'bg-slate-800 text-white border-slate-700 shadow-inner'
                 : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
@@ -85,13 +108,13 @@ export default function Header() {
           >
             {isSensoryFriendly ? (
               <>
-                <EyeOff size={16} className="text-sky-300" />
-                <span>Lágy mód: BE</span>
+                <EyeOff size={16} className="text-sky-300" aria-hidden="true" />
+                <span className="sr-only 2xl:not-sr-only">Lágy mód: BE</span>
               </>
             ) : (
               <>
-                <Eye size={16} className="text-slate-600" />
-                <span>Lágy mód</span>
+                <Eye size={16} className="text-slate-600" aria-hidden="true" />
+                <span className="sr-only 2xl:not-sr-only">Lágy mód</span>
               </>
             )}
           </button>
@@ -99,7 +122,7 @@ export default function Header() {
           {/* Donation CTA */}
           <Link
             href="/tamogatas"
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all active:scale-95"
+            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm hover:shadow whitespace-nowrap transition-all active:scale-95"
           >
             <Heart size={16} className="fill-white/20" />
             <span>Támogatás</span>
@@ -122,20 +145,23 @@ export default function Header() {
           </button>
 
           <button
+            ref={menuButtonRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             type="button"
             className="p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 border border-slate-200 transition-colors"
             aria-label={isMobileMenuOpen ? "Menü bezárása" : "Menü megnyitása"}
             aria-expanded={isMobileMenuOpen}
+            aria-controls="fo-menu"
           >
             {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Menu drawer: full width on phones; from md (768 px) a narrow panel under the menu button,
+          which reads better than a full-width list on a tablet or a 1280 px laptop. */}
       {isMobileMenuOpen && (
-        <div className="min-[1360px]:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-150">
+        <div id="fo-menu" className="min-[1360px]:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-150 md:absolute md:top-full md:right-6 lg:right-8 md:mt-2 md:w-[22.5rem] md:rounded-2xl md:border md:pb-4">
           <nav className="flex flex-col gap-1" aria-label="Mobil navigáció">
             {navItems.map((item) => {
               const isActive = pathname === item.href;

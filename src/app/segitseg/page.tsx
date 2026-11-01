@@ -132,7 +132,7 @@ export default function HelpPage() {
               <Button href="#szolgaltatasok" variant="primary" className="bg-white text-blue-900 hover:bg-blue-50">
                 Szolgáltatásaink megtekintése
               </Button>
-              <Button href="/kapcsolat" variant="outline" className="border-white/40 text-white hover:bg-white/10">
+              <Button href="/kapcsolat" variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white">
                 Kérdezzen kollégánktól
               </Button>
             </div>

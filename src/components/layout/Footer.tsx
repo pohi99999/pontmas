@@ -116,7 +116,7 @@ export default function Footer() {
 
       {/* Alsó copyright sáv */}
       <div className="border-t border-slate-800 bg-slate-950 py-6">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
           <p>© {currentYear} PontMás Vas Megyei Autista Gyermekekért Alapítvány. Minden jog fenntartva.</p>
           <div className="flex items-center gap-4">
             <Link href="/dokumentumok" className="hover:text-slate-300 transition-colors">Közhasznúsági jelentések</Link>

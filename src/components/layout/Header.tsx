@@ -31,7 +31,6 @@ export default function Header() {
         <Link 
           href="/" 
           className="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none rounded-lg p-1"
-          aria-label="PontMás Alapítvány Kezdőlap"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-sky-500 flex items-center justify-center text-white shadow-sm shadow-blue-500/20 group-hover:scale-105 transition-transform">
@@ -81,7 +80,6 @@ export default function Header() {
             }`}
             title={isSensoryFriendly ? "Lágy, csökkentett ingerű mód aktív (kattintson a normál módhoz)" : "Csökkentett ingerű (szenszoros) mód bekapcsolása"}
             aria-pressed={isSensoryFriendly}
-            aria-label="Akadálymentes szenszoros mód kapcsoló"
           >
             {isSensoryFriendly ? (
               <>

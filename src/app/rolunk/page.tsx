@@ -180,7 +180,7 @@ export default function RolunkPage() {
             <Button href="/kapcsolat" variant="secondary" size="lg" className="bg-white text-blue-900 hover:bg-blue-50 border-0">
               Kapcsolatfelvétel
             </Button>
-            <Button href="/tamogatas" variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+            <Button href="/tamogatas" variant="outline" size="lg" className="bg-transparent border-white text-white hover:bg-white/10 hover:text-white">
               Támogatási formák
             </Button>
           </div>

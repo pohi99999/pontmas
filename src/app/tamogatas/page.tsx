@@ -167,7 +167,7 @@ export default function TamogatasPage() {
             <Button href="/dokumentumok" variant="secondary" size="md" leftIcon={<FileText size={16} />} className="bg-white text-slate-900 hover:bg-slate-100 border-0">
               Beszámolók megtekintése
             </Button>
-            <Button href="/kapcsolat" variant="outline" size="md" className="border-slate-700 text-slate-200 hover:bg-slate-800">
+            <Button href="/kapcsolat" variant="outline" size="md" className="bg-transparent border-slate-700 text-slate-200 hover:bg-slate-800 hover:text-white">
               Kérdése van? Írjon nekünk
             </Button>
           </div>

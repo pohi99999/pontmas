@@ -33,7 +33,6 @@ export default function CopyButton({
       onClick={handleCopy}
       type="button"
       className={`w-full text-left bg-slate-50 hover:bg-slate-100/90 active:bg-slate-200/80 p-4 rounded-xl border border-slate-200 hover:border-blue-400 group transition-all flex items-center justify-between cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${className}`}
-      aria-label={`Másolás: ${textToCopy}`}
       title="Kattintson a másoláshoz"
     >
       <div className="min-w-0 pr-3">

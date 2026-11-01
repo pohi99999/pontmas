@@ -177,7 +177,7 @@ export default function RolunkIrtakPage() {
             <Button href="/kapcsolat" variant="primary" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3">
               Kapcsolatfelvétel
             </Button>
-            <Button href="/rolunk" variant="outline" className="border-slate-700 text-slate-200 hover:bg-slate-800">
+            <Button href="/rolunk" variant="outline" className="bg-transparent border-slate-700 text-slate-200 hover:bg-slate-800 hover:text-white">
               Alapítványunkról
             </Button>
           </div>

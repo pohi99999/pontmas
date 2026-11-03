@@ -34,7 +34,7 @@ export default function KapcsolatPage() {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">Székhely & Cím</h3>
+                  <h2 className="font-bold text-slate-900 text-base">Székhely & Cím</h2>
                   <p className="text-slate-600 text-sm mt-0.5">9700 Szombathely, Váci M. utca 12. 3./15.</p>
                 </div>
               </div>
@@ -44,7 +44,7 @@ export default function KapcsolatPage() {
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">Kapcsolattartó</h3>
+                  <h2 className="font-bold text-slate-900 text-base">Kapcsolattartó</h2>
                   <p className="text-slate-600 text-sm mt-0.5">Rumi Edina</p>
                   <a href="tel:+36209698715" className="text-blue-600 hover:text-blue-800 font-semibold text-sm mt-0.5 block">
                     +36 20 969 8715
@@ -57,7 +57,7 @@ export default function KapcsolatPage() {
                   <MessageSquare size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">Közösségi Csoport</h3>
+                  <h2 className="font-bold text-slate-900 text-base">Közösségi Csoport</h2>
                   <a 
                     href="https://www.facebook.com/groups/1622445488007296/?locale=hu_HU" 
                     target="_blank" 

@@ -29,7 +29,6 @@ export default function RolunkPage() {
   const merfoldkovek = [
     { ev: "2015", cim: "Alapítás Szombathelyen", leiras: "Érintett szülők és gyógypedagógusok elhatározásából létrejön a PontMás Vas Megyei Autista Gyermekekért Alapítvány." },
     { ev: "2018", cim: "Intézményi eszközbeszerzések", leiras: "Megkezdődik a Vas megyei speciális és integráló intézmények célzott fejlesztőeszköz-ellátása." },
-    { ev: "2021", cim: "AOSZ Info-Pont iroda indítása", leiras: "Hivatalos információs és tanácsadási központ nyílik Szombathelyen a családok számára." },
     { ev: "2024+", cim: "Közösségi hálózat bővülése", leiras: "Éves Kék séták, képességfejlesztő nyári táborok és folyamatos krízisalap működtetése." }
   ];
 

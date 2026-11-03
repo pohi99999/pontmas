@@ -31,7 +31,7 @@ export default function ProgramokPage() {
       category: 'family',
       title: 'Szülőklub és Tapasztalatcsere',
       date: 'Havonta rendszeresen',
-      location: 'Szombathely, AOSZ Info-Pont / Közösségi tér',
+      location: 'Szombathely',
       badge: 'Sorstársi közösség',
       description: 'Biztonságos és támogató beszélgetőfórum az érintett szülők számára. Meghívott szakemberek, gyógypedagógusok és egymást segítő szülők segítségével vitatjuk meg a mindennapi kihívásokat, intézményi kérdéseket.',
       highlights: ['Ingyenes részvétel', 'Szakértői témák és kötetlen beszélgetések', 'Érzelmi és gyakorlati támasz']

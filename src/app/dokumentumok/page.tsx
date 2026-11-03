@@ -178,7 +178,7 @@ export default function DokumentumokPage() {
           <div className="space-y-3 max-w-2xl">
             <h3 className="text-2xl sm:text-3xl font-black">További hivatalos információt keres?</h3>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Kérdéseivel, szakmai együttműködési javaslataival forduljon bizalommal Kuratóriumunkhoz az info@pontmas.hu címen vagy kapcsolatfelvételi űrlapunkon keresztül!
+              Kérdéseivel, szakmai együttműködési javaslataival forduljon bizalommal hozzánk telefonon (+36 20 969 8715) vagy kapcsolatfelvételi űrlapunkon keresztül!
             </p>
           </div>
           <div className="flex flex-wrap gap-4 flex-shrink-0">

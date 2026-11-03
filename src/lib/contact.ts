@@ -9,7 +9,6 @@
 export const TOPICS = [
   'altalanos',
   'mentorszuloi-tanacsadas',
-  'aosz',
   'data-applikacio',
   'szakkonyvtar',
   'intezmenyi-tanacsadas',

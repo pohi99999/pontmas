@@ -94,7 +94,7 @@ export default function TamogatasPage() {
             <div className="space-y-4 pt-4 border-t border-slate-100">
               <CopyButton
                 textToCopy="11600006-00000000-75701521"
-                label="Bankszámlaszám"
+                label="Bankszámlaszám (Erste Bank)"
                 sublabel="Közlemény: Adomány"
               />
             </div>

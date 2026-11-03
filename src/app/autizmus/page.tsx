@@ -52,7 +52,7 @@ export default function AutizmusPage() {
     },
     {
       question: "Hová fordulhatok Vas vármegyében diagnosztikai vizsgálatért?",
-      answer: "A Vas Vármegyei Pedagógiai Szakszolgálat Szakértői Bizottságához, illetve a gyermekorvos vagy védőnő javaslatára gyermekpszichiátriai szakrendelésre. Szombathelyi AOSZ Info-Pont irodánkban készséggel segítünk eligazodni az eljárásban."
+      answer: "A Vas Vármegyei Pedagógiai Szakszolgálat Szakértői Bizottságához, illetve a gyermekorvos vagy védőnő javaslatára gyermekpszichiátriai szakrendelésre. Telefonon (+36 20 969 8715) készséggel segítünk eligazodni az eljárásban."
     },
     {
       question: "Hogyan segíthet a család a mindennapi napirend kialakításában?",

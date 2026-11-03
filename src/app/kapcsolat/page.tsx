@@ -25,7 +25,7 @@ export default function KapcsolatPage() {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12">
           
           {/* Bal oszlop: Elérhetőségek */}
-          <div className="lg:col-span-5 space-y-8">
+          <div className="lg:col-span-5 space-y-8 lg:self-start lg:sticky lg:top-28">
             
             {/* Közvetlen elérhetőségek */}
             <div className="space-y-6">

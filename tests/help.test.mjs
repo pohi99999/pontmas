@@ -11,7 +11,7 @@ test('Help and services page (/segitseg) exists and contains all authentic PontM
 
   // Verify core services from pontmas.hu
   assert.ok(pageContent.includes('Mentorszülő'), 'Must detail Mentorszülő network');
-  assert.ok(pageContent.includes('AOSZ Info-Pont'), 'Must detail AOSZ Info-Pont services');
+  assert.ok(!pageContent.includes('Info-Pont'), 'The closed AOSZ Info-Pont must not be offered');
   assert.ok(pageContent.includes('DATA'), 'Must explain DATA app support');
   assert.ok(pageContent.includes('Szakkönyvtár') || pageContent.includes('szakkönyvtár'), 'Must describe specialist library lending');
   assert.ok(pageContent.includes('intézmény') || pageContent.includes('Intézmény'), 'Must guide regarding educational institutions');

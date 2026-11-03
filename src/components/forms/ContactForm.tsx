@@ -68,11 +68,11 @@ function ContactFormInner() {
       } else if (res.status === 400) {
         setErrorMsg('Kérjük, ellenőrizze a megadott adatokat (név, e-mail cím, üzenet).');
       } else {
-        setErrorMsg('Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy írjon az info@pontmas.hu címre.');
+        setErrorMsg('Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy hívjon minket: +36 20 969 8715.');
       }
     } catch {
       setIsSubmitting(false);
-      setErrorMsg('Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy írjon az info@pontmas.hu címre.');
+      setErrorMsg('Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy hívjon minket: +36 20 969 8715.');
     }
   };
 
@@ -186,7 +186,6 @@ function ContactFormInner() {
           >
             <option value="altalanos">Általános megkeresés / Kérdés</option>
             <option value="mentorszuloi-tanacsadas">Mentorszülői tanácsadás kérése</option>
-            <option value="aosz">AOSZ Info-Pont személyes időpont (Sugár út 9.)</option>
             <option value="data-applikacio">DATA applikáció letöltési & használati segítség</option>
             <option value="szakkonyvtar">Szakkönyvtári kölcsönzés</option>
             <option value="intezmenyi-tanacsadas">Intézményi & iskolai integrációs tájékoztatás</option>

@@ -8,7 +8,7 @@ import path from 'node:path';
 import { sendContact, validateContact, buildEmail, TOPICS } from '../src/lib/contact.ts';
 
 const ENV = { RESEND_API_KEY: 're_test_0123456789abcdef', CONTACT_TO: 'cimzett@example.com', CONTACT_FROM: 'Pont Más űrlap <urlap@example.com>' };
-const GOOD = { nev: 'Teszt Elek', email: 'elek@example.com', telefon: '+36 30 123 4567', tema: 'aosz', uzenet: 'Szeretnék időpontot kérni.' };
+const GOOD = { nev: 'Teszt Elek', email: 'elek@example.com', telefon: '+36 30 123 4567', tema: 'mentorszuloi-tanacsadas', uzenet: 'Szeretnék időpontot kérni.' };
 
 function fakeFetch(response) {
   const calls = [];
@@ -28,7 +28,7 @@ test('a valid message goes to Resend with the env recipient/sender and reply_to 
   assert.deepEqual(mail.to, ['cimzett@example.com']);
   assert.equal(mail.from, ENV.CONTACT_FROM);
   assert.equal(mail.reply_to, 'elek@example.com');
-  assert.ok(mail.text.includes('Szeretnék időpontot kérni.') && mail.text.includes('Téma: aosz'));
+  assert.ok(mail.text.includes('Szeretnék időpontot kérni.') && mail.text.includes('Téma: mentorszuloi-tanacsadas'));
   assert.equal(mail.html, undefined, 'plain text only, nothing the visitor typed becomes markup');
 });
 

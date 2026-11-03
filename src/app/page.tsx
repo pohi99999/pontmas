@@ -161,7 +161,7 @@ export default function Home() {
               <div>
                 <CopyButton
                   textToCopy="11600006-00000000-75701521"
-                  label="Bankszámlaszám"
+                  label="Bankszámlaszám (Erste Bank)"
                   sublabel="Közvetlen banki átutaláshoz"
                 />
               </div>
@@ -171,7 +171,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Közösség & AOSZ Info-Pont Hívószó */}
+      {/* 5. Kapcsolatfelvétel hívószó */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto bg-slate-50 border border-slate-200/80 rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
@@ -179,7 +179,7 @@ export default function Home() {
               Kérdése van, vagy segítségre van szüksége?
             </h3>
             <p className="text-slate-600 text-sm leading-relaxed max-w-xl">
-              Látogasson el szombathelyi AOSZ Info-Pont irodánkba, vagy írjon nekünk közvetlenül üzenetet.
+              Hívjon minket telefonon, vagy írjon nekünk közvetlenül üzenetet.
             </p>
           </div>
           <Button href="/kapcsolat" variant="primary" size="md" className="flex-shrink-0">

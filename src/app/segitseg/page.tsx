@@ -7,7 +7,6 @@ import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import { 
   Users, 
-  MapPin, 
   Smartphone, 
   BookOpen, 
   School, 
@@ -23,7 +22,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Amiben segíteni tudunk | PontMás Alapítvány",
-  description: "Mentorszülői tanácsadás, AOSZ Info-Pont iroda, DATA applikáció támogatás, szakmai könyvtár kölcsönzés és intézményi eligazítás Vas vármegyében.",
+  description: "Mentorszülői tanácsadás, DATA applikáció támogatás, szakmai könyvtár kölcsönzés és intézményi eligazítás Vas vármegyében.",
   openGraph: {
     title: "Amiben segíteni tudunk | PontMás Alapítvány",
     description: "Autizmussal élő gyermekek és családjaik átfogó támogatása Vas vármegyében.",
@@ -45,19 +44,6 @@ export default function HelpPage() {
       ],
       linkText: "Mentorszülő keresése",
       linkHref: "/kapcsolat?topic=mentorszuloi-tanacsadas",
-    },
-    {
-      icon: MapPin,
-      badge: "Személyes Iroda",
-      title: "AOSZ Info-Pont Iroda Szombathely",
-      description: "Kollégánk személyesen és telefonon is készséggel áll rendelkezésre a nyitvatartási időben. Tájékoztatást nyújtunk a diagnosztikai utakról, ellátási formákról és hivatalos ügyintézésről.",
-      bullets: [
-        "Helyszín: 9700 Szombathely, Sugár út 9. (PontMás Iroda)",
-        "Nyitvatartás: Hétfő & Szerda 14:00 - 17:00 (vagy előzetes egyeztetés szerint)",
-        "Személyes és telefonos ügyfélfogadás",
-      ],
-      linkText: "Időpontfoglalás és részletek",
-      linkHref: "/kapcsolat",
     },
     {
       icon: Smartphone,
@@ -222,7 +208,7 @@ export default function HelpPage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold">3</div>
               <h3 className="font-bold text-slate-900 text-lg">PontMás Alapítvány & AOSZ</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Keresse fel szombathelyi AOSZ Info-Pont irodánkat vagy vegyen részt Szülőklubunkon: sorstársi közösséget, tanácsokat és gyakorlati segítséget kap.
+                Hívjon minket, vagy vegyen részt Szülőklubunkon: sorstársi közösséget, tanácsokat és gyakorlati segítséget kap.
               </p>
             </div>
           </div>
@@ -235,7 +221,7 @@ export default function HelpPage() {
           <div className="space-y-3 max-w-2xl">
             <h3 className="text-2xl sm:text-3xl font-black">Személyes vagy telefonos segítségre van szüksége?</h3>
             <p className="text-white text-sm sm:text-base leading-relaxed">
-              Várjuk szeretettel az AOSZ Info-Pont irodánkban Szombathelyen (Sugár út 9.), vagy írjon nekünk üzenetet online űrlapunkon keresztül!
+              Hívja Rumi Edinát a +36 20 969 8715 számon, vagy írjon nekünk üzenetet online űrlapunkon keresztül!
             </p>
           </div>
           <div className="flex flex-wrap gap-4 flex-shrink-0">

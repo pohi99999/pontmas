@@ -12,7 +12,6 @@ import {
   Calendar, 
   Sparkles, 
   MessageSquare,
-  Award,
   ArrowRight
 } from "lucide-react";
 
@@ -67,16 +66,6 @@ export default function RolunkIrtakPage() {
       summary: "A hagyományos őszi családi napon kézműves foglalkozásokkal, agyagozással, nyúlkuglival és gyógypedagógusok által kísért akadálypályával várták a gyermekeket, míg a szülők pszichológus által vezetett támogató csoportban oszthatták meg tapasztalataikat.",
       quote: "„A gyerekek szabadon, feszültség nélkül önmaguk lehettek, mi szülők pedig megkönnyebbülten beszélgethettünk a mindennapok kihívásairól.”",
       source: "PontMás Alapítványi Krónika",
-    },
-    {
-      type: "elismeres",
-      badge: "Szakmai Partnerség • AOSZ",
-      icon: Award,
-      title: "Megnyílt a Szombathelyi AOSZ Info-Pont a Sugár úton",
-      date: "2023. november",
-      summary: "Az Autisták Országos Szövetségével kötött stratégiai partnerség keretében létrejött a szombathelyi információs pont, amely a DATA applikáció bevezetésével és mentorszülői tanácsadással közvetlen segítséget nyújt a Nyugat-Dunántúlon.",
-      quote: "„Egy olyan hiánypótló központ jött létre, ahol a diagnózis utáni első bizonytalan lépésektől kezdve a felnőttkori autonómiáig mindenki szakértő segítséget kap.”",
-      source: "AOSZ Sajtóközlemény",
     },
     {
       type: "koszonet",

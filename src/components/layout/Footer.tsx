@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Heart, Mail, MapPin, Sparkles, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Heart, Phone, MapPin, Sparkles, ExternalLink, ShieldCheck } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -58,7 +58,7 @@ export default function Footer() {
                 <Link href="/dokumentumok" className="hover:text-white transition-colors">Dokumentumtár & Pályázatok</Link>
               </li>
               <li>
-                <Link href="/kapcsolat" className="hover:text-white transition-colors">Kapcsolat & AOSZ Info-Pont</Link>
+                <Link href="/kapcsolat" className="hover:text-white transition-colors">Kapcsolat</Link>
               </li>
             </ul>
           </div>
@@ -72,8 +72,8 @@ export default function Footer() {
                 <span>9700 Szombathely, Váci M. utca 12. 3./15.</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail size={18} className="text-blue-400 flex-shrink-0" />
-                <a href="mailto:info@pontmas.hu" className="hover:text-white transition-colors">info@pontmas.hu</a>
+                <Phone size={18} className="text-blue-400 flex-shrink-0" />
+                <a href="tel:+36209698715" className="hover:text-white transition-colors">Rumi Edina, <span className="whitespace-nowrap">+36 20 969 8715</span></a>
               </li>
               <li className="pt-1">
                 <a 
@@ -98,7 +98,7 @@ export default function Footer() {
                 <span className="font-mono font-bold text-white text-sm">18654996-1-18</span>
               </div>
               <div className="pt-1 border-t border-slate-700/60">
-                <span className="text-slate-400 block">Bankszámlaszám:</span>
+                <span className="text-slate-400 block">Bankszámlaszám (Erste Bank):</span>
                 <span className="font-mono font-bold text-white text-xs block break-all">11600006-00000000-75701521</span>
               </div>
             </div>

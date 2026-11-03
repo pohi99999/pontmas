@@ -1,4 +1,4 @@
-import { MapPin, Mail, MessageSquare, Clock, ShieldCheck, Sparkles, ExternalLink, Users } from 'lucide-react';
+import { MapPin, Phone, MessageSquare, Sparkles, ExternalLink } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ContactForm from '@/components/forms/ContactForm';
 
@@ -14,7 +14,7 @@ export default function KapcsolatPage() {
             badge="Elérhetőség"
             badgeIcon={<Sparkles size={14} />}
             title="Lépjen kapcsolatba velünk!"
-            subtitle="Forduljon hozzánk bizalommal kérdéseivel, tanácsadási igényével, vagy látogasson el személyesen szombathelyi AOSZ Info-Pont irodánkba."
+            subtitle="Forduljon hozzánk bizalommal kérdéseivel, tanácsadási igényével: hívjon minket telefonon, vagy írjon nekünk az űrlapon."
             align="center"
           />
         </div>
@@ -24,37 +24,9 @@ export default function KapcsolatPage() {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12">
           
-          {/* Bal oszlop: Elérhetőségek és AOSZ Info-Pont */}
-          <div className="lg:col-span-5 space-y-8">
+          {/* Bal oszlop: Elérhetőségek */}
+          <div className="lg:col-span-5 space-y-8 lg:self-start lg:sticky lg:top-28">
             
-            {/* AOSZ Info-Pont Doboz */}
-            <div className="bg-gradient-to-br from-blue-900 to-slate-900 text-white rounded-3xl p-8 shadow-md border border-blue-800 space-y-4">
-              <div className="flex items-center gap-3 border-b border-blue-800/80 pb-4">
-                <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white">
-                  <ShieldCheck size={22} />
-                </div>
-                <div>
-                  <h2 className="font-extrabold text-lg">AOSZ Info-Pont Szombathely</h2>
-                  <span className="text-xs text-blue-200">Hivatalos információs iroda</span>
-                </div>
-              </div>
-
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Az Autisták Országos Szövetségének regionális pontjaként ingyenes szakmai, intézményi és jogi útmutatást nyújtunk az érintett családoknak és szakembereknek.
-              </p>
-
-              <div className="pt-2 space-y-2 text-xs text-slate-300">
-                <div className="flex items-center gap-2">
-                  <Clock size={16} className="text-sky-300 flex-shrink-0" />
-                  <span>Előzetes időpont-egyeztetéssel nyitva</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Users size={16} className="text-sky-300 flex-shrink-0" />
-                  <span>Személyes és online konzultáció</span>
-                </div>
-              </div>
-            </div>
-
             {/* Közvetlen elérhetőségek */}
             <div className="space-y-6">
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
@@ -62,19 +34,20 @@ export default function KapcsolatPage() {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">Székhely & Cím</h3>
+                  <h2 className="font-bold text-slate-900 text-base">Székhely & Cím</h2>
                   <p className="text-slate-600 text-sm mt-0.5">9700 Szombathely, Váci M. utca 12. 3./15.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
                 <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
-                  <Mail size={24} />
+                  <Phone size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">E-mail cím</h3>
-                  <a href="mailto:info@pontmas.hu" className="text-blue-600 hover:text-blue-800 font-semibold text-sm mt-0.5 block">
-                    info@pontmas.hu
+                  <h2 className="font-bold text-slate-900 text-base">Kapcsolattartó</h2>
+                  <p className="text-slate-600 text-sm mt-0.5">Rumi Edina</p>
+                  <a href="tel:+36209698715" className="text-blue-600 hover:text-blue-800 font-semibold text-sm mt-0.5 block">
+                    +36 20 969 8715
                   </a>
                 </div>
               </div>
@@ -84,7 +57,7 @@ export default function KapcsolatPage() {
                   <MessageSquare size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">Közösségi Csoport</h3>
+                  <h2 className="font-bold text-slate-900 text-base">Közösségi Csoport</h2>
                   <a 
                     href="https://www.facebook.com/groups/1622445488007296/?locale=hu_HU" 
                     target="_blank" 

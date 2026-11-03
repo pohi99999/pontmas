@@ -33,7 +33,7 @@ export default function RootLayout({
     "@type": "NGO",
     "name": "PontMás Vas Megyei Autista Gyermekekért Alapítvány",
     "url": "https://pontmas.hu",
-    "email": "info@pontmas.hu",
+    "telephone": "+36 20 969 8715",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Váci M. utca 12. 3./15.",

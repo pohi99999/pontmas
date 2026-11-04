@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Eye, EyeOff, Heart, Sparkles } from 'lucide-react';
+import { Menu, X, Eye, EyeOff, Heart } from 'lucide-react';
 import { useSensory } from '@/context/SensoryContext';
 
 export default function Header() {
@@ -55,14 +56,28 @@ export default function Header() {
           className="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none rounded-lg p-1"
           onClick={() => setIsMobileMenuOpen(false)}
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-sky-500 flex items-center justify-center text-white shadow-sm shadow-blue-500/20 group-hover:scale-105 transition-transform">
-            <Sparkles size={22} className="text-white" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl font-black text-slate-900 tracking-tight leading-none group-hover:text-blue-700 transition-colors">
-              Pont<span className="text-blue-600">Más</span>
-            </span>
-            <span className="text-[11px] font-medium text-slate-500 tracking-wide uppercase mt-0.5 whitespace-nowrap">
+          {/* The foundation's own mark and wordmark (transparent PNG cut-outs of the original logo, /public/brand).
+              The mark is decorative; the wordmark carries the name for assistive technology. */}
+          <Image
+            src="/brand/pontmas-jel.png"
+            alt=""
+            width={374}
+            height={402}
+            sizes="45px"
+            preload
+            className="h-12 w-auto group-hover:scale-105 transition-transform"
+          />
+          <div className="flex flex-col gap-1">
+            <Image
+              src="/brand/pontmas-felirat.png"
+              alt="PontMás"
+              width={603}
+              height={137}
+              sizes="140px"
+              preload
+              className="h-auto w-[140px]"
+            />
+            <span className="text-[11px] font-medium text-slate-500 tracking-wide uppercase whitespace-nowrap">
               Vas Megyei Alapítvány
             </span>
           </div>

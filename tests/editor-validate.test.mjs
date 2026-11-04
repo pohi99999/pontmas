@@ -96,7 +96,17 @@ test('required fields, kinds and categories', () => {
 test('images: only from our store under media/, with alt text and a size up to 1600 px', () => {
   const img = imageFor(null);
   ok(news({ image: img }), 'declared image');
-  ok(news({ image: imageFor(null, { declared: false }) }), 'draft image (no declaration) is valid, just not shown');
+  // the declaration is mandatory: an image without it is refused, there is no "draft" any more
+  const undeclared = imageFor(null, { declared: false });
+  const r = news({ image: undeclared });
+  bad(r, 'image without the declaration');
+  assert.ok(r.errors.some((e) => e.path === 'item.image.childPhotoDeclaration'), JSON.stringify(r.errors));
+  bad(prog({ image: undeclared }), 'program image without the declaration');
+  bad(validateContent({ ...SEED_CONTENT, news: [{ ...SEED_NEWS[0], image: undeclared }, ...SEED_NEWS.slice(1)] }), 'content with an undeclared image');
+  // only the public READ is lenient (an undeclared image never shows, and must not blank the site)
+  ok(validateNewsItem({ ...SEED_NEWS[1], image: undeclared }, { requireDeclaration: false }), 'lenient news');
+  ok(validateContent({ ...SEED_CONTENT, news: [{ ...SEED_NEWS[0], image: undeclared }, ...SEED_NEWS.slice(1)] }, { requireDeclaration: false }), 'lenient content');
+  bad(validateNewsItem({ ...SEED_NEWS[1], image: undeclared }, { requireDeclaration: true }), 'explicit strict');
   bad(news({ image: { ...img, url: 'https://evil.example/media/abcdefghijklmnopqrstuvwx.jpg' } }), 'foreign host');
   bad(news({ image: { ...img, url: img.url.replace('/media/', '/content/') } }), 'outside media/');
   bad(news({ image: { ...img, url: img.url.replace('.jpg', '.svg') } }), 'svg');

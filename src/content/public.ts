@@ -10,7 +10,9 @@ export type ContentSource = 'store' | 'seed';
 /** Valid stored content, or the seed. */
 export function pickContent(raw: unknown): { content: SiteContent; source: ContentSource } {
   if (raw === null || raw === undefined) return { content: SEED_CONTENT, source: 'seed' };
-  const v = validateContent(raw);
+  // lenient on the declaration: publicImage() below hides an undeclared image, and one such image
+  // must never make the whole site fall back to the seed
+  const v = validateContent(raw, { requireDeclaration: false });
   if (!v.ok) {
     console.warn('[tartalom] a tárolt tartalom hibás, a beépített tartalom jelenik meg');
     return { content: SEED_CONTENT, source: 'seed' };

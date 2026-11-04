@@ -1,5 +1,5 @@
 // The only module that loads @vercel/blob. createContentStore() imports it on demand, and only
-// when BLOB_READ_WRITE_TOKEN is set, so the tests (which use fakes) never load it.
+// when BLOB_CONTENT_READ_WRITE_TOKEN is set, so the tests (which use fakes) never load it.
 import { del, get, head, list, put } from '@vercel/blob';
 import type { BlobApi } from './blobStore';
 

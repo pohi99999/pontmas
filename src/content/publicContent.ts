@@ -9,7 +9,10 @@ import { CONTENT_TAG } from './types';
 const readCached = unstable_cache(
   async (configured: boolean) => {
     if (!configured) return null;
-    const store = await createContentStore({ BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN });
+    const store = await createContentStore({
+      BLOB_CONTENT_READ_WRITE_TOKEN: process.env.BLOB_CONTENT_READ_WRITE_TOKEN,
+      BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
+    });
     return store ? await store.read() : null;
   },
   ['site-content-v1'],
@@ -17,6 +20,6 @@ const readCached = unstable_cache(
 );
 
 export function getPublicContent() {
-  const configured = !!process.env.BLOB_READ_WRITE_TOKEN?.trim();
+  const configured = !!process.env.BLOB_CONTENT_READ_WRITE_TOKEN?.trim();
   return readContentSafely(() => readCached(configured));
 }

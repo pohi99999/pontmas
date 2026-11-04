@@ -20,7 +20,10 @@ export async function editorDeps(): Promise<EditorDeps> {
       RESEND_API_KEY: env.RESEND_API_KEY,
       CONTACT_FROM: env.CONTACT_FROM,
     },
-    store: await createContentStore({ BLOB_READ_WRITE_TOKEN: env.BLOB_READ_WRITE_TOKEN }),
+    store: await createContentStore({
+      BLOB_CONTENT_READ_WRITE_TOKEN: env.BLOB_CONTENT_READ_WRITE_TOKEN,
+      BLOB_READ_WRITE_TOKEN: env.BLOB_READ_WRITE_TOKEN,
+    }),
     fetchFn: fetch,
     now: () => new Date(),
     limiters,

@@ -9,6 +9,7 @@ import { NewsCard, NewsFeaturedCard, ProgramCard } from '@/components/content/Co
 import type { HistoryEntry } from '@/content/store';
 import {
   CHILD_PHOTO_DECLARATION_TEXT,
+  DECLARATION_HEADER,
   LIMITS,
   PROGRAM_CATEGORIES,
   type NewsItem,
@@ -47,6 +48,7 @@ const ERROR_TEXT: Record<string, string> = {
   not_an_image: 'Ez a fájl nem JPEG, PNG vagy WebP kép.',
   unreadable: 'A képet nem sikerült beolvasni.',
   too_big_dimensions: 'A kép mérete túl nagy.',
+  declaration_required: 'A kép feltöltéséhez előbb be kell jelölni a gyermekfotó-nyilatkozatot.',
   has_metadata: 'A kép rejtett adatokat (például helyadatot) tartalmaz. Kérjük, töltse fel újra a szerkesztőn keresztül.',
   rate_limited: 'Túl sok kérés érkezett. Kérjük, próbálja újra később.',
   version_not_found: 'Ez a korábbi változat már nem érhető el.',
@@ -273,6 +275,7 @@ export default function EditorApp({ editor }: { editor: string }) {
 
       {editing ? (
         <ItemForm
+          key={editing.item.id}
           editing={editing}
           editor={editor}
           errors={[...errors, ...serverErrors]}
@@ -324,7 +327,6 @@ export default function EditorApp({ editor }: { editor: string }) {
                       <p className="text-sm text-slate-700">
                         {item.date}
                         {item.hidden && ' | rejtett'}
-                        {item.image && !item.image.childPhotoDeclaration && ' | kép piszkozatként'}
                       </p>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
@@ -375,9 +377,17 @@ function ItemForm({ editing, editor, errors, update, busy, canSave, previewShown
   const news = kind === 'news' ? (item as NewsItem) : null;
   const program = kind === 'programs' ? (item as ProgramItem) : null;
   const [uploading, setUploading] = useState(false);
+  // the declaration comes BEFORE the file: without the tick no photo can be chosen or uploaded
+  const [ticked, setTicked] = useState(!!item.image?.childPhotoDeclaration);
 
   async function onFile(file: File | undefined) {
     if (!file) return;
+    // belt and braces: the input is disabled until the box is ticked, and a change event that gets
+    // through anyway (assistive tools, scripts) must not upload either
+    if (!ticked) {
+      onMessage({ kind: 'error', text: ERROR_TEXT.declaration_required });
+      return;
+    }
     setUploading(true);
     onMessage(null);
     try {
@@ -386,14 +396,19 @@ function ItemForm({ editing, editor, errors, update, busy, canSave, previewShown
         onMessage({ kind: 'error', text: ERROR_TEXT.too_large });
         return;
       }
-      const res = await fetch('/api/szerkeszto/feltoltes', { method: 'POST', headers: { 'Content-Type': 'image/jpeg' }, body: blob });
+      const res = await fetch('/api/szerkeszto/feltoltes', { method: 'POST', headers: { 'Content-Type': 'image/jpeg', [DECLARATION_HEADER]: '1' }, body: blob });
       const body = await res.json().catch(() => null);
       if (!res.ok || !body?.ok) {
         onMessage({ kind: 'error', text: ERROR_TEXT[body?.error] ?? 'A kép feltöltése nem sikerült.' });
         return;
       }
-      // a new image always starts as a draft: the declaration has to be ticked for it
-      update({ image: { url: body.url, alt: item.image?.alt ?? '', width: body.width ?? width, height: body.height ?? height } });
+      // who and when is written again by the server when the content is saved
+      update({
+        image: {
+          url: body.url, alt: item.image?.alt ?? '', width: body.width ?? width, height: body.height ?? height,
+          childPhotoDeclaration: { declaredBy: editor, at: new Date().toISOString() },
+        },
+      });
     } catch {
       onMessage({ kind: 'error', text: 'A képet nem sikerült feldolgozni vagy feltölteni.' });
     } finally {
@@ -453,10 +468,18 @@ function ItemForm({ editing, editor, errors, update, busy, canSave, previewShown
 
       <fieldset className="space-y-3 rounded-2xl border border-slate-200 bg-white p-4">
         <legend className="px-1 text-sm font-bold text-slate-900">Kép (nem kötelező)</legend>
+        <label className="flex items-start gap-3 text-base text-slate-900">
+          <input type="checkbox" className="mt-1 h-6 w-6 flex-shrink-0" checked={ticked || !!item.image} disabled={!!item.image || uploading}
+            onChange={(e) => setTicked(e.target.checked)} />
+          <span>{CHILD_PHOTO_DECLARATION_TEXT}</span>
+        </label>
+        {!item.image && !ticked && (
+          <p className="rounded-xl bg-amber-50 p-3 text-sm text-amber-900">Kép csak a nyilatkozat bejelölése után választható ki és tölthető fel. Nyilatkozat nélkül nem mentünk képet.</p>
+        )}
         <label className="block">
           <span className="sr-only">Kép kiválasztása</span>
-          <input type="file" accept="image/*" disabled={uploading} onChange={(e) => { void onFile(e.target.files?.[0]); e.target.value = ''; }}
-            className="block min-h-11 w-full text-base file:mr-3 file:min-h-11 file:rounded-xl file:border-0 file:bg-blue-700 file:px-4 file:font-bold file:text-white" />
+          <input type="file" accept="image/*" disabled={uploading || !ticked || !!item.image} onChange={(e) => { void onFile(e.target.files?.[0]); e.target.value = ''; }}
+            className="block min-h-11 w-full text-base file:mr-3 file:min-h-11 file:rounded-xl file:border-0 file:bg-blue-700 file:px-4 file:font-bold file:text-white disabled:opacity-50" />
         </label>
         <p className="text-xs text-slate-600">Fénykép a telefon kamerájával vagy a galériából. Feltöltés előtt a böngésző kicsinyíti (legfeljebb 1600 képpont) és eltávolítja a rejtett adatokat, például a helyadatot.</p>
         {uploading && <p role="status" className="text-sm text-slate-700">Feltöltés folyamatban...</p>}
@@ -466,20 +489,8 @@ function ItemForm({ editing, editor, errors, update, busy, canSave, previewShown
             <img src={item.image.url} alt="" width={item.image.width} height={item.image.height} className="h-auto max-h-60 w-auto rounded-xl border border-slate-200" />
             <Field label="A kép rövid leírása (látássérült látogatóknak)" value={item.image.alt} max={LIMITS.alt}
               onChange={(v) => update({ image: { ...item.image!, alt: v } })} />
-            <label className="flex items-start gap-3 text-base text-slate-900">
-              <input type="checkbox" className="mt-1 h-6 w-6 flex-shrink-0" checked={!!item.image.childPhotoDeclaration}
-                onChange={(e) => {
-                  const img = { ...item.image! };
-                  if (e.target.checked) img.childPhotoDeclaration = { declaredBy: editor, at: new Date().toISOString() };
-                  else delete img.childPhotoDeclaration;
-                  update({ image: img });
-                }} />
-              <span>{CHILD_PHOTO_DECLARATION_TEXT}</span>
-            </label>
-            {!item.image.childPhotoDeclaration && (
-              <p className="rounded-xl bg-amber-50 p-3 text-sm text-amber-900">Nyilatkozat nélkül a kép piszkozat marad: elmentjük, de a honlapon nem jelenik meg.</p>
-            )}
-            <button type="button" className={btnDanger} onClick={() => update({ image: undefined })}>Kép eltávolítása</button>
+            <p className="text-sm text-slate-700">A nyilatkozatot a mentéskor a nevével és az időponttal rögzítjük.</p>
+            <button type="button" className={btnDanger} onClick={() => { update({ image: undefined }); setTicked(false); }}>Kép eltávolítása</button>
           </div>
         )}
       </fieldset>

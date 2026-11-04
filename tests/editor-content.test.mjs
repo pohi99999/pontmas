@@ -24,13 +24,15 @@ const NEW_KEYS = ['id', 'publishedAt', 'hidden'];
 const strip = (items) => items.map((it) => Object.fromEntries(Object.entries(it).filter(([k]) => !NEW_KEYS.includes(k))));
 
 async function renderPage(p) {
-  const saved = process.env.BLOB_READ_WRITE_TOKEN;
+  const saved = [process.env.BLOB_READ_WRITE_TOKEN, process.env.BLOB_CONTENT_READ_WRITE_TOKEN];
   delete process.env.BLOB_READ_WRITE_TOKEN; // no store configured: the page must show the seed
+  delete process.env.BLOB_CONTENT_READ_WRITE_TOKEN;
   try {
     const mod = await src(p);
     return renderToStaticMarkup(await mod.default());
   } finally {
-    if (saved !== undefined) process.env.BLOB_READ_WRITE_TOKEN = saved;
+    if (saved[0] !== undefined) process.env.BLOB_READ_WRITE_TOKEN = saved[0];
+    if (saved[1] !== undefined) process.env.BLOB_CONTENT_READ_WRITE_TOKEN = saved[1];
   }
 }
 
@@ -130,6 +132,15 @@ test('an image renders only with the child photo declaration, as a plain lazy <i
   assert.ok(!renderToStaticMarkup(h(cards.ProgramCard, { program: prog })).includes('<img'));
   assert.ok(renderToStaticMarkup(h(cards.ProgramCard, { program: { ...prog, image: imageFor(null) } })).includes('<img'));
   assert.equal(pub.publicImage(draft.image), null);
+});
+
+test('stored content with an undeclared image: the site keeps the stored content and just hides that image', () => {
+  const stored = { ...seed.SEED_CONTENT, updatedAt: '2026-11-04T09:00:00.000Z', news: [{ ...seed.SEED_NEWS[0], title: 'Tárolt cím', image: imageFor(null, { declared: false }) }, ...seed.SEED_NEWS.slice(1)] };
+  const picked = pub.pickContent(stored);
+  assert.equal(picked.source, 'store', 'not the seed');
+  assert.equal(picked.content.news[0].title, 'Tárolt cím');
+  assert.equal(pub.publicImage(picked.content.news[0].image), null);
+  assert.ok(!renderToStaticMarkup(h(cards.NewsFeaturedCard, { item: picked.content.news[0] })).includes('<img'));
 });
 
 test('the pages read through the store with the cache tag; /programok is a server page with a client filter', () => {

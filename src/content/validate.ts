@@ -60,8 +60,21 @@ export function isRealDate(v: string): boolean {
 
 type TextOpts = { max: number; required: boolean; label: string; multiline?: boolean };
 
+export interface ValidateOptions {
+  /**
+   * An image must carry the child photo declaration. True for everything that is saved or edited
+   * (server and browser); false only when the PUBLIC pages read stored content, which never
+   * shows an undeclared image anyway and must not fall back to the seed because of one.
+   */
+  requireDeclaration?: boolean;
+}
+
 class Checker {
   errors: ValidationError[] = [];
+  requireDeclaration: boolean;
+  constructor(requireDeclaration: boolean = true) {
+    this.requireDeclaration = requireDeclaration;
+  }
   add(path: string, message: string) {
     this.errors.push({ path, message });
   }
@@ -141,6 +154,9 @@ class Checker {
     };
     const image: ContentImage = { url, alt, width: dim('width'), height: dim('height') };
     const d = v.childPhotoDeclaration;
+    if (this.requireDeclaration && (d === undefined || d === null)) {
+      this.add(`${p}.childPhotoDeclaration`, 'A kép közzétételéhez a gyermekfotó-nyilatkozat bejelölése kötelező.');
+    }
     if (d !== undefined && d !== null) {
       const dp = `${p}.childPhotoDeclaration`;
       if (!isObj(d)) {
@@ -223,21 +239,21 @@ function uniqueIds(c: Checker, items: { id: string }[], path: string) {
   });
 }
 
-export function validateNewsItem(raw: unknown): ValidationResult<NewsItem> {
-  const c = new Checker();
+export function validateNewsItem(raw: unknown, opts: ValidateOptions = {}): ValidationResult<NewsItem> {
+  const c = new Checker(opts.requireDeclaration ?? true);
   const value = checkNews(c, raw, 'item');
   return c.errors.length ? { ok: false, errors: c.errors } : { ok: true, value };
 }
 
-export function validateProgramItem(raw: unknown): ValidationResult<ProgramItem> {
-  const c = new Checker();
+export function validateProgramItem(raw: unknown, opts: ValidateOptions = {}): ValidationResult<ProgramItem> {
+  const c = new Checker(opts.requireDeclaration ?? true);
   const value = checkProgram(c, raw, 'item');
   return c.errors.length ? { ok: false, errors: c.errors } : { ok: true, value };
 }
 
 /** Checks the whole content and returns a clean copy (trimmed text, only known keys). */
-export function validateContent(raw: unknown): ValidationResult<SiteContent> {
-  const c = new Checker();
+export function validateContent(raw: unknown, opts: ValidateOptions = {}): ValidationResult<SiteContent> {
+  const c = new Checker(opts.requireDeclaration ?? true);
   if (!isObj(raw)) return { ok: false, errors: [{ path: '', message: 'A tartalom hibás.' }] };
   c.keys(raw, CONTENT_FIELDS, '');
   if (raw.version !== 1) c.add('version', 'Ismeretlen tartalomverzió.');

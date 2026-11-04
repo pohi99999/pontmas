@@ -35,6 +35,9 @@ function setup({ mail = 'ok', env = {}, store } = {}) {
   return { deps, mailer, logs, settle, cookie };
 }
 
+// the editor sets this header only after the child photo declaration box is ticked
+const DECL = { 'x-child-photo-declaration': '1' };
+
 function req(route, { method = 'POST', body, cookie, origin = SITE, ip = '203.0.113.7', type = 'application/json', headers = {} } = {}) {
   const h = { host: new URL(SITE).host, 'x-forwarded-for': ip, ...headers };
   if (origin) h.origin = origin;
@@ -253,7 +256,7 @@ test('history: a restore is a new save, and a photo removed since is not brought
 test('upload: JPEG, PNG and WebP by their first bytes, random name under media/, notification with the link', async () => {
   const { deps, cookie, mailer, settle } = setup();
   for (const [bytes, ext] of [[jpeg({ width: 1600, height: 1200 }), 'jpg'], [png(), 'png'], [webp(), 'webp']]) {
-    const r = await read(await api.handleUpload(req('feltoltes', { cookie: cookie(), body: bytes, type: 'application/octet-stream' }), deps));
+    const r = await read(await api.handleUpload(req('feltoltes', { cookie: cookie(), body: bytes, type: 'application/octet-stream', headers: DECL }), deps));
     assert.equal(r.status, 200, ext);
     assert.match(r.body.url, new RegExp(`/media/[A-Za-z0-9_-]{24}\\.${ext}$`));
     assert.ok(r.body.width > 0 && r.body.height > 0);
@@ -265,7 +268,7 @@ test('upload: JPEG, PNG and WebP by their first bytes, random name under media/,
 
 test('upload: a text file named .jpg is refused; so are a 6 MB file, a too large picture and EXIF/GPS data', async () => {
   const { deps, cookie } = setup();
-  const up = (body, headers = {}) => api.handleUpload(req('feltoltes', { cookie: cookie(), body, type: 'image/jpeg', headers }), deps);
+  const up = (body, headers = {}) => api.handleUpload(req('feltoltes', { cookie: cookie(), body, type: 'image/jpeg', headers: { ...DECL, ...headers } }), deps);
   const text = new TextEncoder().encode('Ez nem kép, csak egy szöveg.');
   assert.equal((await up(text, { 'x-file-name': 'foto.jpg' })).status, 415);
   assert.equal((await up(jpeg({ pad: 6 * 1024 * 1024 }))).status, 413);
@@ -276,12 +279,64 @@ test('upload: a text file named .jpg is refused; so are a 6 MB file, a too large
   assert.equal(deps.store.files.size, 0, 'nothing stored');
 });
 
-test('the route files only wire the handlers to the real services', () => {
+test('upload without the child photo declaration: refused, nothing stored, no mail', async () => {
+  const { deps, cookie, mailer, settle } = setup();
+  for (const headers of [{}, { 'x-child-photo-declaration': '' }, { 'x-child-photo-declaration': '0' }, { 'x-child-photo-declaration': 'true' }, { 'x-child-photo-declaration': 'yes' }]) {
+    const r = await read(await api.handleUpload(req('feltoltes', { cookie: cookie(), body: jpeg(), type: 'image/jpeg', headers }), deps));
+    assert.equal(r.status, 400, JSON.stringify(headers));
+    assert.equal(r.body.error, 'declaration_required');
+  }
+  await settle();
+  assert.equal(deps.store.files.size, 0, 'no file reached the store');
+  assert.equal(mailer.mails.length, 0, 'no notification');
+  // and the same picture WITH the declaration goes through
+  const ok = await read(await api.handleUpload(req('feltoltes', { cookie: cookie(), body: jpeg(), type: 'image/jpeg', headers: DECL }), deps));
+  assert.equal(ok.status, 200);
+  assert.equal(deps.store.files.size, 1);
+});
+
+test('save: an image without the declaration is refused and nothing is written', async () => {
+  const { deps, cookie, mailer, settle } = setup();
+  const undeclared = imageFor(deps.store, { declared: false });
+  const content = { ...SEED_CONTENT, news: [{ ...SEED_NEWS[0], image: undeclared }, ...SEED_NEWS.slice(1)] };
+  const r = await read(await api.handleContentPut(req('tartalom', { method: 'PUT', cookie: cookie(), body: { base: null, content } }), deps));
+  await settle();
+  assert.equal(r.status, 400);
+  assert.ok(r.body.errors.some((e) => e.path.endsWith('image.childPhotoDeclaration')), JSON.stringify(r.body.errors));
+  assert.equal(deps.store.content, null, 'nothing stored');
+  assert.equal(deps.store.history.length, 0);
+  assert.equal(deps.revalidated, 0);
+  assert.equal(mailer.mails.length, 0);
+  // the declared one is accepted, and stamped by the server
+  const declared = { ...undeclared, childPhotoDeclaration: { declaredBy: 'x@example.org', at: '2020-01-01T00:00:00.000Z' } };
+  const ok = await read(await api.handleContentPut(req('tartalom', { method: 'PUT', cookie: cookie(), body: { base: null, content: { ...content, news: [{ ...SEED_NEWS[0], image: declared }, ...SEED_NEWS.slice(1)] } } }), deps));
+  assert.equal(ok.status, 200, JSON.stringify(ok.body));
+  assert.equal(deps.store.content.news[0].image.childPhotoDeclaration.declaredBy, EDITOR);
+});
+
+test('restore: a stored version that holds an undeclared image is refused, nothing new is written', async () => {
+  const { deps, cookie } = setup();
+  const old = { ...SEED_CONTENT, updatedAt: '2026-11-04T08:00:00.000Z', news: [{ ...SEED_NEWS[0], image: imageFor(deps.store, { declared: false }) }, ...SEED_NEWS.slice(1)] };
+  const entry = await deps.store.write(old, 'regi@example.org', 'regi verzio'); // written straight to the store, bypassing the API
+  const before = JSON.stringify(deps.store.content);
+  const r = await read(await api.handleContentPut(req('tartalom', { method: 'PUT', cookie: cookie(), body: { base: deps.store.content.updatedAt, restore: entry.id } }), deps));
+  assert.equal(r.status, 400);
+  assert.equal(JSON.stringify(deps.store.content), before);
+});
+
+test('the editor sends the declaration header only from the ticked state, and the route files only wire the handlers to the real services', () => {
+  const ui = fs.readFileSync(path.resolve('src/components/editor/EditorApp.tsx'), 'utf8');
+  assert.ok(ui.includes("[DECLARATION_HEADER]: '1'"), 'the upload sends the header');
+  assert.match(ui, /disabled=\{uploading \|\| !ticked/, 'the file input is locked until the box is ticked');
+  assert.match(ui, /if \(!ticked\) \{\s+onMessage\(\{ kind: 'error', text: ERROR_TEXT\.declaration_required \}\);\s+return;/, 'and onFile itself refuses without the tick');
+  assert.ok(!ui.includes('piszkozatként'), 'no draft image state is left in the list');
+  const types = fs.readFileSync(path.resolve('src/content/types.ts'), 'utf8');
+  assert.ok(types.includes("DECLARATION_HEADER = 'x-child-photo-declaration'"), 'the header name the tests send');
   for (const r of ['login', 'belepes', 'kilepes', 'tartalom', 'feltoltes']) {
     const s = fs.readFileSync(path.resolve(`src/app/api/szerkeszto/${r}/route.ts`), 'utf8');
     assert.match(s, /return handle\w+\(request, await editorDeps\(\)\);/, r);
   }
   const server = fs.readFileSync(path.resolve('src/lib/editorServer.ts'), 'utf8');
-  for (const name of ['EDITOR_EMAILS', 'EDITOR_SESSION_SECRET', 'EDITOR_NOTIFY_TO', 'RESEND_API_KEY', 'CONTACT_FROM']) assert.ok(server.includes(`env.${name}`), name);
+  for (const name of ['EDITOR_EMAILS', 'EDITOR_SESSION_SECRET', 'EDITOR_NOTIFY_TO', 'RESEND_API_KEY', 'CONTACT_FROM', 'BLOB_CONTENT_READ_WRITE_TOKEN', 'BLOB_READ_WRITE_TOKEN']) assert.ok(server.includes(`env.${name}`), name);
   assert.match(server, /revalidateTag\(CONTENT_TAG/);
 });

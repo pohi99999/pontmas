@@ -109,5 +109,8 @@ export const CONTENT_TAG = 'site-content';
 export const BLOB_IMAGE_URL_RE =
   /^https:\/\/[a-z0-9-]+\.public\.blob\.vercel-storage\.com\/media\/[A-Za-z0-9_-]{16,64}\.(?:jpg|png|webp)$/;
 
+/** The upload route refuses a photo unless the request carries this header with the value "1": the editor sets it only after the declaration box is ticked. */
+export const DECLARATION_HEADER = 'x-child-photo-declaration';
+
 export const CHILD_PHOTO_DECLARATION_TEXT =
   'A képen nincs felismerhető gyermek, VAGY van írásos szülői hozzájárulásunk a nyilvános közzétételhez.';

@@ -8,7 +8,7 @@
 import { SEED_CONTENT } from '../content/seed';
 import { prepareSave } from '../content/save';
 import type { ContentStore } from '../content/store';
-import type { SiteContent } from '../content/types';
+import { DECLARATION_HEADER, type SiteContent } from '../content/types';
 import {
   clearSessionCookie,
   createLoginToken,
@@ -258,6 +258,8 @@ export async function handleUpload(req: Request, deps: EditorDeps): Promise<Resp
   if (!g.ok) return g.res;
   const store = deps.store;
   if (!store) return fail(503, 'store_unavailable');
+  // no declaration, no file: an image without the child photo declaration is never stored
+  if (req.headers.get(DECLARATION_HEADER) !== '1') return fail(400, 'declaration_required');
   if (deps.limiters.upload.hit(g.editor, deps.now().getTime())) return fail(429, 'rate_limited');
   const len = Number(req.headers.get('content-length') ?? '0');
   if (len > MAX_UPLOAD_BYTES) return fail(413, 'too_large');

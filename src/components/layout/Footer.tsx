@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Heart, Phone, MapPin, Sparkles, ExternalLink, ShieldCheck } from 'lucide-react';
+import Image from 'next/image';
+import { Heart, Phone, MapPin, ExternalLink, ShieldCheck } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,8 +14,9 @@ export default function Footer() {
           {/* Oszlop 1: Alapítványi profil */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-                <Sparkles size={18} />
+              {/* The logo is dark artwork: on the dark footer it sits on a white tile instead of being recoloured. */}
+              <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center p-1.5 shrink-0">
+                <Image src="/brand/pontmas-jel.png" alt="" width={374} height={402} sizes="36px" className="h-full w-auto" />
               </div>
               <span className="text-xl font-bold text-white tracking-tight">
                 Pont<span className="text-blue-400">Más</span> Alapítvány

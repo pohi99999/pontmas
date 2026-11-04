@@ -1,62 +1,23 @@
-"use client";
-
-import { useState } from 'react';
-import { Calendar, MapPin, Sparkles, School, GraduationCap, Heart, ArrowRight } from 'lucide-react';
+import { Sparkles, School, GraduationCap, Heart } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
+import ProgramFilter from '@/components/content/ProgramFilter';
+import { getPublicContent } from '@/content/publicContent';
+import { visiblePrograms } from '@/content/public';
 
-export default function ProgramokPage() {
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'event' | 'family' | 'camp'>('all');
+// A server page now, so it can read the editor's store (or the seed); only the category filter
+// runs in the browser (ProgramFilter).
+export const revalidate = 3600;
 
-  const programok = [
-    {
-      category: 'event',
-      title: 'Autizmus Világnapi "Kék Séta"',
-      date: 'Minden év április 2. körül',
-      location: 'Szombathely Fő tér és belváros',
-      badge: 'Kiemelt éves esemény',
-      description: 'Hagyományos és nagyszabású figyelemfelhívó sétánk, amellyel az autizmussal élők társadalmi elfogadását, láthatóságát hirdetjük. Célunk az előítéletek lebontása és a helyi közösség összefogása.',
-      highlights: ['Kék lufik és szalagok', 'Közös séta érintett családokkal', 'Szakmai és szülői felszólalások']
-    },
-    {
-      category: 'camp',
-      title: 'Képességfejlesztő Nyári Táborok',
-      date: 'Július - Augusztus (évente több turnusban)',
-      location: 'Vas vármegyei élményhelyszínek',
-      badge: 'Fejlesztő tábor',
-      description: 'Kifejezetten autizmussal élő gyermekek számára megálmodott táboraink kiszámítható, biztonságos és elfogadó közeget nyújtanak. Gyógypedagógusok és képzett asszisztensek felügyeletével biztosítunk játékos készségfejlesztést és igazi kikapcsolódást.',
-      highlights: ['Alacsony gyermek-felnőtt arány', 'Egyéni szenzoros igényekhez igazított programok', 'Közösségi élmények']
-    },
-    {
-      category: 'family',
-      title: 'Szülőklub és Tapasztalatcsere',
-      date: 'Havonta rendszeresen',
-      location: 'Szombathely',
-      badge: 'Sorstársi közösség',
-      description: 'Biztonságos és támogató beszélgetőfórum az érintett szülők számára. Meghívott szakemberek, gyógypedagógusok és egymást segítő szülők segítségével vitatjuk meg a mindennapi kihívásokat, intézményi kérdéseket.',
-      highlights: ['Ingyenes részvétel', 'Szakértői témák és kötetlen beszélgetések', 'Érzelmi és gyakorlati támasz']
-    },
-    {
-      category: 'family',
-      title: 'Autizmus-barát Családi Napok',
-      date: 'Tavaszi és őszi időszakban',
-      location: 'Szombathely és környéke',
-      badge: 'Családi program',
-      description: 'Olyan kötetlen szabadidős programok, ahol a testvérek, szülők és a spektrumon lévő gyermekek együtt tölthetnek el egy élménydús napot, anélkül, hogy a környezet ítélkezésétől kellene tartaniuk.',
-      highlights: ['Nyugtató pihenősátrak', 'Kreatív és mozgásos játékok', 'Családi kapcsolatépítés']
-    }
-  ];
-
+export default async function ProgramokPage() {
+  const { content } = await getPublicContent();
+  const programok = visiblePrograms(content.programs);
   const tamogatottIntezmenyek = [
     { nev: "Aranyhíd EGYMI (Szombathely)", reszlet: "Speciális oktatási-nevelési fejlesztőeszközök, szenzoros szobák felszerelésének támogatása." },
     { nev: "Micimackó Óvoda (Szombathely)", reszlet: "Autizmus-specifikus korai fejlesztő játékok és vizuális támogató eszközök biztosítása." },
     { nev: "Vas Vármegyei Pedagógiai Szakszolgálat", reszlet: "Szakmai együttműködés, diagnosztikai és tanácsadási folyamatok támogatása." },
     { nev: "Integráló általános és középiskolák", reszlet: "Módszertani segítségnyújtás és érzékenyítő előadások a pedagógusok és osztályközösségek számára." }
   ];
-
-  const filteredPrograms = selectedCategory === 'all' 
-    ? programok 
-    : programok.filter(p => p.category === selectedCategory);
 
   return (
     <div className="pb-20">
@@ -78,82 +39,7 @@ export default function ProgramokPage() {
       {/* 2. Programok és Események Kategóriaválasztóval */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
-        {/* Kategória szűrő gombok */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12 max-w-2xl mx-auto" role="tablist" aria-label="Programkategóriák">
-          {[
-            { id: 'all', label: 'Összes program' },
-            { id: 'event', label: 'Kiemelt Események' },
-            { id: 'camp', label: 'Nyári Táborok' },
-            { id: 'family', label: 'Szülőklub & Családok' },
-          ].map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id as typeof selectedCategory)}
-              role="tab"
-              aria-selected={selectedCategory === cat.id}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                selectedCategory === cat.id
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Esemény kártyák listája */}
-        <div className="max-w-5xl mx-auto space-y-8">
-          {filteredPrograms.map((program, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all space-y-6"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
-                <div>
-                  <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 mb-2 inline-block">
-                    {program.badge}
-                  </span>
-                  <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-                    {program.title}
-                  </h2>
-                </div>
-                <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
-                  <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
-                    <Calendar size={14} className="text-blue-600" />
-                    <span>{program.date}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
-                    <MapPin size={14} className="text-slate-400" />
-                    <span>{program.location}</span>
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-slate-600 text-base leading-relaxed">
-                {program.description}
-              </p>
-
-              <div className="bg-slate-50/70 p-4 rounded-2xl border border-slate-100">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Főbb jellemzők:</span>
-                <ul className="grid sm:grid-cols-3 gap-2">
-                  {program.highlights.map((h, i) => (
-                    <li key={i} className="flex items-center gap-2 text-xs font-medium text-slate-700">
-                      <div className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="flex justify-end pt-2">
-                <Button href="/kapcsolat" variant="ghost" size="sm" rightIcon={<ArrowRight size={14} />}>
-                  Érdeklődés & Részletek
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ProgramFilter programs={programok} />
 
       </section>
 

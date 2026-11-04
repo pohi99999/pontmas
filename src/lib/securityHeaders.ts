@@ -2,12 +2,13 @@
 // the browser logs what it would block but blocks nothing, so the site keeps working while the
 // policy is checked page by page; it can be switched to enforcing once the console is clean.
 // 'unsafe-inline' for scripts is needed by Next.js's inline hydration scripts and the JSON-LD block;
-// for styles by framer-motion's inline styles.
+// for styles by framer-motion's inline styles. Images may also come from the site's Vercel Blob
+// store (the editor's uploads, *.public.blob.vercel-storage.com).
 export const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data:",
+  "img-src 'self' data: https://*.public.blob.vercel-storage.com",
   "font-src 'self'",
   "connect-src 'self'",
   "frame-ancestors 'none'",
@@ -24,4 +25,9 @@ export const SECURITY_HEADERS: { key: string; value: string }[] = [
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
   { key: 'Content-Security-Policy-Report-Only', value: CONTENT_SECURITY_POLICY },
+];
+
+// The editor (/szerkeszto) must never be indexed; its page metadata says so too.
+export const EDITOR_HEADERS: { key: string; value: string }[] = [
+  { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
 ];

@@ -11,6 +11,7 @@
     "test:a11y": "node tests/a11y-contrast.mjs"
   },
   "dependencies": {
+    "@vercel/blob": "^2.8.2",
     "clsx": "^2.1.1",
     "framer-motion": "^12.43.0",
     "lucide-react": "^1.28.0",

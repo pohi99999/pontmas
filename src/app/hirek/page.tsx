@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
-import { 
-  Calendar, 
-  MapPin, 
-  Clock, 
-  Users, 
-  ArrowRight, 
-  Sparkles, 
-  Megaphone, 
-  CheckCircle2, 
-  Heart, 
-  GraduationCap,
-  ExternalLink
-} from "lucide-react";
+import { NewsCard, NewsFeaturedCard } from "@/components/content/ContentCards";
+import { getPublicContent } from "@/content/publicContent";
+import { splitNews } from "@/content/public";
 
 export const metadata: Metadata = {
   title: "Hírek & Aktualitások | PontMás Alapítvány",
@@ -27,74 +16,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HirekPage() {
-  const newsItems = [
-    {
-      featured: true,
-      badge: "Kiemelt Esemény • Szülőklub",
-      title: "Meghívó: Szülőklub – „Foglald el magad egy kicsit! Önálló szabadidős tevékenységek tervezése, tanítása”",
-      date: "2024. október 26. (Szombat) 14:00 - 16:30",
-      location: "9700 Szombathely, Sugár út 9. (PontMás Alapítvány Irodája)",
-      speaker: "Bárdosi Emőke – Az Aranyhíd EGYMI szakirányos gyógypedagógusa",
-      description: "A PontMás Vas Megyei Autista Gyermekekért Alapítvány szeretettel meghívja az érintett szülőket, hozzátartozókat és szakembereket soron következő szakmai szülőklub rendezvényére. A részvétel ingyenes, de regisztrációhoz kötött.",
-      highlights: [
-        "Gyakorlati módszerek az önálló otthoni szabadidő eltöltéséhez",
-        "Vizuális napirendek és tevékenység-tervezők alkalmazása",
-        "Kötetlen szülői tapasztalatcsere és tanácsadás",
-      ],
-      actionText: "Regisztráció a Szülőklubra",
-      actionHref: "/kapcsolat?topic=szulo",
-      googleFormHref: "https://forms.gle/1gBnMZHoTn3DuZ189",
-    },
-    {
-      featured: false,
-      badge: "Közösségi Élet • Beszámoló",
-      title: "Családi Nap 2024 a Vasi Skanzenben – Közösségépítés és Szülőklub a természetben",
-      date: "2024. szeptember 28.",
-      location: "Vasi Skanzen, Szombathely",
-      speaker: "Temesi Patrícia pszichológus & Pohánka Edit kuratóriumi elnök",
-      description: "Hagyományos őszi családi napunkon a változékony idő ellenére is nagyszerű hangulatban gyűltek össze a családok. A gyermekek gyógypedagógusok és asszisztensek segítségével agyagozhattak, körmöcskézhettek, fát ültethettek, nyúlkuglizhattak és akadálypályán vehettek részt, míg a szülőknek Temesi Patrícia pszichológus vezetett interaktív és feltöltő csapatépítő beszélgetést.",
-      highlights: [
-        "Gyógypedagógusok által felügyelt kreatív állomások",
-        "Pszichológiai támogatás és tapasztalatcsere az iskolakezdésről",
-        "Közös pizza-parti és kötetlen barátkozás",
-      ],
-      actionText: "Részletes beszámoló",
-      actionHref: "/programok",
-    },
-    {
-      featured: false,
-      badge: "Szakmai Fejlesztés • Támogatás",
-      title: "Továbbképzés gyógypedagógusok és asszisztensek részére (Szombathely MJV támogatásával)",
-      date: "2024. április - május",
-      location: "Autizmus Alapítvány Képzési Központ",
-      speaker: "13 szombathelyi pedagógus az Aranyhíd EGYMI, Micimackó Óvoda és Váci Mihály Ált. Iskolából",
-      description: "Alapítványunk a Szombathely Megyei Jogú Város Önkormányzati Támogatási Rendszerén keresztül elnyert 800.000 Ft támogatás segítségével 100%-ban finanszírozta a helyi szakemberek akkreditált 30 órás alapozó és kommunikációs-szociális képzéseit.",
-      highlights: [
-        "11 fő végezte el az Autizmussal élő gyermekek célzott pedagógiai ellátása 30 órás képzést",
-        "2 fő végezte el a Szociális és kommunikációs készségek fejlesztése kurzust",
-        "A képzések teljes 715.000 Ft-os díját az alapítvány finanszírozta",
-      ],
-      actionText: "Pályázati dokumentumok",
-      actionHref: "/dokumentumok",
-    },
-    {
-      featured: false,
-      badge: "Önkéntesség • Felhívás",
-      title: "Önkéntes segítőket és aktivistákat keresünk!",
-      date: "Folyamatosan",
-      location: "Szombathely és környéke",
-      speaker: "PontMás Alapítvány Kuratóriuma",
-      description: "Munkánk bővülésével és a növekvő igényekkel párhuzamosan elkötelezett önkénteseket keresünk rendezvényeink lebonyolításához, szülőklubok szervezéséhez, kommunikációhoz és adminisztrációhoz.",
-      highlights: [
-        "Rendezvényszervezés (Kék Séta, Családi Nap, Szülőklubok)",
-        "Gyermekfelügyelet és segítői közreműködés programokon",
-        "Közösségi média és szemléletformáló kampányok támogatása",
-      ],
-      actionText: "Jelentkezem önkéntesnek",
-      actionHref: "/kapcsolat?topic=onkentes",
-    },
-  ];
+// The items come from the editor's store (src/content), or from the seed when the store is empty
+// or unreachable; the cards are shared with the editor's preview.
+export const revalidate = 3600;
+
+export default async function HirekPage() {
+  const { content } = await getPublicContent();
+  const { featured, rest } = splitNews(content.news);
 
   return (
     <div className="flex flex-col gap-16 py-12 md:py-20">
@@ -117,78 +45,11 @@ export default function HirekPage() {
       </section>
 
       {/* 2. Kiemelt hír / Meghívó banner */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border-2 border-blue-500/40 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 sm:p-12 shadow-lg space-y-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <Badge variant="info">
-              Legközelebbi Szülőklub
-            </Badge>
-            <div className="flex items-center gap-2 text-xs font-semibold text-blue-800 bg-blue-100/80 px-3 py-1.5 rounded-full">
-              <Calendar className="h-4 w-4" />
-              <span>{newsItems[0].date}</span>
-            </div>
-          </div>
-
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
-            {newsItems[0].title}
-          </h2>
-
-          <div className="grid sm:grid-cols-2 gap-4 text-sm text-slate-700 bg-white/80 p-5 rounded-2xl border border-blue-100">
-            <div className="flex items-start gap-2.5">
-              <MapPin className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <span className="font-bold block text-slate-900">Helyszín:</span>
-                <span>{newsItems[0].location}</span>
-              </div>
-            </div>
-            <div className="flex items-start gap-2.5">
-              <GraduationCap className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <span className="font-bold block text-slate-900">Előadó:</span>
-                <span>{newsItems[0].speaker}</span>
-              </div>
-            </div>
-          </div>
-
-          <p className="text-base text-slate-700 leading-relaxed">
-            {newsItems[0].description}
-          </p>
-
-          <div className="space-y-2 border-t border-blue-100 pt-4">
-            <h3 className="font-bold text-slate-900 text-sm">Főbb témák és program:</h3>
-            <div className="grid sm:grid-cols-3 gap-3">
-              {newsItems[0].highlights.map((h, i) => (
-                <div key={i} className="flex items-start gap-2 text-xs text-slate-700 bg-white p-3 rounded-xl border border-slate-100">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span>{h}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4 pt-4">
-            <Button
-              href={newsItems[0].actionHref}
-              variant="primary"
-              size="lg"
-              className="bg-blue-700 hover:bg-blue-800"
-            >
-              {newsItems[0].actionText}
-            </Button>
-            {newsItems[0].googleFormHref && (
-              <a
-                href={newsItems[0].googleFormHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-900 px-4 py-2.5 rounded-xl border border-blue-300 hover:bg-blue-50 transition-colors"
-              >
-                <span>Google Űrlap megnyitása</span>
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            )}
-          </div>
-        </div>
-      </section>
+      {featured && (
+        <section className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <NewsFeaturedCard item={featured} />
+        </section>
+      )}
 
       {/* 3. További hírek és beszámolók */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -198,49 +59,8 @@ export default function HirekPage() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {newsItems.slice(1).map((item, index) => (
-            <article
-              key={index}
-              className="flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-7 shadow-sm hover:shadow-md transition-all group"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full">
-                    {item.badge}
-                  </span>
-                  <span className="text-xs text-slate-600 font-mono">
-                    {item.date}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-bold text-slate-900 leading-snug group-hover:text-blue-700 transition-colors">
-                  {item.title}
-                </h3>
-
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  {item.description}
-                </p>
-
-                <div className="border-t border-slate-100 pt-3 space-y-2">
-                  {item.highlights.map((h, hIdx) => (
-                    <div key={hIdx} className="flex items-start gap-2 text-xs text-slate-700">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      <span>{h}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="pt-6 mt-4 border-t border-slate-100">
-                <Link
-                  href={item.actionHref}
-                  className="inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors"
-                >
-                  <span>{item.actionText}</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </article>
+          {rest.map((item) => (
+            <NewsCard key={item.id} item={item} />
           ))}
         </div>
       </section>

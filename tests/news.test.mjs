@@ -7,7 +7,8 @@ test('News and updates page (/hirek) exists and contains authentic PontMas news'
   const pagePath = path.resolve('src/app/hirek/page.tsx');
   assert.ok(fs.existsSync(pagePath), 'src/app/hirek/page.tsx must exist');
 
-  const pageContent = fs.readFileSync(pagePath, 'utf8');
+  // Since the editor (2026-11-04) the items live in src/content/seed.ts and the page renders them.
+  const pageContent = fs.readFileSync(pagePath, 'utf8') + fs.readFileSync(path.resolve('src/content/seed.ts'), 'utf8');
 
   // Verify core news items from pontmas.hu
   assert.ok(pageContent.includes('Szülőklub') || pageContent.includes('SZÜLŐKLUB'), 'Must detail Parent Club events');

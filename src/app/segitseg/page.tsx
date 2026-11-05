@@ -7,6 +7,7 @@ import ActionCard from "@/components/ui/ActionCard";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import { Users, Smartphone, BookOpen, School, CheckCircle2, ArrowRight, HeartHandshake } from "lucide-react";
+import CtaBand from '@/components/ui/CtaBand';
 
 export const metadata: Metadata = {
   title: "Amiben segíteni tudunk | PontMás Alapítvány",
@@ -113,13 +114,14 @@ export default function HelpPage() {
           align="center"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Five services: three and two on large screens, so no row ends in an empty column */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <div 
                 key={index} 
-                className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm hover:shadow-md transition-all group"
+                className={`flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm hover:shadow-md transition-all group ${index < 3 ? 'lg:col-span-2' : 'lg:col-span-3'} ${index === 4 ? 'md:max-lg:col-span-2' : ''}`}
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -193,21 +195,14 @@ export default function HelpPage() {
       </section>
 
       {/* 4. Kapcsolatfelvételi CTA sáv */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-blue-600 p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
-          <div className="space-y-3 max-w-2xl">
-            <h3 className="display text-2xl sm:text-3xl">Személyes vagy telefonos segítségre van szüksége?</h3>
-            <p className="text-white text-sm sm:text-base leading-relaxed">
-              Hívja Rumi Edinát a +36 20 969 8715 számon, vagy írjon nekünk üzenetet online űrlapunkon keresztül!
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-4 flex-shrink-0">
-            <Button href="/kapcsolat" variant="primary" className="bg-white text-blue-700 hover:bg-blue-50 font-bold px-6 py-3">
-              Kapcsolatfelvétel
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="Személyes vagy telefonos segítségre van szüksége?"
+        text="Hívja Rumi Edinát a +36 20 969 8715 számon, vagy írjon nekünk üzenetet online űrlapunkon keresztül!"
+      >
+        <Button href="/kapcsolat" variant="primary">
+          Kapcsolatfelvétel
+        </Button>
+      </CtaBand>
     </div>
   );
 }

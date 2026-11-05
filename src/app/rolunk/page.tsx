@@ -2,6 +2,7 @@ import { Target, Award, Users, ShieldCheck, Heart, CheckCircle2, Building2 } fro
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
+import CtaBand from '@/components/ui/CtaBand';
 
 export default function RolunkPage() {
   const alapelvek = [
@@ -79,7 +80,7 @@ export default function RolunkPage() {
           </div>
 
           {/* Hitelességi kártya */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-3xl p-8 shadow-xl border border-slate-800 space-y-6">
+          <div className="lg:col-span-5 bg-blue-950 text-white rounded-3xl p-8 shadow-xl border border-slate-800 space-y-6">
             <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
               <div className="w-12 h-12 rounded-2xl bg-blue-600/30 border border-blue-500/40 flex items-center justify-center text-blue-400">
                 <Building2 size={24} />
@@ -162,24 +163,18 @@ export default function RolunkPage() {
       </section>
 
       {/* 5. Csatlakozás és Kapcsolat CTA */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-blue-700 to-sky-700 rounded-3xl p-8 sm:p-12 text-white text-center shadow-lg space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-            Legyen része közösségünknek!
-          </h2>
-          <p className="max-w-2xl mx-auto text-white text-base leading-relaxed">
-            Akár érintett szülőként, akár szakemberként vagy támogatóként keres minket, szeretettel várjuk megkeresését.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 pt-2">
-            <Button href="/kapcsolat" variant="secondary" size="lg" className="bg-white text-blue-900 hover:bg-blue-50 border-0">
-              Kapcsolatfelvétel
-            </Button>
-            <Button href="/tamogatas" variant="outline" size="lg" className="bg-transparent border-white text-white hover:bg-white/10 hover:text-white">
-              Támogatási formák
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="Legyen része közösségünknek!"
+        text="Akár érintett szülőként, akár szakemberként vagy támogatóként keres minket, szeretettel várjuk megkeresését."
+        headingLevel="h2"
+      >
+        <Button href="/kapcsolat" variant="primary">
+          Kapcsolatfelvétel
+        </Button>
+        <Button href="/tamogatas" variant="outline">
+          Támogatási formák
+        </Button>
+      </CtaBand>
 
     </div>
   );

@@ -30,7 +30,7 @@ const usages = fs.readdirSync(path.resolve('src/app'), { recursive: true })
   });
 
 test('every page Button with a className resolves to one colour pair', () => {
-  assert.ok(usages.length >= 7, `expected the known overrides, found ${usages.length}`);
+  assert.ok(usages.length >= 3, `expected the known overrides, found ${usages.length}`);
   for (const u of usages) {
     const cls = buttonClasses({ variant: u.variant, className: u.className });
     const text = colours(cls, 'text'), bg = colours(cls, 'bg');

@@ -1,10 +1,11 @@
-import { GraduationCap, Heart } from 'lucide-react';
+import { GraduationCap } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import ProgramFilter from '@/components/content/ProgramFilter';
 import { getPublicContent } from '@/content/publicContent';
 import { visiblePrograms } from '@/content/public';
+import CtaBand from '@/components/ui/CtaBand';
 
 // A server page now, so it can read the editor's store (or the seed); only the category filter
 // runs in the browser (ProgramFilter).
@@ -78,24 +79,15 @@ export default async function ProgramokPage() {
       </section>
 
       {/* 4. Támogatási felhívás */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-blue-700 to-sky-700 rounded-3xl p-8 sm:p-12 text-white text-center shadow-lg space-y-6">
-          <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center mx-auto text-white">
-            <Heart size={24} className="fill-white/30" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-            Segítsen megvalósítani programjainkat!
-          </h2>
-          <p className="max-w-2xl mx-auto text-white text-base leading-relaxed">
-            Adója 1%-ával vagy közvetlen támogatással Ön is hozzájárulhat a táborok, a Kék séta és a szülőklubok sikeres megszervezéséhez.
-          </p>
-          <div className="flex justify-center pt-2">
-            <Button href="/tamogatas" variant="secondary" size="lg" className="bg-white text-blue-900 hover:bg-blue-50 border-0">
-              Támogatási tudnivalók (1%)
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="Segítsen megvalósítani programjainkat!"
+        text="Adója 1%-ával vagy közvetlen támogatással Ön is hozzájárulhat a táborok, a Kék séta és a szülőklubok sikeres megszervezéséhez."
+        headingLevel="h2"
+      >
+        <Button href="/tamogatas" variant="primary">
+          Támogatási tudnivalók (1%)
+        </Button>
+      </CtaBand>
 
     </div>
   );

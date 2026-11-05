@@ -5,6 +5,7 @@ import { Brain, MessageCircle, RefreshCw, ShieldCheck, AlertCircle, Heart, BookO
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
+import CtaBand from '@/components/ui/CtaBand';
 
 export default function AutizmusPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -137,7 +138,7 @@ export default function AutizmusPage() {
 
       {/* 4. Gyakorlati Tanácsok Szülőknek */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
-        <div className="bg-gradient-to-br from-blue-900 to-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-xl">
+        <div className="bg-blue-950 text-white rounded-3xl p-8 sm:p-12 shadow-xl">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-xl bg-blue-500/30 flex items-center justify-center text-blue-300">
               <Heart size={24} />
@@ -198,26 +199,17 @@ export default function AutizmusPage() {
       </section>
 
       {/* 6. Letölthető anyagok és Kapcsolat CTA */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto bg-blue-50 border border-blue-200/80 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 text-center md:text-left">
-            <h3 className="display text-2xl text-slate-900">
-              További hivatalos dokumentumokra és nyilatkozatokra van szüksége?
-            </h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              Tekintse meg letölthető közhasznúsági beszámolóinkat, vagy vegye fel a kapcsolatot szakértőinkkel.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3 flex-shrink-0">
-            <Button href="/dokumentumok" variant="primary" size="md" leftIcon={<Download size={16} />}>
-              Dokumentumtár
-            </Button>
-            <Button href="/kapcsolat" variant="outline" size="md">
-              Kapcsolatfelvétel
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="További hivatalos dokumentumokra és nyilatkozatokra van szüksége?"
+        text="Tekintse meg letölthető közhasznúsági beszámolóinkat, vagy vegye fel a kapcsolatot szakértőinkkel."
+      >
+        <Button href="/dokumentumok" variant="primary" leftIcon={<Download size={16} />}>
+          Dokumentumtár
+        </Button>
+        <Button href="/kapcsolat" variant="outline">
+          Kapcsolatfelvétel
+        </Button>
+      </CtaBand>
 
     </div>
   );

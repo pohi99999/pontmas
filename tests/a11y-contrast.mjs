@@ -160,6 +160,46 @@ try {
     if (box.top < 0 || box.bottom > box.vh) { failures++; console.log(`FAIL ${mode}: the accessibility button is at ${box.top}-${box.bottom} px in a ${box.vh} px window`); }
   }
   await modes.close();
+
+  // Below 1024 px there is no floating button (it sat on the text): the panel opens from the first row of the
+  // menu, with the keyboard as well. From 1024 px the floating button is back and the row is gone.
+  const narrow = await browser.newPage({ viewport: { width: 1023, height: 700 } });
+  await narrow.goto(BASE + '/', { waitUntil: 'networkidle' });
+  const floatingShown = (p) => p.evaluate(() => {
+    const b = document.querySelector('button[aria-label^="Akadálymentesítés"]');
+    return !!b && b.getClientRects().length > 0;
+  });
+  if (await floatingShown(narrow)) fail('1023 px: the floating accessibility button is on screen');
+  await narrow.locator('[aria-controls="fo-menu"]').focus();
+  await narrow.keyboard.press('Enter');
+  await narrow.keyboard.press('Tab');
+  const onRow = await narrow.evaluate(() => document.activeElement?.getAttribute('aria-controls') === 'accessibility-panel');
+  if (!onRow) fail('1023 px: the first stop in the menu is not the accessibility row');
+  await narrow.keyboard.press('Enter');
+  await narrow.waitForSelector('#accessibility-panel');
+  const panel = await narrow.evaluate(() => {
+    const r = document.getElementById('accessibility-panel').getBoundingClientRect();
+    return { inView: r.top >= 0 && r.bottom <= window.innerHeight, focusInside: document.getElementById('accessibility-panel').contains(document.activeElement), menu: !!document.getElementById('fo-menu') };
+  });
+  if (!panel.inView) fail('1023 px: the accessibility panel does not fit the window');
+  if (!panel.focusInside) fail('1023 px: the focus is not inside the accessibility panel');
+  if (panel.menu) fail('1023 px: the menu stayed open behind the panel');
+  await narrow.keyboard.press('Escape');
+  const closed = await narrow.evaluate(() => ({
+    gone: !document.getElementById('accessibility-panel'),
+    focusOnButton: document.activeElement?.getAttribute('aria-controls') === 'fo-menu',
+  }));
+  if (!closed.gone) fail('1023 px: Escape does not close the accessibility panel');
+  if (!closed.focusOnButton) fail('1023 px: after Escape the focus is not back on the menu button');
+  await narrow.setViewportSize({ width: 1024, height: 700 });
+  if (!(await floatingShown(narrow))) fail('1024 px: the floating accessibility button is missing');
+  await narrow.locator('[aria-controls="fo-menu"]').click();
+  const rowShown = await narrow.evaluate(() => {
+    const r = document.querySelector('#fo-menu button[aria-controls="accessibility-panel"]');
+    return !!r && r.getClientRects().length > 0;
+  });
+  if (rowShown) fail('1024 px: the accessibility row is in the menu as well');
+  await narrow.close();
   await browser.close();
 } finally {
   stop();

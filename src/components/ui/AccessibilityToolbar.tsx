@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useAccessibility } from '@/context/SensoryContext';
 import { 
   Sparkles, 
@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 export default function AccessibilityToolbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const {
     isSensoryFriendly,
     toggleSensoryMode,
@@ -31,17 +31,39 @@ export default function AccessibilityToolbar() {
     dyslexicFont,
     toggleDyslexicFont,
     resetAll,
+    isPanelOpen: isOpen,
+    setPanelOpen,
   } = useAccessibility();
+
+  // While the panel is open: the focus is inside it, Escape closes it, and the focus goes back to what opened
+  // it. The menu row that opens it on narrow screens is gone by then, so there it goes to the menu button.
+  useEffect(() => {
+    if (!isOpen) return;
+    const opener = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setPanelOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      const back = opener && opener !== document.body && opener.isConnected
+        ? opener
+        : document.querySelector<HTMLElement>('[aria-controls="fo-menu"]');
+      back?.focus();
+    };
+  }, [isOpen, setPanelOpen]);
 
   const hasCustomSettings = isSensoryFriendly || highContrast || fontSize !== 'normal' || readingRuler || reducedMotion || dyslexicFont;
 
   return (
     <>
-      {/* Floating Toolbar Trigger Button */}
-      <div className="fixed bottom-6 right-6 z-40">
+      {/* Floating Toolbar Trigger Button: from 1024 px only. Below that the text reaches the screen edge and the
+          button sat on it while scrolling, so there the panel opens from the first row of the menu. */}
+      <div className="hidden lg:block fixed bottom-6 right-6 z-40">
         <button
           type="button"
-          onClick={() => setIsOpen(prev => !prev)}
+          onClick={() => setPanelOpen(!isOpen)}
           className={`group relative flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold shadow-xl transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-400 ${
             isOpen
               ? 'bg-slate-900 text-white shadow-slate-900/30'
@@ -77,7 +99,7 @@ export default function AccessibilityToolbar() {
           id="accessibility-panel"
           role="region"
           aria-label="Akadálymentesítési beállítások"
-          className="fixed bottom-20 right-6 z-50 w-88 max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl backdrop-blur-xl transition-all duration-200 animate-in fade-in slide-in-from-bottom-4"
+          className="fixed bottom-4 right-4 lg:bottom-20 lg:right-6 z-50 w-88 max-w-[calc(100vw-2rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl backdrop-blur-xl transition-all duration-200 animate-in fade-in slide-in-from-bottom-4"
         >
           <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-3">
             <div className="flex items-center gap-2">
@@ -90,8 +112,9 @@ export default function AccessibilityToolbar() {
               </div>
             </div>
             <button
-              onClick={() => setIsOpen(false)}
-              className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-700 focus-visible:outline-none"
+              ref={closeRef}
+              onClick={() => setPanelOpen(false)}
+              className="rounded-lg p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
               aria-label="Panel bezárása"
             >
               <X className="h-5 w-5" />

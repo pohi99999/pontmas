@@ -1,19 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #fbf9f5;
+  --foreground: #1b161a;
   
   /* Autism-friendly calm palette */
-  --color-primary: #1d4ed8;
-  --color-primary-dark: #1e3a8a;
-  --color-primary-light: #3b82f6;
-  --color-calm-blue: #0284c7;
+  --color-primary: #3d5e9e;
+  --color-primary-dark: #21355b;
+  --color-primary-light: #7192c5;
+  --color-calm-blue: #314e86;
   --color-calm-teal: #0f766e;
-  --color-calm-bg: #f0f9ff;
-  --color-warm-bg: #f8fafc;
+  --color-calm-bg: #f2f5fb;
+  --color-warm-bg: #fbf9f5;
   --color-card-bg: #ffffff;
-  --color-border: #e2e8f0;
+  --color-border: #e6e2d8;
+}
+
+/* The brand palette, measured from the logo: the sphere's blue (#7192c5) and the ink (#1b161a), on a warm
+   paper background. Overriding Tailwind's scales moves every page at once, without touching the components;
+   sky follows blue so the site has one calm blue instead of two saturated ones. */
+@theme {
+  --color-blue-50: #f2f5fb;
+  --color-blue-100: #e4eaf6;
+  --color-blue-200: #c9d5ec;
+  --color-blue-300: #a6b9df;
+  --color-blue-400: #7192c5;
+  --color-blue-500: #5475b0;
+  --color-blue-600: #3d5e9e;
+  --color-blue-700: #314e86;
+  --color-blue-800: #29416f;
+  --color-blue-900: #21355b;
+  --color-blue-950: #16233d;
+  --color-sky-50: #f2f5fb;
+  --color-sky-100: #e4eaf6;
+  --color-sky-200: #c9d5ec;
+  --color-sky-300: #a6b9df;
+  --color-sky-400: #7192c5;
+  --color-sky-500: #5475b0;
+  --color-sky-600: #3d5e9e;
+  --color-sky-700: #314e86;
+  --color-sky-800: #29416f;
+  --color-sky-900: #21355b;
+  --color-sky-950: #16233d;
+  --color-slate-50: #fbf9f5;
+  --color-slate-100: #f4f1ea;
+  --color-slate-200: #e6e2d8;
+  --color-slate-300: #d2cdc1;
+  --color-slate-400: #a29c90;
+  --color-slate-500: #6e695f;
+  --color-slate-600: #565249;
+  --color-slate-700: #413e38;
+  --color-slate-800: #2c2a26;
+  --color-slate-900: #1b161a;
+  --color-slate-950: #120f11;
 }
 
 @theme inline {
@@ -46,7 +85,7 @@ body {
 
 /* Accessibility: Enhanced Focus States for WCAG 2.1 AA */
 :focus-visible {
-  outline: 3px solid #2563eb !important;
+  outline: 3px solid #314e86 !important;
   outline-offset: 2px !important;
   border-radius: 4px;
 }
@@ -64,6 +103,14 @@ body {
   --color-primary-dark: #172554;
   --color-calm-blue: #1e3a8a;
   --color-calm-bg: #f1f5f9;
+}
+
+/* On the page parts, not on the wrapper: a filter makes its element the containing block of every
+   position:fixed descendant, and on the wrapper that moved the accessibility button (and the panel and
+   the reading ruler) to the bottom of the page, out of reach, in the very modes that need it. */
+.sensory-friendly > header,
+.sensory-friendly > main,
+.sensory-friendly > footer {
   filter: contrast(92%) saturate(85%);
 }
 
@@ -102,6 +149,11 @@ body {
   --foreground: #000000;
   --color-card-bg: #ffffff;
   --color-border: #000000;
+}
+
+.contrast-high > header,
+.contrast-high > main,
+.contrast-high > footer {
   filter: contrast(125%);
 }
 
@@ -154,3 +206,21 @@ body {
   line-height: 1.8 !important;
 }
 
+/* Headings: a warm, human serif; the running text stays Inter. Unlayered on purpose: it has to win over
+   the font-black / font-extrabold utilities on the pages. */
+h1,
+h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+/* One calm tone for every photo, the ones uploaded in the editor as well */
+.foto {
+  filter: saturate(88%) contrast(98%);
+}
+
+.sensory-friendly .foto {
+  filter: saturate(60%) brightness(97%);
+}

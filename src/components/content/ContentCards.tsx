@@ -23,7 +23,7 @@ export function ContentImageView({ image, className = '' }: { image?: ContentIma
       height={img.height}
       loading="lazy"
       decoding="async"
-      className={`w-full h-auto rounded-2xl border border-slate-200 bg-slate-100 object-cover ${className}`.trim()}
+      className={`foto w-full h-auto rounded-2xl border border-slate-200 bg-slate-100 object-cover ${className}`.trim()}
     />
   );
 }

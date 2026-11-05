@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useSyncExternalStore } from 'react';
+import React, { createContext, useContext, useState, useSyncExternalStore } from 'react';
 
 export type FontSizeOption = 'normal' | 'large' | 'larger';
 
@@ -19,6 +19,8 @@ export interface AccessibilityContextType {
   dyslexicFont: boolean;
   toggleDyslexicFont: () => void;
   resetAll: () => void;
+  isPanelOpen: boolean;
+  setPanelOpen: (open: boolean) => void;
 }
 
 const defaultContext: AccessibilityContextType = {
@@ -36,6 +38,8 @@ const defaultContext: AccessibilityContextType = {
   dyslexicFont: false,
   toggleDyslexicFont: () => {},
   resetAll: () => {},
+  isPanelOpen: false,
+  setPanelOpen: () => {},
 };
 
 const AccessibilityContext = createContext<AccessibilityContextType>(defaultContext);
@@ -122,6 +126,8 @@ export function SensoryProvider({ children }: { children: React.ReactNode }) {
   };
 
   const resetAll = () => update(() => DEFAULT_PREFS);
+  // Not a saved preference: the panel opens from the floating button or, on narrow screens, from the menu
+  const [isPanelOpen, setPanelOpen] = useState(false);
 
   const classNames = [
     isSensoryFriendly ? 'sensory-friendly' : '',
@@ -149,6 +155,8 @@ export function SensoryProvider({ children }: { children: React.ReactNode }) {
         dyslexicFont,
         toggleDyslexicFont,
         resetAll,
+        isPanelOpen,
+        setPanelOpen,
       }}
     >
       <div className={classNames}>

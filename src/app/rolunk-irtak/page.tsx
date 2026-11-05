@@ -4,6 +4,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import { Newspaper, Quote, Tv, HeartHandshake, Calendar, Sparkles } from "lucide-react";
+import CtaBand from '@/components/ui/CtaBand';
 
 export const metadata: Metadata = {
   title: "Rólunk írták & Sajtómegjelenések | PontMás Alapítvány",
@@ -133,24 +134,17 @@ export default function RolunkIrtakPage() {
       </section>
 
       {/* 3. Kapcsolati felhívás sajtónak és szülőknek */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-slate-900 p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
-          <div className="space-y-3 max-w-2xl">
-            <h3 className="display text-2xl sm:text-3xl">Sajtómegkeresése van vagy megosztaná saját történetét?</h3>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Örömmel állunk az újságírók, médiafelületek és az érintett családok rendelkezésére interjúk, cikkek és szakmai beszélgetések kapcsán.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-4 flex-shrink-0">
-            <Button href="/kapcsolat" variant="primary" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3">
-              Kapcsolatfelvétel
-            </Button>
-            <Button href="/rolunk" variant="outline" className="bg-transparent border-slate-400 text-slate-200 hover:bg-slate-800 hover:text-white">
-              Alapítványunkról
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="Sajtómegkeresése van vagy megosztaná saját történetét?"
+        text="Örömmel állunk az újságírók, médiafelületek és az érintett családok rendelkezésére interjúk, cikkek és szakmai beszélgetések kapcsán."
+      >
+        <Button href="/kapcsolat" variant="primary">
+          Kapcsolatfelvétel
+        </Button>
+        <Button href="/rolunk" variant="outline">
+          Alapítványunkról
+        </Button>
+      </CtaBand>
     </div>
   );
 }

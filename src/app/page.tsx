@@ -5,6 +5,7 @@ import FeatureCard from '@/components/ui/FeatureCard';
 import Button from '@/components/ui/Button';
 import CopyButton from '@/components/ui/CopyButton';
 import PontJel from '@/components/brand/PontJel';
+import CtaBand from '@/components/ui/CtaBand';
 
 export default function Home() {
   const stats = [
@@ -156,21 +157,14 @@ export default function Home() {
       </section>
 
       {/* 5. Kapcsolatfelvétel hívószó */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-blue-50 rounded-[2.5rem] p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 text-center md:text-left">
-            <h3 className="display text-3xl text-slate-900">
-              Kérdése van, vagy segítségre van szüksége?
-            </h3>
-            <p className="text-slate-600 text-sm leading-relaxed max-w-xl">
-              Hívjon minket telefonon, vagy írjon nekünk közvetlenül üzenetet.
-            </p>
-          </div>
-          <Button href="/kapcsolat" variant="primary" size="md" className="flex-shrink-0">
-            Kapcsolatfelvétel
-          </Button>
-        </div>
-      </section>
+      <CtaBand
+        title="Kérdése van, vagy segítségre van szüksége?"
+        text="Hívjon minket telefonon, vagy írjon nekünk közvetlenül üzenetet."
+      >
+        <Button href="/kapcsolat" variant="primary">
+          Kapcsolatfelvétel
+        </Button>
+      </CtaBand>
 
     </div>
   );

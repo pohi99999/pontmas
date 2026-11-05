@@ -6,6 +6,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import DocAvailability from '@/components/ui/DocAvailability';
+import CtaBand from '@/components/ui/CtaBand';
 
 export const metadata: Metadata = {
   title: "Dokumentumtár & Pályázatok | PontMás Alapítvány",
@@ -165,21 +166,14 @@ export default function DokumentumokPage() {
       </section>
 
       {/* 4. Kapcsolat / Kérdés */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-slate-900 p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
-          <div className="space-y-3 max-w-2xl">
-            <h3 className="display text-2xl sm:text-3xl">További hivatalos információt keres?</h3>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Kérdéseivel, szakmai együttműködési javaslataival forduljon bizalommal hozzánk telefonon (+36 20 969 8715) vagy kapcsolatfelvételi űrlapunkon keresztül!
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-4 flex-shrink-0">
-            <Button href="/kapcsolat" variant="primary" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3">
-              Kapcsolatfelvétel
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="További hivatalos információt keres?"
+        text="Kérdéseivel, szakmai együttműködési javaslataival forduljon bizalommal hozzánk telefonon (+36 20 969 8715) vagy kapcsolatfelvételi űrlapunkon keresztül!"
+      >
+        <Button href="/kapcsolat" variant="primary">
+          Kapcsolatfelvétel
+        </Button>
+      </CtaBand>
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from "@/components/ui/SectionHeader";
-import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import { NewsCard, NewsFeaturedCard } from "@/components/content/ContentCards";
 import { getPublicContent } from "@/content/publicContent";
 import { splitNews } from "@/content/public";
+import CtaBand from '@/components/ui/CtaBand';
 
 export const metadata: Metadata = {
   title: "Hírek & Aktualitások | PontMás Alapítvány",
@@ -56,22 +56,15 @@ export default async function HirekPage() {
       </section>
 
       {/* 4. Önkéntes toborzó felhívás */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-slate-900 p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
-          <div className="space-y-3 max-w-2xl">
-            <Badge variant="warning">Csatlakozzon Hozzánk</Badge>
-            <h3 className="display text-2xl sm:text-3xl">Szeretne önkéntesként segíteni munkánkat?</h3>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Legyen szó rendezvényekről, gyermekfoglalkozásokról, szülőklubokról vagy online kommunikációról, minden segítő kéznek és jó szándéknak nagyon örülünk!
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-4 flex-shrink-0">
-            <Button href="/kapcsolat?topic=onkentes" variant="primary" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3">
-              Jelentkezem Önkéntesnek
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="Szeretne önkéntesként segíteni munkánkat?"
+        text="Legyen szó rendezvényekről, gyermekfoglalkozásokról, szülőklubokról vagy online kommunikációról, minden segítő kéznek és jó szándéknak nagyon örülünk!"
+        label="Csatlakozzon Hozzánk"
+      >
+        <Button href="/kapcsolat?topic=onkentes" variant="primary">
+          Jelentkezem Önkéntesnek
+        </Button>
+      </CtaBand>
     </div>
   );
 }

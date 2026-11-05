@@ -99,7 +99,7 @@ export default function DokumentumokPage() {
                     <FileText className="h-3.5 w-3.5" />
                     {doc.category}
                   </span>
-                  <span className="text-xs text-slate-600 font-mono">{doc.date}</span>
+                  <span className="text-xs text-slate-600">{doc.date}</span>
                 </div>
 
                 <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
@@ -168,7 +168,7 @@ export default function DokumentumokPage() {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl bg-slate-900 p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
           <div className="space-y-3 max-w-2xl">
-            <h3 className="text-2xl sm:text-3xl font-black">További hivatalos információt keres?</h3>
+            <h3 className="display text-2xl sm:text-3xl">További hivatalos információt keres?</h3>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               Kérdéseivel, szakmai együttműködési javaslataival forduljon bizalommal hozzánk telefonon (+36 20 969 8715) vagy kapcsolatfelvételi űrlapunkon keresztül!
             </p>

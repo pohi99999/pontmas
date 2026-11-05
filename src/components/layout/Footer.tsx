@@ -13,14 +13,15 @@ export default function Footer() {
           
           {/* Oszlop 1: Alapítványi profil */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2.5">
-              {/* The logo is dark artwork: on the dark footer it sits on a white tile instead of being recoloured. */}
-              <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center p-1.5 shrink-0">
-                <Image src="/brand/pontmas-jel.png" alt="" width={374} height={402} sizes="36px" className="h-full w-auto" />
+            {/* The same mark and wordmark as in the header. The logo is dark artwork: on the dark footer it sits on a white tile instead of being recoloured. */}
+            <div className="inline-flex items-center gap-3 rounded-2xl bg-white px-4 py-2.5">
+              <Image src="/brand/pontmas-jel.png" alt="" width={374} height={402} sizes="45px" className="h-12 w-auto" />
+              <div className="flex flex-col gap-1">
+                <Image src="/brand/pontmas-felirat.png" alt="PontMás" width={603} height={137} sizes="140px" className="h-auto w-[140px]" />
+                <span className="text-[11px] font-medium text-slate-500 tracking-wide uppercase whitespace-nowrap">
+                  Vas Megyei Alapítvány
+                </span>
               </div>
-              <span className="text-xl font-bold text-white tracking-tight">
-                Pont<span className="text-blue-400">Más</span> Alapítvány
-              </span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
               PontMás Vas Megyei Autista Gyermekekért Alapítvány. 2015 óta a Vas vármegyei érintett családok és intézmények elkötelezett támogatója.

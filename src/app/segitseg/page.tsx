@@ -196,7 +196,7 @@ export default function HelpPage() {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl bg-blue-600 p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
           <div className="space-y-3 max-w-2xl">
-            <h3 className="text-2xl sm:text-3xl font-black">Személyes vagy telefonos segítségre van szüksége?</h3>
+            <h3 className="display text-2xl sm:text-3xl">Személyes vagy telefonos segítségre van szüksége?</h3>
             <p className="text-white text-sm sm:text-base leading-relaxed">
               Hívja Rumi Edinát a +36 20 969 8715 számon, vagy írjon nekünk üzenetet online űrlapunkon keresztül!
             </p>

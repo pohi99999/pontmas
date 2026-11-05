@@ -100,7 +100,7 @@ export default function RolunkIrtakPage() {
                       <Icon className="h-3.5 w-3.5" />
                       <span>{item.badge}</span>
                     </span>
-                    <span className="text-xs text-slate-600 font-mono flex items-center gap-1">
+                    <span className="text-xs text-slate-600 flex items-center gap-1">
                       <Calendar className="h-3.5 w-3.5" />
                       {item.date}
                     </span>
@@ -136,7 +136,7 @@ export default function RolunkIrtakPage() {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl bg-slate-900 p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
           <div className="space-y-3 max-w-2xl">
-            <h3 className="text-2xl sm:text-3xl font-black">Sajtómegkeresése van vagy megosztaná saját történetét?</h3>
+            <h3 className="display text-2xl sm:text-3xl">Sajtómegkeresése van vagy megosztaná saját történetét?</h3>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               Örömmel állunk az újságírók, médiafelületek és az érintett családok rendelkezésére interjúk, cikkek és szakmai beszélgetések kapcsán.
             </p>

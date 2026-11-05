@@ -123,7 +123,7 @@ export default function TamogatasPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <SectionHeader
             badge="Útmutató"
-            title="Hogyan ajánlhatja fel az 1%-ot 4 egyszerű lépésben?"
+            title={<>Hogyan ajánlhatja fel az <span className="whitespace-nowrap">1%-ot</span> 4 egyszerű lépésben?</>}
             subtitle="Nem igényel több mint 2 percet az eSZJA felületén vagy a munkáltatóján keresztül."
           />
 
@@ -131,7 +131,7 @@ export default function TamogatasPage() {
             {lepesek.map((lep, i) => (
               <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between">
                 <div>
-                  <span className="text-3xl font-black text-blue-600 mb-3 block">{lep.szam}</span>
+                  <span className="display text-4xl text-blue-700 mb-3 block">{lep.szam}</span>
                   <h3 className="font-bold text-slate-900 text-base mb-2">{lep.cim}</h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{lep.leiras}</p>
                 </div>
@@ -149,7 +149,7 @@ export default function TamogatasPage() {
               <ShieldCheck size={16} />
               <span>100% Átláthatóság</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">
+            <h3 className="display text-2xl sm:text-3xl">
               Mire fordítjuk az adományokat?
             </h3>
             <p className="text-slate-300 text-sm leading-relaxed max-w-xl">

@@ -1,4 +1,5 @@
-import { Target, Award, Users, ShieldCheck, Heart, Sparkles, CheckCircle2, Building2 } from 'lucide-react';
+import { Target, Award, Users, ShieldCheck, Heart, CheckCircle2, Building2 } from 'lucide-react';
+import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 
@@ -36,18 +37,11 @@ export default function RolunkPage() {
     <div className="pb-20">
       
       {/* 1. Fejléc szekció */}
-      <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <SectionHeader
-            as="h1"
-            badge="Kik vagyunk mi?"
-            badgeIcon={<Sparkles size={14} />}
-            title="A PontMás Alapítvány története és küldetése"
-            subtitle="2015 óta hidat képezünk az autizmussal élő gyermekek, családjaik, a szakemberek és a társadalom között Vas vármegyében."
-            align="center"
-          />
-        </div>
-      </section>
+      <PageHeader
+        badge="Kik vagyunk mi?"
+        title="A PontMás Alapítvány története és küldetése"
+        subtitle="2015 óta hidat képezünk az autizmussal élő gyermekek, családjaik, a szakemberek és a társadalom között Vas vármegyében."
+      />
 
       {/* 2. Történetünk és Elnökség szekció */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">

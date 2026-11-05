@@ -22,9 +22,9 @@ export default function FeatureCard({
   className = '',
 }: FeatureCardProps) {
   return (
-    <div className={`bg-white p-8 rounded-2xl shadow-sm hover:shadow-md border border-slate-200/80 transition-all flex flex-col h-full group ${className}`}>
-      <div className="flex items-center justify-between mb-6">
-        <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-xs">
+    <div className={`border-t-2 border-slate-900 pt-6 flex flex-col h-full ${className}`}>
+      <div className="flex items-center justify-between mb-4">
+        <div className="text-blue-700">
           {icon}
         </div>
         {badge && (
@@ -34,22 +34,22 @@ export default function FeatureCard({
         )}
       </div>
 
-      <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors">
+      <h3 className="display text-2xl text-slate-900 mb-3">
         {title}
       </h3>
 
-      <p className="text-slate-600 leading-relaxed text-sm flex-grow mb-6">
+      <p className="text-slate-600 leading-relaxed text-[15px] flex-grow mb-6">
         {description}
       </p>
 
       {linkHref && (
-        <div className="pt-4 border-t border-slate-100">
+        <div>
           <Link
             href={linkHref}
-            className="inline-flex items-center text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors group/link"
+            className="inline-flex items-center text-sm font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 hover:decoration-blue-700"
           >
             <span>{linkLabel}</span>
-            <ArrowRight size={16} className="ml-1.5 transform group-hover/link:translate-x-1 transition-transform" />
+            <ArrowRight size={16} className="ml-1.5" />
           </Link>
         </div>
       )}

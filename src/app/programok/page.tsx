@@ -1,4 +1,5 @@
-import { Sparkles, School, GraduationCap, Heart } from 'lucide-react';
+import { GraduationCap, Heart } from 'lucide-react';
+import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import ProgramFilter from '@/components/content/ProgramFilter';
@@ -23,18 +24,11 @@ export default async function ProgramokPage() {
     <div className="pb-20">
       
       {/* 1. Fejléc szekció */}
-      <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <SectionHeader
-            as="h1"
-            badge="Események & Kezdeményezések"
-            badgeIcon={<Sparkles size={14} />}
-            title="Programjaink és Rendezvényeink"
-            subtitle="Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!"
-            align="center"
-          />
-        </div>
-      </section>
+      <PageHeader
+        badge="Események & Kezdeményezések"
+        title="Programjaink és Rendezvényeink"
+        subtitle="Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!"
+      />
 
       {/* 2. Programok és Események Kategóriaválasztóval */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -48,7 +42,6 @@ export default async function ProgramokPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <SectionHeader
             badge="Együttműködés"
-            badgeIcon={<School size={14} />}
             title="Támogatott intézmények Vas vármegyében"
             subtitle="Nemcsak közvetlenül a családokat segítjük, hanem azokat a szakmai intézményeket is, ahol a gyermekek a mindennapjaikat töltik."
           />

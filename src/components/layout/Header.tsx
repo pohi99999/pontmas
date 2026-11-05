@@ -4,12 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Eye, EyeOff, Heart } from 'lucide-react';
+import { Menu, X, Eye, EyeOff, Heart, SlidersHorizontal } from 'lucide-react';
 import { useSensory } from '@/context/SensoryContext';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isSensoryFriendly, toggleSensoryMode } = useSensory();
+  const { isSensoryFriendly, toggleSensoryMode, highContrast, fontSize, readingRuler, reducedMotion, dyslexicFont, isPanelOpen, setPanelOpen } = useSensory();
+  const hasCustomSettings = isSensoryFriendly || highContrast || fontSize !== 'normal' || readingRuler || reducedMotion || dyslexicFont;
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -177,6 +178,28 @@ export default function Header() {
           which reads better than a full-width list on a tablet or a 1280 px laptop. */}
       {isMobileMenuOpen && (
         <div id="fo-menu" className="min-[1360px]:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-150 md:absolute md:top-full md:right-6 lg:right-8 md:mt-2 md:w-[22.5rem] md:rounded-2xl md:border md:pb-4">
+          {/* Below 1024 px the accessibility panel opens from here; from 1024 px it has the floating button */}
+          <div className="lg:hidden mb-2 border-b border-slate-100 pb-2">
+            <button
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setPanelOpen(true);
+              }}
+              aria-expanded={isPanelOpen}
+              aria-controls="accessibility-panel"
+              className="flex w-full items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors"
+            >
+              <SlidersHorizontal size={20} aria-hidden="true" />
+              <span>Akadálymentesítés</span>
+              {hasCustomSettings && (
+                <>
+                  <span className="ml-auto h-2.5 w-2.5 rounded-full bg-emerald-500" aria-hidden="true" />
+                  <span className="sr-only">(egyedi beállítások aktívak)</span>
+                </>
+              )}
+            </button>
+          </div>
           <nav className="flex flex-col gap-1" aria-label="Mobil navigáció">
             {navItems.map((item) => {
               const isActive = pathname === item.href;

@@ -128,7 +128,7 @@ export default function HelpPage() {
                     </div>
                     <Badge variant="neutral">{service.badge}</Badge>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900">{service.title}</h3>
+                  <h3 className="display text-xl text-slate-900">{service.title}</h3>
                   <p className="text-sm text-slate-600 leading-relaxed">{service.description}</p>
                   
                   <div className="border-t border-slate-100 pt-3 space-y-2">

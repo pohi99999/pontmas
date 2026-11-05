@@ -106,7 +106,7 @@ export default function RolunkIrtakPage() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-slate-900 leading-snug group-hover:text-blue-700 transition-colors">
+                  <h3 className="display text-xl text-slate-900 leading-snug group-hover:text-blue-700 transition-colors">
                     {item.title}
                   </h3>
 

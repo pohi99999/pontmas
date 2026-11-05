@@ -61,7 +61,7 @@ export default async function ProgramokPage() {
           </div>
 
           <div className="mt-12 bg-white rounded-2xl p-8 border border-slate-200 text-center max-w-3xl mx-auto space-y-4 shadow-sm">
-            <h3 className="text-xl font-bold text-slate-900">
+            <h3 className="display text-xl text-slate-900">
               Szeretné, hogy az Ön intézménye is részesüljön támogatásban?
             </h3>
             <p className="text-slate-600 text-sm leading-relaxed max-w-xl mx-auto">

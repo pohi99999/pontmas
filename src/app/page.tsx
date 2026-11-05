@@ -1,89 +1,82 @@
 import Link from 'next/link';
-import { Heart, Users, Sparkles, ShieldCheck, HandHeart, School, HelpCircle, ArrowRight } from 'lucide-react';
+import { Heart, Users, HandHeart, School, HelpCircle, ArrowRight } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import FeatureCard from '@/components/ui/FeatureCard';
 import Button from '@/components/ui/Button';
 import CopyButton from '@/components/ui/CopyButton';
+import PontJel from '@/components/brand/PontJel';
 
 export default function Home() {
   const stats = [
-    { value: '2015 óta', label: 'Segítjük a családokat', icon: <Sparkles size={20} className="text-blue-600" /> },
-    { value: '40+', label: 'Érintett család hálózatunkban', icon: <Users size={20} className="text-blue-600" /> },
-    { value: 'AOSZ', label: 'Országos szövetségi alelnökség', icon: <ShieldCheck size={20} className="text-blue-600" /> },
-    { value: '100%', label: 'Közhasznú elhivatottság', icon: <Heart size={20} className="text-blue-600" /> },
+    { value: '2015 óta', label: 'Segítjük a családokat' },
+    { value: '40+', label: 'Érintett család hálózatunkban' },
+    { value: 'AOSZ', label: 'Országos szövetségi alelnökség' },
   ];
 
   return (
     <div className="flex flex-col gap-16 md:gap-24 pb-20">
       
-      {/* 1. Hero Szekció */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/80 via-sky-50/40 to-slate-50 pt-16 pb-20 md:pt-24 md:pb-28 border-b border-slate-200/80">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/80 text-blue-800 text-xs sm:text-sm font-semibold mb-6 border border-blue-200/60 shadow-2xs">
-              <ShieldCheck size={16} className="text-blue-600" />
-              <span>PontMás Vas Megyei Autista Gyermekekért Alapítvány</span>
+      {/* 1. Hero: the logo's sphere is the picture. A photo goes into the sphere once the foundation sends one. */}
+      <section className="border-b border-slate-200/80">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-16 pb-10 md:pb-14">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
+            <div className="lg:col-span-7 min-w-0">
+              <p className="eyebrow mb-6">
+                <span className="pont" aria-hidden="true" />
+                PontMás Vas Megyei Autista Gyermekekért Alapítvány
+              </p>
+              <h1 className="text-[2.75rem] leading-[1.08] sm:text-6xl lg:text-[3.25rem] xl:text-[4.25rem] text-slate-900 mb-7">
+                Közösen egy megértőbb, <br className="hidden sm:inline" />
+                <span className="text-blue-700">támogatóbb világért</span>
+              </h1>
+              <p className="max-w-xl text-lg sm:text-xl text-slate-600 leading-relaxed mb-9">
+                Autizmussal élő gyermekek, családjaik és oktatási intézmények sokoldalú támogatása Vas vármegyében. Szakértelem, közösség és valódi segítség 2015 óta.
+              </p>
+              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 [&>*]:whitespace-nowrap">
+                <Button href="/tamogatas" size="lg" variant="primary" leftIcon={<Heart size={20} className="fill-white/30" />}>
+                  Támogassa munkánkat (1%)
+                </Button>
+                <Button href="/autizmus" size="lg" variant="outline" leftIcon={<HelpCircle size={20} className="text-blue-600" />}>
+                  Mi az az autizmus?
+                </Button>
+              </div>
             </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15] mb-6">
-              Közösen egy megértőbb, <br className="hidden sm:inline" />
-              <span className="text-blue-700 bg-clip-text">támogatóbb világért</span>
-            </h1>
-
-            <p className="max-w-2xl mx-auto text-lg sm:text-xl text-slate-600 leading-relaxed mb-10">
-              Autizmussal élő gyermekek, családjaik és oktatási intézmények sokoldalú támogatása Vas vármegyében. Szakértelem, közösség és valódi segítség 2015 óta.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                href="/tamogatas"
-                size="lg"
-                variant="primary"
-                leftIcon={<Heart size={20} className="fill-white/30" />}
-              >
-                Támogassa munkánkat (1%)
-              </Button>
-              <Button
-                href="/autizmus"
-                size="lg"
-                variant="outline"
-                leftIcon={<HelpCircle size={20} className="text-blue-600" />}
-              >
-                Mi az az autizmus?
-              </Button>
+            <div className="lg:col-span-5 min-w-0">
+              <div className="relative mx-auto max-w-[300px] sm:max-w-[380px] lg:max-w-[480px]" aria-hidden="true">
+                <span className="lufi z-10" style={{ width: '10%', aspectRatio: '1', left: '58%', top: '13%' }} />
+                <span className="lufi z-10" style={{ width: '5.5%', aspectRatio: '1', left: '45%', top: '21%' }} />
+                <span className="lufi z-10" style={{ width: '3.6%', aspectRatio: '1', left: '74%', top: '20%' }} />
+                <PontJel />
+              </div>
             </div>
-
           </div>
-        </div>
-      </section>
 
-      {/* 2. Statisztikai & Hitelességi Kiemelések */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-8 md:-mt-16 relative z-10">
-        <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200/80 p-6 md:p-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {stats.map((stat, i) => (
-              <div key={i} className="flex flex-col items-center text-center p-2">
-                <div className="p-2.5 rounded-xl bg-blue-50 mb-3 text-blue-600">
-                  {stat.icon}
-                </div>
-                <span className="display text-3xl sm:text-4xl text-slate-900">{stat.value}</span>
-                <span className="text-xs sm:text-sm text-slate-500 font-medium mt-1">{stat.label}</span>
+          {/* The facts in one row */}
+          <dl className="mt-12 md:mt-16 grid sm:grid-cols-3 gap-6 sm:gap-10 border-t border-slate-200 pt-8">
+            {stats.map((stat) => (
+              <div key={stat.value}>
+                <dt className="display text-3xl md:text-4xl text-slate-900">{stat.value}</dt>
+                <dd className="text-[15px] text-slate-600 mt-1">{stat.label}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 
       {/* 3. Fő Tevékenységek & Pillérek */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid xl:grid-cols-12 gap-x-10">
+        <div className="xl:col-span-5 min-w-0">
         <SectionHeader
+          align="left"
+          className="xl:sticky xl:top-28"
           badge="Küldetésünk & Tevékenységeink"
           title="Hogyan segítünk a mindennapokban?"
           subtitle="Összetett támogatási rendszert működtetünk, amely a gyermekektől a szülőkön át az intézményekig minden érintettre kiterjed."
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        </div>
+        <div className="xl:col-span-7 min-w-0 grid sm:grid-cols-2 gap-x-10 gap-y-12">
           <FeatureCard
             icon={<Users size={28} />}
             title="Közösségépítés"
@@ -116,66 +109,57 @@ export default function Home() {
             linkLabel="Támogatás"
           />
         </div>
+        </div>
       </section>
 
-      {/* 4. Kiemelt 1% és Adományozási Gyorsdoboz */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
-          
-          <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
-            <div className="lg:col-span-7 min-w-0 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-200 text-xs font-bold border border-blue-400/30">
-                <Heart size={14} className="fill-blue-300" />
-                <span>Rendelkezzen adója 1%-áról!</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-                Egyetlen kattintás az Ön részéről, óriási segítség a családoknak
-              </h2>
-              <p className="text-blue-100 text-base leading-relaxed">
-                A személyi jövedelemadó 1%-ának felajánlása Önnek semmibe sem kerül, de számunkra a táborok, a szülőklubok és a krízis alap biztonságos működését jelenti.
-              </p>
-              <div className="pt-2">
-                <Link
-                  href="/tamogatas"
-                  className="inline-flex items-center text-sm font-bold text-sky-300 hover:text-white transition-colors group"
-                >
-                  <span>Minden támogatási lehetőség megtekintése</span>
-                  <ArrowRight size={16} className="ml-1.5 transform group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 min-w-0 bg-white rounded-2xl p-6 text-slate-900 shadow-lg space-y-4">
-              <h3 className="font-extrabold text-lg text-slate-900 border-b border-slate-100 pb-2">
-                PontMás Alapítvány Adatok
-              </h3>
-              
-              <div>
-                <CopyButton
-                  textToCopy="18654996-1-18"
-                  label="Adószám (Adó 1%)"
-                  sublabel="Kattintson az adószám vágólapra másolásához"
-                />
-              </div>
-
-              <div>
-                <CopyButton
-                  textToCopy="11600006-00000000-75701521"
-                  label="Bankszámlaszám (Erste Bank)"
-                  sublabel="Közvetlen banki átutaláshoz"
-                />
-              </div>
-            </div>
+      {/* 4. Donation: a full-width deep blue band, the tax and bank numbers in one row */}
+      <section className="bg-blue-950 text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="max-w-4xl">
+            <p className="eyebrow mb-5" style={{ color: '#c9d5ec' }}>
+              <span className="pont" aria-hidden="true" />
+              Rendelkezzen adója 1%-áról!
+            </p>
+            <h2 className="text-4xl sm:text-5xl text-white leading-[1.1] mb-6">
+              Egyetlen kattintás az Ön részéről, óriási segítség a családoknak
+            </h2>
+            <p className="text-blue-100 text-lg leading-relaxed max-w-2xl mb-8">
+              A személyi jövedelemadó 1%-ának felajánlása Önnek semmibe sem kerül, de számunkra a táborok, a szülőklubok és a krízis alap biztonságos működését jelenti.
+            </p>
+            <Link
+              href="/tamogatas"
+              className="inline-flex items-center text-sm font-semibold text-blue-100 underline decoration-blue-400 underline-offset-4 hover:text-white transition-colors"
+            >
+              <span>Minden támogatási lehetőség megtekintése</span>
+              <ArrowRight size={16} className="ml-1.5" />
+            </Link>
           </div>
 
+          <div className="bg-white rounded-3xl p-4 sm:p-6 mt-10 text-slate-900">
+            <h3 className="font-bold text-lg text-slate-900 border-b border-slate-100 pb-2 mb-4">
+              PontMás Alapítvány Adatok
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              <CopyButton
+                textToCopy="18654996-1-18"
+                label="Adószám (Adó 1%)"
+                sublabel="Kattintson az adószám vágólapra másolásához"
+              />
+              <CopyButton
+                textToCopy="11600006-00000000-75701521"
+                label="Bankszámlaszám (Erste Bank)"
+                sublabel="Közvetlen banki átutaláshoz"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* 5. Kapcsolatfelvétel hívószó */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto bg-slate-50 border border-slate-200/80 rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-blue-50 rounded-[2.5rem] p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl font-bold text-slate-900">
+            <h3 className="display text-3xl text-slate-900">
               Kérdése van, vagy segítségre van szüksége?
             </h3>
             <p className="text-slate-600 text-sm leading-relaxed max-w-xl">

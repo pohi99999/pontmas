@@ -36,8 +36,8 @@ export default function CopyButton({
       title="Kattintson a másoláshoz"
     >
       {/* The number scales with the card to stay on one line, with a readable minimum; in a narrow card the copy chip goes under it */}
-      <div className="flex flex-col items-start gap-2 @[22rem]:flex-row @[22rem]:items-center @[22rem]:justify-between">
-      <div className="min-w-0 @[22rem]:pr-3">
+      <div className="flex flex-col items-start gap-2 @[26rem]:flex-row @[26rem]:items-center @[26rem]:justify-between">
+      <div className="min-w-0 @[26rem]:pr-3">
         {label && (
           <span className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
             {label}
@@ -63,12 +63,12 @@ export default function CopyButton({
         {copied ? (
           <>
             <Check size={16} className="text-emerald-600" />
-            <span className="hidden sm:inline">Másolva!</span>
+            <span>Másolva!</span>
           </>
         ) : (
           <>
             <Copy size={16} />
-            <span className="hidden sm:inline">Másolás</span>
+            <span>Másolás</span>
           </>
         )}
       </div>

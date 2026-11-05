@@ -42,7 +42,7 @@ export default function AccessibilityToolbar() {
         <button
           type="button"
           onClick={() => setIsOpen(prev => !prev)}
-          className={`flex items-center gap-2.5 rounded-full px-4 py-3 text-sm font-semibold shadow-xl transition-all duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-400 ${
+          className={`group relative flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold shadow-xl transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-400 ${
             isOpen
               ? 'bg-slate-900 text-white shadow-slate-900/30'
               : hasCustomSettings
@@ -57,12 +57,17 @@ export default function AccessibilityToolbar() {
             <SlidersHorizontal className="h-5 w-5 text-current" />
             {hasCustomSettings && (
               <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </span>
             )}
           </div>
-          <span className="hidden sm:inline">Akadálymentesítés</span>
+          {/* Icon only, so the button does not sit on the text of the page; the word appears beside it on hover and on keyboard focus */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute right-full mr-2 hidden whitespace-nowrap rounded-full bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white group-hover:block group-focus-visible:block"
+          >
+            Akadálymentesítés
+          </span>
         </button>
       </div>
 
@@ -202,7 +207,7 @@ export default function AccessibilityToolbar() {
               <RotateCcw className="h-3.5 w-3.5" />
               Alaphelyzet
             </button>
-            <span className="text-[11px] text-slate-400 font-mono">PontMás WCAG 2.1 AA</span>
+            <span className="text-[11px] text-slate-400">PontMás WCAG 2.1 AA</span>
           </div>
         </div>
       )}

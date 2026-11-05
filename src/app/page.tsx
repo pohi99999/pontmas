@@ -67,7 +67,7 @@ export default function Home() {
                 <div className="p-2.5 rounded-xl bg-blue-50 mb-3 text-blue-600">
                   {stat.icon}
                 </div>
-                <span className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">{stat.value}</span>
+                <span className="display text-3xl sm:text-4xl text-slate-900">{stat.value}</span>
                 <span className="text-xs sm:text-sm text-slate-500 font-medium mt-1">{stat.label}</span>
               </div>
             ))}

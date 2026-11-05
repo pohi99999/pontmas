@@ -129,7 +129,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
           <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full">
             {item.badge}
           </span>
-          <span className="text-xs text-slate-600 font-mono">
+          <span className="text-xs text-slate-600">
             {item.date}
           </span>
         </div>

@@ -32,16 +32,18 @@ export default function CopyButton({
     <button
       onClick={handleCopy}
       type="button"
-      className={`w-full text-left bg-slate-50 hover:bg-slate-100/90 active:bg-slate-200/80 p-4 rounded-xl border border-slate-200 hover:border-blue-400 group transition-all flex items-center justify-between cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${className}`}
+      className={`w-full text-left bg-slate-50 hover:bg-slate-100/90 active:bg-slate-200/80 p-4 rounded-xl border border-slate-200 hover:border-blue-400 group transition-colors @container block cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${className}`}
       title="Kattintson a másoláshoz"
     >
-      <div className="min-w-0 pr-3">
+      {/* The number scales with the card to stay on one line, with a readable minimum; in a narrow card the copy chip goes under it */}
+      <div className="flex flex-col items-start gap-2 @[22rem]:flex-row @[22rem]:items-center @[22rem]:justify-between">
+      <div className="min-w-0 @[22rem]:pr-3">
         {label && (
           <span className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
             {label}
           </span>
         )}
-        <span className="block text-base sm:text-lg font-mono font-bold text-slate-900 tracking-tight break-words">
+        <span className="block text-[clamp(0.8125rem,6.1cqi,1.125rem)] font-mono font-bold text-slate-900 tracking-tight">
           {textToCopy}
         </span>
         {sublabel && (
@@ -52,7 +54,7 @@ export default function CopyButton({
       </div>
 
       <div
-        className={`p-2 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all flex-shrink-0 ${
+        className={`p-2 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-colors flex-shrink-0 ${
           copied
             ? 'bg-emerald-100 text-emerald-800'
             : 'bg-white text-slate-600 border border-slate-200 group-hover:border-blue-300 group-hover:text-blue-600 shadow-2xs'
@@ -69,6 +71,7 @@ export default function CopyButton({
             <span className="hidden sm:inline">Másolás</span>
           </>
         )}
+      </div>
       </div>
     </button>
   );

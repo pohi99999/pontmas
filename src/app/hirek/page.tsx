@@ -60,7 +60,7 @@ export default async function HirekPage() {
         <div className="rounded-3xl bg-slate-900 p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
           <div className="space-y-3 max-w-2xl">
             <Badge variant="warning">Csatlakozzon Hozzánk</Badge>
-            <h3 className="text-2xl sm:text-3xl font-black">Szeretne önkéntesként segíteni munkánkat?</h3>
+            <h3 className="display text-2xl sm:text-3xl">Szeretne önkéntesként segíteni munkánkat?</h3>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               Legyen szó rendezvényekről, gyermekfoglalkozásokról, szülőklubokról vagy online kommunikációról, minden segítő kéznek és jó szándéknak nagyon örülünk!
             </p>

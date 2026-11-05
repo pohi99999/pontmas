@@ -150,10 +150,10 @@ export default function RolunkPage() {
           subtitle="Hogyan fejlődött a PontMás Alapítvány a megalakulása óta?"
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {merfoldkovek.map((m, i) => (
             <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs relative">
-              <span className="text-3xl font-black text-blue-600 mb-2 block">{m.ev}</span>
+              <span className="display text-4xl text-blue-700 mb-2 block">{m.ev}</span>
               <h3 className="font-bold text-slate-900 text-base mb-2">{m.cim}</h3>
               <p className="text-xs text-slate-600 leading-relaxed">{m.leiras}</p>
             </div>

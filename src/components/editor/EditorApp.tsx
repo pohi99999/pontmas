@@ -17,6 +17,7 @@ import {
   type ProgramItem,
   type SiteContent,
 } from '@/content/types';
+import { HIDDEN_TOGGLE_HINT, HIDDEN_TOGGLE_LABEL, blankNews, blankProgram, saveButtonText, savedMessage } from '@/content/newItems';
 import { validateNewsItem, validateProgramItem, type ValidationError } from '@/content/validate';
 import { MAX_BYTES, resizeForUpload } from './imageResize';
 
@@ -55,23 +56,8 @@ const ERROR_TEXT: Record<string, string> = {
   invalid: 'A mentés nem sikerült, mert néhány mező hibás.',
 };
 
-const today = () => new Date().toISOString().slice(0, 10);
-const newId = (kind: Kind) => `${kind === 'news' ? 'hir' : 'program'}-${Math.random().toString(36).slice(2, 10)}`;
 const fmt = (iso: string) =>
   new Intl.DateTimeFormat('hu-HU', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Budapest' }).format(new Date(iso));
-
-function blankNews(): NewsItem {
-  return {
-    id: newId('news'), publishedAt: today(), hidden: false, featured: false, badge: '', title: '', date: '',
-    location: '', speaker: '', description: '', highlights: [], actionText: '', actionHref: '',
-  };
-}
-function blankProgram(): ProgramItem {
-  return {
-    id: newId('programs'), publishedAt: today(), hidden: false, category: 'event', title: '', date: '', location: '',
-    badge: '', description: '', highlights: [],
-  };
-}
 
 function readDraft(): Editing | null {
   try {
@@ -184,7 +170,7 @@ export default function EditorApp({ editor }: { editor: string }) {
 
   async function saveEditing() {
     if (!editing || !data || !canSave) return;
-    const ok = await save(withItem(data.content, editing.kind, editing.item, editing.isNew), 'Mentve, a honlapon is megjelent.');
+    const ok = await save(withItem(data.content, editing.kind, editing.item, editing.isNew), savedMessage(editing.item.hidden));
     if (ok) {
       setEditing(null);
       setPreviewed(null);
@@ -195,7 +181,7 @@ export default function EditorApp({ editor }: { editor: string }) {
 
   async function toggleHidden(kind: Kind, item: AnyItem) {
     if (!data) return;
-    const text = item.hidden ? 'Újra megjelenítve.' : 'Elrejtve, a honlapon nem látszik.';
+    const text = item.hidden ? 'Közzétéve, a honlapon látszik.' : 'Elrejtve, a honlapon nem látszik.';
     await save(withItem(data.content, kind, { ...item, hidden: !item.hidden }, false), text);
   }
 
@@ -326,13 +312,13 @@ export default function EditorApp({ editor }: { editor: string }) {
                       <p className="text-base font-bold text-slate-900">{item.title}</p>
                       <p className="text-sm text-slate-700">
                         {item.date}
-                        {item.hidden && ' | rejtett'}
+                        {item.hidden && <span className="font-bold"> | rejtett, a honlapon nem látszik</span>}
                       </p>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
                       <button type="button" className={btnSecondary} disabled={busy || !data.storeConfigured} onClick={() => startEdit(tab, item)}>Szerkesztés</button>
                       <button type="button" className={btnSecondary} disabled={busy || !data.storeConfigured} onClick={() => void toggleHidden(tab, item)}>
-                        {item.hidden ? 'Megjelenítés' : 'Elrejtés'}
+                        {item.hidden ? 'Közzététel' : 'Elrejtés'}
                       </button>
                       <button type="button" className={btnSecondary} disabled={busy || i === 0 || !data.storeConfigured} onClick={() => void move(tab, i, -1)} aria-label={`Feljebb: ${item.title}`}>Feljebb</button>
                       <button type="button" className={btnSecondary} disabled={busy || i === list.length - 1 || !data.storeConfigured} onClick={() => void move(tab, i, 1)} aria-label={`Lejjebb: ${item.title}`}>Lejjebb</button>
@@ -501,10 +487,18 @@ function ItemForm({ editing, editor, errors, update, busy, canSave, previewShown
         </ul>
       )}
 
+      <label className="flex min-h-11 items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-base text-slate-900">
+        <input type="checkbox" className="mt-0.5 h-6 w-6 flex-shrink-0" checked={item.hidden} onChange={(e) => update({ hidden: e.target.checked })} />
+        <span>
+          <span className="font-bold">{HIDDEN_TOGGLE_LABEL}</span>
+          <span className="block text-sm text-slate-700">{HIDDEN_TOGGLE_HINT}</span>
+        </span>
+      </label>
+
       {previewShown && (
         <section aria-label="Előnézet" className="space-y-2">
           <h3 className="text-base font-bold text-slate-900">Előnézet: így jelenik meg a honlapon</h3>
-          {item.hidden && <p className="text-sm text-slate-700">Ez az elem rejtett, ezért most nem jelenik meg.</p>}
+          {item.hidden && <p className="rounded-xl bg-amber-50 p-3 text-sm text-amber-900">Ez az elem rejtett: így nézne ki, de most nem jelenik meg a honlapon.</p>}
           {news ? (news.featured ? <NewsFeaturedCard item={news} /> : <NewsCard item={news} />) : <ProgramCard program={program!} />}
         </section>
       )}
@@ -512,7 +506,7 @@ function ItemForm({ editing, editor, errors, update, busy, canSave, previewShown
       <div className="sticky bottom-0 grid grid-cols-2 gap-3 border-t border-slate-200 bg-slate-50 py-3">
         <button type="button" className={`${btnSecondary} min-h-14 text-lg`} disabled={errors.length > 0 || busy} onClick={onPreview}>Előnézet</button>
         <button type="button" className={`${btnPrimary} min-h-14 text-lg`} disabled={!canSave} onClick={onSave}>
-          {busy ? 'Mentés...' : 'Mentés'}
+          {busy ? 'Mentés...' : saveButtonText(item.hidden)}
         </button>
         <button type="button" className={`${btnSecondary} col-span-2`} disabled={busy} onClick={onCancel}>Mégse</button>
         {!previewShown && errors.length === 0 && <p className="col-span-2 text-center text-xs text-slate-600">A Mentés gomb az előnézet megtekintése után válik aktívvá.</p>}

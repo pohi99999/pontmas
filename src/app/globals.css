@@ -224,3 +224,30 @@ h2 {
 .sensory-friendly .foto {
   filter: saturate(60%) brightness(97%);
 }
+
+/* Display style for the card titles that are not h1/h2 */
+.display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+}
+
+/* The "dot": the logo's sphere in small, in front of the small labels */
+.pont {
+  display: inline-block;
+  flex: none;
+  width: 0.62em;
+  height: 0.62em;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 34% 30%, #eef2fa 0, #a6b9df 34%, #7192c5 62%, #3d5e9e 100%);
+  box-shadow: inset 0 0 0 1px rgb(27 22 26 / 0.55);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-blue-700);
+}

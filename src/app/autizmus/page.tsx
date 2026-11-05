@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from 'react';
-import { Brain, MessageCircle, RefreshCw, ShieldCheck, AlertCircle, Heart, BookOpen, ChevronDown, Sparkles, HelpCircle, Download } from 'lucide-react';
+import { Brain, MessageCircle, RefreshCw, ShieldCheck, AlertCircle, Heart, BookOpen, ChevronDown, Download } from 'lucide-react';
+import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 
@@ -75,18 +76,11 @@ export default function AutizmusPage() {
     <div className="pb-20">
       
       {/* 1. Fejléc szekció */}
-      <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <SectionHeader
-            as="h1"
-            badge="Tudástár & Útmutató"
-            badgeIcon={<Sparkles size={14} />}
-            title="Mi az az autizmus?"
-            subtitle="Az autizmus nem betegség, hanem egy eltérő fejlődésmenet és észlelési sajátosság. Ismerje meg a spektrum működését szakmai, mégis közérthető formában."
-            align="center"
-          />
-        </div>
-      </section>
+      <PageHeader
+        badge="Tudástár & Útmutató"
+        title="Mi az az autizmus?"
+        subtitle="Az autizmus nem betegség, hanem egy eltérő fejlődésmenet és észlelési sajátosság. Ismerje meg a spektrum működését szakmai, mégis közérthető formában."
+      />
 
       {/* 2. Spektrum Jellemzők (3 Pillér) */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -169,7 +163,6 @@ export default function AutizmusPage() {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
         <SectionHeader
           badge="Gyakori Kérdések"
-          badgeIcon={<HelpCircle size={14} />}
           title="Gyakran Ismételt Kérdések (FAQ)"
           subtitle="Összegyűjtöttük a leggyakrabban felmerülő kérdéseket a diagnózistól a fejlesztési lehetőségekig."
         />

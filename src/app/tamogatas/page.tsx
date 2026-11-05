@@ -1,6 +1,7 @@
 "use client";
 
-import { Receipt, Landmark, Briefcase, HeartHandshake, Sparkles, FileText, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Receipt, Landmark, Briefcase, FileText, ArrowRight, ShieldCheck } from 'lucide-react';
+import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import CopyButton from '@/components/ui/CopyButton';
 import Button from '@/components/ui/Button';
@@ -33,18 +34,11 @@ export default function TamogatasPage() {
     <div className="pb-20">
       
       {/* 1. Fejléc szekció */}
-      <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <SectionHeader
-            as="h1"
-            badge="Támogatási Központ"
-            badgeIcon={<HeartHandshake size={14} />}
-            title="Támogassa munkánkat – Minden segítség számít!"
-            subtitle="Az Ön támogatása közvetlenül hozzájárul a Vas vármegyei autizmussal élő gyermekek képességfejlesztéséhez, a szülői közösség megtartásához és a krízishelyzetbe került családok segítéséhez."
-            align="center"
-          />
-        </div>
-      </section>
+      <PageHeader
+        badge="Támogatási Központ"
+        title="Támogassa munkánkat – Minden segítség számít!"
+        subtitle="Az Ön támogatása közvetlenül hozzájárul a Vas vármegyei autizmussal élő gyermekek képességfejlesztéséhez, a szülői közösség megtartásához és a krízishelyzetbe került családok segítéséhez."
+      />
 
       {/* 2. Három Fő Támogatási Forma (Kártyák) */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -129,7 +123,6 @@ export default function TamogatasPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <SectionHeader
             badge="Útmutató"
-            badgeIcon={<Sparkles size={14} />}
             title="Hogyan ajánlhatja fel az 1%-ot 4 egyszerű lépésben?"
             subtitle="Nem igényel több mint 2 percet az eSZJA felületén vagy a munkáltatóján keresztül."
           />

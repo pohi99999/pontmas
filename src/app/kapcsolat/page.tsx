@@ -1,4 +1,5 @@
-import { MapPin, Phone, MessageSquare, Sparkles, ExternalLink } from 'lucide-react';
+import { MapPin, Phone, MessageSquare, ExternalLink } from 'lucide-react';
+import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ContactForm from '@/components/forms/ContactForm';
 
@@ -7,18 +8,11 @@ export default function KapcsolatPage() {
     <div className="pb-20">
       
       {/* 1. Fejléc szekció */}
-      <section className="bg-gradient-to-b from-blue-50/80 to-slate-50 pt-16 pb-16 md:pt-20 md:pb-20 border-b border-slate-200/80">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <SectionHeader
-            as="h1"
-            badge="Elérhetőség"
-            badgeIcon={<Sparkles size={14} />}
-            title="Lépjen kapcsolatba velünk!"
-            subtitle="Forduljon hozzánk bizalommal kérdéseivel, tanácsadási igényével: hívjon minket telefonon, vagy írjon nekünk az űrlapon."
-            align="center"
-          />
-        </div>
-      </section>
+      <PageHeader
+        badge="Elérhetőség"
+        title="Lépjen kapcsolatba velünk!"
+        subtitle="Forduljon hozzánk bizalommal kérdéseivel, tanácsadási igényével: hívjon minket telefonon, vagy írjon nekünk az űrlapon."
+      />
 
       {/* 2. Kapcsolati és Irodai Információk + Form */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">

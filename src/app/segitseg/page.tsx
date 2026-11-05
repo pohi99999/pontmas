@@ -1,24 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from "@/components/ui/SectionHeader";
 import FeatureCard from "@/components/ui/FeatureCard";
 import ActionCard from "@/components/ui/ActionCard";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
-import { 
-  Users, 
-  Smartphone, 
-  BookOpen, 
-  School, 
-  HelpCircle, 
-  PhoneCall, 
-  Calendar, 
-  CheckCircle2, 
-  Clock, 
-  ArrowRight,
-  ShieldCheck,
-  HeartHandshake
-} from "lucide-react";
+import { Users, Smartphone, BookOpen, School, CheckCircle2, ArrowRight, HeartHandshake } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Amiben segíteni tudunk | PontMás Alapítvány",
@@ -100,33 +88,22 @@ export default function HelpPage() {
   ];
 
   return (
-    <div className="flex flex-col gap-16 py-12 md:py-20">
+    <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Hero szekció */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 px-6 py-16 sm:px-12 sm:py-20 text-white shadow-2xl">
-          <div className="relative z-10 max-w-3xl space-y-6">
-            <Badge variant="warning">
-              Szolgáltatásaink & Segítségnyújtás
-            </Badge>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              Nem kell egyedül végigmennie ezen az úton.
-            </h1>
-            <p className="text-lg sm:text-xl text-blue-100/90 leading-relaxed">
-              A PontMás Alapítvány 2015-ös megalakulása óta azért dolgozik, hogy a Vas vármegyei autizmussal élő gyermekek és családtagjaik minden élethelyzetben valódi, szakszerű és emberközeli támogatást kapjanak.
-            </p>
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Button href="#szolgaltatasok" variant="primary" className="bg-white text-blue-900 hover:bg-blue-50">
-                Szolgáltatásaink megtekintése
-              </Button>
-              <Button href="/kapcsolat" variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white">
-                Kérdezzen kollégánktól
-              </Button>
-            </div>
-          </div>
-
-          <div className="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
+      <PageHeader
+        badge="Szolgáltatásaink & Segítségnyújtás"
+        title="Nem kell egyedül végigmennie ezen az úton."
+        subtitle="A PontMás Alapítvány 2015-ös megalakulása óta azért dolgozik, hogy a Vas vármegyei autizmussal élő gyermekek és családtagjaik minden élethelyzetben valódi, szakszerű és emberközeli támogatást kapjanak."
+      >
+        <div className="flex flex-wrap gap-4">
+          <Button href="#szolgaltatasok" variant="primary">
+            Szolgáltatásaink megtekintése
+          </Button>
+          <Button href="/kapcsolat" variant="outline">
+            Kérdezzen kollégánktól
+          </Button>
         </div>
-      </section>
+      </PageHeader>
 
       {/* 2. Szolgáltatások részletesen */}
       <section id="szolgaltatasok" className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">

@@ -1,19 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from "@/components/ui/SectionHeader";
-import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
-import { 
-  Newspaper, 
-  Quote, 
-  Tv, 
-  HeartHandshake, 
-  ExternalLink, 
-  Calendar, 
-  Sparkles, 
-  MessageSquare,
-  ArrowRight
-} from "lucide-react";
+import { Newspaper, Quote, Tv, HeartHandshake, Calendar, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Rólunk írták & Sajtómegjelenések | PontMás Alapítvány",
@@ -80,24 +70,13 @@ export default function RolunkIrtakPage() {
   ];
 
   return (
-    <div className="flex flex-col gap-16 py-12 md:py-20">
+    <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Hero */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 px-6 py-16 sm:px-12 sm:py-20 text-white shadow-2xl">
-          <div className="relative z-10 max-w-3xl space-y-6">
-            <Badge variant="info">
-              Média, Sajtó & Elismerések
-            </Badge>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              Rólunk írták & Közösségi Visszhangok
-            </h1>
-            <p className="text-lg sm:text-xl text-slate-300 leading-relaxed">
-              Szeretnénk tevékenységünket és az autizmussal élő gyermekek mindennapjait minél szélesebb körben bemutatni, hogy a társadalom megértéssel és támogató szeretettel fogadja el őket.
-            </p>
-          </div>
-          <div className="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-blue-600/20 blur-3xl pointer-events-none" />
-        </div>
-      </section>
+      <PageHeader
+        badge="Média, Sajtó & Elismerések"
+        title="Rólunk írták & Közösségi Visszhangok"
+        subtitle="Szeretnénk tevékenységünket és az autizmussal élő gyermekek mindennapjait minél szélesebb körben bemutatni, hogy a társadalom megértéssel és támogató szeretettel fogadja el őket."
+      />
 
       {/* 2. Cikkek és köszönetnyilvánítások rácsa */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">

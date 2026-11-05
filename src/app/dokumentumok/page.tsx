@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FileText, Download, Archive, Award, ShieldCheck, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import { FileText, CheckCircle2 } from 'lucide-react';
+import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
@@ -70,22 +71,13 @@ export default function DokumentumokPage() {
   ];
 
   return (
-    <div className="flex flex-col gap-16 py-12 md:py-20">
+    <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Fejléc */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 px-6 py-16 sm:px-12 sm:py-20 text-white shadow-2xl">
-          <div className="relative z-10 max-w-3xl space-y-6">
-            <Badge variant="info">Átláthatóság & Hitelesség</Badge>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              Dokumentumtár és Hivatalos Pályázatok
-            </h1>
-            <p className="text-lg sm:text-xl text-slate-300 leading-relaxed">
-              Az átláthatóság és a társadalmi felelősségvállalás alapítványunk működésének alappillére. Itt érheti el hivatalos dokumentumainkat, közhasznúsági beszámolóinkat és pályázati elszámolásainkat.
-            </p>
-          </div>
-          <div className="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-blue-600/20 blur-3xl pointer-events-none" />
-        </div>
-      </section>
+      <PageHeader
+        badge="Átláthatóság & Hitelesség"
+        title="Dokumentumtár és Hivatalos Pályázatok"
+        subtitle="Az átláthatóság és a társadalmi felelősségvállalás alapítványunk működésének alappillére. Itt érheti el hivatalos dokumentumainkat, közhasznúsági beszámolóinkat és pályázati elszámolásainkat."
+      />
 
       {/* 2. Hivatalos Iratok & Beszámolók */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">

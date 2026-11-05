@@ -23,7 +23,7 @@ export function ContentImageView({ image, className = '' }: { image?: ContentIma
       height={img.height}
       loading="lazy"
       decoding="async"
-      className={`foto w-full h-auto rounded-2xl border border-slate-200 bg-slate-100 object-cover ${className}`.trim()}
+      className={`foto w-full aspect-[4/3] rounded-2xl bg-slate-100 object-cover ${className}`.trim()}
     />
   );
 }
@@ -31,7 +31,7 @@ export function ContentImageView({ image, className = '' }: { image?: ContentIma
 /** The large banner of /hirek (on main: newsItems[0]). */
 export function NewsFeaturedCard({ item }: { item: NewsItem }) {
   return (
-    <div className="rounded-3xl border-2 border-blue-500/40 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 sm:p-12 shadow-lg space-y-6">
+    <div className="rounded-[2.5rem] bg-blue-50 p-6 sm:p-8 md:p-12 space-y-6">
       <ContentImageView image={item.image} />
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Badge variant="info">
@@ -121,7 +121,7 @@ export function NewsFeaturedCard({ item }: { item: NewsItem }) {
 export function NewsCard({ item }: { item: NewsItem }) {
   return (
     <article
-      className="flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-7 shadow-sm hover:shadow-md transition-all group"
+      className="flex flex-col justify-between rounded-[2rem] border border-slate-200 bg-white p-7"
     >
       <div className="space-y-4">
         <ContentImageView image={item.image} />
@@ -134,7 +134,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
           </span>
         </div>
 
-        <h3 className="text-xl font-bold text-slate-900 leading-snug group-hover:text-blue-700 transition-colors">
+        <h3 className="display text-2xl text-slate-900 leading-snug">
           {item.title}
         </h3>
 
@@ -172,16 +172,19 @@ export function NewsCard({ item }: { item: NewsItem }) {
 /** One card of the program list on /programok. */
 export function ProgramCard({ program }: { program: ProgramItem }) {
   return (
-    <div
-      className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all space-y-6"
-    >
-      <ContentImageView image={program.image} />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+    <div className="bg-white rounded-[2rem] border border-slate-200 overflow-hidden md:flex">
+      {publicImage(program.image) && (
+        <div className="flex-none md:w-5/12">
+          <ContentImageView image={program.image} className="!rounded-none md:h-full md:!aspect-auto" />
+        </div>
+      )}
+      <div className="min-w-0 flex-1 p-6 sm:p-8 space-y-6">
+      <div className="flex flex-col gap-3 border-b border-slate-100 pb-4">
         <div>
           <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 mb-2 inline-block">
             {program.badge}
           </span>
-          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-3xl text-slate-900">
             {program.title}
           </h2>
         </div>
@@ -219,6 +222,7 @@ export function ProgramCard({ program }: { program: ProgramItem }) {
         <Button href="/kapcsolat" variant="ghost" size="sm" rightIcon={<ArrowRight size={14} />}>
           Érdeklődés & Részletek
         </Button>
+      </div>
       </div>
     </div>
   );

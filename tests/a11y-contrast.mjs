@@ -143,6 +143,23 @@ try {
     if (!after.focusOnButton) fail('after Escape the focus is not back on the menu button');
   }
   await page.close();
+
+  // In the soft and the high contrast mode the accessibility button stays on screen (a filter on the
+  // wrapper used to make it the containing block of the fixed elements: the button went to the page bottom)
+  const modes = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  await modes.goto(BASE + '/', { waitUntil: 'networkidle' });
+  for (const mode of ['isSensoryFriendly', 'highContrast']) {
+    await modes.evaluate((m) => localStorage.setItem('pontmas_a11y_prefs', JSON.stringify({ [m]: true })), mode);
+    await modes.reload({ waitUntil: 'load' });
+    await modes.waitForFunction(() => document.querySelector('.sensory-friendly, .contrast-high'));
+    const box = await modes.evaluate(() => {
+      const b = [...document.querySelectorAll('button')].find((x) => /Akadálymentesítés/.test(x.getAttribute('aria-label') || x.textContent));
+      const r = b.getBoundingClientRect();
+      return { top: Math.round(r.top), bottom: Math.round(r.bottom), vh: window.innerHeight };
+    });
+    if (box.top < 0 || box.bottom > box.vh) { failures++; console.log(`FAIL ${mode}: the accessibility button is at ${box.top}-${box.bottom} px in a ${box.vh} px window`); }
+  }
+  await modes.close();
   await browser.close();
 } finally {
   stop();

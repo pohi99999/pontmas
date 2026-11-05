@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'soft';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
-const baseStyles = 'inline-flex items-center justify-center font-bold transition-all rounded-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+const baseStyles = 'inline-flex items-center justify-center font-bold transition-colors rounded-full cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
 
 const sizeStyles: Record<ButtonSize, string> = {
   sm: 'px-3.5 py-1.5 text-xs gap-1.5',

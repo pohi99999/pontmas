@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -9,6 +10,16 @@ import { SensoryProvider } from "@/context/SensoryContext";
 import { jsonLdScript } from "@/lib/jsonLd";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
+// The heading font: one static weight, subset to Hungarian in one small file (fonts/README.txt). The variable
+// Google file cost about 1.5 s of mobile LCP (measured). display: optional: a slow first visit stays on the
+// fallback, and the big titles never jump.
+const fraunces = localFont({
+  src: "./fonts/fraunces-500-hu.woff2",
+  weight: "500",
+  display: "optional",
+  variable: "--font-display",
+  fallback: ["Georgia", "serif"],
+});
 
 export const metadata: Metadata = {
   title: "PontMás Alapítvány | Vas Megyei Autista Gyermekekért",
@@ -44,7 +55,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="hu" className="scroll-smooth">
+    <html lang="hu" className={`scroll-smooth ${fraunces.variable}`}>
       <head>
         <script
           type="application/ld+json"

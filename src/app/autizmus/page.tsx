@@ -96,7 +96,7 @@ export default function AutizmusPage() {
               <div className="text-blue-600 mb-6 bg-blue-50 w-14 h-14 rounded-2xl flex items-center justify-center shadow-2xs">
                 {jellemzo.icon}
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">{jellemzo.title}</h3>
+              <h3 className="display text-xl text-slate-900 mb-3">{jellemzo.title}</h3>
               <p className="text-slate-600 text-sm leading-relaxed flex-grow">{jellemzo.desc}</p>
             </div>
           ))}
@@ -201,7 +201,7 @@ export default function AutizmusPage() {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto bg-blue-50 border border-blue-200/80 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl font-bold text-slate-900">
+            <h3 className="display text-2xl text-slate-900">
               További hivatalos dokumentumokra és nyilatkozatokra van szüksége?
             </h3>
             <p className="text-slate-600 text-sm leading-relaxed">

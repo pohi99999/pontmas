@@ -102,7 +102,7 @@ export default function DokumentumokPage() {
                   <span className="text-xs text-slate-600">{doc.date}</span>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
+                <h3 className="display text-xl text-slate-900 group-hover:text-blue-700 transition-colors">
                   {doc.title}
                 </h3>
 
@@ -142,7 +142,7 @@ export default function DokumentumokPage() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900">
+                <h3 className="display text-xl text-slate-900">
                   {project.title}
                 </h3>
 

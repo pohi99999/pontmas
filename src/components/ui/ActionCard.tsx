@@ -50,7 +50,7 @@ export default function ActionCard({
         </div>
       )}
 
-      <h3 className={`text-2xl font-bold mb-3 ${highlight ? 'text-white' : 'text-slate-900'}`}>
+      <h3 className={`display text-2xl mb-3 ${highlight ? 'text-white' : 'text-slate-900'}`}>
         {title}
       </h3>
 

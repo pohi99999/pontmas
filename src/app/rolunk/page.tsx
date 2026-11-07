@@ -3,6 +3,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import CtaBand from '@/components/ui/CtaBand';
+import { CommunityGallery } from '@/components/content/Gallery';
 
 export default function RolunkPage() {
   const alapelvek = [
@@ -161,6 +162,9 @@ export default function RolunkPage() {
           ))}
         </div>
       </section>
+
+      {/* Képek a közösségről */}
+      <CommunityGallery />
 
       {/* 5. Csatlakozás és Kapcsolat CTA */}
       <CtaBand

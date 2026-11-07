@@ -3,6 +3,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import ProgramFilter from '@/components/content/ProgramFilter';
+import Gallery from '@/components/content/Gallery';
 import { getPublicContent } from '@/content/publicContent';
 import { visiblePrograms } from '@/content/public';
 import CtaBand from '@/components/ui/CtaBand';
@@ -37,6 +38,9 @@ export default async function ProgramokPage() {
         <ProgramFilter programs={programok} />
 
       </section>
+
+      {/* Képek a programokról */}
+      <Gallery />
 
       {/* 3. Intézményi Támogatások Modul */}
       <section className="bg-gradient-to-b from-slate-100/80 to-slate-50 border-y border-slate-200/80 py-16">

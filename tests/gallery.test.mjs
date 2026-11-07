@@ -69,7 +69,8 @@ test('the uncropped photos keep the ratio of their source', () => {
 });
 
 test('the texts have no name, year, headcount or diagnosis, and only the two press photos credit the photographer', () => {
-  const FORBIDDEN = /autiz|autist|spektrum|diagn|\bÁron\b|\bAndris\b|\bViki\b|\bZsolt\b|\b(19|20)\d{2}\b|\d+\s*(fő|gyerek|család)/i;
+  // \b is ASCII-only in JS and never matches around "Á", so the names are bounded by Unicode letters
+  const FORBIDDEN = /autiz|autist|spektrum|diagn|(?<!\p{L})(Áron|Andris|Viki|Zsolt)(?!\p{L})|\b(19|20)\d{2}\b|\d+\s*(fő|gyerek|család)/iu;
   const section = fs.readFileSync(path.resolve('src/components/content/Gallery.tsx'), 'utf8').match(/title="[^"]*"|subtitle="[^"]*"/g);
   assert.equal(section.length, 6);
   for (const text of [...PHOTOS.flatMap((p) => [p.alt, p.caption]), ...section]) assert.doesNotMatch(text, FORBIDDEN);

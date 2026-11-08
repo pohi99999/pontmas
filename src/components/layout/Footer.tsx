@@ -15,9 +15,9 @@ export default function Footer() {
           <div className="space-y-4">
             {/* The same mark and wordmark as in the header. The logo is dark artwork: on the dark footer it sits on a white tile instead of being recoloured. */}
             <div className="inline-flex items-center gap-3 lg:gap-2 xl:gap-3 rounded-2xl bg-white px-4 lg:px-3 xl:px-4 py-2.5">
-              <Image src="/brand/pontmas-jel.png" alt="" width={374} height={402} sizes="45px" className="h-12 lg:h-10 xl:h-12 w-auto" />
+              <Image src="/brand/pontmas-jel.svg" alt="" width={369} height={398} sizes="45px" className="h-12 lg:h-10 xl:h-12 w-auto" />
               <div className="flex flex-col gap-1">
-                <Image src="/brand/pontmas-felirat.png" alt="PontMás" width={603} height={137} sizes="140px" className="h-auto w-[140px] lg:w-[124px] xl:w-[140px]" />
+                <Image src="/brand/pontmas-felirat.svg" alt="PontMás" width={599} height={132} sizes="140px" className="h-auto w-[140px] lg:w-[124px] xl:w-[140px]" />
                 <span className="text-[11px] lg:text-[9.5px] xl:text-[11px] font-medium text-slate-600 tracking-wide uppercase whitespace-nowrap">
                   Vas Megyei Alapítvány
                 </span>

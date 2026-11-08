@@ -57,23 +57,23 @@ export default function Header() {
           className="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none rounded-lg p-1"
           onClick={() => setIsMobileMenuOpen(false)}
         >
-          {/* The foundation's own mark and wordmark (transparent PNG cut-outs of the original logo, /public/brand).
+          {/* The foundation's own mark and wordmark (SVG cut-outs of the original vector logo, /public/brand).
               The mark is decorative; the wordmark carries the name for assistive technology. */}
           <Image
-            src="/brand/pontmas-jel.png"
+            src="/brand/pontmas-jel.svg"
             alt=""
-            width={374}
-            height={402}
+            width={369}
+            height={398}
             sizes="45px"
             preload
             className="h-12 w-auto group-hover:scale-105 transition-transform"
           />
           <div className="flex flex-col gap-1">
             <Image
-              src="/brand/pontmas-felirat.png"
+              src="/brand/pontmas-felirat.svg"
               alt="PontMás"
-              width={603}
-              height={137}
+              width={599}
+              height={132}
               sizes="140px"
               preload
               className="h-auto w-[140px]"

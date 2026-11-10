@@ -4,14 +4,14 @@ import assert from 'node:assert/strict';
 import { src } from './helpers/load.mjs';
 import { renderHtml, visibleText } from './helpers/render.mjs';
 
-const PAGES = ['app/adatkezeles/page.tsx', 'app/impresszum/page.tsx'];
+const PAGES = ['app/[locale]/adatkezeles/page.tsx', 'app/[locale]/impresszum/page.tsx'];
 const { LEGAL_DRAFT, REVIEW_MARKERS } = await src('lib/legal.ts');
 const hasMarker = (text) => REVIEW_MARKERS.some((m) => text.includes(m));
 
 test('a page with an open review marker is a draft: banner shown, not indexed', async () => {
   for (const p of PAGES) {
     const text = visibleText(await renderHtml(p));
-    const { metadata } = await src(p);
+    const metadata = await (await src(p)).generateMetadata({ params: Promise.resolve({ locale: 'hu' }) });
     if (hasMarker(text)) {
       assert.equal(LEGAL_DRAFT, true, `${p} has open review points, so LEGAL_DRAFT must stay true`);
       assert.ok(text.includes('Tervezet: ez a szöveg még nem hatályos.'), `${p} shows the draft banner`);
@@ -25,7 +25,7 @@ test('the draft guard is not vacuous: the drafts do have markers today', async (
 });
 
 test('the privacy notice states only what the site measurably does', async () => {
-  const text = visibleText(await renderHtml('app/adatkezeles/page.tsx'));
+  const text = visibleText(await renderHtml('app/[locale]/adatkezeles/page.tsx'));
   // the contact form's fields (src/lib/contact.ts validateContact)
   for (const w of ['név, e-mail-cím, telefonszám (nem kötelező), a választott téma és az üzenet szövege'])
     assert.ok(text.includes(w), w);
@@ -44,7 +44,7 @@ test('footer, documents page and contact form link the legal pages', async () =>
   const footer = await renderHtml('components/layout/Footer.tsx');
   assert.ok(footer.includes('href="/adatkezeles"') && footer.includes('href="/impresszum"'), 'footer links both');
   assert.ok(!/href="\/kapcsolat"[^>]*>Adatvédelem/.test(footer), 'the old "Adatvédelem & Kapcsolat" link to /kapcsolat is gone');
-  assert.ok((await renderHtml('app/dokumentumok/page.tsx')).includes('href="/adatkezeles"'), 'documents page opens the notice');
-  assert.ok((await renderHtml('app/kapcsolat/page.tsx')).includes('href="/adatkezeles"') ||
+  assert.ok((await renderHtml('app/[locale]/dokumentumok/page.tsx')).includes('href="/adatkezeles"'), 'documents page opens the notice');
+  assert.ok((await renderHtml('app/[locale]/kapcsolat/page.tsx')).includes('href="/adatkezeles"') ||
     (await renderHtml('components/forms/ContactForm.tsx')).includes('href="/adatkezeles"'), 'contact form links the notice');
 });

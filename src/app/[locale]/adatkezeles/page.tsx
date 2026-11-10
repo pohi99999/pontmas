@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from '@/i18n/navigation';
 import PageHeader from '@/components/ui/PageHeader';
 import { DraftBanner, DraftSources, Review, Section } from '@/components/legal/LegalParts';
 import { FOUNDATION } from '@/lib/foundation';
 import { LEGAL_DRAFT } from '@/lib/legal';
+import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 // Adatkezelési tájékoztató, DRAFT (src/lib/legal.ts). Every statement about what the site does is
 // measured in the code on 2026-11-10 (the comment next to it says where); the foundation's 2024 policy
 // is the source of the rest. What has no source is a [KÉRDÉS], every legal judgement a [JOGI ÁTNÉZÉS].
 
-export const metadata: Metadata = {
+const metadataBase: Metadata = {
   title: "Adatkezelési tájékoztató | PontMás Alapítvány",
   description: "Hogyan kezeli a PontMás Alapítvány a weboldal látogatóinak és a kapcsolatfelvételi űrlapot kitöltőknek a személyes adatait.",
   robots: LEGAL_DRAFT ? { index: false, follow: false } : undefined,
 };
 
-export default function AdatkezelesPage() {
+export const generateMetadata = alternatesFor('/adatkezeles', metadataBase);
+
+export default async function AdatkezelesPage({ params }: PageParams) {
+  await pageLocale(params);
   return (
     <>
       <PageHeader

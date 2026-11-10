@@ -68,13 +68,13 @@ test('the guard above catches a copy (it is not vacuous)', () => {
 
 test('every page that showed a fact still shows it, as the visitor reads it', async () => {
   const expect = {
-    'app/page.tsx': [FOUNDATION.name, '18654996-1-18', '11600006-00000000-75701521', 'Bankszámlaszám (Erste Bank)'],
-    'app/tamogatas/page.tsx': ['18654996-1-18 (PontMás Alapítvány)', FOUNDATION.name, '11600006-00000000-75701521', 'Bankszámlaszám (Erste Bank)'],
-    'app/rolunk/page.tsx': ['18654996-1-18', '9700 Szombathely, Váci M. utca 12. 3./15.'],
-    'app/kapcsolat/page.tsx': ['9700 Szombathely, Váci M. utca 12. 3./15.', 'Rumi Edina', '+36 20 969 8715'],
+    'app/[locale]/page.tsx': [FOUNDATION.name, '18654996-1-18', '11600006-00000000-75701521', 'Bankszámlaszám (Erste Bank)'],
+    'app/[locale]/tamogatas/page.tsx': ['18654996-1-18 (PontMás Alapítvány)', FOUNDATION.name, '11600006-00000000-75701521', 'Bankszámlaszám (Erste Bank)'],
+    'app/[locale]/rolunk/page.tsx': ['18654996-1-18', '9700 Szombathely, Váci M. utca 12. 3./15.'],
+    'app/[locale]/kapcsolat/page.tsx': ['9700 Szombathely, Váci M. utca 12. 3./15.', 'Rumi Edina', '+36 20 969 8715'],
     // /autizmus: the phone is in a FAQ answer, rendered only when the visitor opens it
-    'app/segitseg/page.tsx': ['Hívja Rumi Edinát a +36 20 969 8715 számon'],
-    'app/dokumentumok/page.tsx': ['Nyilvántartási szám: 18-01-0001850', 'telefonon (+36 20 969 8715)'],
+    'app/[locale]/segitseg/page.tsx': ['Hívja Rumi Edinát a +36 20 969 8715 számon'],
+    'app/[locale]/dokumentumok/page.tsx': ['Nyilvántartási szám: 18-01-0001850', 'telefonon (+36 20 969 8715)'],
     'components/layout/Footer.tsx': [`${FOUNDATION.name}. 2015 óta`, '9700 Szombathely', 'Rumi Edina, +36 20 969 8715', '18654996-1-18',
       'Bankszámlaszám (Erste Bank):', '11600006-00000000-75701521', `${FOUNDATION.name}. Minden jog fenntartva.`],
   };
@@ -84,6 +84,6 @@ test('every page that showed a fact still shows it, as the visitor reads it', as
     for (const w of wanted) assert.ok(shown.includes(w), `${p} shows "${w}"`);
   }
   // the phone links dial the number
-  for (const p of ['app/kapcsolat/page.tsx', 'components/layout/Footer.tsx'])
+  for (const p of ['app/[locale]/kapcsolat/page.tsx', 'components/layout/Footer.tsx'])
     assert.ok((await renderHtml(p)).includes('href="tel:+36209698715"'), `${p} links the phone`);
 });

@@ -95,10 +95,10 @@ test('rendered: section headings only, every photo a figure with a real alt text
 });
 
 test('/programok shows the gallery after the programs, /rolunk after the milestones', () => {
-  const programok = fs.readFileSync(path.resolve('src/app/programok/page.tsx'), 'utf8');
+  const programok = fs.readFileSync(path.resolve('src/app/[locale]/programok/page.tsx'), 'utf8');
   const [filter, gallery, institutions] = ['<ProgramFilter', '<Gallery />', 'Támogatott intézmények'].map((s) => programok.indexOf(s));
   assert.ok(filter > 0 && filter < gallery && gallery < institutions);
-  const rolunk = fs.readFileSync(path.resolve('src/app/rolunk/page.tsx'), 'utf8');
+  const rolunk = fs.readFileSync(path.resolve('src/app/[locale]/rolunk/page.tsx'), 'utf8');
   const [milestones, community, cta] = ['Főbb mérföldköveink', '<CommunityGallery />', '<CtaBand'].map((s) => rolunk.indexOf(s));
   assert.ok(milestones > 0 && milestones < community && community < cta);
 });

@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 test('About page includes history, leadership info, values, and SectionHeader', () => {
-  const aboutPath = path.resolve('src/app/rolunk/page.tsx');
+  const aboutPath = path.resolve('src/app/[locale]/rolunk/page.tsx');
   const aboutContent = fs.readFileSync(aboutPath, 'utf8');
 
   assert.ok(aboutContent.includes('SectionHeader'), 'About page must use SectionHeader');

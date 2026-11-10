@@ -6,8 +6,9 @@ import { NewsCard, NewsFeaturedCard } from "@/components/content/ContentCards";
 import { getPublicContent } from "@/content/publicContent";
 import { splitNews } from "@/content/public";
 import CtaBand from '@/components/ui/CtaBand';
+import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
-export const metadata: Metadata = {
+const metadataBase: Metadata = {
   title: "Hírek és aktualitások | PontMás Alapítvány",
   description: "A PontMás Alapítvány legfrissebb hírei, szülőklub meghívói, családi nap beszámolói és szakmai továbbképzései.",
   openGraph: {
@@ -17,11 +18,14 @@ export const metadata: Metadata = {
   },
 };
 
+export const generateMetadata = alternatesFor('/hirek', metadataBase);
+
 // The items come from the editor's store (src/content), or from the seed when the store is empty
 // or unreachable; the cards are shared with the editor's preview.
 export const revalidate = 3600;
 
-export default async function HirekPage() {
+export default async function HirekPage({ params }: PageParams) {
+  await pageLocale(params);
   const { content } = await getPublicContent();
   const { featured, rest } = splitNews(content.news);
 

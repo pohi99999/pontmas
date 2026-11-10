@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { MessageCircle, Send, X } from 'lucide-react';
 import { detectPii } from '@/lib/chat/pii';
 import { FIXED, type ChatLocale } from '@/lib/chat/rules';

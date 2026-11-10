@@ -5,8 +5,12 @@ import Button from '@/components/ui/Button';
 import CtaBand from '@/components/ui/CtaBand';
 import { CommunityGallery } from '@/components/content/Gallery';
 import { FOUNDATION, ADDRESS_LINE } from '@/lib/foundation';
+import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
-export default function RolunkPage() {
+export const generateMetadata = alternatesFor('/rolunk');
+
+export default async function RolunkPage({ params }: PageParams) {
+  await pageLocale(params);
   const alapelvek = [
     {
       icon: <Target className="text-blue-600" size={26} />,

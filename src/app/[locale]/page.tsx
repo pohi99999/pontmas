@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { Heart, Users, HandHeart, School, HelpCircle, ArrowRight } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import FeatureCard from '@/components/ui/FeatureCard';
@@ -7,8 +7,12 @@ import CopyButton from '@/components/ui/CopyButton';
 import PontJel from '@/components/brand/PontJel';
 import CtaBand from '@/components/ui/CtaBand';
 import { FOUNDATION } from '@/lib/foundation';
+import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
-export default function Home() {
+export const generateMetadata = alternatesFor('/');
+
+export default async function Home({ params }: PageParams) {
+  await pageLocale(params);
   const stats = [
     { value: '2015 óta', label: 'Segítjük a családokat' },
     { value: '40+', label: 'Érintett család hálózatunkban' },

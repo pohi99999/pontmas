@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+// the path without the language prefix, so the active menu item is found in every language
+import { usePathname } from '@/i18n/navigation';
 import { Menu, X, Eye, EyeOff, Heart, SlidersHorizontal } from 'lucide-react';
 import { useSensory } from '@/context/SensoryContext';
 

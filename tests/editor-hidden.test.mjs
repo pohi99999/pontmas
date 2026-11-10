@@ -9,7 +9,7 @@ import path from 'node:path';
 import { src } from './helpers/load.mjs';
 import { EDITOR, NOW, SITE, fakeMailer, htmlText, makeEnv } from './helpers/fixtures.mjs';
 
-const { renderToStaticMarkup } = await import('react-dom/server');
+import { renderElement as renderToStaticMarkup } from './helpers/render.mjs';
 const { createElement: h } = await import('react');
 const api = await src('lib/editorApi.ts');
 const auth = await src('lib/editorAuth.ts');
@@ -147,8 +147,8 @@ test('the form is wired to the hidden field, and the public pages use the functi
   assert.ok(ui.includes('saveButtonText(item.hidden)'), 'the Save button follows it');
   assert.ok(ui.includes('savedMessage(editing.item.hidden)'), 'the message follows it');
   assert.ok(!ui.includes("'Mentve, a honlapon is megjelent.'"), 'no fixed "it went public" message');
-  const hirek = fs.readFileSync(path.resolve('src/app/hirek/page.tsx'), 'utf8');
-  const programok = fs.readFileSync(path.resolve('src/app/programok/page.tsx'), 'utf8');
+  const hirek = fs.readFileSync(path.resolve('src/app/[locale]/hirek/page.tsx'), 'utf8');
+  const programok = fs.readFileSync(path.resolve('src/app/[locale]/programok/page.tsx'), 'utf8');
   assert.ok(hirek.includes('splitNews(content.news)'));
   assert.ok(programok.includes('visiblePrograms(content.programs)'));
 });

@@ -1,9 +1,12 @@
 import type { MetadataRoute } from 'next';
-import { SITE_URL, indexedPaths } from '@/lib/site';
+import { PUBLISHED_LOCALES } from '@/i18n/routing';
+import { absoluteUrl, hreflangLinks, indexedPaths, localizedPath } from '@/lib/site';
 
-// Every indexable page. No lastModified: a build date would claim a change on every deploy, and a
-// search engine ignores a lastmod it finds unreliable. The language versions (hreflang alternates)
-// come with the i18n step.
+// Every indexable page in every published language, each with its hreflang alternates (card c017f163).
+// No lastModified: a build date would claim a change on every deploy, and a search engine ignores a
+// lastmod it finds unreliable.
 export default function sitemap(): MetadataRoute.Sitemap {
-  return indexedPaths().map((p) => ({ url: p === '/' ? `${SITE_URL}/` : `${SITE_URL}${p}` }));
+  return PUBLISHED_LOCALES.flatMap((locale) =>
+    indexedPaths().map((p) => ({ url: absoluteUrl(localizedPath(p, locale)), alternates: { languages: hreflangLinks(p) } })),
+  );
 }

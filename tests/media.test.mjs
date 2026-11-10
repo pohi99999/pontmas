@@ -4,8 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 test('Media and press coverage page (/rolunk-irtak) exists and contains authentic articles', () => {
-  const pagePath = path.resolve('src/app/rolunk-irtak/page.tsx');
-  assert.ok(fs.existsSync(pagePath), 'src/app/rolunk-irtak/page.tsx must exist');
+  const pagePath = path.resolve('src/app/[locale]/rolunk-irtak/page.tsx');
+  assert.ok(fs.existsSync(pagePath), 'src/app/[locale]/rolunk-irtak/page.tsx must exist');
 
   const pageContent = fs.readFileSync(pagePath, 'utf8');
 

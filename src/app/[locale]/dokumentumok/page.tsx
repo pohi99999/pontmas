@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from '@/i18n/navigation';
 import { FileText, CheckCircle2 } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -8,8 +8,9 @@ import Button from '@/components/ui/Button';
 import DocAvailability from '@/components/ui/DocAvailability';
 import CtaBand from '@/components/ui/CtaBand';
 import { FOUNDATION } from '@/lib/foundation';
+import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
-export const metadata: Metadata = {
+const metadataBase: Metadata = {
   title: "Dokumentumtár és pályázatok | PontMás Alapítvány",
   description: "A PontMás Alapítvány hivatalos alapító okirata, közhasznúsági beszámolói, adatvédelmi tájékoztatója és önkormányzati pályázati elszámolásai.",
   openGraph: {
@@ -19,7 +20,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function DokumentumokPage() {
+export const generateMetadata = alternatesFor('/dokumentumok', metadataBase);
+
+export default async function DokumentumokPage({ params }: PageParams) {
+  await pageLocale(params);
   const officialDocs = [
     {
       title: "Alapító okirat és határozatok",

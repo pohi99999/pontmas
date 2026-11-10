@@ -1,7 +1,7 @@
 // The cards of /hirek and /programok. The public pages and the editor's preview both render these,
 // so the preview shows exactly what will be live. The markup is the one the pages had on main;
 // the only additions are the optional image and hiding a block whose field is empty.
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { ArrowRight, Calendar, CheckCircle2, ExternalLink, GraduationCap, MapPin } from 'lucide-react';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';

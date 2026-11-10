@@ -37,12 +37,12 @@ test('no "&" between words in a visible text of the site', () => {
 test('headings and labels in sentence case (a sample of the fixed ones)', () => {
   const expect = {
     'src/components/content/ProgramFilter.tsx': ["'Kiemelt események'", "'Nyári táborok'", "'Szülőklub és családok'"],
-    'src/app/programok/page.tsx': ['Programjaink és rendezvényeink', 'Események és kezdeményezések'],
-    'src/app/autizmus/page.tsx': ['A spektrum fő területei', 'Gyakran ismételt kérdések (FAQ)'],
-    'src/app/dokumentumok/page.tsx': ['Hivatalos iratok és éves beszámolók'],
+    'src/app/[locale]/programok/page.tsx': ['Programjaink és rendezvényeink', 'Események és kezdeményezések'],
+    'src/app/[locale]/autizmus/page.tsx': ['A spektrum fő területei', 'Gyakran ismételt kérdések (FAQ)'],
+    'src/app/[locale]/dokumentumok/page.tsx': ['Hivatalos iratok és éves beszámolók'],
     // #30 replaced the footer's "Adatvédelem és kapcsolat" link (it led to /kapcsolat) with the two legal pages
     'src/components/layout/Footer.tsx': ['Programok és események', 'Adatkezelési tájékoztató'],
-    'src/app/tamogatas/page.tsx': ['Támogatási központ'],
+    'src/app/[locale]/tamogatas/page.tsx': ['Támogatási központ'],
   };
   for (const [f, words] of Object.entries(expect)) for (const w of words) assert.ok(read(f).includes(w), `${f}: ${w}`);
   for (const old of ['Kiemelt Események', 'Nyári Táborok', 'Programjaink és Rendezvényeink', 'A Spektrum Fő Területei', 'Gyakori Kérdések']) {
@@ -51,7 +51,7 @@ test('headings and labels in sentence case (a sample of the fixed ones)', () => 
 });
 
 test('the heading font falls back to a metric-matched serif, not Arial', () => {
-  const layout = read('src/app/layout.tsx');
+  const layout = read('src/app/fonts.ts'); // the fonts moved out of the layout with the i18n split
   assert.match(layout, /display: "optional"/); // the LCP decision stays
   assert.match(layout, /adjustFontFallback: "Times New Roman"/);
 });

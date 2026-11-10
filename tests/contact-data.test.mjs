@@ -24,7 +24,7 @@ test('the bank account is named Erste Bank wherever it is shown, and the number 
   assert.equal(FOUNDATION.bankAccount, '11600006-00000000-75701521');
   assert.equal(FOUNDATION.bankName, 'Erste Bank');
   // the rendered pages: every place that shows the account also names the bank
-  for (const p of ['app/page.tsx', 'app/tamogatas/page.tsx', 'components/layout/Footer.tsx']) {
+  for (const p of ['app/[locale]/page.tsx', 'app/[locale]/tamogatas/page.tsx', 'components/layout/Footer.tsx']) {
     const shown = visibleText(await renderHtml(p));
     assert.ok(shown.includes('11600006-00000000-75701521'), `${p} shows the account`);
     assert.ok(shown.includes('Bankszámlaszám (Erste Bank)'), `${p} shows the account without Erste Bank`);
@@ -32,7 +32,7 @@ test('the bank account is named Erste Bank wherever it is shown, and the number 
 });
 
 test('footer, contact page and JSON-LD carry the contact phone', async () => {
-  for (const p of ['components/layout/Footer.tsx', 'app/kapcsolat/page.tsx']) {
+  for (const p of ['components/layout/Footer.tsx', 'app/[locale]/kapcsolat/page.tsx']) {
     const html = await renderHtml(p);
     assert.ok(visibleText(html).includes('Rumi Edina') && html.includes('href="tel:+36209698715"'), p);
   }

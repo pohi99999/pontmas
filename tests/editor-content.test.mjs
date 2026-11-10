@@ -11,7 +11,7 @@ import { src } from './helpers/load.mjs';
 import { MAIN_NEWS, MAIN_PROGRAMS } from './fixtures/main-items.mjs';
 import { htmlText, imageFor, inOrder } from './helpers/fixtures.mjs';
 
-const { renderToStaticMarkup } = await import('react-dom/server');
+import { renderElement as renderToStaticMarkup, renderHtml } from './helpers/render.mjs';
 const { createElement: h } = await import('react');
 const seed = await src('content/seed.ts');
 const types = await src('content/types.ts');
@@ -28,8 +28,7 @@ async function renderPage(p) {
   delete process.env.BLOB_READ_WRITE_TOKEN; // no store configured: the page must show the seed
   delete process.env.BLOB_CONTENT_READ_WRITE_TOKEN;
   try {
-    const mod = await src(p);
-    return renderToStaticMarkup(await mod.default());
+    return await renderHtml(p);
   } finally {
     if (saved[0] !== undefined) process.env.BLOB_READ_WRITE_TOKEN = saved[0];
     if (saved[1] !== undefined) process.env.BLOB_CONTENT_READ_WRITE_TOKEN = saved[1];
@@ -49,7 +48,7 @@ test('seed: the items of main, verbatim, plus only id, publishedAt and hidden', 
 });
 
 test('/hirek with no store renders exactly the item texts of main', async () => {
-  const html = await renderPage('app/hirek/page.tsx');
+  const html = await renderPage('app/[locale]/hirek/page.tsx');
   const text = htmlText(html);
   const [first, ...rest] = MAIN_NEWS;
   inOrder(assert, text, [first.date, first.title, first.location, first.speaker, first.description, ...first.highlights, first.actionText]);
@@ -61,7 +60,7 @@ test('/hirek with no store renders exactly the item texts of main', async () => 
 });
 
 test('/programok with no store renders exactly the item texts of main', async () => {
-  const html = await renderPage('app/programok/page.tsx');
+  const html = await renderPage('app/[locale]/programok/page.tsx');
   const text = htmlText(html);
   inOrder(assert, text, MAIN_PROGRAMS.flatMap((p) => [p.badge, p.title, p.date, p.location, p.description, ...p.highlights]));
   assert.equal((html.match(/Érdeklődés és részletek/g) ?? []).length, MAIN_PROGRAMS.length);
@@ -145,8 +144,8 @@ test('stored content with an undeclared image: the site keeps the stored content
 });
 
 test('the pages read through the store with the cache tag; /programok is a server page with a client filter', () => {
-  const hirek = fs.readFileSync(path.resolve('src/app/hirek/page.tsx'), 'utf8');
-  const programok = fs.readFileSync(path.resolve('src/app/programok/page.tsx'), 'utf8');
+  const hirek = fs.readFileSync(path.resolve('src/app/[locale]/hirek/page.tsx'), 'utf8');
+  const programok = fs.readFileSync(path.resolve('src/app/[locale]/programok/page.tsx'), 'utf8');
   for (const s of [hirek, programok]) assert.ok(s.includes('await getPublicContent()'));
   assert.ok(!programok.includes('"use client"') && !programok.includes("'use client'"));
   assert.ok(fs.readFileSync(path.resolve('src/components/content/ProgramFilter.tsx'), 'utf8').startsWith('"use client"'));

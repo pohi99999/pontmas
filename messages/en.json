@@ -1,0 +1,13 @@
+{
+  "Meta": {
+    "title": "PontMás Alapítvány | Vas Megyei Autista Gyermekekért",
+    "description": "A PontMás Alapítvány célja a Vas vármegyében élő autista gyermekek és családjaik támogatása. Csatlakozzon közösségünkhöz, támogassa munkánkat!",
+    "ogDescription": "A PontMás Alapítvány célja a Vas vármegyében élő autista gyermekek és családjaik támogatása.",
+    "siteName": "PontMás Alapítvány"
+  },
+  "NotFound": {
+    "title": "Az oldal nem található",
+    "text": "Ezt az oldalt nem találjuk. Lehet, hogy a cím elírás, vagy az oldal már nem létezik.",
+    "home": "Vissza a kezdőlapra"
+  }
+}

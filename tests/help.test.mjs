@@ -4,8 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 test('Help and services page (/segitseg) exists and contains all authentic PontMas services', () => {
-  const pagePath = path.resolve('src/app/segitseg/page.tsx');
-  assert.ok(fs.existsSync(pagePath), 'src/app/segitseg/page.tsx must exist');
+  const pagePath = path.resolve('src/app/[locale]/segitseg/page.tsx');
+  assert.ok(fs.existsSync(pagePath), 'src/app/[locale]/segitseg/page.tsx must exist');
 
   const pageContent = fs.readFileSync(pagePath, 'utf8');
 

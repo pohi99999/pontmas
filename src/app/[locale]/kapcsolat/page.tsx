@@ -3,8 +3,12 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ContactForm from '@/components/forms/ContactForm';
 import { FOUNDATION, ADDRESS_LINE, PHONE_HREF } from '@/lib/foundation';
+import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
-export default function KapcsolatPage() {
+export const generateMetadata = alternatesFor('/kapcsolat');
+
+export default async function KapcsolatPage({ params }: PageParams) {
+  await pageLocale(params);
   return (
     <div className="pb-20">
       

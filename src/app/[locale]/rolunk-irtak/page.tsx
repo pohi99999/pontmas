@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from '@/i18n/navigation';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import { Newspaper, Quote, Tv, HeartHandshake, Calendar, Sparkles } from "lucide-react";
 import CtaBand from '@/components/ui/CtaBand';
+import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
-export const metadata: Metadata = {
+const metadataBase: Metadata = {
   title: "Rólunk írták és sajtómegjelenések | PontMás Alapítvány",
   description: "Cikkek, tudósítások, interjúk és köszönetnyilvánítások a PontMás Alapítvány tevékenységéről és a Vas vármegyei autizmus közösségről.",
   openGraph: {
@@ -16,7 +17,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RolunkIrtakPage() {
+export const generateMetadata = alternatesFor('/rolunk-irtak', metadataBase);
+
+export default async function RolunkIrtakPage({ params }: PageParams) {
+  await pageLocale(params);
   const articles = [
     {
       type: "sajto",

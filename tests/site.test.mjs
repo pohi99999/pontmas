@@ -15,7 +15,8 @@ function pagesOnDisk(dir = path.resolve('src/app'), base = '') {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
     if (!e.isDirectory()) return e.name === 'page.tsx' ? [base || '/'] : [];
     if (e.name === 'api' || e.name === 'szerkeszto' || e.name.startsWith('_')) return [];
-    return pagesOnDisk(path.join(dir, e.name), `${base}/${e.name}`);
+    // the language segment is not part of the address: /[locale]/autizmus is served as /autizmus
+    return pagesOnDisk(path.join(dir, e.name), e.name === '[locale]' ? base : `${base}/${e.name}`);
   });
 }
 

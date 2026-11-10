@@ -1,10 +1,12 @@
 // Module hooks for the editor tests: lets node:test load the site's .ts/.tsx modules the way Next
 // does (the "@/" alias, imports without an extension, JSX), by transpiling them with the
-// TypeScript compiler already in devDependencies. Six modules are replaced:
+// TypeScript compiler already in devDependencies. These modules are replaced:
 // - next/cache: a pass-through (unstable_cache needs a running Next server);
 // - next/link, next/image: the real component, unwrapped from its CommonJS default export;
 // - next/navigation: the hooks answer as on "/" with no query string (stub-next-navigation.mjs);
 // - next/server: the real module, unwrapped from its CommonJS export (stub-next-server.mjs);
+// - next-intl/server: the language and messages without a request (stub-next-intl-server.mjs);
+// - next/font/*: a class name and a CSS variable (stub-next-font.mjs); a .css import: an empty module;
 // - @vercel/blob: a module that throws when loaded, so no test can reach the real service.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,6 +22,9 @@ const STUBS = {
   'next/image': here('stub-next-image.mjs'),
   'next/navigation': here('stub-next-navigation.mjs'),
   'next/server': here('stub-next-server.mjs'),
+  'next-intl/server': here('stub-next-intl-server.mjs'),
+  'next/font/google': here('stub-next-font.mjs'),
+  'next/font/local': here('stub-next-font.mjs'),
   '@vercel/blob': here('stub-vercel-blob.mjs'),
 };
 const EXTS = ['', '.ts', '.tsx', '/index.ts', '/index.tsx'];
@@ -34,6 +39,8 @@ function findFile(base) {
 
 export async function resolve(specifier, context, next) {
   if (STUBS[specifier]) return { url: STUBS[specifier], shortCircuit: true };
+  // a stylesheet import (the page frame imports globals.css) is an empty module in a test
+  if (specifier.endsWith('.css')) return { url: 'data:text/javascript,export default {}', shortCircuit: true };
   let base = null;
   if (specifier.startsWith('@/')) base = path.join(SRC, specifier.slice(2));
   else if ((specifier.startsWith('./') || specifier.startsWith('../')) && context.parentURL?.startsWith('file:')) {

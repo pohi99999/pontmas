@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { Heart, Phone, MapPin, ExternalLink, ShieldCheck } from 'lucide-react';
 import { FOUNDATION, ADDRESS_LINE, PHONE_HREF } from '@/lib/foundation';

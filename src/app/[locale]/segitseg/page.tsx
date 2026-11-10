@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from '@/i18n/navigation';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from "@/components/ui/SectionHeader";
 import FeatureCard from "@/components/ui/FeatureCard";
@@ -9,8 +9,9 @@ import Button from "@/components/ui/Button";
 import { Users, Smartphone, BookOpen, School, CheckCircle2, ArrowRight, HeartHandshake } from "lucide-react";
 import CtaBand from '@/components/ui/CtaBand';
 import { FOUNDATION } from '@/lib/foundation';
+import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
-export const metadata: Metadata = {
+const metadataBase: Metadata = {
   title: "Amiben segíteni tudunk | PontMás Alapítvány",
   description: "Mentorszülői tanácsadás, DATA applikáció támogatás, szakmai könyvtár kölcsönzés és intézményi eligazítás Vas vármegyében.",
   openGraph: {
@@ -20,7 +21,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HelpPage() {
+export const generateMetadata = alternatesFor('/segitseg', metadataBase);
+
+export default async function HelpPage({ params }: PageParams) {
+  await pageLocale(params);
   const services = [
     {
       icon: Users,

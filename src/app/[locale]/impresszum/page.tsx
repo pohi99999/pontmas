@@ -1,20 +1,24 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from '@/i18n/navigation';
 import PageHeader from '@/components/ui/PageHeader';
 import { DraftBanner, DraftSources, Review, Section } from '@/components/legal/LegalParts';
 import { FOUNDATION } from '@/lib/foundation';
 import { LEGAL_DRAFT } from '@/lib/legal';
+import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 // Impresszum, DRAFT (src/lib/legal.ts): the service provider's data a website has to show
 // (2001. évi CVIII. törvény 4. §, to be confirmed in the legal review).
 
-export const metadata: Metadata = {
+const metadataBase: Metadata = {
   title: "Impresszum | PontMás Alapítvány",
   description: "A pontmas.hu weboldal üzemeltetőjének és tárhelyszolgáltatójának adatai.",
   robots: LEGAL_DRAFT ? { index: false, follow: false } : undefined,
 };
 
-export default function ImpresszumPage() {
+export const generateMetadata = alternatesFor('/impresszum', metadataBase);
+
+export default async function ImpresszumPage({ params }: PageParams) {
+  await pageLocale(params);
   return (
     <>
       <PageHeader badge="Jogi adatok" title="Impresszum" />

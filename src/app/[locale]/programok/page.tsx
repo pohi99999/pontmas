@@ -7,12 +7,16 @@ import Gallery from '@/components/content/Gallery';
 import { getPublicContent } from '@/content/publicContent';
 import { visiblePrograms } from '@/content/public';
 import CtaBand from '@/components/ui/CtaBand';
+import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 // A server page now, so it can read the editor's store (or the seed); only the category filter
 // runs in the browser (ProgramFilter).
 export const revalidate = 3600;
 
-export default async function ProgramokPage() {
+export const generateMetadata = alternatesFor('/programok');
+
+export default async function ProgramokPage({ params }: PageParams) {
+  await pageLocale(params);
   const { content } = await getPublicContent();
   const programok = visiblePrograms(content.programs);
   const tamogatottIntezmenyek = [

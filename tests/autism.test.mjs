@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 test('Autism page includes SectionHeader, spectrum traits, facts vs myths, and parent guide', () => {
-  const autismPath = path.resolve('src/app/autizmus/page.tsx');
+  const autismPath = path.resolve('src/app/[locale]/autizmus/page.tsx');
   const autismContent = fs.readFileSync(autismPath, 'utf8');
 
   assert.ok(autismContent.includes('SectionHeader'), 'Autism page must use SectionHeader');

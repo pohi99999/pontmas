@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 test('Programs page includes SectionHeader, event list, institutional support, and filter tabs', () => {
-  const programsPath = path.resolve('src/app/programok/page.tsx');
+  const programsPath = path.resolve('src/app/[locale]/programok/page.tsx');
   const programsContent = fs.readFileSync(programsPath, 'utf8');
 
   assert.ok(programsContent.includes('SectionHeader'), 'Programs page must use SectionHeader');

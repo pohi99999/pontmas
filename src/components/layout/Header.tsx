@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Eye, EyeOff, Heart, SlidersHorizontal } from 'lucide-react';
 import { useSensory } from '@/context/SensoryContext';
-import { ThemeToggleButton, ThemeToggleRow } from '@/components/ui/ThemeToggle';
+import { ThemeToggleButton, ThemeToggleIcon, ThemeToggleRow } from '@/components/ui/ThemeToggle';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -81,7 +81,7 @@ export default function Header() {
         {/* Brand Logo */}
         <Link 
           href="/" 
-          className="flex items-center gap-1.5 min-[340px]:gap-2 min-[420px]:gap-3 group focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none rounded-lg p-1"
+          className="flex items-center gap-1.5 min-[360px]:gap-2 min-[440px]:gap-3 group focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none rounded-lg p-1"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           {/* The foundation's own mark and wordmark (SVG cut-outs of the original vector logo, /public/brand).
@@ -93,7 +93,7 @@ export default function Header() {
             height={398}
             sizes="45px"
             preload
-            className="h-9 min-[340px]:h-10 min-[420px]:h-12 w-auto group-hover:scale-105 transition-transform dark:hidden"
+            className="h-8 min-[360px]:h-10 min-[440px]:h-12 w-auto group-hover:scale-105 transition-transform dark:hidden"
           />
           {/* Dark theme: the same artwork with light ink (review 2026-11-10) */}
           <Image
@@ -102,7 +102,7 @@ export default function Header() {
             width={369}
             height={398}
             sizes="45px"
-            className="hidden h-9 min-[340px]:h-10 min-[420px]:h-12 w-auto group-hover:scale-105 transition-transform dark:block"
+            className="hidden h-8 min-[360px]:h-10 min-[440px]:h-12 w-auto group-hover:scale-105 transition-transform dark:block"
           />
           <div className="flex flex-col gap-1">
             <Image
@@ -112,7 +112,7 @@ export default function Header() {
               height={132}
               sizes="140px"
               preload
-              className="pm-halo h-auto w-[112px] min-[340px]:w-[120px] min-[420px]:w-[140px] dark:hidden"
+              className="pm-halo h-auto w-[100px] min-[360px]:w-[120px] min-[440px]:w-[140px] dark:hidden"
             />
             <Image
               src="/brand/pontmas-felirat-sotet.svg"
@@ -120,9 +120,9 @@ export default function Header() {
               width={599}
               height={132}
               sizes="140px"
-              className="hidden h-auto w-[112px] min-[340px]:w-[120px] min-[420px]:w-[140px] dark:block"
+              className="hidden h-auto w-[100px] min-[360px]:w-[120px] min-[440px]:w-[140px] dark:block"
             />
-            <span className="text-[9px] min-[340px]:text-[10px] min-[420px]:text-[11px] font-medium text-slate-500 tracking-tight min-[340px]:tracking-normal min-[420px]:tracking-wide uppercase whitespace-nowrap">
+            <span className="hidden min-[340px]:block text-[9px] min-[360px]:text-[10px] min-[440px]:text-[11px] font-medium text-slate-500 tracking-tight min-[360px]:tracking-normal min-[440px]:tracking-wide uppercase whitespace-nowrap">
               Vas Megyei Alapítvány
             </span>
           </div>
@@ -163,8 +163,10 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Mobile controls: Sensory Toggle + Hamburger */}
-        <div className="flex items-center gap-2 min-[1360px]:hidden">
+        {/* Mobile controls: Sensory Toggle + theme switch + Hamburger. The theme switch is right next to the
+            menu button (Péter 14743, 14746: in the menu it was hard to find). Room for it: a 4 px gap, and
+            below 480 px the soft-mode button keeps its label but not its eye icon, below 360 px the logo is a step smaller, below 340 px it shows without the tagline, and its full size starts at 440 px. */}
+        <div className="flex items-center gap-1 min-[1360px]:hidden">
           <button
             onClick={toggleSensoryMode}
             type="button"
@@ -176,10 +178,12 @@ export default function Header() {
                 : 'bg-transparent text-blue-700 border-blue-600/60'
             }`}
           >
-            {isSensoryFriendly ? <EyeOff size={17} aria-hidden="true" /> : <Eye size={17} aria-hidden="true" />}
+            {isSensoryFriendly ? <EyeOff size={17} aria-hidden="true" className="hidden min-[480px]:block" /> : <Eye size={17} aria-hidden="true" className="hidden min-[480px]:block" />}
             {/* below 400 px the label goes on two lines, so the button fits next to the logo (review 2026-11-10, Ellenőr: 320-360 px) */}
             <span className="leading-[1.1] text-left">Lágy <br className="min-[400px]:hidden" />mód</span>
           </button>
+
+          <ThemeToggleIcon />
 
           <button
             ref={menuButtonRef}

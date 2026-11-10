@@ -26,7 +26,7 @@ export default function ActionCard({
     <div
       className={`rounded-2xl p-8 flex flex-col h-full transition-all relative ${
         highlight
-          ? 'bg-gradient-to-br from-blue-700 to-blue-900 text-white shadow-lg shadow-blue-900/20'
+          ? 'bg-gradient-to-br from-blue-700 to-blue-900 text-white pm-sotet shadow-lg shadow-blue-900/20'
           : 'bg-white border border-slate-200 text-slate-900 shadow-sm hover:shadow-md'
       } ${className}`}
     >

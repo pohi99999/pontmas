@@ -115,7 +115,7 @@ export default function Home() {
       </section>
 
       {/* 4. Donation: a full-width deep blue band, the tax and bank numbers in one row */}
-      <section className="bg-blue-950 text-white">
+      <section className="bg-blue-950 text-white pm-sotet">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-4xl">
             <p className="eyebrow mb-5" style={{ color: '#c9d5ec' }}>

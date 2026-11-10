@@ -4,6 +4,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import CtaBand from '@/components/ui/CtaBand';
 import { CommunityGallery } from '@/components/content/Gallery';
+import { FOUNDATION, ADDRESS_LINE } from '@/lib/foundation';
 
 export default function RolunkPage() {
   const alapelvek = [
@@ -19,7 +20,7 @@ export default function RolunkPage() {
     },
     {
       icon: <Award className="text-blue-600" size={26} />,
-      title: "Szakmai hitelesség & AOSZ partnerség",
+      title: "Szakmai hitelesség és AOSZ-partnerség",
       desc: "Autizmus-specifikus gyógypedagógusok, szakasszisztensek és érintett szülők közös munkája garantálja a legfrissebb módszertani színvonalat."
     },
     {
@@ -87,7 +88,7 @@ export default function RolunkPage() {
                 <Building2 size={24} />
               </div>
               <div>
-                <h3 className="font-bold text-lg text-white">Szervezeti Hitelesség</h3>
+                <h3 className="font-bold text-lg text-white">Szervezeti hitelesség</h3>
                 <span className="text-xs text-slate-400">PontMás Alapítvány</span>
               </div>
             </div>
@@ -99,7 +100,7 @@ export default function RolunkPage() {
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-slate-300"><strong className="text-white">Adószám:</strong> 18654996-1-18</span>
+                <span className="text-slate-300"><strong className="text-white">Adószám:</strong> {FOUNDATION.taxNumber}</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
@@ -107,7 +108,7 @@ export default function RolunkPage() {
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-slate-300"><strong className="text-white">Székhely:</strong> 9700 Szombathely, Váci M. utca 12. 3./15.</span>
+                <span className="text-slate-300"><strong className="text-white">Székhely:</strong> {ADDRESS_LINE}</span>
               </li>
             </ul>
 

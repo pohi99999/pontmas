@@ -243,7 +243,7 @@ export default function Header() {
                 className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-sm text-center transition-colors"
               >
                 <Heart size={18} />
-                <span>Támogatás és Adó 1%</span>
+                <span>Támogatás és adó 1%</span>
               </Link>
             </div>
           </nav>

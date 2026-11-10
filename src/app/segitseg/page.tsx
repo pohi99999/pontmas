@@ -24,8 +24,8 @@ export default function HelpPage() {
   const services = [
     {
       icon: Users,
-      badge: "Szülői Közösség",
-      title: "Mentorszülői Tanácsadás",
+      badge: "Szülői közösség",
+      title: "Mentorszülői tanácsadás",
       description: "Kérdezzen olyan édesanyától vagy édesapától, aki szintén autizmussal élő gyermeket nevel! Az AOSZ által felkészített mentorszülők személyes tapasztalattal és empátiával segítik a frissen diagnosztizált vagy nehézségekkel küzdő családokat.",
       bullets: [
         "Személyes és telefonos sorstársi beszélgetés",
@@ -37,8 +37,8 @@ export default function HelpPage() {
     },
     {
       icon: Smartphone,
-      badge: "Digitális Segítség",
-      title: "DATA Applikáció Támogatás",
+      badge: "Digitális segítség",
+      title: "DATA applikáció támogatás",
       description: "A Digitális Autonómia Támogató Alkalmazás (DATA) segít az autista személyeknek a mindennapi napirend, folyamatábrák és vizuális támogatás kialakításában. Irodánkban segítünk a letöltésben és a testreszabásban.",
       bullets: [
         "Alkalmazás telepítése okostelefonra és tabletre",
@@ -63,8 +63,8 @@ export default function HelpPage() {
     },
     {
       icon: School,
-      badge: "Oktatási Kalauz",
-      title: "Intézményi & Integrációs Eligazítás",
+      badge: "Oktatási kalauz",
+      title: "Intézményi és integrációs eligazítás",
       description: "Részletes felvilágosítást nyújtunk a Vas vármegyei autizmus-ellátásról, a szegregáltan és integráltan nevelő óvodákról, általános és középiskolákról, valamint fejlesztő központokról.",
       bullets: [
         "Óvodai és iskolai beilleszkedési tanácsadás",
@@ -77,7 +77,7 @@ export default function HelpPage() {
     {
       icon: HeartHandshake,
       badge: "Közösség",
-      title: "Szülőklub & Élménynapok",
+      title: "Szülőklub és élménynapok",
       description: "Rendszeres szülőklub alkalmak szakemberek (gyógypedagógusok, pszichológusok) bevonásával, valamint éves Családi Nap a Vasi Skanzenben és Kék Séta az elfogadásért.",
       bullets: [
         "Kötetlen szülői tapasztalatcsere és szakmai előadások",
@@ -93,7 +93,7 @@ export default function HelpPage() {
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Hero szekció */}
       <PageHeader
-        badge="Szolgáltatásaink & Segítségnyújtás"
+        badge="Szolgáltatásaink és segítségnyújtás"
         title="Nem kell egyedül végigmennie ezen az úton."
         subtitle="A PontMás Alapítvány 2015-ös megalakulása óta azért dolgozik, hogy a Vas vármegyei autizmussal élő gyermekek és családtagjaik minden élethelyzetben valódi, szakszerű és emberközeli támogatást kapjanak."
       >
@@ -170,7 +170,7 @@ export default function HelpPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold">1</div>
-              <h3 className="font-bold text-slate-900 text-lg">Gyermekorvos & Védőnő</h3>
+              <h3 className="font-bold text-slate-900 text-lg">Gyermekorvos és védőnő</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
                 Első lépésként jelezze észrevételeit a házi gyermekorvosnak vagy a védőnőnek, kérjen fejlődésneurológiai vagy gyermekpszichiátriai beutalót.
               </p>
@@ -178,7 +178,7 @@ export default function HelpPage() {
 
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold">2</div>
-              <h3 className="font-bold text-slate-900 text-lg">Szakszolgálat & Diagnosztika</h3>
+              <h3 className="font-bold text-slate-900 text-lg">Szakszolgálat és diagnosztika</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
                 A Vas Vármegyei Pedagógiai Szakszolgálat Megyei Szakértői Bizottsága végzi a pedagógiai diagnosztikát és javaslatot tesz a fejlesztésekre.
               </p>
@@ -186,7 +186,7 @@ export default function HelpPage() {
 
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold">3</div>
-              <h3 className="font-bold text-slate-900 text-lg">PontMás Alapítvány & AOSZ</h3>
+              <h3 className="font-bold text-slate-900 text-lg">PontMás Alapítvány és AOSZ</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
                 Hívjon minket, vagy vegyen részt Szülőklubunkon: sorstársi közösséget, tanácsokat és gyakorlati segítséget kap.
               </p>

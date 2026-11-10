@@ -10,9 +10,9 @@ type Category = 'all' | ProgramItem['category'];
 
 const CATEGORIES: { id: Category; label: string }[] = [
   { id: 'all', label: 'Összes program' },
-  { id: 'event', label: 'Kiemelt Események' },
-  { id: 'camp', label: 'Nyári Táborok' },
-  { id: 'family', label: 'Szülőklub & Családok' },
+  { id: 'event', label: 'Kiemelt események' },
+  { id: 'camp', label: 'Nyári táborok' },
+  { id: 'family', label: 'Szülőklub és családok' },
 ];
 
 export default function ProgramFilter({ programs }: { programs: ProgramItem[] }) {

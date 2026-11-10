@@ -82,6 +82,14 @@
   color-scheme: light;
 }
 
+/* The dark wordmark keeps a 1 px white edge in the light theme. Measured 2026-11-10 (Ellenőr): Chrome's
+   forced darkening on a light device setting darkens the page but not this image (color-scheme
+   "only light" did not stop it either), and the name vanished; with the edge it stays readable as an
+   outline. On the light ground the edge does not show. */
+html:not(.dark) .pm-halo {
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
+}
+
 :root.dark {
   color-scheme: dark;
   --background: #14161c;

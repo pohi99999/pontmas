@@ -123,7 +123,7 @@ try {
   const browser = await chromium.launch({ executablePath: CHROME, headless: true });
   // Both themes (review 2026-11-10): the device setting picks the theme, so a dark colour scheme measures
   // the dark theme; the page must really be dark there (class on <html>), not just pass on a light page.
-  for (const scheme of ['light', 'dark']) for (const width of [1440, 1366, 1280, 1180, 1024, 768, 375]) {
+  for (const scheme of ['light', 'dark']) for (const width of [1440, 1366, 1280, 1180, 1024, 768, 375, 360, 320]) {
     const page = await browser.newPage({ viewport: { width, height: 900 }, colorScheme: scheme });
     for (const route of ROUTES) {
       await page.goto(BASE + route, { waitUntil: 'networkidle' });
@@ -225,5 +225,5 @@ try {
 } finally {
   stop();
 }
-console.log(failures ? `${failures} contrast/heading/width/menu problem(s)` : `contrast, headings, width, one-line header and menu keyboard OK on ${ROUTES.length} routes at 1440, 1366, 1280, 1180, 1024, 768 and 375 px`);
+console.log(failures ? `${failures} contrast/heading/width/menu problem(s)` : `contrast, headings, width, one-line header and menu keyboard OK on ${ROUTES.length} routes at 1440, 1366, 1280, 1180, 1024, 768, 375, 360 and 320 px`);
 process.exit(failures ? 1 : 0);

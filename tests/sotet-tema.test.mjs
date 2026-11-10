@@ -63,8 +63,17 @@ test('the logo has a light-ink version for the dark theme, the sphere and ribbon
 test('the soft mode button has its label at every width and is never a black button', () => {
   const header = read('src/components/layout/Header.tsx');
   assert.doesNotMatch(header, /sr-only 2xl:not-sr-only">Lágy mód/);
-  assert.equal((header.match(/<span>(\{isSensoryFriendly \? 'Lágy mód: be' : 'Lágy mód'\}|Lágy mód)<\/span>/g) || []).length, 2);
+  assert.equal((header.match(/<span>\{isSensoryFriendly \? 'Lágy mód: be' : 'Lágy mód'\}<\/span>/g) || []).length, 1);
+  // the small-screen button: the label is always there, on two lines below 400 px (Ellenőr, 320-360 px)
+  assert.equal((header.match(/<span className="leading-\[1\.1\] text-left">Lágy <br className="min-\[400px\]:hidden" \/>mód<\/span>/g) || []).length, 1);
   assert.doesNotMatch(header, /isSensoryFriendly\s*\?\s*'bg-slate-800/);
   assert.match(header, /<ThemeToggleButton \/>/);
   assert.match(header, /<ThemeToggleRow \/>/);
+});
+
+test('the light wordmark keeps a white edge in the light theme only (forced darkening, Ellenőr 11-10)', () => {
+  const header = read('src/components/layout/Header.tsx');
+  const css = read('src/app/globals.css');
+  assert.match(header, /src="\/brand\/pontmas-felirat\.svg"[\s\S]{0,200}className="pm-halo [^"]*dark:hidden"/);
+  assert.match(css, /html:not\(\.dark\) \.pm-halo \{\s*filter: drop-shadow\(0 0 1px #fff\) drop-shadow\(0 0 1px #fff\);/);
 });

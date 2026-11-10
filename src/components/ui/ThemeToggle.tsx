@@ -2,6 +2,7 @@
 
 import { useEffect, useSyncExternalStore } from 'react';
 import { Moon, Sun } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { THEME_KEY, resolveTheme } from '@/lib/theme';
 
 // The <html> class is the source of truth (THEME_SCRIPT sets it before the first paint); this component
@@ -42,13 +43,14 @@ export function useTheme() {
 /** Icon button for the desktop header. */
 export function ThemeToggleButton() {
   const { dark, toggle } = useTheme();
+  const t = useTranslations('Theme');
   return (
     <button
       type="button"
       onClick={toggle}
       aria-pressed={dark}
-      aria-label="Sötét mód"
-      title={dark ? 'Sötét mód: be (kattintson a világos módhoz)' : 'Sötét mód bekapcsolása'}
+      aria-label={t('label')}
+      title={dark ? t('onTitle') : t('offTitle')}
       className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
     >
       {dark ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
@@ -59,6 +61,7 @@ export function ThemeToggleButton() {
 /** A full-width row for the phone menu. */
 export function ThemeToggleRow() {
   const { dark, toggle } = useTheme();
+  const t = useTranslations('Theme');
   return (
     <button
       type="button"
@@ -67,8 +70,8 @@ export function ThemeToggleRow() {
       className="flex w-full items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors"
     >
       {dark ? <Sun size={20} aria-hidden="true" /> : <Moon size={20} aria-hidden="true" />}
-      <span>Sötét mód</span>
-      <span className="ml-auto text-sm text-slate-500">{dark ? 'be' : 'ki'}</span>
+      <span>{t('label')}</span>
+      <span className="ml-auto text-sm text-slate-500">{dark ? t('on') : t('off')}</span>
     </button>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { buttonClasses, type ButtonSize, type ButtonVariant } from './buttonClasses';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

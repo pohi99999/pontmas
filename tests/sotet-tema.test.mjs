@@ -5,6 +5,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { THEME_KEY, THEME_SCRIPT, resolveTheme } from '../src/lib/theme.ts';
+import { renderHtml } from './helpers/render.mjs';
+import { src } from './helpers/load.mjs';
+
+const HU = JSON.parse(fs.readFileSync('messages/hu.json', 'utf8'));
 
 const read = (f) => fs.readFileSync(f, 'utf8');
 
@@ -34,16 +38,23 @@ test('the inline script sets the class and the colour scheme before the first pa
   assert.deepEqual(run('dark', false), { dark: true, scheme: 'dark' });
 });
 
-test('the page declares its own dark theme, so browsers do not darken it on their own', () => {
-  const layout = read('src/app/layout.tsx');
-  assert.match(layout, /<meta name="color-scheme" content="light dark" \/>/);
-  assert.match(layout, /dangerouslySetInnerHTML=\{\{ __html: THEME_SCRIPT \}\}/);
+test('the page declares its own dark theme, so browsers do not darken it on their own', async () => {
+  // Since the pages moved under [locale] (card c017f163) the frame is SiteShell, measured rendered: the theme
+  // script is the body's first element (parser-blocking, so it runs before the first paint), and every root
+  // layout exports colorScheme, which Next renders as <meta name="color-scheme" content="light dark">.
+  const html = await renderHtml('components/layout/SiteShell.tsx', { lang: 'hu', messages: HU, children: 'x' });
+  const body = html.slice(html.indexOf('<body'));
+  assert.ok(body.slice(body.indexOf('>') + 1).startsWith(`<script>${THEME_SCRIPT}</script>`), 'theme script first in <body>');
+  for (const f of ['app/[locale]/layout.tsx', 'app/szerkeszto/layout.tsx', 'app/global-not-found.tsx']) {
+    assert.equal((await src(f)).viewport?.colorScheme, 'light dark', f);
+  }
+  assert.match(read('src/app/global-not-found.tsx'), /__html: THEME_SCRIPT/);
   const css = read('src/app/globals.css');
   assert.match(css, /@custom-variant dark \(&:where\(\.dark, \.dark \*\)\);/);
   assert.match(css, /:root\.dark \{\s*color-scheme: dark;/);
   // the parts that are dark in the light theme too keep their palette
   assert.match(css, /\.dark \.pm-sotet \{/);
-  for (const f of ['src/components/layout/Footer.tsx', 'src/app/page.tsx', 'src/app/tamogatas/page.tsx']) assert.match(read(f), /pm-sotet/, f);
+  for (const f of ['src/components/layout/Footer.tsx', 'src/app/[locale]/page.tsx', 'src/app/[locale]/tamogatas/page.tsx']) assert.match(read(f), /pm-sotet/, f);
 });
 
 test('the logo has a light-ink version for the dark theme, the sphere and ribbon unchanged', () => {
@@ -60,12 +71,21 @@ test('the logo has a light-ink version for the dark theme, the sphere and ribbon
   assert.match(read('src/components/brand/PontJel.tsx'), /fill="currentColor"/);
 });
 
-test('the soft mode button has its label at every width and is never a black button', () => {
+test('the soft mode button has its label at every width and is never a black button', async () => {
   const header = read('src/components/layout/Header.tsx');
-  assert.doesNotMatch(header, /sr-only 2xl:not-sr-only">Lágy mód/);
-  assert.equal((header.match(/<span>\{isSensoryFriendly \? 'Lágy mód: be' : 'Lágy mód'\}<\/span>/g) || []).length, 1);
+  // measured on the rendered header (the texts come from messages/<locale>.json since card c017f163)
+  const html = await renderHtml('components/layout/Header.tsx');
+  // the desktop label is visible text, not screen-reader-only
+  assert.ok(html.includes('<span>Lágy mód</span>'), 'desktop label');
+  assert.doesNotMatch(html, /sr-only[^"]*">Lágy mód/);
+  assert.equal(HU.Header.sensoryOn, 'Lágy mód: be');
   // the small-screen button: the label is always there, on two lines below 400 px (Ellenőr, 320-360 px)
-  assert.equal((header.match(/<span className="leading-\[1\.1\] text-left">Lágy <br className="min-\[400px\]:hidden" \/>mód<\/span>/g) || []).length, 1);
+  assert.equal((html.match(/<span class="leading-\[1\.1\] text-left">Lágy <br class="min-\[400px\]:hidden"\/>mód<\/span>/g) || []).length, 1);
+  // ... and in every language the label has that one line break
+  for (const l of ['hu', 'en', 'de']) {
+    const short = JSON.parse(fs.readFileSync(`messages/${l}.json`, 'utf8')).Header.sensoryShort;
+    assert.equal((short.match(/<br><\/br>/g) || []).length, 1, l);
+  }
   assert.doesNotMatch(header, /isSensoryFriendly\s*\?\s*'bg-slate-800/);
   assert.match(header, /<ThemeToggleButton \/>/);
   assert.match(header, /<ThemeToggleRow \/>/);

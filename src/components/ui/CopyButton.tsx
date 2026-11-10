@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export interface CopyButtonProps {
   textToCopy: string;
@@ -16,6 +17,7 @@ export default function CopyButton({
   sublabel,
   className = '',
 }: CopyButtonProps) {
+  const t = useTranslations('Common');
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -33,7 +35,7 @@ export default function CopyButton({
       onClick={handleCopy}
       type="button"
       className={`w-full text-left bg-slate-50 hover:bg-slate-100/90 active:bg-slate-200/80 p-4 rounded-xl border border-slate-200 hover:border-blue-400 group transition-colors @container block cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${className}`}
-      title="Kattintson a másoláshoz"
+      title={t('copyTitle')}
     >
       {/* The number scales with the card to stay on one line, with a readable minimum; in a narrow card the copy chip goes under it */}
       <div className="flex flex-col items-start gap-2 @[26rem]:flex-row @[26rem]:items-center @[26rem]:justify-between">
@@ -63,12 +65,12 @@ export default function CopyButton({
         {copied ? (
           <>
             <Check size={16} className="text-emerald-600" />
-            <span>Másolva!</span>
+            <span>{t('copied')}</span>
           </>
         ) : (
           <>
             <Copy size={16} />
-            <span>Másolás</span>
+            <span>{t('copy')}</span>
           </>
         )}
       </div>

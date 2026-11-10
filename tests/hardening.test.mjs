@@ -39,7 +39,7 @@ test('Hardening: JSON-LD cannot close its script tag, and reads back the same', 
 });
 
 test('Hardening: the layout writes its JSON-LD through the helper', () => {
-  const src = fs.readFileSync(path.resolve('src/app/layout.tsx'), 'utf8');
+  const src = fs.readFileSync(path.resolve('src/components/layout/SiteShell.tsx'), 'utf8');
   assert.match(src, /__html: jsonLdScript\(jsonLd\)/);
   assert.ok(!src.includes('JSON.stringify(jsonLd)'));
 });

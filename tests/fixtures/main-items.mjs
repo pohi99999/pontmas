@@ -1,5 +1,5 @@
-// Verbatim copy of the item arrays on main before the editor (src/app/hirek/page.tsx lines 32-96,
-// src/app/programok/page.tsx lines 12-47). The seed and the rendered pages are compared against these.
+// Verbatim copy of the item arrays on main before the editor (src/app/[locale]/hirek/page.tsx lines 32-96,
+// src/app/[locale]/programok/page.tsx lines 12-47). The seed and the rendered pages are compared against these.
 export const MAIN_NEWS = [
     {
       featured: true,

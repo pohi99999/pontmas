@@ -3,14 +3,14 @@ import { renderHtml } from '../tests/helpers/render.mjs';
 
 /** The pages whose text the chat may answer from: route and source file. */
 export const KNOWLEDGE_PAGES = [
-  ['/', 'app/page.tsx'],
-  ['/autizmus', 'app/autizmus/page.tsx'],
-  ['/segitseg', 'app/segitseg/page.tsx'],
-  ['/rolunk', 'app/rolunk/page.tsx'],
-  ['/rolunk-irtak', 'app/rolunk-irtak/page.tsx'],
-  ['/tamogatas', 'app/tamogatas/page.tsx'],
-  ['/dokumentumok', 'app/dokumentumok/page.tsx'],
-  ['/kapcsolat', 'app/kapcsolat/page.tsx'],
+  ['/', 'app/[locale]/page.tsx'],
+  ['/autizmus', 'app/[locale]/autizmus/page.tsx'],
+  ['/segitseg', 'app/[locale]/segitseg/page.tsx'],
+  ['/rolunk', 'app/[locale]/rolunk/page.tsx'],
+  ['/rolunk-irtak', 'app/[locale]/rolunk-irtak/page.tsx'],
+  ['/tamogatas', 'app/[locale]/tamogatas/page.tsx'],
+  ['/dokumentumok', 'app/[locale]/dokumentumok/page.tsx'],
+  ['/kapcsolat', 'app/[locale]/kapcsolat/page.tsx'],
 ];
 
 const ENTITIES = { '&amp;': '&', '&quot;': '"', '&#x27;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' ' };

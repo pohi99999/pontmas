@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { LEGAL_DRAFT, LEGAL_SOURCES } from '@/lib/legal';
 
 // Building blocks of the legal pages. Plain, readable typography: these pages are read carefully,
@@ -15,15 +16,31 @@ export function Review({ kind, children }: { kind: 'jogi' | 'kerdes'; children: 
 }
 
 export function DraftBanner() {
+  const t = useTranslations('Legal');
   if (!LEGAL_DRAFT) return null;
   return (
     <div role="note" className="mb-10 rounded-2xl border-2 border-amber-400 bg-amber-50 p-5 text-amber-900">
-      <p className="font-bold">Tervezet: ez a szöveg még nem hatályos.</p>
+      <p className="font-bold">{t('draftTitle')}</p>
       <p className="mt-1 text-sm leading-relaxed">
-        A kiemelt pontokat az alapítványnak és jogi tanácsadójának jóvá kell hagynia. A [JOGI ÁTNÉZÉS] jelölés
-        megfogalmazást, a [KÉRDÉS] jelölés hiányzó adatot jelez.
+        {t('draftText')}
       </p>
     </div>
+  );
+}
+
+/**
+ * On the English and German pages: the legal text is not translated (it is a draft, and no legal or
+ * native-speaker review is planned), so the page says the Hungarian text below is the binding one.
+ * The article itself carries lang="hu" there, so a screen reader reads it as Hungarian.
+ */
+export function LegalLanguageNote() {
+  const locale = useLocale();
+  const t = useTranslations('Legal');
+  if (locale === 'hu') return null;
+  return (
+    <p role="note" className="mb-8 rounded-2xl border border-slate-300 bg-slate-100 p-4 text-slate-800">
+      {t('languageNote')}
+    </p>
   );
 }
 

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { readWithMessages } from './helpers/messages.mjs';
 
 test('Accessibility context provides sensory, contrast, font-size and reading ruler states', () => {
   const contextPath = path.resolve('src/context/SensoryContext.tsx');
@@ -18,7 +19,7 @@ test('AccessibilityToolbar component provides interactive sensory & a11y control
   const toolbarPath = path.resolve('src/components/ui/AccessibilityToolbar.tsx');
   assert.ok(fs.existsSync(toolbarPath), 'AccessibilityToolbar.tsx must exist');
   
-  const toolbarContent = fs.readFileSync(toolbarPath, 'utf8');
+  const toolbarContent = readWithMessages('src/components/ui/AccessibilityToolbar.tsx');
   assert.ok(toolbarContent.includes('Akadálymentesítés') || toolbarContent.includes('Szenzoros'), 'Toolbar must have Hungarian labels');
   assert.ok(toolbarContent.includes('aria-label') || toolbarContent.includes('aria-expanded'), 'Toolbar must have ARIA labels');
 });

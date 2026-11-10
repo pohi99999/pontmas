@@ -5,17 +5,18 @@ import path from 'node:path';
 
 test('Audit: All main routes and layout contain semantic structure and metadata', () => {
   const routes = [
-    'src/app/layout.tsx',
-    'src/app/page.tsx',
-    'src/app/rolunk/page.tsx',
-    'src/app/autizmus/page.tsx',
-    'src/app/programok/page.tsx',
-    'src/app/tamogatas/page.tsx',
-    'src/app/kapcsolat/page.tsx',
-    'src/app/dokumentumok/page.tsx',
-    'src/app/segitseg/page.tsx',
-    'src/app/rolunk-irtak/page.tsx',
-    'src/app/hirek/page.tsx',
+    'src/app/[locale]/layout.tsx',
+    'src/components/layout/SiteShell.tsx',
+    'src/app/[locale]/page.tsx',
+    'src/app/[locale]/rolunk/page.tsx',
+    'src/app/[locale]/autizmus/page.tsx',
+    'src/app/[locale]/programok/page.tsx',
+    'src/app/[locale]/tamogatas/page.tsx',
+    'src/app/[locale]/kapcsolat/page.tsx',
+    'src/app/[locale]/dokumentumok/page.tsx',
+    'src/app/[locale]/segitseg/page.tsx',
+    'src/app/[locale]/rolunk-irtak/page.tsx',
+    'src/app/[locale]/hirek/page.tsx',
   ];
 
   for (const route of routes) {
@@ -27,10 +28,12 @@ test('Audit: All main routes and layout contain semantic structure and metadata'
 });
 
 test('Audit: Accessibility & SEO prerequisites in Layout', () => {
-  const layoutPath = path.resolve('src/app/layout.tsx');
+  // the page frame moved to SiteShell when the pages moved under [locale] (card c017f163); <html lang>
+  // is the page's language now, measured on the rendered pages in tests/i18n.test.mjs
+  const layoutPath = path.resolve('src/components/layout/SiteShell.tsx');
   const layoutContent = fs.readFileSync(layoutPath, 'utf8');
 
-  assert.ok(layoutContent.includes('lang="hu"'), 'Root HTML must specify lang="hu"');
+  assert.ok(layoutContent.includes('<html lang={lang}'), 'Root HTML must specify the page language');
   // the schema.org block itself is built in src/lib/foundation.ts (tests/foundation.test.mjs)
   assert.ok(layoutContent.includes('foundationJsonLd()') && layoutContent.includes('application/ld+json'), 'Layout must provide JSON-LD schema.org metadata');
   assert.ok(layoutContent.includes('SensoryProvider'), 'Layout must wrap app in SensoryProvider');

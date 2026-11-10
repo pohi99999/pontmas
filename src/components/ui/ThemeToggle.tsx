@@ -56,6 +56,25 @@ export function ThemeToggleButton() {
   );
 }
 
+/** The phone header's theme switch, right next to the menu button (Péter 14743, 14746): a 44 px target with
+ *  the sun/moon icon. Its name stays "Sötét téma" and aria-pressed says whether it is on: a name that flips
+ *  ("Világos téma" while dark) together with aria-pressed would read as "Világos téma, pressed" on a dark page. */
+export function ThemeToggleIcon() {
+  const { dark, toggle } = useTheme();
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-pressed={dark}
+      aria-label="Sötét téma"
+      title={dark ? 'Sötét téma: be (koppintson a világos témához)' : 'Sötét téma bekapcsolása'}
+      className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+    >
+      {dark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+    </button>
+  );
+}
+
 /** A full-width row for the phone menu. */
 export function ThemeToggleRow() {
   const { dark, toggle } = useTheme();

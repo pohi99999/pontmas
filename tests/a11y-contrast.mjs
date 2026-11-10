@@ -85,15 +85,24 @@ function measure() {
   const skips = levels.flatMap((l, i) => (i && l > levels[i - 1] + 1 ? [`h${levels[i - 1]} -> h${l}`] : []));
   const h1 = levels.filter((l) => l === 1).length;
   if (h1 !== 1) skips.push(`${h1} h1 on the page (exactly 1 expected)`);
+  // The display bar above the header (Péter 14726): shown from 1360 px, where the full menu is; hidden below.
+  const bar = document.querySelector('[data-felso-sav]');
+  const barShown = !!bar && getComputedStyle(bar).display !== 'none';
+  if (barShown !== window.innerWidth >= 1360) skips.push(`display bar ${barShown ? 'shown' : 'hidden'} at ${window.innerWidth} px`);
   if (window.innerWidth >= 1360) {
     const header = document.querySelector('header');
-    for (const el of header.querySelectorAll('a, button, span')) {
+    for (const el of [...header.querySelectorAll('a, button, span'), ...(bar ? bar.querySelectorAll('button, span') : [])]) {
       if (el.children.length || !el.textContent.trim() || !el.offsetParent || el.closest('.sr-only')) continue;
       const range = document.createRange();
       range.selectNodeContents(el);
       const lines = new Set([...range.getClientRects()].map((r) => Math.round(r.top))).size;
       if (lines > 1) skips.push(`header item on ${lines} lines: "${el.textContent.trim()}"`);
     }
+    // room between the logo and the menu: at least 16 px (Marveen 7007)
+    const parts = [...header.querySelector('a[href="/"]').querySelectorAll('img, span')].filter((e) => e.getClientRects().length).map((e) => e.getBoundingClientRect());
+    const firstItem = header.querySelector('nav a').getBoundingClientRect();
+    const gap = Math.round(firstItem.left - Math.max(...parts.map((r) => r.right)));
+    if (gap < 16) skips.push(`only ${gap} px between the logo and the menu (16 px expected)`);
   }
   // The header's logo and its controls never overlap (review 2026-11-10: the labelled soft-mode button
   // ran over the wordmark at 375 px while the page itself had no horizontal scroll)
@@ -133,6 +142,33 @@ try {
       for (const m of [...low, ...skips]) { failures++; console.log(`FAIL ${scheme} ${width}px ${route}: ${m}`); }
     }
     await page.close();
+  }
+
+  // the display bar on the desktop (Péter 14726): the tab order after the skip link, and only the main row sticks
+  {
+    const desk = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+    const failD = (m) => { failures++; console.log(`FAIL display bar 1440px: ${m}`); };
+    await desk.goto(BASE + '/', { waitUntil: 'networkidle' });
+    const order = [];
+    for (let i = 0; i < 5; i++) {
+      await desk.keyboard.press('Tab');
+      order.push(await desk.evaluate(() => {
+        const a = document.activeElement;
+        return a?.closest('[data-felso-sav]') ? `bar:${a.textContent.trim()}` : a?.getAttribute('href') === '/' && a.closest('header') && !a.closest('nav') ? 'logo' : a?.textContent?.trim();
+      }));
+    }
+    const want = ['Ugrás a tartalomra', 'bar:Sötét téma', 'bar:Lágy mód', 'logo', 'Kezdőlap'];
+    if (order.join('|') !== want.join('|')) failD(`tab order ${JSON.stringify(order)}, expected ${JSON.stringify(want)}`);
+    await desk.evaluate(() => window.scrollTo(0, 800));
+    await desk.waitForTimeout(200);
+    const s = await desk.evaluate(() => {
+      const h = document.querySelector('header').getBoundingClientRect(), b = document.querySelector('[data-felso-sav]').getBoundingClientRect();
+      return { top: Math.round(h.top), height: Math.round(h.height), barBottom: Math.round(b.bottom) };
+    });
+    if (s.top !== 0) failD(`scrolled: the header is at ${s.top} px, not stuck to the top`);
+    if (s.height > 81) failD(`scrolled: the sticky header is ${s.height} px tall (81 px at most)`);
+    if (s.barBottom > 0) failD('scrolled: the display bar is still on screen (it should scroll away)');
+    await desk.close();
   }
 
   // the menu and the skip link, driven with the keyboard

@@ -304,6 +304,22 @@ body {
   font-size: 130%;
 }
 
+/* Motion on the home page (Péter 14677). Only under html.pm-mozgas, which MOZGAS_SCRIPT sets when motion
+   is allowed: without it every element is simply in its final state. Once, calm, no blinking. */
+html.pm-mozgas [data-mozgas="fel"] { transition: opacity .7s ease-out, transform .7s ease-out; }
+html.pm-mozgas [data-mozgas="fel"]:not(.pm-latszik) { opacity: 0; transform: translateY(14px); }
+html.pm-mozgas [data-mozgas="szam"] { transition: opacity .4s ease-out; }
+html.pm-mozgas [data-mozgas="szam"]:not(.pm-latszik) { opacity: 0; }
+html.pm-mozgas [data-mozgas="vonal"] { transform-origin: left center; transition: transform 1.1s cubic-bezier(.25, .8, .25, 1) .15s; }
+html.pm-mozgas [data-mozgas="vonal"]:not(.pm-latszik) { transform: scaleX(0); }
+html.pm-mozgas [data-mozgas="vonal-le"] { transform-origin: top center; transition: transform 1.1s cubic-bezier(.25, .8, .25, 1) .15s; }
+html.pm-mozgas [data-mozgas="vonal-le"]:not(.pm-latszik) { transform: scaleY(0); }
+/* The end state is an explicit inset(0 0 0 0), not "none": the browser does not interpolate between an
+   inset() and none, and the ink jumped in one frame (Ellenőr, #36). inset(0) clips to the svg's own box,
+   which the svg viewport clips to anyway, so the final picture is the same. */
+html.pm-mozgas [data-mozgas="iv"] { clip-path: inset(0 0 0 0); transition: clip-path 1.6s cubic-bezier(.3, .7, .2, 1) .2s; }
+html.pm-mozgas [data-mozgas="iv"]:not(.pm-latszik) { clip-path: inset(100% 0 0 0); }
+
 /* Mozgáscsökkentés (Reduced Motion) */
 .reduced-motion *,
 .reduced-motion *::before,
@@ -353,6 +369,10 @@ h2 {
 }
 
 /* Display style for the titles that are not h1/h2. The rule: every h3 at text-xl or larger uses it, smaller ones stay Inter. */
+/* The logo's ink on inline marks; the dark theme (#33) turns it light */
+.pm-tinta { color: #19171a; }
+.dark .pm-tinta { color: #ece9e2; }
+
 .display {
   font-family: var(--font-display), Georgia, serif;
   font-weight: 500;

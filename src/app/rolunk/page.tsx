@@ -4,6 +4,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import CtaBand from '@/components/ui/CtaBand';
 import { CommunityGallery } from '@/components/content/Gallery';
+import { AmiertDolgozunk, CsapatSor, SzuloiGondolatok } from '@/components/content/Hangunk';
 import { FOUNDATION, ADDRESS_LINE } from '@/lib/foundation';
 
 export default function RolunkPage() {
@@ -122,6 +123,9 @@ export default function RolunkPage() {
         </div>
       </section>
 
+      {/* The people of the foundation: shows once a portrait is published (src/content/csapat.ts) */}
+      <CsapatSor />
+
       {/* 3. Értékeink Grid */}
       <section className="bg-white border-y border-slate-200/80 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
@@ -163,6 +167,10 @@ export default function RolunkPage() {
           ))}
         </div>
       </section>
+
+      {/* The foundation's own voice; the parents' thoughts show only once real ones arrive (src/content/hangunk.ts) */}
+      <AmiertDolgozunk />
+      <SzuloiGondolatok />
 
       {/* Képek a közösségről */}
       <CommunityGallery />

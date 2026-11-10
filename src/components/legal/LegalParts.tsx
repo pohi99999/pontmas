@@ -17,7 +17,7 @@ export function Review({ kind, children }: { kind: 'jogi' | 'kerdes'; children: 
 export function DraftBanner() {
   if (!LEGAL_DRAFT) return null;
   return (
-    <div role="note" className="mb-10 rounded-2xl border-2 border-amber-400 bg-amber-50 p-5 text-amber-950">
+    <div role="note" className="mb-10 rounded-2xl border-2 border-amber-400 bg-amber-50 p-5 text-amber-900">
       <p className="font-bold">Tervezet: ez a szöveg még nem hatályos.</p>
       <p className="mt-1 text-sm leading-relaxed">
         A kiemelt pontokat az alapítványnak és jogi tanácsadójának jóvá kell hagynia. A [JOGI ÁTNÉZÉS] jelölés

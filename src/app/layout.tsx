@@ -8,6 +8,7 @@ import AccessibilityToolbar from "@/components/ui/AccessibilityToolbar";
 import ReadingRuler from "@/components/ui/ReadingRuler";
 import { SensoryProvider } from "@/context/SensoryContext";
 import { jsonLdScript } from "@/lib/jsonLd";
+import { THEME_SCRIPT } from "@/lib/theme";
 import { MOZGAS_SCRIPT } from "@/lib/mozgas";
 import MozgasKapu from "@/components/ui/MozgasKapu";
 import { foundationJsonLd } from "@/lib/foundation";
@@ -48,8 +49,12 @@ export default function RootLayout({
   const jsonLd = foundationJsonLd();
 
   return (
-    <html lang="hu" className={`scroll-smooth ${fraunces.variable}`}>
+    // suppressHydrationWarning: THEME_SCRIPT adds the "dark" class before React hydrates (by design)
+    <html lang="hu" className={`scroll-smooth ${fraunces.variable}`} suppressHydrationWarning>
       <head>
+        {/* The page has its own dark theme: browsers then do not darken it on their own (review 2026-11-10) */}
+        <meta name="color-scheme" content="light dark" />
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         {/* Motion only when allowed; decided before the first paint (src/lib/mozgas.ts) */}
         <script dangerouslySetInnerHTML={{ __html: MOZGAS_SCRIPT }} />
         <script

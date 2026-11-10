@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, Suspense } from 'react';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Send, CheckCircle2, Sparkles, AlertCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
@@ -223,6 +224,10 @@ function ContactFormInner() {
           >
             {isSubmitting ? 'Küldés folyamatban...' : 'Üzenet elküldése'}
           </Button>
+          <p className="mt-3 text-xs text-slate-600 leading-relaxed">
+            Az üzenetét csak a válaszhoz használjuk. Részletek az{' '}
+            <Link href="/adatkezeles" className="underline hover:text-slate-900">adatkezelési tájékoztatóban</Link>.
+          </p>
         </div>
       </form>
     </div>

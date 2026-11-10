@@ -6,6 +6,7 @@ import Button from '@/components/ui/Button';
 import CopyButton from '@/components/ui/CopyButton';
 import PontJel from '@/components/brand/PontJel';
 import CtaBand from '@/components/ui/CtaBand';
+import { EGYSZAZALEK, forint } from '@/content/egyszazalek';
 import { FOUNDATION } from '@/lib/foundation';
 
 export default function Home() {
@@ -128,6 +129,14 @@ export default function Home() {
             <p className="text-blue-100 text-lg leading-relaxed max-w-2xl mb-8">
               A személyi jövedelemadó 1%-ának felajánlása Önnek semmibe sem kerül, de számunkra a táborok, a szülőklubok és a krízis alap biztonságos működését jelenti.
             </p>
+            {/* What the 1% brought, from the NAV's list (src/content/egyszazalek.ts); the source stays visible */}
+            <figure className="border-l-2 border-blue-400 pl-5 max-w-2xl mb-8">
+              <p className="text-white text-xl sm:text-2xl leading-snug">
+                {EGYSZAZALEK.evben} <strong className="font-semibold">{EGYSZAZALEK.felajanlok} adózó</strong> 1%-a összesen{' '}
+                <strong className="font-semibold">{forint(EGYSZAZALEK.osszeg)}</strong>-tal támogatta a vasi autista gyermekeket és családjaikat.
+              </p>
+              <figcaption className="mt-2 text-sm text-blue-200">Forrás: NAV, {EGYSZAZALEK.kozzeteve}</figcaption>
+            </figure>
             <Link
               href="/tamogatas"
               className="inline-flex items-center text-sm font-semibold text-blue-100 underline decoration-blue-400 underline-offset-4 hover:text-white transition-colors"

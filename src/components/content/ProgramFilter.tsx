@@ -3,19 +3,21 @@
 // The category filter of /programok, the only part of that page that needs the browser.
 // The markup is the one the page had on main.
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import type { ProgramItem } from '@/content/types';
 import { ProgramCard } from './ContentCards';
 
 type Category = 'all' | ProgramItem['category'];
 
-const CATEGORIES: { id: Category; label: string }[] = [
-  { id: 'all', label: 'Összes program' },
-  { id: 'event', label: 'Kiemelt események' },
-  { id: 'camp', label: 'Nyári táborok' },
-  { id: 'family', label: 'Szülőklub és családok' },
+const CATEGORIES: { id: Category }[] = [
+  { id: 'all' },
+  { id: 'event' },
+  { id: 'camp' },
+  { id: 'family' },
 ];
 
 export default function ProgramFilter({ programs }: { programs: ProgramItem[] }) {
+  const t = useTranslations('ProgramFilter');
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
 
   const filteredPrograms = selectedCategory === 'all'
@@ -25,7 +27,7 @@ export default function ProgramFilter({ programs }: { programs: ProgramItem[] })
   return (
     <>
       {/* Kategória szűrő gombok */}
-      <div className="flex flex-wrap justify-center gap-2 mb-12 max-w-2xl mx-auto" role="tablist" aria-label="Programkategóriák">
+      <div className="flex flex-wrap justify-center gap-2 mb-12 max-w-2xl mx-auto" role="tablist" aria-label={t('label')}>
         {CATEGORIES.map((cat) => (
           <button
             key={cat.id}
@@ -38,7 +40,7 @@ export default function ProgramFilter({ programs }: { programs: ProgramItem[] })
                 : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
             }`}
           >
-            {cat.label}
+            {t(cat.id)}
           </button>
         ))}
       </div>

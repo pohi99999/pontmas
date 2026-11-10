@@ -7,17 +7,15 @@ import CopyButton from '@/components/ui/CopyButton';
 import PontJel from '@/components/brand/PontJel';
 import CtaBand from '@/components/ui/CtaBand';
 import { FOUNDATION } from '@/lib/foundation';
+import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 export const generateMetadata = alternatesFor('/');
 
 export default async function Home({ params }: PageParams) {
   await pageLocale(params);
-  const stats = [
-    { value: '2015 óta', label: 'Segítjük a családokat' },
-    { value: '40+', label: 'Érintett család hálózatunkban' },
-    { value: 'AOSZ', label: 'Országos szövetségi alelnökség' },
-  ];
+  const t = await getTranslations('Home');
+  const stats = t.raw('stats') as { value: string; label: string }[];
 
   return (
     <div className="flex flex-col gap-16 md:gap-24 pb-20">
@@ -32,18 +30,20 @@ export default async function Home({ params }: PageParams) {
                 {FOUNDATION.name}
               </p>
               <h1 className="text-[2.75rem] leading-[1.08] sm:text-6xl lg:text-[3.25rem] xl:text-[4.25rem] text-slate-900 mb-7">
-                Közösen egy megértőbb, <br className="hidden sm:inline" />
-                <span className="text-blue-700">támogatóbb világért</span>
+                {t.rich('heroTitle', {
+                  br: () => <br className="hidden sm:inline" />,
+                  accent: (chunks) => <span className="text-blue-700">{chunks}</span>,
+                })}
               </h1>
               <p className="max-w-xl text-lg sm:text-xl text-slate-600 leading-relaxed mb-9">
-                Autizmussal élő gyermekek, családjaik és oktatási intézmények sokoldalú támogatása Vas vármegyében. Szakértelem, közösség és valódi segítség 2015 óta.
+                {t('heroText')}
               </p>
               <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 [&>*]:whitespace-nowrap">
                 <Button href="/tamogatas" size="lg" variant="primary" leftIcon={<Heart size={20} className="fill-white/30" />}>
-                  Támogassa munkánkat (1%)
+                  {t('ctaSupport')}
                 </Button>
                 <Button href="/autizmus" size="lg" variant="outline" leftIcon={<HelpCircle size={20} className="text-blue-600" />}>
-                  Mi az az autizmus?
+                  {t('ctaAutism')}
                 </Button>
               </div>
             </div>
@@ -76,43 +76,43 @@ export default async function Home({ params }: PageParams) {
         <SectionHeader
           align="left"
           className="xl:sticky xl:top-28"
-          badge="Küldetésünk és tevékenységeink"
-          title="Hogyan segítünk a mindennapokban?"
-          subtitle="Összetett támogatási rendszert működtetünk, amely a gyermekektől a szülőkön át az intézményekig minden érintettre kiterjed."
+          badge={t('mission.badge')}
+          title={t('mission.title')}
+          subtitle={t('mission.subtitle')}
         />
 
         </div>
         <div className="xl:col-span-7 min-w-0 grid sm:grid-cols-2 gap-x-10 gap-y-12">
           <FeatureCard
             icon={<Users size={28} />}
-            title="Közösségépítés"
-            description="Szülőklubok, Kék séták és képességfejlesztő nyári táborok, ahol az érintett családok megértő és biztonságos közegben kapcsolódhatnak."
+            title={t('pillars.community.title')}
+            description={t('pillars.community.text')}
             linkHref="/programok"
-            linkLabel="Eseményeink"
+            linkLabel={t('pillars.community.link')}
           />
 
           <FeatureCard
             icon={<HelpCircle size={28} />}
-            title="Szemléletformálás"
-            description="Edukációs anyagok, tájékoztatók és rendezvények az autizmus társadalmi megértésének és elfogadásának növeléséért."
+            title={t('pillars.awareness.title')}
+            description={t('pillars.awareness.text')}
             linkHref="/autizmus"
-            linkLabel="Tudástár"
+            linkLabel={t('pillars.awareness.link')}
           />
 
           <FeatureCard
             icon={<School size={28} />}
-            title="Intézményi segítség"
-            description="Vas vármegyei autizmus-specifikus és integráló iskolák, óvodák támogatása speciális fejlesztőeszközökkel."
+            title={t('pillars.institutions.title')}
+            description={t('pillars.institutions.text')}
             linkHref="/programok"
-            linkLabel="Támogatottak"
+            linkLabel={t('pillars.institutions.link')}
           />
 
           <FeatureCard
             icon={<HandHeart size={28} />}
-            title="Krízis Alap"
-            description="Célzott anyagi és eszközbeli gyorssegély a váratlanul nehéz élethelyzetbe került érintett családok számára."
+            title={t('pillars.crisis.title')}
+            description={t('pillars.crisis.text')}
             linkHref="/tamogatas"
-            linkLabel="Támogatás"
+            linkLabel={t('pillars.crisis.link')}
           />
         </div>
         </div>
@@ -124,37 +124,37 @@ export default async function Home({ params }: PageParams) {
           <div className="max-w-4xl">
             <p className="eyebrow mb-5" style={{ color: '#c9d5ec' }}>
               <span className="pont" aria-hidden="true" />
-              Rendelkezzen adója 1%-áról!
+              {t('donation.eyebrow')}
             </p>
             <h2 className="text-4xl sm:text-5xl text-white leading-[1.1] mb-6">
-              Egyetlen kattintás az Ön részéről, óriási segítség a családoknak
+              {t('donation.title')}
             </h2>
             <p className="text-blue-100 text-lg leading-relaxed max-w-2xl mb-8">
-              A személyi jövedelemadó 1%-ának felajánlása Önnek semmibe sem kerül, de számunkra a táborok, a szülőklubok és a krízis alap biztonságos működését jelenti.
+              {t('donation.text')}
             </p>
             <Link
               href="/tamogatas"
               className="inline-flex items-center text-sm font-semibold text-blue-100 underline decoration-blue-400 underline-offset-4 hover:text-white transition-colors"
             >
-              <span>Minden támogatási lehetőség megtekintése</span>
+              <span>{t('donation.more')}</span>
               <ArrowRight size={16} className="ml-1.5" />
             </Link>
           </div>
 
           <div className="bg-white rounded-3xl p-4 sm:p-6 mt-10 text-slate-900">
             <h3 className="font-bold text-lg text-slate-900 border-b border-slate-100 pb-2 mb-4">
-              PontMás Alapítvány Adatok
+              {t('donation.dataTitle')}
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
               <CopyButton
                 textToCopy={FOUNDATION.taxNumber}
-                label="Adószám (adó 1%)"
-                sublabel="Kattintson az adószám vágólapra másolásához"
+                label={t('donation.taxLabel')}
+                sublabel={t('donation.taxSub')}
               />
               <CopyButton
                 textToCopy={FOUNDATION.bankAccount}
-                label={`Bankszámlaszám (${FOUNDATION.bankName})`}
-                sublabel="Közvetlen banki átutaláshoz"
+                label={t('donation.bankLabel', { bank: FOUNDATION.bankName })}
+                sublabel={t('donation.bankSub')}
               />
             </div>
           </div>
@@ -163,11 +163,11 @@ export default async function Home({ params }: PageParams) {
 
       {/* 5. Kapcsolatfelvétel hívószó */}
       <CtaBand
-        title="Kérdése van, vagy segítségre van szüksége?"
-        text="Hívjon minket telefonon, vagy írjon nekünk közvetlenül üzenetet."
+        title={t('cta.title')}
+        text={t('cta.text')}
       >
         <Button href="/kapcsolat" variant="primary">
-          Kapcsolatfelvétel
+          {t('cta.button')}
         </Button>
       </CtaBand>
 

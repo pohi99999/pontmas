@@ -10,9 +10,13 @@ import { src } from './helpers/load.mjs';
 const { renderToStaticMarkup } = await import('react-dom/server');
 const { createElement: h } = await import('react');
 const { CAMP_PHOTOS, WORK_PHOTOS, COMMUNITY_COVER, COMMUNITY_PHOTOS, default: Gallery, CommunityGallery } = await src('components/content/Gallery.tsx');
+import { HU_MESSAGES } from './helpers/messages.mjs';
+import { renderElement } from './helpers/render.mjs';
 
 const IMAGES = path.resolve('public/images');
-const PHOTOS = [...CAMP_PHOTOS, ...WORK_PHOTOS, COMMUNITY_COVER, ...COMMUNITY_PHOTOS];
+// the captions and alt texts are in messages/hu.json since the i18n extraction (card c017f163)
+const withTexts = (p) => ({ ...p, ...HU_MESSAGES.Gallery.photos[p.id] });
+const PHOTOS = [...CAMP_PHOTOS, ...WORK_PHOTOS, COMMUNITY_COVER, ...COMMUNITY_PHOTOS].map(withTexts);
 const APPROVED = [
   'bogrefestes', 'kezzel-keszult-szivek', 'kozosseg-felvonulas', 'kozosseg-kek-feny', 'kozosseg-osszeallitas',
   'kozosseg-regisztracio', 'noveny-lenyomatok', 'tabor-kepkartyak-a-falon', 'tabor-korjatek',
@@ -53,7 +57,7 @@ test('each photo is a plain lossy WebP: no EXIF, XMP or colour profile, small, a
   for (const photo of PHOTOS) {
     const buf = fs.readFileSync(file(photo));
     assert.deepEqual(chunks(buf), ['VP8 '], photo.src);
-    const limit = photo === COMMUNITY_COVER ? 250 : 150;
+    const limit = photo.id === COMMUNITY_COVER.id ? 250 : 150;
     assert.ok(buf.length <= limit * 1024, `${photo.src}: ${buf.length} bytes`);
     // the VP8 frame header: chunk data starts at 20, then 3 bytes frame tag and 3 bytes start code
     assert.equal(buf.readUInt16LE(26) & 0x3fff, photo.width, photo.src);
@@ -71,8 +75,10 @@ test('the uncropped photos keep the ratio of their source', () => {
 test('the texts have no name, year, headcount or diagnosis, and only the two press photos credit the photographer', () => {
   // \b is ASCII-only in JS and never matches around "Á", so the names are bounded by Unicode letters
   const FORBIDDEN = /autiz|autist|spektrum|diagn|(?<!\p{L})(Áron|Andris|Viki|Zsolt)(?!\p{L})|\b(19|20)\d{2}\b|\d+\s*(fő|gyerek|család)/iu;
-  const section = fs.readFileSync(path.resolve('src/components/content/Gallery.tsx'), 'utf8').match(/title="[^"]*"|subtitle="[^"]*"/g);
-  assert.equal(section.length, 6);
+  // the section headings, in messages/hu.json since the i18n extraction (card c017f163)
+  const g = HU_MESSAGES.Gallery;
+  const section = [g.camp.title, g.camp.subtitle, g.works.title, g.works.subtitle, g.community.title, g.community.subtitle];
+  assert.equal(section.filter(Boolean).length, 6);
   for (const text of [...PHOTOS.flatMap((p) => [p.alt, p.caption]), ...section]) assert.doesNotMatch(text, FORBIDDEN);
   const credited = PHOTOS.filter((p) => p.caption.includes('Fotó: Nagy Jácint')).map((p) => p.src.match(/([^/]+)\.webp/)[1]).sort();
   assert.deepEqual(credited, ['kozosseg-felvonulas', 'kozosseg-kek-feny']);
@@ -80,8 +86,8 @@ test('the texts have no name, year, headcount or diagnosis, and only the two pre
 });
 
 test('rendered: section headings only, every photo a figure with a real alt text and its own caption, below the fold', () => {
-  for (const [component, photos, headings] of [[Gallery, [...CAMP_PHOTOS, ...WORK_PHOTOS], 2], [CommunityGallery, [COMMUNITY_COVER, ...COMMUNITY_PHOTOS], 1]]) {
-    const html = renderToStaticMarkup(h(component));
+  for (const [component, photos, headings] of [[Gallery, [...CAMP_PHOTOS, ...WORK_PHOTOS].map(withTexts), 2], [CommunityGallery, [COMMUNITY_COVER, ...COMMUNITY_PHOTOS].map(withTexts), 1]]) {
+    const html = renderElement(h(component));
     assert.equal((html.match(/<h2/g) ?? []).length, headings);
     assert.equal((html.match(/<figure/g) ?? []).length, photos.length);
     assert.equal((html.match(/<figcaption/g) ?? []).length, photos.length);

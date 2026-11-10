@@ -144,5 +144,164 @@
     "send": "Senden",
     "sending": "Antwort wird erstellt…",
     "privacy": "Datenschutzhinweis"
+  },
+  "Home": {
+    "stats": [
+      {
+        "value": "2015 óta",
+        "label": "Segítjük a családokat"
+      },
+      {
+        "value": "40+",
+        "label": "Érintett család hálózatunkban"
+      },
+      {
+        "value": "AOSZ",
+        "label": "Országos szövetségi alelnökség"
+      }
+    ],
+    "heroTitle": "Közösen egy megértőbb, <br></br><accent>támogatóbb világért</accent>",
+    "heroText": "Autizmussal élő gyermekek, családjaik és oktatási intézmények sokoldalú támogatása Vas vármegyében. Szakértelem, közösség és valódi segítség 2015 óta.",
+    "ctaSupport": "Támogassa munkánkat (1%)",
+    "ctaAutism": "Mi az az autizmus?",
+    "mission": {
+      "badge": "Küldetésünk és tevékenységeink",
+      "title": "Hogyan segítünk a mindennapokban?",
+      "subtitle": "Összetett támogatási rendszert működtetünk, amely a gyermekektől a szülőkön át az intézményekig minden érintettre kiterjed."
+    },
+    "pillars": {
+      "community": {
+        "title": "Közösségépítés",
+        "text": "Szülőklubok, Kék séták és képességfejlesztő nyári táborok, ahol az érintett családok megértő és biztonságos közegben kapcsolódhatnak.",
+        "link": "Eseményeink"
+      },
+      "awareness": {
+        "title": "Szemléletformálás",
+        "text": "Edukációs anyagok, tájékoztatók és rendezvények az autizmus társadalmi megértésének és elfogadásának növeléséért.",
+        "link": "Tudástár"
+      },
+      "institutions": {
+        "title": "Intézményi segítség",
+        "text": "Vas vármegyei autizmus-specifikus és integráló iskolák, óvodák támogatása speciális fejlesztőeszközökkel.",
+        "link": "Támogatottak"
+      },
+      "crisis": {
+        "title": "Krízis Alap",
+        "text": "Célzott anyagi és eszközbeli gyorssegély a váratlanul nehéz élethelyzetbe került érintett családok számára.",
+        "link": "Támogatás"
+      }
+    },
+    "donation": {
+      "eyebrow": "Rendelkezzen adója 1%-áról!",
+      "title": "Egyetlen kattintás az Ön részéről, óriási segítség a családoknak",
+      "text": "A személyi jövedelemadó 1%-ának felajánlása Önnek semmibe sem kerül, de számunkra a táborok, a szülőklubok és a krízis alap biztonságos működését jelenti.",
+      "more": "Minden támogatási lehetőség megtekintése",
+      "dataTitle": "PontMás Alapítvány Adatok",
+      "taxLabel": "Adószám (adó 1%)",
+      "taxSub": "Kattintson az adószám vágólapra másolásához",
+      "bankLabel": "Bankszámlaszám ({bank})",
+      "bankSub": "Közvetlen banki átutaláshoz"
+    },
+    "cta": {
+      "title": "Kérdése van, vagy segítségre van szüksége?",
+      "text": "Hívjon minket telefonon, vagy írjon nekünk közvetlenül üzenetet.",
+      "button": "Kapcsolatfelvétel"
+    }
+  },
+  "Common": {
+    "learnMore": "Tudjon meg többet",
+    "copy": "Másolás",
+    "copied": "Másolva!",
+    "copyTitle": "Kattintson a másoláshoz",
+    "comingSoon": "Hamarosan elérhető"
+  },
+  "Cards": {
+    "nextParentClub": "Legközelebbi Szülőklub",
+    "place": "Helyszín:",
+    "speaker": "Előadó:",
+    "topics": "Főbb témák és program:",
+    "googleForm": "Google-űrlap megnyitása",
+    "features": "Főbb jellemzők:",
+    "enquire": "Érdeklődés és részletek"
+  },
+  "ProgramFilter": {
+    "label": "Programkategóriák",
+    "all": "Összes program",
+    "event": "Kiemelt események",
+    "camp": "Nyári táborok",
+    "family": "Szülőklub és családok"
+  },
+  "Gallery": {
+    "badge": "Képek",
+    "camp": {
+      "title": "A nyári táborból",
+      "subtitle": "Játék, közös munka és pihenés a táborban."
+    },
+    "works": {
+      "title": "Kézzel készült munkák",
+      "subtitle": "Néhány pillanat a nyári táborokból és egy jótékonysági standról."
+    },
+    "community": {
+      "title": "A közösségünk képekben",
+      "subtitle": "Néhány pillanat közös eseményekről."
+    },
+    "photos": {
+      "tabor-korjatek": {
+        "caption": "Közös játék körben",
+        "alt": "Felnőttek és gyerekek ülnek körben a fekete padlón, kezüket maguk elé teszik. Mögöttük karikák, labdák és kék függöny."
+      },
+      "tabor-vaszontaska-az-asztalnal": {
+        "caption": "Vászontáska és lapok az asztalnál",
+        "alt": "Egy gyerek kék pólóban asztalnál ül, előtte vászontáska és egy lap. Mellette felnőttek: egyikük a táskát fogja, másikuk nevet, egy PontMás-pólós a kamerába néz."
+      },
+      "tabor-tal-folott": {
+        "caption": "Kézzel dolgozva, egy tál fölött",
+        "alt": "Egy gyerek oldalról, fehér trikóban, fém tál fölött tartja a kezét, a tálban barna, morzsás massza. A háttérben kék függöny és a tengeri falikép."
+      },
+      "tabor-rajzolt-arcok": {
+        "caption": "Rajzolt arcok az asztalon, közös beszélgetés",
+        "alt": "Hosszú asztalnál felnőttek és gyerekek beszélgetnek. Az asztalon lapok, mindegyiken egy rajzolt arc más-más arckifejezéssel. Az egyik gyerek kék babzsákot tart."
+      },
+      "tabor-kepkartyak-a-falon": {
+        "caption": "Képkártyák a falon",
+        "alt": "Egy gyerek hátulról, mellette egy felnőtt guggol: együtt nyúlnak a falra tett, kartonra tűzött képkártyákhoz. Elöl és oldalt további emberek."
+      },
+      "tabor-pihenes-babzsakon": {
+        "caption": "Pihenő babzsákokon",
+        "alt": "Két gyerek fekszik piros-narancs babzsákokon egy tágas terem padlóján, arcuk nem látszik. Körülöttük újságok, mögöttük kék függönyös ablakok."
+      },
+      "noveny-lenyomatok": {
+        "caption": "Növénylenyomatok a táborból",
+        "alt": "Két lap szürke asztalon: narancssárgára festett alapon sötétvörös levelek és virágok lenyomata."
+      },
+      "bogrefestes": {
+        "caption": "Bögrefestés a táborban",
+        "alt": "Két kéz egy fehér bögrénél: az egyik a bögre fülét fogja, a másik tollal szürke mintát rajzol rá. A bögrén rózsaszín minta is van."
+      },
+      "tengeri-falikep": {
+        "caption": "Tengeri falikép gyerekmunkákból",
+        "alt": "Kék függöny előtt kékre festett, hosszú lap, rajta zsinóron lógó, kivágott figurák: halak, rák, csikóhal és tengeri csillag."
+      },
+      "kezzel-keszult-szivek": {
+        "caption": "Kézzel készült szívek egy jótékonysági standon",
+        "alt": "Fonott kosár tele kék horgolt és varrott szívekkel, a kosarat egy kéz tartja. Mögötte egy másik kosárban kék kulcstartók."
+      },
+      "kozosseg-felvonulas": {
+        "caption": "Kék sálas felvonulás a városban. Fotó: Nagy Jácint",
+        "alt": "Kék sálas emberek hosszú menete halad egy színes homlokzatú utcán, elöl kék táblát visznek, mellettük harmonikás zenél. A járdáról ketten fényképeznek."
+      },
+      "kozosseg-kek-feny": {
+        "caption": "Kék fénnyel megvilágított épület. Fotó: Nagy Jácint",
+        "alt": "Borús ég alatt kék fénnyel megvilágított toronyház, előtte bronz szoborcsoport. Az épület előtti téren emberek beszélgetnek, többen kék ruhában."
+      },
+      "kozosseg-regisztracio": {
+        "caption": "Jelentkezés a hosszú asztalnál",
+        "alt": "Szabadban álló hosszú faasztal két oldalán sokan hajolnak papírok fölé és töltik ki azokat, többen kék pólóban. A háttérben nádfedeles házak és fenyők."
+      },
+      "kozosseg-osszeallitas": {
+        "caption": "Összeállítás egy szabadtéri közös programról",
+        "alt": "Hat képből álló összeállítás: PontMás-pólós felnőttek és egy kisgyerek csoportképe egy fa alatt, jelentkezés hosszú asztalnál, kosár kék horgolt szívekkel, két kék pólós ember lendíti a lábát, egy póló hátán a PontMás felirat, és sokan tornáznak a füvön."
+      }
+    }
   }
 }

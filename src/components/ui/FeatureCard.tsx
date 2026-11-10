@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@/i18n/navigation';
 import { ArrowRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export interface FeatureCardProps {
   icon: React.ReactNode;
@@ -17,10 +18,12 @@ export default function FeatureCard({
   title,
   description,
   linkHref,
-  linkLabel = 'Tudjon meg többet',
+  linkLabel,
   badge,
   className = '',
 }: FeatureCardProps) {
+  const t = useTranslations('Common');
+  const label = linkLabel ?? t('learnMore');
   return (
     <div className={`border-t-2 border-slate-900 pt-6 flex flex-col h-full ${className}`}>
       <div className="flex items-center justify-between mb-4">
@@ -48,7 +51,7 @@ export default function FeatureCard({
             href={linkHref}
             className="inline-flex items-center text-sm font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 hover:decoration-blue-700"
           >
-            <span>{linkLabel}</span>
+            <span>{label}</span>
             <ArrowRight size={16} className="ml-1.5" />
           </Link>
         </div>

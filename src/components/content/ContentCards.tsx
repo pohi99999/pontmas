@@ -3,6 +3,7 @@
 // the only additions are the optional image and hiding a block whose field is empty.
 import { Link } from '@/i18n/navigation';
 import { ArrowRight, Calendar, CheckCircle2, ExternalLink, GraduationCap, MapPin } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { publicImage } from '@/content/public';
@@ -30,12 +31,13 @@ export function ContentImageView({ image, className = '' }: { image?: ContentIma
 
 /** The large banner of /hirek (on main: newsItems[0]). */
 export function NewsFeaturedCard({ item }: { item: NewsItem }) {
+  const t = useTranslations('Cards');
   return (
     <div className="rounded-[2.5rem] bg-blue-50 p-6 sm:p-8 md:p-12 space-y-6">
       <ContentImageView image={item.image} />
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Badge variant="info">
-          Legközelebbi Szülőklub
+          {t('nextParentClub')}
         </Badge>
         <div className="flex items-center gap-2 text-xs font-semibold text-blue-800 bg-blue-100/80 px-3 py-1.5 rounded-full">
           <Calendar className="h-4 w-4" />
@@ -53,7 +55,7 @@ export function NewsFeaturedCard({ item }: { item: NewsItem }) {
             <div className="flex items-start gap-2.5">
               <MapPin className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
-                <span className="font-bold block text-slate-900">Helyszín:</span>
+                <span className="font-bold block text-slate-900">{t('place')}</span>
                 <span>{item.location}</span>
               </div>
             </div>
@@ -62,7 +64,7 @@ export function NewsFeaturedCard({ item }: { item: NewsItem }) {
             <div className="flex items-start gap-2.5">
               <GraduationCap className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
-                <span className="font-bold block text-slate-900">Előadó:</span>
+                <span className="font-bold block text-slate-900">{t('speaker')}</span>
                 <span>{item.speaker}</span>
               </div>
             </div>
@@ -76,7 +78,7 @@ export function NewsFeaturedCard({ item }: { item: NewsItem }) {
 
       {item.highlights.length > 0 && (
         <div className="space-y-2 border-t border-blue-100 pt-4">
-          <h3 className="font-bold text-slate-900 text-sm">Főbb témák és program:</h3>
+          <h3 className="font-bold text-slate-900 text-sm">{t('topics')}</h3>
           <div className="grid sm:grid-cols-3 gap-3">
             {item.highlights.map((h, i) => (
               <div key={i} className="flex items-start gap-2 text-xs text-slate-700 bg-white p-3 rounded-xl border border-slate-100">
@@ -107,7 +109,7 @@ export function NewsFeaturedCard({ item }: { item: NewsItem }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-900 px-4 py-2.5 rounded-xl border border-blue-300 hover:bg-blue-50 transition-colors"
             >
-              <span>Google-űrlap megnyitása</span>
+              <span>{t('googleForm')}</span>
               <ExternalLink className="h-4 w-4" />
             </a>
           )}
@@ -171,6 +173,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
 
 /** One card of the program list on /programok. */
 export function ProgramCard({ program }: { program: ProgramItem }) {
+  const t = useTranslations('Cards');
   return (
     <div className="bg-white rounded-[2rem] border border-slate-200 overflow-hidden md:flex">
       {publicImage(program.image) && (
@@ -206,7 +209,7 @@ export function ProgramCard({ program }: { program: ProgramItem }) {
 
       {program.highlights.length > 0 && (
         <div className="bg-slate-50/70 p-4 rounded-2xl border border-slate-100">
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Főbb jellemzők:</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">{t('features')}</span>
           <ul className="grid sm:grid-cols-3 gap-2">
             {program.highlights.map((h, i) => (
               <li key={i} className="flex items-center gap-2 text-xs font-medium text-slate-700">
@@ -220,7 +223,7 @@ export function ProgramCard({ program }: { program: ProgramItem }) {
 
       <div className="flex justify-end pt-2">
         <Button href="/kapcsolat" variant="ghost" size="sm" rightIcon={<ArrowRight size={14} />}>
-          Érdeklődés és részletek
+          {t('enquire')}
         </Button>
       </div>
       </div>

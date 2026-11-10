@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from '@/components/ui/PageHeader';
 import { DraftBanner, DraftSources, Review, Section } from '@/components/legal/LegalParts';
-import { ADDRESS_LINE, FOUNDATION } from '@/lib/foundation';
+import { FOUNDATION } from '@/lib/foundation';
 import { LEGAL_DRAFT } from '@/lib/legal';
 
 // Adatkezelési tájékoztató, DRAFT (src/lib/legal.ts). Every statement about what the site does is
@@ -35,11 +35,13 @@ export default function AdatkezelesPage() {
           <Section id="adatkezelo" title="1. Az adatkezelő">
             <ul className="space-y-1">
               <li><strong>Név:</strong> {FOUNDATION.name}</li>
-              <li><strong>Székhely:</strong> {ADDRESS_LINE}</li>
+              <li><strong>Székhely:</strong> {FOUNDATION.registeredSeat}</li>
               <li>
-                <strong>Nyilvántartási szám:</strong> {FOUNDATION.registrationNumber}
+                <strong>Nyilvántartási szám:</strong> ellenőrzés alatt
                 <Review kind="kerdes">
-                  Az alapítvány 2024-es szabályzata 18-01-0000323-at ír, a weboldal eddig a fenti számot. Melyik a helyes?
+                  Hivatalos forrásból még nem ellenőrzött. Az alapítvány 2024-es szabályzata 18-01-0000323-at ír, a weboldal eddig
+                  {FOUNDATION.registrationNumber}-t. A közhiteles adat a bíróság civil névjegyzékében van (civilsznev.birosag.hu,
+                  keresés adószámra); a keresés captcha mögött van, ezért ember végzi el.
                 </Review>
               </li>
               <li><strong>Adószám:</strong> {FOUNDATION.taxNumber}</li>
@@ -52,8 +54,11 @@ export default function AdatkezelesPage() {
                 </Review>
               </li>
               <li>
-                <strong>Képviselő:</strong>
-                <Review kind="kerdes">A kuratórium elnökének neve.</Review>
+                <strong>Képviselő:</strong> Pohánka Edit
+                <Review kind="kerdes">
+                  Forrás: az alapítvány régi weboldala (pontmas.hu/tamogatas.html: „Kuratórium elnöke: Pohánka Edit”), nem a
+                  közhiteles névjegyzék.
+                </Review>
               </li>
               <li>
                 <strong>Adatvédelmi tisztviselő:</strong>

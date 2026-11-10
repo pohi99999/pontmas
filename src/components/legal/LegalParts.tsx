@@ -19,7 +19,7 @@ export function DraftBanner() {
   const t = useTranslations('Legal');
   if (!LEGAL_DRAFT) return null;
   return (
-    <div role="note" className="mb-10 rounded-2xl border-2 border-amber-400 bg-amber-50 p-5 text-amber-950">
+    <div role="note" className="mb-10 rounded-2xl border-2 border-amber-400 bg-amber-50 p-5 text-amber-900">
       <p className="font-bold">{t('draftTitle')}</p>
       <p className="mt-1 text-sm leading-relaxed">
         {t('draftText')}

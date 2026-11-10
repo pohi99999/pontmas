@@ -65,5 +65,10 @@ export async function load(url, context, next) {
       return { format: 'module', source: out.outputText, shortCircuit: true };
     }
   }
+  // the app imports JSON without an import attribute (the bundler allows it, e.g. messages/hu.json in
+  // global-not-found.tsx); here it loads as a JSON module the same way
+  if (url.startsWith('file:') && url.endsWith('.json')) {
+    return { format: 'json', source: fs.readFileSync(fileURLToPath(url), 'utf8'), shortCircuit: true };
+  }
   return next(url, context);
 }

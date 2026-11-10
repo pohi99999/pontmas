@@ -27,15 +27,23 @@
     "mobileNavLabel": "Mobil navigáció",
     "sensoryOnTitle": "Lágy, csökkentett ingerű mód aktív (kattintson a normál módhoz)",
     "sensoryOffTitle": "Csökkentett ingerű (szenszoros) mód bekapcsolása",
-    "sensoryOn": "Lágy mód: BE",
+    "sensoryOn": "Lágy mód: be",
     "sensoryOff": "Lágy mód",
-    "sensoryToggle": "Szenszoros mód kapcsolása",
     "menuClose": "Menü bezárása",
     "menuOpen": "Menü megnyitása",
     "support": "Támogatás",
     "accessibility": "Akadálymentesítés",
     "customActive": "(egyedi beállítások aktívak)",
-    "supportMobile": "Támogatás és adó 1%"
+    "supportMobile": "Támogatás és adó 1%",
+    "sensoryTitle": "Csökkentett ingerű (szenszoros) mód",
+    "sensoryShort": "Lágy <br></br>mód"
+  },
+  "Theme": {
+    "label": "Sötét mód",
+    "onTitle": "Sötét mód: be (kattintson a világos módhoz)",
+    "offTitle": "Sötét mód bekapcsolása",
+    "on": "be",
+    "off": "ki"
   },
   "Footer": {
     "tagline": "Vas Megyei Alapítvány",

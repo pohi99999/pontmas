@@ -868,5 +868,14 @@
       "badge": "Legal details",
       "title": "Legal notice"
     }
+  },
+  "LanguageSwitcher": {
+    "label": "Choose language",
+    "current": "Current language: {language}",
+    "names": {
+      "hu": "Magyar",
+      "en": "English",
+      "de": "Deutsch"
+    }
   }
 }

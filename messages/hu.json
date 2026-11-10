@@ -868,5 +868,14 @@
       "badge": "Jogi adatok",
       "title": "Impresszum"
     }
+  },
+  "LanguageSwitcher": {
+    "label": "Nyelv választása",
+    "current": "Jelenlegi nyelv: {language}",
+    "names": {
+      "hu": "Magyar",
+      "en": "English",
+      "de": "Deutsch"
+    }
   }
 }

@@ -868,5 +868,14 @@
       "badge": "Rechtliche Angaben",
       "title": "Impressum"
     }
+  },
+  "LanguageSwitcher": {
+    "label": "Sprache wählen",
+    "current": "Aktuelle Sprache: {language}",
+    "names": {
+      "hu": "Magyar",
+      "en": "English",
+      "de": "Deutsch"
+    }
   }
 }

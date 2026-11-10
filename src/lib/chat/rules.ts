@@ -45,17 +45,17 @@ export const FIXED: Record<'welcome' | 'pii' | 'busy' | 'off' | 'error' | 'tooLo
   busy: {
     hu: `A chat most nem tud válaszolni. Kérjük, írjon nekünk a kapcsolatfelvételi űrlapon, vagy hívja munkatársunkat: ${FOUNDATION.phone}.`,
     en: `The chat cannot answer right now. Please write to us using the contact form, or call our colleague: ${FOUNDATION.phone}.`,
-    de: `Der Chat kann gerade nicht antworten. Bitte schreiben Sie uns über das Kontaktformular oder rufen Sie unsere Mitarbeiterin an: ${FOUNDATION.phone}.`,
+    de: `Der Chat kann gerade nicht antworten. Bitte schreiben Sie uns über das Kontaktformular oder rufen Sie uns an: ${FOUNDATION.phone}.`,
   },
   off: {
     hu: `A chat jelenleg nem elérhető. Kérjük, írjon nekünk a kapcsolatfelvételi űrlapon, vagy hívja munkatársunkat: ${FOUNDATION.phone}.`,
     en: `The chat is not available at the moment. Please write to us using the contact form, or call our colleague: ${FOUNDATION.phone}.`,
-    de: `Der Chat ist derzeit nicht verfügbar. Bitte schreiben Sie uns über das Kontaktformular oder rufen Sie unsere Mitarbeiterin an: ${FOUNDATION.phone}.`,
+    de: `Der Chat ist derzeit nicht verfügbar. Bitte schreiben Sie uns über das Kontaktformular oder rufen Sie uns an: ${FOUNDATION.phone}.`,
   },
   error: {
     hu: `Valami hiba történt, a választ most nem tudtuk elkészíteni. Kérjük, próbálja újra később, vagy hívja munkatársunkat: ${FOUNDATION.phone}.`,
     en: `Something went wrong and we could not prepare an answer. Please try again later, or call our colleague: ${FOUNDATION.phone}.`,
-    de: `Etwas ist schiefgelaufen, wir konnten keine Antwort erstellen. Bitte versuchen Sie es später erneut oder rufen Sie unsere Mitarbeiterin an: ${FOUNDATION.phone}.`,
+    de: `Etwas ist schiefgelaufen, wir konnten keine Antwort erstellen. Bitte versuchen Sie es später erneut oder rufen Sie uns an: ${FOUNDATION.phone}.`,
   },
   tooLong: {
     hu: 'Ez a beszélgetés elérte a hosszát. Kérjük, kezdjen újat, vagy írjon nekünk a kapcsolatfelvételi űrlapon.',

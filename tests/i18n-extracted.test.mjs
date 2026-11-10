@@ -48,6 +48,35 @@ test('no visible Hungarian text is hardcoded in a public page or component', () 
   assert.deepEqual(hits, []);
 });
 
+// src/content holds the editor's store, seed data and validation: Hungarian on purpose (the editor is
+// Hungarian only, and its news and programme items are shown as Hungarian content, marked lang="hu").
+// A NEW file here with Hungarian text is most likely public site content (e.g. a team list or a
+// campaign strip), which would show in Hungarian on /en and /de: it belongs in messages/<locale>.json,
+// or, if it is editor data, on this list with the reason.
+const EDITOR_CONTENT = ['blobApi.ts', 'blobStore.ts', 'createStore.ts', 'newItems.ts', 'public.ts', 'publicContent.ts',
+  'save.ts', 'seed.ts', 'store.ts', 'types.ts', 'validate.ts'];
+
+export function newContentWithHungarian(dir, known = EDITOR_CONTENT) {
+  return fs.readdirSync(dir).filter((f) => /\.(ts|tsx)$/.test(f) && !known.includes(f))
+    .filter((f) => hardcodedTexts(fs.readFileSync(path.join(dir, f), 'utf8')).length > 0);
+}
+
+test('no new file in src/content carries Hungarian text past the translations', () => {
+  assert.deepEqual(newContentWithHungarian(path.resolve('src/content')), []);
+});
+
+test('the content guard is not vacuous: a new Hungarian content file fails, a known or text-free one passes', () => {
+  const dir = fs.mkdtempSync(path.join(process.cwd(), '.content-guard-'));
+  try {
+    fs.writeFileSync(path.join(dir, 'csapat.ts'), "export const CSAPAT = [{ nev: 'Kovács Anna', szerep: 'Mentorszülő' }];\n");
+    fs.writeFileSync(path.join(dir, 'seed.ts'), "export const X = 'Elsőként';\n");
+    fs.writeFileSync(path.join(dir, 'ids.ts'), "export const IDS = ['a', 'b'];\n");
+    assert.deepEqual(newContentWithHungarian(dir, ['seed.ts']), ['csapat.ts']);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('the guard is not vacuous: it finds a hardcoded text, and ignores comments and the brand name', () => {
   assert.deepEqual(hardcodedTexts('<h2 className="x">Rólunk írták</h2>'), ['1: Rólunk írták']);
   assert.deepEqual(hardcodedTexts('  title="Kapcsolatfelvétel"'), ['1: Kapcsolatfelvétel']);

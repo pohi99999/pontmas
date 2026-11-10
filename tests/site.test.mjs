@@ -7,6 +7,7 @@ import { src } from './helpers/load.mjs';
 
 const site = await src('lib/site.ts');
 const { LEGAL_DRAFT } = await src('lib/legal.ts');
+const { PUBLISHED_LOCALES } = await src('i18n/routing.ts');
 const sitemap = (await src('app/sitemap.ts')).default;
 const robots = (await src('app/robots.ts')).default;
 
@@ -29,10 +30,13 @@ test('the sitemap lists every public page once, absolute, on the site address, w
   assert.equal(new Set(urls).size, urls.length, 'no duplicates');
   for (const u of urls) assert.ok(u.startsWith(`${site.SITE_URL}/`), u);
   const paths = urls.map((u) => u.slice(site.SITE_URL.length).replace(/^\/$/, '/'));
-  const expected = site.PUBLIC_PATHS.filter((p) => !(LEGAL_DRAFT && ['/adatkezeles', '/impresszum'].includes(p)));
+  const pages = site.PUBLIC_PATHS.filter((p) => !(LEGAL_DRAFT && ['/adatkezeles', '/impresszum'].includes(p)));
+  // every page in every published language (Hungarian unprefixed, the others under /en, /de)
+  const expected = PUBLISHED_LOCALES.flatMap((l) => pages.map((p) => site.localizedPath(p, l)));
   assert.deepEqual(paths.sort(), [...expected].sort());
-  for (const p of ['/szerkeszto', '/szerkeszto/belepes']) assert.ok(!paths.includes(p), `${p} is not listed`);
-  if (LEGAL_DRAFT) for (const p of ['/adatkezeles', '/impresszum']) assert.ok(!paths.includes(p), `draft ${p} is not listed`);
+  const bare = paths.map((p) => p.replace(/^\/(en|de)(?=\/|$)/, '') || '/');
+  for (const p of ['/szerkeszto', '/szerkeszto/belepes']) assert.ok(!bare.includes(p), `${p} is not listed`);
+  if (LEGAL_DRAFT) for (const p of ['/adatkezeles', '/impresszum']) assert.ok(!bare.includes(p), `draft ${p} is not listed in any language`);
   assert.ok(sitemap().every((e) => !('lastModified' in e)), 'no build-date lastModified');
 });
 

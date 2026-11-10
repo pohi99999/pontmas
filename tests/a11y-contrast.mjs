@@ -18,7 +18,9 @@ import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import { chromium } from 'playwright-core';
 
-const ROUTES = ['/', '/autizmus', '/segitseg', '/rolunk', '/rolunk-irtak', '/hirek', '/programok', '/tamogatas', '/dokumentumok', '/kapcsolat', '/adatkezeles', '/impresszum'];
+const HU_ROUTES = ['/', '/autizmus', '/segitseg', '/rolunk', '/rolunk-irtak', '/hirek', '/programok', '/tamogatas', '/dokumentumok', '/kapcsolat', '/adatkezeles', '/impresszum'];
+// every page in English and German too: the German texts are longer, so width and the one-line header are measured there (card c017f163)
+const ROUTES = [...HU_ROUTES, ...['/en', '/de'].flatMap((l) => HU_ROUTES.map((r) => (r === '/' ? l : `${l}${r}`)))];
 const PORT = process.env.A11Y_PORT || '3999';
 const BASE = `http://127.0.0.1:${PORT}`;
 const CHROME = [process.env.CHROME_PATH, '/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium',
@@ -100,9 +102,11 @@ function measure() {
   {
     const header = document.querySelector('header');
     // the logo's own pictures and text, not the link box: a squeezed flex link lets its content run out of it
-    const parts = [...header.querySelector('a[href="/"]').querySelectorAll('img, span')].filter((e) => e.getClientRects().length).map((e) => e.getBoundingClientRect());
+    // the home link is "/" in Hungarian and "/en", "/de" in the other languages (locale-aware Link)
+    const home = [...header.querySelectorAll('a')].find((x) => /^\/(en|de)?$/.test(x.getAttribute('href') || ''));
+    const parts = [...home.querySelectorAll('img, span')].filter((e) => e.getClientRects().length).map((e) => e.getBoundingClientRect());
     const logo = { left: Math.min(...parts.map((r) => r.left)), right: Math.max(...parts.map((r) => r.right)), top: Math.min(...parts.map((r) => r.top)), bottom: Math.max(...parts.map((r) => r.bottom)) };
-    for (const c of header.querySelectorAll('button, a[href="/tamogatas"]')) {
+    for (const c of header.querySelectorAll('button, a[href$="/tamogatas"]')) {
       if (!c.offsetParent || c.closest('#fo-menu')) continue;
       const r = c.getBoundingClientRect();
       if (r.width && r.left < logo.right - 0.5 && r.right > logo.left && r.top < logo.bottom && r.bottom > logo.top) {

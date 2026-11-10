@@ -33,7 +33,9 @@ export default function SiteShell({
   return (
     // suppressHydrationWarning: THEME_SCRIPT adds the "dark" class before React hydrates (by design, #33)
     <html lang={lang} className={`scroll-smooth ${fraunces.variable}`} suppressHydrationWarning>
-      <body className={`${inter.className} flex min-h-screen flex-col bg-slate-50 text-slate-900 antialiased`}>
+      {/* On /en and /de the headings may hyphenate: long German compounds ("Datenschutzhinweis",
+          "Gemeinschaftsleben") ran out of a 320-360 px window. Hungarian pages are not touched. */}
+      <body className={`${inter.className} flex min-h-screen flex-col bg-slate-50 text-slate-900 antialiased${lang === "hu" ? "" : " [&_h1]:hyphens-auto [&_h2]:hyphens-auto [&_h3]:hyphens-auto"}`}>
         {/* The theme script is the body's first element: a parser-blocking inline script, it runs before
             anything is painted, so the dark theme does not flash. It lived in <head> in #33; this frame is
             not an app/ layout file, so a <head> here would only be a lint warning. The color-scheme meta

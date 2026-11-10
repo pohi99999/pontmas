@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { Send, CheckCircle2, Sparkles, AlertCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { TOPICS } from '@/lib/contact';
+import { FOUNDATION } from '@/lib/foundation';
 
 // ?topic= preselects the subject, but only a value the server also accepts (SECURITY_AUDIT L-1)
 const topicFrom = (t: string | null | undefined) => ((TOPICS as readonly string[]).includes(t ?? '') ? (t as string) : 'altalanos');
@@ -68,11 +69,11 @@ function ContactFormInner() {
       } else if (res.status === 400) {
         setErrorMsg('Kérjük, ellenőrizze a megadott adatokat (név, e-mail cím, üzenet).');
       } else {
-        setErrorMsg('Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy hívjon minket: +36 20 969 8715.');
+        setErrorMsg(`Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy hívjon minket: ${FOUNDATION.phone}.`);
       }
     } catch {
       setIsSubmitting(false);
-      setErrorMsg('Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy hívjon minket: +36 20 969 8715.');
+      setErrorMsg(`Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy hívjon minket: ${FOUNDATION.phone}.`);
     }
   };
 

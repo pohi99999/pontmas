@@ -7,6 +7,7 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import DocAvailability from '@/components/ui/DocAvailability';
 import CtaBand from '@/components/ui/CtaBand';
+import { FOUNDATION } from '@/lib/foundation';
 
 export const metadata: Metadata = {
   title: "Dokumentumtár & Pályázatok | PontMás Alapítvány",
@@ -23,7 +24,7 @@ export default function DokumentumokPage() {
     {
       title: "Alapító Okirat és Határozatok",
       category: "Jogi alapdokumentum",
-      date: "Nyilvántartási szám: 18-01-0001850",
+      date: `Nyilvántartási szám: ${FOUNDATION.registrationNumber}`,
       description: "A PontMás Vas Megyei Autista Gyermekekért Alapítvány hivatalos alapító okirata, célkitűzései és kuratóriumi működési rendje.",
     },
     {
@@ -168,7 +169,7 @@ export default function DokumentumokPage() {
       {/* 4. Kapcsolat / Kérdés */}
       <CtaBand
         title="További hivatalos információt keres?"
-        text="Kérdéseivel, szakmai együttműködési javaslataival forduljon bizalommal hozzánk telefonon (+36 20 969 8715) vagy kapcsolatfelvételi űrlapunkon keresztül!"
+        text={`Kérdéseivel, szakmai együttműködési javaslataival forduljon bizalommal hozzánk telefonon (${FOUNDATION.phone}) vagy kapcsolatfelvételi űrlapunkon keresztül!`}
       >
         <Button href="/kapcsolat" variant="primary">
           Kapcsolatfelvétel

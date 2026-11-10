@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Heart, Phone, MapPin, ExternalLink, ShieldCheck } from 'lucide-react';
+import { FOUNDATION, ADDRESS_LINE, PHONE_HREF } from '@/lib/foundation';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -24,7 +25,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
-              PontMás Vas Megyei Autista Gyermekekért Alapítvány. 2015 óta a Vas vármegyei érintett családok és intézmények elkötelezett támogatója.
+              {FOUNDATION.name}. 2015 óta a Vas vármegyei érintett családok és intézmények elkötelezett támogatója.
             </p>
             <div className="flex items-center gap-2 text-xs text-blue-300 bg-blue-950/60 border border-blue-800/60 p-2.5 rounded-lg">
               <ShieldCheck size={16} className="text-blue-400 flex-shrink-0" />
@@ -72,11 +73,11 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2.5">
                 <MapPin size={18} className="text-blue-400 flex-shrink-0 mt-0.5" />
-                <span>9700 Szombathely, Váci M. utca 12. 3./15.</span>
+                <span>{ADDRESS_LINE}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone size={18} className="text-blue-400 flex-shrink-0" />
-                <a href="tel:+36209698715" className="hover:text-white transition-colors">Rumi Edina, <span className="whitespace-nowrap">+36 20 969 8715</span></a>
+                <a href={PHONE_HREF} className="hover:text-white transition-colors">{FOUNDATION.contactPerson}, <span className="whitespace-nowrap">{FOUNDATION.phone}</span></a>
               </li>
               <li className="pt-1">
                 <a 
@@ -98,11 +99,11 @@ export default function Footer() {
             <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700 space-y-2 text-xs">
               <div>
                 <span className="text-slate-400 block">Adószám (1% felajánlás):</span>
-                <span className="font-mono font-bold text-white text-sm">18654996-1-18</span>
+                <span className="font-mono font-bold text-white text-sm">{FOUNDATION.taxNumber}</span>
               </div>
               <div className="pt-1 border-t border-slate-700/60">
-                <span className="text-slate-400 block">Bankszámlaszám (Erste Bank):</span>
-                <span className="font-mono font-bold text-white text-xs lg:text-[11px] xl:text-xs block break-all">11600006-00000000-75701521</span>
+                <span className="text-slate-400 block">Bankszámlaszám ({FOUNDATION.bankName}):</span>
+                <span className="font-mono font-bold text-white text-xs lg:text-[11px] xl:text-xs block break-all">{FOUNDATION.bankAccount}</span>
               </div>
             </div>
             <Link
@@ -120,7 +121,7 @@ export default function Footer() {
       {/* Alsó copyright sáv */}
       <div className="border-t border-slate-800 bg-slate-950 py-6">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-          <p>© {currentYear} PontMás Vas Megyei Autista Gyermekekért Alapítvány. Minden jog fenntartva.</p>
+          <p>© {currentYear} {FOUNDATION.name}. Minden jog fenntartva.</p>
           <div className="flex items-center gap-4">
             <Link href="/dokumentumok" className="hover:text-slate-300 transition-colors">Közhasznúsági jelentések</Link>
             <span>•</span>

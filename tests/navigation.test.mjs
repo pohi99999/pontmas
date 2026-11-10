@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { renderHtml, visibleText } from './helpers/render.mjs';
 
 test('Header component supports accessible mobile menu and sensory toggle', () => {
   const headerPath = path.resolve('src/components/layout/Header.tsx');
@@ -16,12 +17,13 @@ test('Header component supports accessible mobile menu and sensory toggle', () =
   assert.ok(headerContent.includes('toggleSensoryMode'), 'Header must have sensory mode toggle');
 });
 
-test('Footer component contains essential NGO legal details and quick links', () => {
+test('Footer component contains essential NGO legal details and quick links', async () => {
   const footerPath = path.resolve('src/components/layout/Footer.tsx');
   const footerContent = fs.readFileSync(footerPath, 'utf8');
 
-  assert.ok(footerContent.includes('18654996-1-18'), 'Footer must contain tax number');
-  assert.ok(footerContent.includes('11600006-00000000-75701521'), 'Footer must contain bank account');
-  assert.ok(footerContent.includes('Szombathely'), 'Footer must contain city');
+  const shown = visibleText(await renderHtml('components/layout/Footer.tsx'));
+  assert.ok(shown.includes('18654996-1-18'), 'Footer must contain tax number');
+  assert.ok(shown.includes('11600006-00000000-75701521'), 'Footer must contain bank account');
+  assert.ok(shown.includes('9700 Szombathely'), 'Footer must contain city');
   assert.ok(footerContent.includes('/dokumentumok'), 'Footer must link to documents');
 });

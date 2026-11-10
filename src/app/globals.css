@@ -405,3 +405,13 @@ h2 {
   letter-spacing: 0.02em;
   color: var(--color-blue-700);
 }
+
+/* The navy 1% band's faint background photo (Péter 14781): the cover keeps the text on navy. Inside the band
+   (.pm-sotet) --color-blue-950 is the navy in both themes. Soft mode removes every decorative background. */
+.pm-hatter-takaras {
+  background: linear-gradient(90deg, var(--color-blue-950) 0%, var(--color-blue-950) 45%, color-mix(in srgb, var(--color-blue-950) 78%, transparent) 100%);
+}
+@media (max-width: 767.98px) {
+  .pm-hatter-takaras { background: color-mix(in srgb, var(--color-blue-950) 90%, transparent); }
+}
+.sensory-friendly [data-hatter] { display: none; }

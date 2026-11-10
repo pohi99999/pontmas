@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, Users, HandHeart, School, HelpCircle, ArrowRight } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -141,7 +142,15 @@ export default function Home() {
       </section>
 
       {/* 4. Donation: a full-width deep blue band, the tax and bank numbers in one row */}
-      <section className="bg-blue-950 text-white pm-sotet">
+      <section className="relative isolate overflow-hidden bg-blue-950 text-white pm-sotet">
+        {/* A faint background (Péter 14781, "B2, tengeri falikép"): the children's sea mural from the gallery,
+            no person in it, under a navy cover so the text keeps its contrast (full navy to 45 %, fading to
+            78 % on the right; 90 % all over below 768 px). Decorative: aria-hidden, empty alt, lazy (it is far
+            below the fold, so it never competes for the LCP), and gone in soft mode ([data-hatter]). */}
+        <div data-hatter aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          <Image src="/images/galeria/tengeri-falikep.webp" alt="" fill sizes="100vw" className="object-cover object-right" />
+          <div className="pm-hatter-takaras absolute inset-0" />
+        </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-4xl">
             <p className="eyebrow mb-5" style={{ color: '#c9d5ec' }}>

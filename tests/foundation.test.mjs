@@ -50,6 +50,8 @@ test('no file under src/ other than src/lib/foundation.ts holds a copy of a fact
   const own = path.resolve('src/lib/foundation.ts');
   for (const f of files(path.resolve('src'))) {
     if (f === own) continue;
+    // generated from the rendered pages, which read foundation.ts; tests/chat-knowledge.test.mjs keeps it in step
+    if (f.endsWith('.generated.ts')) continue;
     const s = fs.readFileSync(f, 'utf8');
     for (const [what, re] of COPIES) assert.ok(!re.test(s), `${path.relative(process.cwd(), f)} holds a copy of the ${what}`);
   }

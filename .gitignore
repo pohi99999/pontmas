@@ -42,3 +42,6 @@ next-env.d.ts
 
 # logs
 *.log
+
+# the chat evaluation answers: read and reviewed, not committed
+/tests/chat-eval/out/

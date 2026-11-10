@@ -2,10 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { readWithNamespaces } from './helpers/messages.mjs';
 
 test('Autism page includes SectionHeader, spectrum traits, facts vs myths, and parent guide', () => {
   const autismPath = path.resolve('src/app/[locale]/autizmus/page.tsx');
-  const autismContent = fs.readFileSync(autismPath, 'utf8');
+  // the page's texts are in messages/hu.json (Autism) since the i18n extraction (card c017f163)
+  const autismContent = readWithNamespaces(path.relative(process.cwd(), autismPath), 'Autism');
 
   assert.ok(autismContent.includes('SectionHeader'), 'Autism page must use SectionHeader');
   assert.ok(autismContent.includes('Szenzoros'), 'Autism page must discuss sensory processing');

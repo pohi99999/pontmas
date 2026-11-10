@@ -6,90 +6,36 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import CtaBand from '@/components/ui/CtaBand';
+import { useTranslations } from 'next-intl';
 import { FOUNDATION } from '@/lib/foundation';
 
 export default function AutizmusPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
-  const spektrumJellemzok = [
-    {
-      icon: <MessageCircle size={28} />,
-      title: "Kommunikáció és szociális interakció",
-      desc: "Nehézséget okozhat a nonverbális jelzések, a mimika, a testbeszéd vagy a metaforák megértése. Jellemző az egyenes, őszinte és közvetlen kommunikáció."
-    },
-    {
-      icon: <RefreshCw size={28} />,
-      title: "Rugalmasság és kiszámíthatóság",
-      desc: "A megszokott napirend, a vizuális időrend és a strukturált környezet biztonságot nyújt. A váratlan változások átmeneti feszültséget kelthetnek."
-    },
-    {
-      icon: <Brain size={28} />,
-      title: "Szenzoros érzékenység",
-      desc: "Az érzékszervi ingerek (fények, zajok, érintések, textúrák) feldolgozása egyedi; hiper- vagy hiposzenzitivitás is előfordul a spektrumon."
-    }
-  ];
-
-  const tenyekTevhitek = [
-    {
-      myth: "Az autizmus egy betegség, amelyből ki lehet gyógyulni.",
-      fact: "Az autizmus nem betegség, hanem idegrendszeri fejlődési sajátosság. Megfelelő korai fejlesztéssel és támogató közeggel az érintettek képességei kibontakoztathatók.",
-    },
-    {
-      myth: "Az autista emberek nem akarnak barátkozni és nincsenek érzéseik.",
-      fact: "Nagyon is vágynak a kapcsolódásra és mély érzéseik vannak; csupán a szociális szabályok kifejezése és értelmezése terén igényelnek megértést.",
-    },
-    {
-      myth: "Minden autista zseniális képességekkel rendelkezik (Savant-szindróma).",
-      fact: "Mint minden ember, az autizmussal élők is egyedi profilúak: mindenkinek megvannak az egyéni erősségei és a támogatást igénylő területei.",
-    },
-    {
-      myth: "A rideg szülői nevelés okozza az autizmust.",
-      fact: "Tudományosan megdöntött tévhit. Az autizmus genetikai és biológiai tényezők összetett hátterére vezethető vissza, semmi köze a szülői gondoskodáshoz.",
-    }
-  ];
-
-  const faqs = [
-    {
-      question: "Mik az autizmus legkorábbi jelei kisgyermekkorban?",
-      answer: "A szemkontaktus tartásának ritkasága, a névre való válaszadás késése, a közös figyelem (mutatás) elmaradása, a beszédfejlődés megakadása, valamint az ismétlődő mozgások (pl. repkedés, sorba rendezés) adhatnak okot szakember felkeresésére."
-    },
-    {
-      question: "Hová fordulhatok Vas vármegyében diagnosztikai vizsgálatért?",
-      answer: `A Vas Vármegyei Pedagógiai Szakszolgálat Szakértői Bizottságához, illetve a gyermekorvos vagy védőnő javaslatára gyermekpszichiátriai szakrendelésre. Telefonon (${FOUNDATION.phone}) készséggel segítünk eligazodni az eljárásban.`
-    },
-    {
-      question: "Hogyan segíthet a család a mindennapi napirend kialakításában?",
-      answer: "Vizuális napirendkártyák (PECS, napirendi sávok), előrejelzések ('5 perc múlva indulunk') és ingerszegény pihenősarok kialakítása bizonyítottan megkönnyíti a zökkenőmentes hétköznapokat."
-    },
-    {
-      question: "Milyen támogatást nyújt a PontMás Alapítvány a szülőknek?",
-      answer: "Havi szülőklubokat, szakértői tanácsadást, intézményi segítségnyújtást, nyári táborokat és rendkívüli krízishelyzet esetén közvetlen anyagi támogatást biztosítunk."
-    }
-  ];
-
-  const tanacsokSzuloknek = [
-    "Ne maradjon egyedül: csatlakozzon a PontMás Alapítvány szülői közösségéhez, ahol megértő sorstársakra talál.",
-    "Azonosítsa gyermeke szenzoros igényeit (zajszűrő fülvédő, lágy fények, kényelmes ruházat).",
-    "Alkalmazzon vizuális segítséget: a képekkel támogatott kommunikáció jelentősen csökkenti a szorongást.",
-    "Fókuszáljon a kis sikerekre és a gyermek egyedi erősségeire minden nap."
-  ];
+  const t = useTranslations('Autism');
+  const traitIcons = [<MessageCircle key="m" size={28} />, <RefreshCw key="r" size={28} />, <Brain key="b" size={28} />];
+  const spektrumJellemzok = (t.raw('traits.items') as { title: string; desc: string }[]).map((it, i) => ({ ...it, icon: traitIcons[i] }));
+  const tenyekTevhitek = t.raw('myths.items') as { myth: string; fact: string }[];
+  // raw: the answers are shown as written (no ICU parsing of their apostrophes); {phone} from foundation.ts
+  const faqs = (t.raw('faq.items') as { question: string; answer: string }[]).map((f) => ({ ...f, answer: f.answer.replace('{phone}', FOUNDATION.phone) }));
+  const tanacsokSzuloknek = t.raw('tips.items') as string[];
 
   return (
     <div className="pb-20">
       
       {/* 1. Fejléc szekció */}
       <PageHeader
-        badge="Tudástár és útmutató"
-        title="Mi az az autizmus?"
-        subtitle="Az autizmus nem betegség, hanem egy eltérő fejlődésmenet és észlelési sajátosság. Ismerje meg a spektrum működését szakmai, mégis közérthető formában."
+        badge={t('header.badge')}
+        title={t('header.title')}
+        subtitle={t('header.subtitle')}
       />
 
       {/* 2. Spektrum Jellemzők (3 Pillér) */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <SectionHeader
-          badge="A spektrum fő területei"
-          title="A működés sokszínűsége"
-          subtitle="Nincs két egyforma autista ember: a képességek, kihívások és erősségek kombinációja egyedi mintázatot alkot."
+          badge={t('traits.badge')}
+          title={t('traits.title')}
+          subtitle={t('traits.subtitle')}
         />
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -109,9 +55,9 @@ export default function AutizmusPage() {
       <section className="bg-slate-100/70 border-y border-slate-200/80 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <SectionHeader
-            badge="Tévhitoszlató"
-            title="Tények és tévhitek az autizmusról"
-            subtitle="A társadalmi előítéletek lebontása a helyes és pontos ismeretek átadásával kezdődik."
+            badge={t('myths.badge')}
+            title={t('myths.title')}
+            subtitle={t('myths.subtitle')}
           />
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -120,14 +66,14 @@ export default function AutizmusPage() {
                 <div className="flex items-start gap-3 bg-red-50 text-red-900 p-3.5 rounded-xl border border-red-100">
                   <AlertCircle className="text-red-500 flex-shrink-0 mt-0.5" size={20} />
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-red-700 block mb-0.5">Tévhit</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-red-700 block mb-0.5">{t('myths.mythLabel')}</span>
                     <p className="text-sm font-semibold text-slate-800">{item.myth}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 bg-emerald-50 text-emerald-950 p-3.5 rounded-xl border border-emerald-100">
                   <ShieldCheck className="text-emerald-600 flex-shrink-0 mt-0.5" size={20} />
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block mb-0.5">Tény</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block mb-0.5">{t('myths.factLabel')}</span>
                     <p className="text-sm text-slate-700 leading-relaxed">{item.fact}</p>
                   </div>
                 </div>
@@ -145,8 +91,8 @@ export default function AutizmusPage() {
               <Heart size={24} />
             </div>
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold">Gyakorlati tanácsok érintett szülőknek</h2>
-              <p className="text-xs text-blue-200">A PontMás szakmai tapasztalatai alapján</p>
+              <h2 className="text-2xl sm:text-3xl font-bold">{t('tips.title')}</h2>
+              <p className="text-xs text-blue-200">{t('tips.subtitle')}</p>
             </div>
           </div>
 
@@ -164,9 +110,9 @@ export default function AutizmusPage() {
       {/* 5. Gyakori kérdések (FAQ) */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
         <SectionHeader
-          badge="Gyakori kérdések"
-          title="Gyakran ismételt kérdések (FAQ)"
-          subtitle="Összegyűjtöttük a leggyakrabban felmerülő kérdéseket a diagnózistól a fejlesztési lehetőségekig."
+          badge={t('faq.badge')}
+          title={t('faq.title')}
+          subtitle={t('faq.subtitle')}
         />
 
         <div className="space-y-4">
@@ -201,14 +147,14 @@ export default function AutizmusPage() {
 
       {/* 6. Letölthető anyagok és Kapcsolat CTA */}
       <CtaBand
-        title="További hivatalos dokumentumokra és nyilatkozatokra van szüksége?"
-        text="Tekintse meg letölthető közhasznúsági beszámolóinkat, vagy vegye fel a kapcsolatot szakértőinkkel."
+        title={t('cta.title')}
+        text={t('cta.text')}
       >
         <Button href="/dokumentumok" variant="primary" leftIcon={<Download size={16} />}>
-          Dokumentumtár
+          {t('cta.documents')}
         </Button>
         <Button href="/kapcsolat" variant="outline">
-          Kapcsolatfelvétel
+          {t('cta.contact')}
         </Button>
       </CtaBand>
 

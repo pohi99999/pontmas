@@ -15,3 +15,8 @@ export const HU_TEXT = HU_VALUES.join('\n');
 export function readWithMessages(rel) {
   return `${fs.readFileSync(path.resolve(rel), 'utf8')}\n${HU_TEXT}`;
 }
+
+/** A page's source plus only its own namespaces of messages/hu.json: a text found here is this page's. */
+export function readWithNamespaces(rel, ...namespaces) {
+  return [fs.readFileSync(path.resolve(rel), 'utf8'), ...namespaces.flatMap((ns) => flatten(HU_MESSAGES[ns] ?? {}))].join('\n');
+}

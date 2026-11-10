@@ -8,6 +8,7 @@ import AccessibilityToolbar from "@/components/ui/AccessibilityToolbar";
 import ReadingRuler from "@/components/ui/ReadingRuler";
 import { SensoryProvider } from "@/context/SensoryContext";
 import { jsonLdScript } from "@/lib/jsonLd";
+import { THEME_SCRIPT } from "@/lib/theme";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 // The heading font: one static weight, subset to Hungarian in one small file (fonts/README.txt). The variable
@@ -55,8 +56,12 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="hu" className={`scroll-smooth ${fraunces.variable}`}>
+    // suppressHydrationWarning: THEME_SCRIPT adds the "dark" class before React hydrates (by design)
+    <html lang="hu" className={`scroll-smooth ${fraunces.variable}`} suppressHydrationWarning>
       <head>
+        {/* The page has its own dark theme: browsers then do not darken it on their own (review 2026-11-10) */}
+        <meta name="color-scheme" content="light dark" />
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}

@@ -69,13 +69,108 @@
   --color-border: var(--color-border);
 }
 
-/* One light theme on purpose. The old prefers-color-scheme: dark block darkened only the page
-   background while the components keep fixed dark text (text-slate-900), so on a phone in dark
-   mode headings went dark-on-dark (about 1:1). A single predictable look also suits the audience;
-   color-scheme keeps the browser's own controls (form fields, scrollbars) light as well. */
+/* Light and dark theme (review 2026-11-10). The old prefers-color-scheme block darkened only the page
+   background while the components kept fixed dark text, so headings went dark-on-dark. Now the theme is a
+   class on <html> (set before the first paint, src/lib/theme.ts) and it moves the PALETTE: the same
+   scale overrides as above, with dark values, so every component follows without per-component classes.
+   Exceptions are explicit below: filled blue buttons and navy panels keep their dark blue, white cards
+   become the dark card colour, and the parts that are dark in the light theme too (.pm-sotet: footer,
+   navy panels) keep their light-theme palette. Measured with tests/a11y-contrast.mjs in both schemes. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   color-scheme: light;
 }
+
+:root.dark {
+  color-scheme: dark;
+  --background: #14161c;
+  --foreground: #ece9e2;
+  --color-card-bg: #1c1f27;
+  --color-border: #2c303a;
+  --color-calm-bg: #1a2131;
+  --color-warm-bg: #14161c;
+  /* ink and paper swap: the warm greys, from the darkest surface to the lightest text */
+  --color-slate-50: #191c23;
+  --color-slate-100: #1f232c;
+  --color-slate-200: #2c303a;
+  --color-slate-300: #3b404c;
+  --color-slate-400: #8c919c;
+  --color-slate-500: #a7abb5;
+  --color-slate-600: #bcc0c8;
+  --color-slate-700: #d0d3d9;
+  --color-slate-800: #e0e2e6;
+  --color-slate-900: #ece9e2;
+  --color-slate-950: #f6f4ef;
+  /* the logo's blue, light enough to be read on the dark ground; tints become dark tints */
+  --color-blue-50: #1b2233;
+  --color-blue-100: #222c42;
+  --color-blue-200: #2d3a58;
+  --color-blue-300: #43577f;
+  --color-blue-400: #7d97c9;
+  --color-blue-500: #93abd8;
+  --color-blue-600: #a8bde3;
+  --color-blue-700: #bccced;
+  --color-blue-800: #cfdbf3;
+  --color-blue-900: #e0e8f8;
+  --color-blue-950: #eef2fb;
+  --color-sky-50: #1b2233;
+  --color-sky-100: #222c42;
+  --color-sky-200: #2d3a58;
+  --color-sky-300: #43577f;
+  --color-sky-700: #bccced;
+  --color-emerald-50: #13241e;
+  --color-emerald-100: #173027;
+  --color-emerald-200: #1f4033;
+  --color-emerald-600: #5fd0a4;
+  --color-emerald-700: #7fdcb6;
+  --color-emerald-800: #a2e8cb;
+  --color-emerald-950: #d9f7ea;
+  --color-red-50: #2a1618;
+  --color-red-100: #36191c;
+  --color-red-200: #4a2226;
+  --color-red-600: #f2989d;
+  --color-red-700: #f5aeb2;
+  --color-red-900: #fbd9db;
+  --color-amber-50: #2a2112;
+  --color-amber-200: #4d3b19;
+  --color-amber-800: #f0cf8e;
+  --color-amber-900: #f6dfb0;
+}
+
+/* Filled blue surfaces keep their dark blue, so the white text on them stays readable */
+.dark .bg-blue-500 { background-color: #4a6aa8; }
+.dark .bg-blue-600, .dark .hover\:bg-blue-600:hover { background-color: #3d5e9e; }
+.dark .bg-blue-700, .dark .hover\:bg-blue-700:hover { background-color: #314e86; }
+.dark .bg-blue-800 { background-color: #29416f; }
+.dark .bg-blue-900 { background-color: #21355b; }
+.dark .bg-blue-950 { background-color: #16233d; }
+.dark .from-blue-700 { --tw-gradient-from: #314e86; }
+.dark .to-blue-900 { --tw-gradient-to: #21355b; }
+.dark .bg-emerald-500 { background-color: #10855f; }
+
+/* White cards and the header become the dark card colour (text-white stays white: same variable) */
+.dark .bg-white { background-color: var(--color-card-bg); }
+.dark .bg-white\/80 { background-color: rgb(28 31 39 / 0.8); }
+.dark .from-white { --tw-gradient-from: var(--color-card-bg); }
+.dark .border-white { border-color: var(--color-border); }
+.dark header.sticky { background-color: rgb(20 22 28 / 0.92); }
+.dark #fo-menu { background-color: #191c23; }
+
+/* Parts that are dark in the light theme too keep the light-theme palette inside (and their white tiles) */
+.dark .pm-sotet {
+  --color-slate-50: #fbf9f5; --color-slate-100: #f4f1ea; --color-slate-200: #e6e2d8; --color-slate-300: #d2cdc1;
+  --color-slate-400: #a29c90; --color-slate-500: #6e695f; --color-slate-600: #565249; --color-slate-700: #413e38;
+  --color-slate-800: #2c2a26; --color-slate-900: #1b161a; --color-slate-950: #120f11;
+  --color-blue-50: #f2f5fb; --color-blue-100: #e4eaf6; --color-blue-200: #c9d5ec; --color-blue-300: #a6b9df;
+  --color-blue-400: #7192c5; --color-blue-500: #5475b0; --color-blue-600: #3d5e9e; --color-blue-700: #314e86;
+  --color-blue-800: #29416f; --color-blue-900: #21355b; --color-blue-950: #16233d;
+  --color-sky-200: #c9d5ec; --color-sky-300: #a6b9df;
+}
+.dark .pm-sotet .bg-white { background-color: #ffffff; }
+
+/* Photos a touch softer on the dark ground; the logo and icons are left alone */
+.dark main img:not([src*="/brand/"]) { filter: brightness(0.94); }
 
 body {
   background: var(--background);
@@ -143,6 +238,16 @@ body {
   filter: brightness(95%) saturate(90%);
 }
 
+/* The soft mode in the dark theme: the same calm, on the dark ground */
+.dark .sensory-friendly .text-blue-700,
+.dark .sensory-friendly .text-blue-600 {
+  color: #bccced !important;
+}
+.dark .sensory-friendly .bg-blue-50,
+.dark .sensory-friendly .bg-sky-50 {
+  background-color: #1f232c !important;
+}
+
 /* Magas kontraszt mód (High Contrast) */
 .contrast-high {
   --background: #ffffff;
@@ -155,6 +260,20 @@ body {
 .contrast-high > main,
 .contrast-high > footer {
   filter: contrast(125%);
+}
+
+/* High contrast in the dark theme: white on black */
+.dark .contrast-high {
+  --background: #000000;
+  --foreground: #ffffff;
+  --color-card-bg: #000000;
+  --color-border: #ffffff;
+}
+.dark .contrast-high .bg-blue-50,
+.dark .contrast-high .bg-slate-50,
+.dark .contrast-high .bg-white {
+  background-color: #000000 !important;
+  border-color: #ffffff !important;
 }
 
 .contrast-high a {

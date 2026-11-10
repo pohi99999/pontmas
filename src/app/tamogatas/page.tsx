@@ -143,7 +143,7 @@ export default function TamogatasPage() {
 
       {/* 4. Átláthatóság és Hitelességi Garancia */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
-        <div className="bg-blue-950 text-white rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="bg-blue-950 text-white pm-sotet rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="space-y-3 text-center md:text-left">
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-300 bg-white/10 px-3 py-1 rounded-full">
               <ShieldCheck size={16} />

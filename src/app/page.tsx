@@ -4,7 +4,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import FeatureCard from '@/components/ui/FeatureCard';
 import Button from '@/components/ui/Button';
 import CopyButton from '@/components/ui/CopyButton';
-import PontJel from '@/components/brand/PontJel';
+import PontAblak from '@/components/brand/PontAblak';
 import CtaBand from '@/components/ui/CtaBand';
 import { FOUNDATION } from '@/lib/foundation';
 
@@ -18,8 +18,9 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-16 md:gap-24 pb-20">
       
-      {/* 1. Hero: the logo's sphere is the picture. A photo goes into the sphere once the foundation sends one. */}
-      <section className="border-b border-slate-200/80">
+      {/* 1. Hero: the logo's sphere is a window to a photo from the summer camp (#26, with consent);
+          the facts follow as a navy band, attached to the hero (review 2026-11-10). */}
+      <section>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-16 pb-10 md:pb-14">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
             <div className="lg:col-span-7 min-w-0">
@@ -48,17 +49,29 @@ export default function Home() {
                 <span className="lufi z-10" style={{ width: '10%', aspectRatio: '1', left: '58%', top: '13%' }} />
                 <span className="lufi z-10" style={{ width: '5.5%', aspectRatio: '1', left: '45%', top: '21%' }} />
                 <span className="lufi z-10" style={{ width: '3.6%', aspectRatio: '1', left: '74%', top: '20%' }} />
-                <PontJel />
+                <PontAblak
+                  src="/images/galeria/tabor-korjatek.webp"
+                  alt="Közös játék körben"
+                  sizes="(min-width: 1024px) 350px, (min-width: 640px) 280px, 220px"
+                />
               </div>
             </div>
           </div>
 
-          {/* The facts in one row */}
-          <dl className="mt-12 md:mt-16 grid sm:grid-cols-3 gap-6 sm:gap-10 border-t border-slate-200 pt-8">
+        </div>
+
+        {/* The facts as a navy band with the sphere's soft light in the corner */}
+        <div className="relative overflow-hidden bg-blue-950 text-white pm-sotet">
+          <div
+            className="pointer-events-none absolute -right-28 -top-36 h-[26rem] w-[26rem] rounded-full"
+            aria-hidden="true"
+            style={{ background: 'radial-gradient(circle, rgb(191 201 229 / .30), rgb(114 144 196 / .10) 55%, transparent 70%)' }}
+          />
+          <dl className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14 grid sm:grid-cols-3 gap-8 sm:gap-10">
             {stats.map((stat) => (
               <div key={stat.value}>
-                <dt className="display text-3xl md:text-4xl text-slate-900">{stat.value}</dt>
-                <dd className="text-[15px] text-slate-600 mt-1">{stat.label}</dd>
+                <dt className="display text-4xl md:text-5xl text-white">{stat.value}</dt>
+                <dd className="text-[15px] text-blue-100 mt-2">{stat.label}</dd>
               </div>
             ))}
           </dl>
@@ -85,6 +98,7 @@ export default function Home() {
             description="Szülőklubok, Kék séták és képességfejlesztő nyári táborok, ahol az érintett családok megértő és biztonságos közegben kapcsolódhatnak."
             linkHref="/programok"
             linkLabel="Eseményeink"
+            thread="continue-right"
           />
 
           <FeatureCard
@@ -93,6 +107,7 @@ export default function Home() {
             description="Edukációs anyagok, tájékoztatók és rendezvények az autizmus társadalmi megértésének és elfogadásának növeléséért."
             linkHref="/autizmus"
             linkLabel="Tudástár"
+            thread="continue"
           />
 
           <FeatureCard
@@ -101,6 +116,7 @@ export default function Home() {
             description="Vas vármegyei autizmus-specifikus és integráló iskolák, óvodák támogatása speciális fejlesztőeszközökkel."
             linkHref="/programok"
             linkLabel="Támogatottak"
+            thread="continue-right"
           />
 
           <FeatureCard
@@ -109,6 +125,7 @@ export default function Home() {
             description="Célzott anyagi és eszközbeli gyorssegély a váratlanul nehéz élethelyzetbe került érintett családok számára."
             linkHref="/tamogatas"
             linkLabel="Támogatás"
+            thread="last"
           />
         </div>
         </div>

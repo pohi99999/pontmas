@@ -37,11 +37,8 @@ export default function ImpresszumPage() {
               <li><strong>Nyilvántartó bíróság:</strong> <Review kind="kerdes">a nyilvántartó törvényszék neve</Review></li>
               <li><strong>Adószám:</strong> {FOUNDATION.taxNumber}</li>
               <li>
-                <strong>Képviselő:</strong> Pohánka Edit
-                <Review kind="kerdes">
-                  Forrás: az alapítvány régi weboldala (pontmas.hu/tamogatas.html: „Kuratórium elnöke: Pohánka Edit”), nem a
-                  közhiteles névjegyzék.
-                </Review>
+                <strong>Képviselő:</strong> {/* Péter's confirmation, 2026-11-10 (Telegram 14695) */}
+                Pohánka Edit, a kuratórium elnöke
               </li>
               <li><strong>Telefon:</strong> {FOUNDATION.phone} ({FOUNDATION.contactPerson})</li>
               <li>

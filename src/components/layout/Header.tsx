@@ -49,6 +49,32 @@ export default function Header() {
   ];
 
   return (
+    <>
+    {/* Display bar (Péter 14726): the display settings in one place above the header, desktop only (1360 px
+        and up, where the full menu shows); below it the header is as before. It is NOT sticky: it scrolls
+        away, so while scrolling the sticky header below stays its own 80 px. In the tab order it comes right
+        after "Ugrás a tartalomra". The language switcher (#37) goes in here too. */}
+    <div data-felso-sav className="hidden min-[1360px]:block border-b border-slate-200/80 bg-slate-50">
+      <div className="container mx-auto flex h-10 items-center justify-end gap-2 px-4 sm:px-6 lg:px-8">
+        <ThemeToggleButton />
+        {/* Sensory Toggle: always with its label, outlined in the brand blue; on, it is a light blue tint,
+            not black, so it cannot be taken for a dark-mode switch (review 2026-11-10) */}
+        <button
+          onClick={toggleSensoryMode}
+          type="button"
+          className={`h-8 px-2.5 rounded-lg border text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all cursor-pointer ${
+            isSensoryFriendly
+              ? 'bg-blue-50 text-blue-800 border-blue-600'
+              : 'bg-white text-blue-700 border-blue-600/60 hover:bg-blue-50'
+          }`}
+          title={isSensoryFriendly ? "Lágy, csökkentett ingerű mód aktív (kattintson a normál módhoz)" : "Csökkentett ingerű (szenszoros) mód bekapcsolása"}
+          aria-pressed={isSensoryFriendly}
+        >
+          {isSensoryFriendly ? <EyeOff size={15} aria-hidden="true" /> : <Eye size={15} aria-hidden="true" />}
+          <span>{isSensoryFriendly ? 'Lágy mód: be' : 'Lágy mód'}</span>
+        </button>
+      </div>
+    </div>
     <header ref={headerRef} className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 transition-colors">
       <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
         
@@ -104,8 +130,7 @@ export default function Header() {
 
         {/* Desktop Navigation: from 1360 px only. The full bar (9 items + 2 buttons) did not fit from lg
             (1024 px) and pushed "Támogatás" off screen, so narrower windows keep the hamburger menu.
-            Every item stays on one line: tighter padding and no gap below 2xl (1536 px), and the
-            "Lágy mód" button shows only its icon there (the text stays for screen readers). */}
+            Every item stays on one line: tighter padding and no gap below 2xl (1536 px). */}
         <nav className="hidden min-[1360px]:flex items-center gap-0 2xl:gap-2" aria-label="Fő navigáció">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
@@ -126,26 +151,8 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Action Controls & CTA */}
+        {/* Action Controls & CTA: the display settings moved to the bar above (Péter 14726) */}
         <div className="hidden min-[1360px]:flex items-center gap-3">
-          <ThemeToggleButton />
-          {/* Sensory Toggle: always with its label, outlined in the brand blue; on, it is a light blue tint,
-              not black, so it cannot be taken for a dark-mode switch (review 2026-11-10) */}
-          <button
-            onClick={toggleSensoryMode}
-            type="button"
-            className={`h-10 px-3 rounded-xl border text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer ${
-              isSensoryFriendly
-                ? 'bg-blue-50 text-blue-800 border-blue-600'
-                : 'bg-transparent text-blue-700 border-blue-600/60 hover:bg-blue-50'
-            }`}
-            title={isSensoryFriendly ? "Lágy, csökkentett ingerű mód aktív (kattintson a normál módhoz)" : "Csökkentett ingerű (szenszoros) mód bekapcsolása"}
-            aria-pressed={isSensoryFriendly}
-          >
-            {isSensoryFriendly ? <EyeOff size={16} aria-hidden="true" /> : <Eye size={16} aria-hidden="true" />}
-            <span>{isSensoryFriendly ? 'Lágy mód: be' : 'Lágy mód'}</span>
-          </button>
-
           {/* Donation CTA */}
           <Link
             href="/tamogatas"
@@ -251,5 +258,6 @@ export default function Header() {
         </div>
       )}
     </header>
+    </>
   );
 }

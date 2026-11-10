@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { AMIERT_DOLGOZUNK, SZULOI_GONDOLATOK } from '@/content/hangunk';
-import { CSAPAT, lathatoCsapat } from '@/content/csapat';
+import { CSAPAT, lathatoCsapat, monogram } from '@/content/csapat';
 
 // "Amiért dolgozunk": the foundation's own sentences (src/content/hangunk.ts), large, no quotation marks
 // and no names, so nothing reads as a parent's quote.
@@ -40,21 +40,28 @@ export function SzuloiGondolatok() {
   );
 }
 
-// The people of the foundation: renders nothing until a portrait is published (src/content/csapat.ts).
+// The people of the foundation (src/content/csapat.ts): portrait or, until it arrives, the initials in the
+// same 4:5 frame, so a card without a photo still sits evenly in the row.
 export function CsapatSor() {
   const tagok = lathatoCsapat(CSAPAT);
   if (!tagok.length) return null;
   return (
-    <section className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16 max-w-5xl" aria-labelledby="csapat">
-      <h2 id="csapat" className="text-2xl sm:text-3xl text-slate-900 mb-8">Kik vagyunk</h2>
-      <ul className="grid gap-8 grid-cols-2 md:grid-cols-4">
+    <section className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16 max-w-6xl" aria-labelledby="csapat">
+      <h2 id="csapat" className="text-2xl sm:text-3xl text-slate-900 mb-8">Csapatunk</h2>
+      <ul className="grid gap-x-6 gap-y-10 grid-cols-2 md:grid-cols-4">
         {tagok.map((t) => (
           <li key={t.nev}>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100">
-              <Image src={t.foto as string} alt={t.nev} fill sizes="(min-width: 768px) 220px, 45vw" className="object-cover" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-blue-50 border border-slate-200/80">
+              {t.foto ? (
+                <Image src={t.foto} alt={t.nev} fill sizes="(min-width: 768px) 260px, 45vw" className="object-cover" />
+              ) : (
+                <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center display text-5xl text-blue-700">
+                  {monogram(t.nev)}
+                </span>
+              )}
             </div>
             <p className="mt-3 font-bold text-slate-900">{t.nev}</p>
-            <p className="text-sm text-slate-600">{t.szerep}</p>
+            <p className="text-sm text-slate-600 leading-snug">{t.szerep}</p>
           </li>
         ))}
       </ul>

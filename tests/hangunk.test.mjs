@@ -5,7 +5,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { AMIERT_DOLGOZUNK, SZULOI_GONDOLATOK } from '../src/content/hangunk.ts';
-import { CSAPAT, lathatoCsapat } from '../src/content/csapat.ts';
+import { CSAPAT, lathatoCsapat, monogram } from '../src/content/csapat.ts';
 
 const read = (f) => fs.readFileSync(f, 'utf8');
 
@@ -32,16 +32,26 @@ test('the parents\' thoughts render nothing until real ones are in, and each nee
   assert.match(read('src/content/hangunk.ts'), /hozzajarulas: string/);
 });
 
-test('the people: roles from a source, nobody shown without a published portrait', () => {
+test('the people: roles from a source, the two portraits up, a card without a photo shows the initials', () => {
   const edit = CSAPAT.find((t) => t.nev === 'Pohánka Edit');
+  const edina = CSAPAT.find((t) => t.nev === 'Rumi Edina');
   assert.ok(read('src/app/rolunk/page.tsx').includes('A kuratórium elnöke <strong>Pohánka Edit</strong>'));
   assert.match(edit.szerep, /kuratórium elnöke/);
-  assert.equal(CSAPAT.find((t) => t.nev === 'Rumi Edina').szerep, 'Alapítványi munkatárs');
+  assert.equal(edina.szerep, 'Alapítványi munkatárs');
   for (const t of CSAPAT) assert.ok(t.forras.length > 10, t.nev);
-  assert.deepEqual([...lathatoCsapat(CSAPAT)], []); // today: no portrait is put up
-  assert.equal(lathatoCsapat([{ nev: 'X', szerep: 'y', forras: 'z', publikus: true }]).length, 0, 'no photo, no card');
-  assert.equal(lathatoCsapat([{ nev: 'X', szerep: 'y', forras: 'z', publikus: false, foto: '/a.webp' }]).length, 0, 'not published, no card');
-  assert.equal(lathatoCsapat([{ nev: 'X', szerep: 'y', forras: 'z', publikus: true, foto: '/a.webp' }]).length, 1);
+  // Péter 14680: these two portraits go up now; the files exist, 4:5
+  assert.deepEqual(lathatoCsapat(CSAPAT).map((t) => t.nev), ['Pohánka Edit', 'Rumi Edina']);
+  for (const t of [edit, edina]) {
+    const buf = fs.readFileSync('public' + t.foto);
+    assert.equal(buf.toString('ascii', 8, 12), 'WEBP', t.foto);
+  }
+  // published without a photo: shown, with initials; not published: hidden
+  assert.equal(lathatoCsapat([{ nev: 'X Y', szerep: 'y', forras: 'z', publikus: true }]).length, 1);
+  assert.equal(lathatoCsapat([{ nev: 'X Y', szerep: 'y', forras: 'z', publikus: false, foto: '/a.webp' }]).length, 0);
+  assert.equal(monogram('Pohánka Edit'), 'PE');
+  assert.equal(monogram('Újvári Ödön'), 'ÚÖ');
+  const c = read('src/components/content/Hangunk.tsx');
+  assert.match(c, /t\.foto \? \([\s\S]*<Image[\s\S]*\) : \([\s\S]*monogram\(t\.nev\)/);
 });
 
 test('placed on /rolunk', () => {

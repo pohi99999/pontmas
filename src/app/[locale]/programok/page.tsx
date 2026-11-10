@@ -3,6 +3,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import ProgramFilter from '@/components/content/ProgramFilter';
+import { HungarianContentNote } from '@/components/content/ContentCards';
 import Gallery from '@/components/content/Gallery';
 import { getPublicContent } from '@/content/publicContent';
 import { visiblePrograms } from '@/content/public';
@@ -36,6 +37,7 @@ export default async function ProgramokPage({ params }: PageParams) {
       {/* 2. Programok és Események Kategóriaválasztóval */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
+        <HungarianContentNote className="mb-10" />
         <ProgramFilter programs={programok} />
 
       </section>

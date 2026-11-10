@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
-import { NewsCard, NewsFeaturedCard } from "@/components/content/ContentCards";
+import { HungarianContentNote, NewsCard, NewsFeaturedCard } from "@/components/content/ContentCards";
 import { getPublicContent } from "@/content/publicContent";
 import { splitNews } from "@/content/public";
 import CtaBand from '@/components/ui/CtaBand';
@@ -34,6 +34,8 @@ export default async function HirekPage({ params }: PageParams) {
         title={t('header.title')}
         subtitle={t('header.subtitle')}
       />
+
+      <HungarianContentNote />
 
       {/* 2. Kiemelt hír / Meghívó banner */}
       {featured && (

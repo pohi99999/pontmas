@@ -23,7 +23,7 @@ export const OG_LOCALE: Record<Locale, string> = { hu: 'hu_HU', en: 'en_GB', de:
  * translated (the translation PR adds en and de); until then its pages answer 404 and it is in neither
  * the sitemap nor the hreflang links, so a half-done language is never published.
  */
-export const PUBLISHED_LOCALES: readonly Locale[] = ['hu'];
+export const PUBLISHED_LOCALES: readonly Locale[] = ['hu', 'en', 'de'];
 
 /** The foundation is in Szombathely: dates and times are Budapest time on the server and in the browser. */
 export const TIME_ZONE = 'Europe/Budapest';

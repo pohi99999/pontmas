@@ -222,7 +222,8 @@
     "topics": "Főbb témák és program:",
     "googleForm": "Google-űrlap megnyitása",
     "features": "Főbb jellemzők:",
-    "enquire": "Érdeklődés és részletek"
+    "enquire": "Érdeklődés és részletek",
+    "huOnly": "A hírek és a programok csak magyarul jelennek meg."
   },
   "ProgramFilter": {
     "label": "Programkategóriák",

@@ -25,15 +25,17 @@ export default function FeatureCard({
   thread,
 }: FeatureCardProps) {
   // on a phone the content moves right of the vertical thread
-  const rule = thread ? 'relative border-blue-400 pl-6 sm:pl-0' : 'border-slate-900';
+  const rule = thread ? 'relative border-transparent pl-6 sm:pl-0' : 'border-slate-900';
   return (
-    <div className={`border-t-2 ${rule} pt-6 flex flex-col h-full ${className}`}>
+    <div className={`border-t-2 ${rule} pt-6 flex flex-col h-full ${className}`} data-mozgas={thread ? 'fel' : undefined}>
       {thread && (
         <>
+          {/* the blue rule itself: a line that can be drawn (data-mozgas="vonal"), static without motion */}
+          <span className="absolute -top-0.5 left-0 right-0 h-0.5 bg-blue-400" data-mozgas="vonal" aria-hidden="true" />
           <span className="pont absolute -left-px -top-[7px]" style={{ fontSize: 19 }} aria-hidden="true" />
           {/* on a phone the thread runs down to the next point; in the two-column grid it runs on to the right */}
-          {thread !== 'last' && <span className="sm:hidden absolute left-[5px] top-0 h-[calc(100%+3rem)] w-0.5 bg-blue-200" aria-hidden="true" />}
-          {thread === 'continue-right' && <span className="hidden sm:block absolute left-full -top-0.5 h-0.5 w-10 bg-blue-400" aria-hidden="true" />}
+          {thread !== 'last' && <span className="sm:hidden absolute left-[5px] top-0 h-[calc(100%+3rem)] w-0.5 bg-blue-200" data-mozgas="vonal-le" aria-hidden="true" />}
+          {thread === 'continue-right' && <span className="hidden sm:block absolute left-full -top-0.5 h-0.5 w-10 bg-blue-400" data-mozgas="vonal" aria-hidden="true" />}
         </>
       )}
       <div className="flex items-center justify-between mb-4">

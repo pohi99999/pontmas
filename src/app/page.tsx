@@ -9,9 +9,9 @@ import CtaBand from '@/components/ui/CtaBand';
 
 export default function Home() {
   const stats = [
-    { value: '2015 óta', label: 'Segítjük a családokat' },
-    { value: '40+', label: 'Érintett család hálózatunkban' },
-    { value: 'AOSZ', label: 'Országos szövetségi alelnökség' },
+    { value: '2015 óta', label: 'Segítjük a családokat', count: { from: 2005, to: 2015, suffix: '' } },
+    { value: '40+', label: 'Érintett család hálózatunkban', count: { from: 0, to: 40, suffix: '+' } },
+    { value: 'AOSZ', label: 'Országos szövetségi alelnökség', count: null },
   ];
 
   return (
@@ -69,7 +69,15 @@ export default function Home() {
           <dl className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14 grid sm:grid-cols-3 gap-8 sm:gap-10">
             {stats.map((stat) => (
               <div key={stat.value}>
-                <dt className="display text-4xl md:text-5xl text-white">{stat.value}</dt>
+                <dt className="display text-4xl md:text-5xl text-white">
+                  {/* counts up once (Péter 14677); the server renders the final text, so without motion it simply stands */}
+                  {stat.count ? (
+                    <span data-mozgas="szam" data-szamlal={stat.count.to} data-tol={stat.count.from} data-utotag={stat.count.suffix} data-vegso={stat.value.split(' ')[0]}>
+                      {stat.value.split(' ')[0]}
+                    </span>
+                  ) : stat.value.split(' ')[0]}
+                  {stat.value.includes(' ') ? ` ${stat.value.split(' ').slice(1).join(' ')}` : ''}
+                </dt>
                 <dd className="text-[15px] text-blue-100 mt-2">{stat.label}</dd>
               </div>
             ))}
@@ -80,7 +88,7 @@ export default function Home() {
       {/* 3. Fő Tevékenységek & Pillérek */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid xl:grid-cols-12 gap-x-10">
-        <div className="xl:col-span-5 min-w-0">
+        <div className="xl:col-span-5 min-w-0" data-mozgas="fel">
         <SectionHeader
           align="left"
           className="xl:sticky xl:top-28"

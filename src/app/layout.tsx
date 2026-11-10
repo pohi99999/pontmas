@@ -8,6 +8,8 @@ import AccessibilityToolbar from "@/components/ui/AccessibilityToolbar";
 import ReadingRuler from "@/components/ui/ReadingRuler";
 import { SensoryProvider } from "@/context/SensoryContext";
 import { jsonLdScript } from "@/lib/jsonLd";
+import { MOZGAS_SCRIPT } from "@/lib/mozgas";
+import MozgasKapu from "@/components/ui/MozgasKapu";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 // The heading font: one static weight, subset to Hungarian in one small file (fonts/README.txt). The variable
@@ -57,6 +59,8 @@ export default function RootLayout({
   return (
     <html lang="hu" className={`scroll-smooth ${fraunces.variable}`}>
       <head>
+        {/* Motion only when allowed; decided before the first paint (src/lib/mozgas.ts) */}
+        <script dangerouslySetInnerHTML={{ __html: MOZGAS_SCRIPT }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
@@ -75,6 +79,7 @@ export default function RootLayout({
           <Header />
           <main id="tartalom" tabIndex={-1} className="flex-1 focus:outline-none">{children}</main>
           <AccessibilityToolbar />
+          <MozgasKapu />
           <Footer />
         </SensoryProvider>
       </body>

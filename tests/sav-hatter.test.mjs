@@ -6,7 +6,9 @@ import fs from 'node:fs';
 
 const read = (f) => fs.readFileSync(f, 'utf8');
 const page = read('src/app/page.tsx');
-const band = page.slice(page.indexOf('<section className="relative isolate overflow-hidden bg-blue-950'), page.indexOf('</section>', page.indexOf('bg-blue-950 text-white pm-sotet">')));
+const start = page.indexOf('<section className="relative isolate overflow-hidden bg-blue-950');
+const band = page.slice(start, page.indexOf('</section>', start));
+assert.ok(start > 0 && band.length > 200, 'the band section is found');
 
 test('a decorative layer: aria-hidden, empty alt, behind the content', () => {
   assert.match(band, /<div data-hatter aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">/);

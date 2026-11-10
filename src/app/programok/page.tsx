@@ -27,8 +27,8 @@ export default async function ProgramokPage() {
       
       {/* 1. Fejléc szekció */}
       <PageHeader
-        badge="Események & Kezdeményezések"
-        title="Programjaink és Rendezvényeink"
+        badge="Események és kezdeményezések"
+        title="Programjaink és rendezvényeink"
         subtitle="Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!"
       />
 

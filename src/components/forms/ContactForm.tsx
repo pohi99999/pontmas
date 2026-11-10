@@ -188,12 +188,12 @@ function ContactFormInner() {
           >
             <option value="altalanos">Általános megkeresés / Kérdés</option>
             <option value="mentorszuloi-tanacsadas">Mentorszülői tanácsadás kérése</option>
-            <option value="data-applikacio">DATA applikáció letöltési & használati segítség</option>
+            <option value="data-applikacio">DATA applikáció letöltési és használati segítség</option>
             <option value="szakkonyvtar">Szakkönyvtári kölcsönzés</option>
-            <option value="intezmenyi-tanacsadas">Intézményi & iskolai integrációs tájékoztatás</option>
-            <option value="szulo">Szülőklub regisztráció & részvétel</option>
+            <option value="intezmenyi-tanacsadas">Intézményi és iskolai integrációs tájékoztatás</option>
+            <option value="szulo">Szülőklub-regisztráció és részvétel</option>
             <option value="onkentes">Önkéntes segítőnek jelentkezem</option>
-            <option value="tamogatas">Támogatás és Céges adományozás</option>
+            <option value="tamogatas">Támogatás és céges adományozás</option>
           </select>
         </div>
 

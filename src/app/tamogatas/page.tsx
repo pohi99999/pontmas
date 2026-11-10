@@ -5,6 +5,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import CopyButton from '@/components/ui/CopyButton';
 import Button from '@/components/ui/Button';
+import { FOUNDATION } from '@/lib/foundation';
 
 export default function TamogatasPage() {
   const lepesek = [
@@ -21,7 +22,7 @@ export default function TamogatasPage() {
     {
       szam: "03",
       cim: "Adja meg adószámunkat",
-      leiras: "A kedvezményezett adószáma mezőbe másolja be az alábbi adószámot: 18654996-1-18 (PontMás Alapítvány)."
+      leiras: `A kedvezményezett adószáma mezőbe másolja be az alábbi adószámot: ${FOUNDATION.taxNumber} (${FOUNDATION.shortName}).`
     },
     {
       szam: "04",
@@ -64,9 +65,9 @@ export default function TamogatasPage() {
 
             <div className="space-y-4 pt-4 border-t border-slate-100">
               <CopyButton
-                textToCopy="18654996-1-18"
+                textToCopy={FOUNDATION.taxNumber}
                 label="Adószámunk"
-                sublabel="PontMás Vas Megyei Autista Gyermekekért Alapítvány"
+                sublabel={FOUNDATION.name}
               />
             </div>
           </div>
@@ -87,8 +88,8 @@ export default function TamogatasPage() {
 
             <div className="space-y-4 pt-4 border-t border-slate-100">
               <CopyButton
-                textToCopy="11600006-00000000-75701521"
-                label="Bankszámlaszám (Erste Bank)"
+                textToCopy={FOUNDATION.bankAccount}
+                label={`Bankszámlaszám (${FOUNDATION.bankName})`}
                 sublabel="Közlemény: Adomány"
               />
             </div>

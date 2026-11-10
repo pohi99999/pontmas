@@ -4,6 +4,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import CtaBand from '@/components/ui/CtaBand';
 import { CommunityGallery } from '@/components/content/Gallery';
+import { FOUNDATION, ADDRESS_LINE } from '@/lib/foundation';
 
 export default function RolunkPage() {
   const alapelvek = [
@@ -99,7 +100,7 @@ export default function RolunkPage() {
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-slate-300"><strong className="text-white">Adószám:</strong> 18654996-1-18</span>
+                <span className="text-slate-300"><strong className="text-white">Adószám:</strong> {FOUNDATION.taxNumber}</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
@@ -107,7 +108,7 @@ export default function RolunkPage() {
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-slate-300"><strong className="text-white">Székhely:</strong> 9700 Szombathely, Váci M. utca 12. 3./15.</span>
+                <span className="text-slate-300"><strong className="text-white">Székhely:</strong> {ADDRESS_LINE}</span>
               </li>
             </ul>
 

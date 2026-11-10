@@ -8,6 +8,7 @@ import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import { Users, Smartphone, BookOpen, School, CheckCircle2, ArrowRight, HeartHandshake } from "lucide-react";
 import CtaBand from '@/components/ui/CtaBand';
+import { FOUNDATION } from '@/lib/foundation';
 
 export const metadata: Metadata = {
   title: "Amiben segíteni tudunk | PontMás Alapítvány",
@@ -197,7 +198,7 @@ export default function HelpPage() {
       {/* 4. Kapcsolatfelvételi CTA sáv */}
       <CtaBand
         title="Személyes vagy telefonos segítségre van szüksége?"
-        text="Hívja Rumi Edinát a +36 20 969 8715 számon, vagy írjon nekünk üzenetet online űrlapunkon keresztül!"
+        text={`Hívja Rumi Edinát a ${FOUNDATION.phone} számon, vagy írjon nekünk üzenetet online űrlapunkon keresztül!`}
       >
         <Button href="/kapcsolat" variant="primary">
           Kapcsolatfelvétel

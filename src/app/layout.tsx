@@ -8,6 +8,7 @@ import AccessibilityToolbar from "@/components/ui/AccessibilityToolbar";
 import ReadingRuler from "@/components/ui/ReadingRuler";
 import { SensoryProvider } from "@/context/SensoryContext";
 import { jsonLdScript } from "@/lib/jsonLd";
+import { foundationJsonLd } from "@/lib/foundation";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 // The heading font: one static weight, subset to Hungarian in one small file (fonts/README.txt). The variable
@@ -42,20 +43,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "NGO",
-    "name": "PontMás Vas Megyei Autista Gyermekekért Alapítvány",
-    "url": "https://pontmas.hu",
-    "telephone": "+36 20 969 8715",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Váci M. utca 12. 3./15.",
-      "addressLocality": "Szombathely",
-      "postalCode": "9700",
-      "addressCountry": "HU"
-    }
-  };
+  const jsonLd = foundationJsonLd();
 
   return (
     <html lang="hu" className={`scroll-smooth ${fraunces.variable}`}>

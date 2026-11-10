@@ -6,6 +6,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import CtaBand from '@/components/ui/CtaBand';
+import { FOUNDATION } from '@/lib/foundation';
 
 export default function AutizmusPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -54,7 +55,7 @@ export default function AutizmusPage() {
     },
     {
       question: "Hová fordulhatok Vas vármegyében diagnosztikai vizsgálatért?",
-      answer: "A Vas Vármegyei Pedagógiai Szakszolgálat Szakértői Bizottságához, illetve a gyermekorvos vagy védőnő javaslatára gyermekpszichiátriai szakrendelésre. Telefonon (+36 20 969 8715) készséggel segítünk eligazodni az eljárásban."
+      answer: `A Vas Vármegyei Pedagógiai Szakszolgálat Szakértői Bizottságához, illetve a gyermekorvos vagy védőnő javaslatára gyermekpszichiátriai szakrendelésre. Telefonon (${FOUNDATION.phone}) készséggel segítünk eligazodni az eljárásban.`
     },
     {
       question: "Hogyan segíthet a család a mindennapi napirend kialakításában?",

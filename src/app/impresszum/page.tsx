@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from '@/components/ui/PageHeader';
 import { DraftBanner, DraftSources, Review, Section } from '@/components/legal/LegalParts';
-import { ADDRESS_LINE, FOUNDATION } from '@/lib/foundation';
+import { FOUNDATION } from '@/lib/foundation';
 import { LEGAL_DRAFT } from '@/lib/legal';
 
 // Impresszum, DRAFT (src/lib/legal.ts): the service provider's data a website has to show
@@ -25,14 +25,24 @@ export default function ImpresszumPage() {
           <Section id="uzemelteto" title="A weboldal üzemeltetője">
             <ul className="space-y-1">
               <li><strong>Név:</strong> {FOUNDATION.name}</li>
-              <li><strong>Székhely:</strong> {ADDRESS_LINE}</li>
+              <li><strong>Székhely:</strong> {FOUNDATION.registeredSeat}</li>
               <li>
-                <strong>Nyilvántartási szám:</strong> {FOUNDATION.registrationNumber}
-                <Review kind="kerdes">A 2024-es szabályzat 18-01-0000323-at ír; melyik a helyes (lásd az adatkezelési tájékoztatót)?</Review>
+                <strong>Nyilvántartási szám:</strong> ellenőrzés alatt
+                <Review kind="kerdes">
+                  Hivatalos forrásból még nem ellenőrzött. Az alapítvány 2024-es szabályzata 18-01-0000323-at ír, a weboldal eddig
+                  {FOUNDATION.registrationNumber}-t. A közhiteles adat a bíróság civil névjegyzékében van (civilsznev.birosag.hu,
+                  keresés adószámra); a keresés captcha mögött van, ezért ember végzi el.
+                </Review>
               </li>
               <li><strong>Nyilvántartó bíróság:</strong> <Review kind="kerdes">a nyilvántartó törvényszék neve</Review></li>
               <li><strong>Adószám:</strong> {FOUNDATION.taxNumber}</li>
-              <li><strong>Képviselő:</strong> <Review kind="kerdes">a kuratórium elnökének neve</Review></li>
+              <li>
+                <strong>Képviselő:</strong> Pohánka Edit
+                <Review kind="kerdes">
+                  Forrás: az alapítvány régi weboldala (pontmas.hu/tamogatas.html: „Kuratórium elnöke: Pohánka Edit”), nem a
+                  közhiteles névjegyzék.
+                </Review>
+              </li>
               <li><strong>Telefon:</strong> {FOUNDATION.phone} ({FOUNDATION.contactPerson})</li>
               <li>
                 <strong>E-mail:</strong>

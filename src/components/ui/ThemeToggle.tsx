@@ -39,7 +39,8 @@ export function useTheme() {
   return { dark, toggle };
 }
 
-/** Icon button for the desktop header. */
+/** Labelled button for the desktop display bar (Péter 14726): "Sötét téma", and "Sötét téma: be" when on,
+ *  like "Lágy mód: be". The visible label is the accessible name (no aria-label to drift from it). */
 export function ThemeToggleButton() {
   const { dark, toggle } = useTheme();
   return (
@@ -47,11 +48,11 @@ export function ThemeToggleButton() {
       type="button"
       onClick={toggle}
       aria-pressed={dark}
-      aria-label="Sötét mód"
-      title={dark ? 'Sötét mód: be (kattintson a világos módhoz)' : 'Sötét mód bekapcsolása'}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+      title={dark ? 'Sötét téma: be (kattintson a világos témához)' : 'Sötét téma bekapcsolása'}
+      className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 whitespace-nowrap transition-colors cursor-pointer"
     >
-      {dark ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
+      {dark ? <Sun size={15} aria-hidden="true" /> : <Moon size={15} aria-hidden="true" />}
+      <span>{dark ? 'Sötét téma: be' : 'Sötét téma'}</span>
     </button>
   );
 }

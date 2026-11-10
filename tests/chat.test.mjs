@@ -272,6 +272,11 @@ test('texts: every fixed text exists in the three languages, the busy and error 
   for (const [k, v] of Object.entries(FIXED)) for (const l of ['hu', 'en', 'de']) assert.ok(v[l]?.length > 10, `${k}.${l}`);
   for (const k of ['busy', 'off', 'error']) for (const l of ['hu', 'en', 'de']) assert.ok(FIXED[k][l].includes(FOUNDATION.phone), `${k}.${l}`);
   for (const l of ['hu', 'en', 'de']) assert.ok(CRISIS_TEXT[l].includes('112') && RULES.includes(CRISIS_TEXT[l]));
+  // only the three numbers measured on official sources (the sources are in rules.ts), nothing else
+  for (const l of ['hu', 'en', 'de']) {
+    const numbers = CRISIS_TEXT[l].match(/\d[\d\s-]*\d|\d/g).map((n) => n.replace(/\s/g, '')).filter((n) => n.replace(/-/g, '').length >= 3); // "24" (hours) is not a number to call
+    assert.deepEqual([...new Set(numbers)].sort(), ['112', '116-000', '116-123'], l);
+  }
   assert.equal(plainText('## Cím\n**félkövér** és *dőlt* szöveg'), 'Cím\nfélkövér és dőlt szöveg');
 });
 

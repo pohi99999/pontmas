@@ -7,11 +7,27 @@ import { FOUNDATION } from '../foundation';
 export type ChatLocale = 'hu' | 'en' | 'de';
 export const CHAT_LOCALES: readonly ChatLocale[] = ['hu', 'en', 'de'];
 
-/** DRAFT, needs the foundation's word-for-word approval (approvals.ts crisisText). */
+/**
+ * The crisis answer. Péter (Telegram 14680) left the text to us on one condition: only helpline
+ * numbers measured on an official source, with the source here. Measured 2026-11-10 (through the
+ * quarantine reader, which re-writes pages and is not byte-exact; approvals.ts crisisText waits for a
+ * byte-exact read-back in a browser):
+ * - 112, the EU emergency number, 24 hours, free; two independent official sources:
+ *   https://www.police.hu/hu/112 (where https://112.hu redirects): "A 112 az Európai Unió tagállamainak
+ *   a nap 24 órájában hívható segélyhívó száma"; and
+ *   https://digital-strategy.ec.europa.eu/en/policies/112: "112 is the European emergency phone number,
+ *   available everywhere in the EU, free of charge."
+ * - 116-000, for adults worried about a child, the operator's own site https://kek-vonal.hu/:
+ *   "116-000 Hívj minket, ha aggódsz egy gyerekért! Anonim, ingyenes, non-stop."
+ * - 116-123, emotional first aid, the operator's own site https://www.sos116-123.hu/ (Magyar Lelki
+ *   Elsősegély Telefonszolgálatok Szövetsége, LESZ): "Segélyszámaink: 116-123 (0-24h)", "Térítésmentesen
+ *   hívható minden belföldi hálózatról!"
+ * No other number (not even the foundation's own phone: it is not a crisis line).
+ */
 export const CRISIS_TEXT: Record<ChatLocale, string> = {
-  hu: `Ha Ön vagy egy gyermek közvetlen veszélyben van, kérjük, azonnal hívja a 112-es segélyhívó számot. Ha beszélne valakivel, hívja munkatársunkat: ${FOUNDATION.phone}.`,
-  en: `If you or a child are in immediate danger, please call the emergency number 112 now. If you would like to talk to someone, call our colleague ${FOUNDATION.contactPerson}: ${FOUNDATION.phone}.`,
-  de: `Wenn Sie oder ein Kind in unmittelbarer Gefahr sind, rufen Sie bitte sofort den Notruf 112 an. Wenn Sie mit jemandem sprechen möchten, rufen Sie unsere Mitarbeiterin ${FOUNDATION.contactPerson} an: ${FOUNDATION.phone}.`,
+  hu: 'Ha Ön vagy valaki más közvetlen veszélyben van, azonnal hívja a 112-es segélyhívó számot. Ha egy gyermekért aggódik, a Kék Vonal 116-000-s számán éjjel-nappal, ingyenesen és névtelenül kérhet segítséget. Ha lelki krízisben van, a lelki elsősegély-vonal, a 116-123 a nap 24 órájában ingyenesen hívható minden belföldi hálózatról.',
+  en: 'If you or someone else is in immediate danger, call the emergency number 112 now. If you are worried about a child, you can call Kék Vonal on 116-000, day and night, free of charge and anonymously. If you are in emotional crisis, the emotional first-aid line 116-123 can be called 24 hours a day, free of charge, from any Hungarian network.',
+  de: 'Wenn Sie oder jemand anderes in unmittelbarer Gefahr sind, rufen Sie sofort den Notruf 112 an. Wenn Sie sich um ein Kind sorgen, erreichen Sie Kék Vonal unter 116-000 rund um die Uhr, kostenlos und anonym. Wenn Sie in einer seelischen Krise sind, ist die ungarische Nummer für seelische Erste Hilfe, 116-123, rund um die Uhr kostenlos aus allen ungarischen Netzen erreichbar.',
 };
 
 /** The fixed answers the server gives without the model. DRAFT with the rules. */

@@ -6,9 +6,12 @@ import { LEGAL_DRAFT } from '../legal';
 export const CHAT_APPROVALS = {
   /** The foundation read the knowledge (src/lib/chat/knowledge.generated.ts, i.e. the pages' own text). */
   knowledge: false,
-  /** The foundation approved the rules: what the chat answers and what it never does (rules.ts). */
-  rules: false,
-  /** The foundation approved the crisis text word for word (rules.ts CRISIS_TEXT). */
+  /** The rules: what the chat answers and what it never does (rules.ts). Péter left them to us
+   *  (Telegram 14680, relayed by Marveen 6922, 2026-11-10); written to the plan he approved (14675). */
+  rules: true,
+  /** The crisis text (rules.ts CRISIS_TEXT), also left to us by Péter, on the condition that every
+   *  number is measured on an official source. Pending: a byte-exact read-back of kek-vonal.hu and
+   *  sos116-123.hu in a browser (the measurement so far re-wrote the pages; 112 has two sources). */
   crisisText: false,
   /** The privacy notice, with its chat section, is approved and published (src/lib/legal.ts). */
   privacyNotice: !LEGAL_DRAFT,

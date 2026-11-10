@@ -37,28 +37,28 @@ export default function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Oldaltérkép</h3>
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 text-sm">
               <li>
-                <Link href="/rolunk" className="hover:text-white transition-colors">Rólunk és Értékeink</Link>
+                <Link href="/rolunk" className="hover:text-white transition-colors">Rólunk és értékeink</Link>
               </li>
               <li>
-                <Link href="/autizmus" className="hover:text-white transition-colors">Autizmus Ismerettár & FAQ</Link>
+                <Link href="/autizmus" className="hover:text-white transition-colors">Autizmus-ismerettár és FAQ</Link>
               </li>
               <li>
                 <Link href="/segitseg" className="hover:text-white transition-colors">Amiben segíteni tudunk</Link>
               </li>
               <li>
-                <Link href="/rolunk-irtak" className="hover:text-white transition-colors">Rólunk írták & Sajtó</Link>
+                <Link href="/rolunk-irtak" className="hover:text-white transition-colors">Rólunk írták és sajtó</Link>
               </li>
               <li>
-                <Link href="/hirek" className="hover:text-white transition-colors">Hírek & Szülőklub</Link>
+                <Link href="/hirek" className="hover:text-white transition-colors">Hírek és szülőklub</Link>
               </li>
               <li>
-                <Link href="/programok" className="hover:text-white transition-colors">Programok és Események</Link>
+                <Link href="/programok" className="hover:text-white transition-colors">Programok és események</Link>
               </li>
               <li>
-                <Link href="/tamogatas" className="hover:text-white transition-colors">Támogatás és Adó 1%</Link>
+                <Link href="/tamogatas" className="hover:text-white transition-colors">Támogatás és adó 1%</Link>
               </li>
               <li>
-                <Link href="/dokumentumok" className="hover:text-white transition-colors">Dokumentumtár & Pályázatok</Link>
+                <Link href="/dokumentumok" className="hover:text-white transition-colors">Dokumentumtár és pályázatok</Link>
               </li>
               <li>
                 <Link href="/kapcsolat" className="hover:text-white transition-colors">Kapcsolat</Link>
@@ -124,7 +124,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <Link href="/dokumentumok" className="hover:text-slate-300 transition-colors">Közhasznúsági jelentések</Link>
             <span>•</span>
-            <Link href="/kapcsolat" className="hover:text-slate-300 transition-colors">Adatvédelem & Kapcsolat</Link>
+            <Link href="/kapcsolat" className="hover:text-slate-300 transition-colors">Adatvédelem és kapcsolat</Link>
           </div>
         </div>
       </div>

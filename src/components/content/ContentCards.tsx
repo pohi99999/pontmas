@@ -107,7 +107,7 @@ export function NewsFeaturedCard({ item }: { item: NewsItem }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-900 px-4 py-2.5 rounded-xl border border-blue-300 hover:bg-blue-50 transition-colors"
             >
-              <span>Google Űrlap megnyitása</span>
+              <span>Google-űrlap megnyitása</span>
               <ExternalLink className="h-4 w-4" />
             </a>
           )}
@@ -220,7 +220,7 @@ export function ProgramCard({ program }: { program: ProgramItem }) {
 
       <div className="flex justify-end pt-2">
         <Button href="/kapcsolat" variant="ghost" size="sm" rightIcon={<ArrowRight size={14} />}>
-          Érdeklődés & Részletek
+          Érdeklődés és részletek
         </Button>
       </div>
       </div>

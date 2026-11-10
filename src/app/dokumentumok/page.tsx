@@ -10,10 +10,10 @@ import CtaBand from '@/components/ui/CtaBand';
 import { FOUNDATION } from '@/lib/foundation';
 
 export const metadata: Metadata = {
-  title: "Dokumentumtár & Pályázatok | PontMás Alapítvány",
+  title: "Dokumentumtár és pályázatok | PontMás Alapítvány",
   description: "A PontMás Alapítvány hivatalos alapító okirata, közhasznúsági beszámolói, adatvédelmi tájékoztatója és önkormányzati pályázati elszámolásai.",
   openGraph: {
-    title: "Dokumentumtár & Pályázatok | PontMás Alapítvány",
+    title: "Dokumentumtár és pályázatok | PontMás Alapítvány",
     description: "Hivatalos átláthatósági dokumentumok és pályázatok.",
     url: "https://pontmas.hu/dokumentumok",
   },
@@ -22,26 +22,26 @@ export const metadata: Metadata = {
 export default function DokumentumokPage() {
   const officialDocs = [
     {
-      title: "Alapító Okirat és Határozatok",
+      title: "Alapító okirat és határozatok",
       category: "Jogi alapdokumentum",
       date: `Nyilvántartási szám: ${FOUNDATION.registrationNumber}`,
       description: "A PontMás Vas Megyei Autista Gyermekekért Alapítvány hivatalos alapító okirata, célkitűzései és kuratóriumi működési rendje.",
     },
     {
-      title: "Adatvédelmi és Adatkezelési Szabályzat (GDPR)",
+      title: "Adatvédelmi és adatkezelési szabályzat (GDPR)",
       category: "Adatvédelem",
       date: "A weboldalon olvasható",
       description: "Tájékoztató a weboldal látogatóinak, a kapcsolatfelvételi űrlap kitöltőinek és az érintett családok adatainak jogszerű kezeléséről.",
       href: "/adatkezeles",
     },
     {
-      title: "2023. évi Közhasznúsági és Pénzügyi Beszámoló",
+      title: "2023. évi közhasznúsági és pénzügyi beszámoló",
       category: "Közhasznúsági jelentés",
       date: "Elfogadva: 2024. május",
       description: "Részletes mérleg és eredménykimutatás a beérkezett adó 1% felajánlásokról és a cél szerinti programok finanszírozásáról.",
     },
     {
-      title: "2022. évi Közhasznúsági és Szakmai Beszámoló",
+      title: "2022. évi közhasznúsági és szakmai beszámoló",
       category: "Közhasznúsági jelentés",
       date: "Elfogadva: 2023. május",
       description: "Éves összefoglaló a Kék Séta, nyári táborok és szülőklubok megvalósításáról és pénzügyi mérlegéről.",
@@ -51,7 +51,7 @@ export default function DokumentumokPage() {
   const grantProjects = [
     {
       title: "Szombathely MJV Önkormányzati Támogatás – Pedagógus Képzések",
-      badge: "Megvalósult Pályázat",
+      badge: "Megvalósult pályázat",
       grantAmount: "800.000 Ft támogatási összeg",
       description: "A szombathelyi intézmények (Aranyhíd EGYMI, Micimackó Óvoda, Váci Mihály Általános Iskola) 13 gyógypedagógusának és asszisztensének akkreditált Autizmus Alapítványi továbbképzése (Alapozó 30 órás képzés és Szociális-kommunikációs képzés).",
       details: [
@@ -62,7 +62,7 @@ export default function DokumentumokPage() {
     },
     {
       title: "Városi Civil Alap – Családi Nap & Szülőklub Fejlesztés",
-      badge: "Közösségi Támogatás",
+      badge: "Közösségi támogatás",
       grantAmount: "Közösségi és szakmai forrás",
       description: "Éves családi nap megszervezése a Vasi Skanzenben, agyagozó és készségfejlesztő gyermekfoglalkozásokkal, valamint pszichológus által vezetett szülői támogatással.",
       details: [
@@ -77,15 +77,15 @@ export default function DokumentumokPage() {
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Fejléc */}
       <PageHeader
-        badge="Átláthatóság & Hitelesség"
-        title="Dokumentumtár és Hivatalos Pályázatok"
+        badge="Átláthatóság és hitelesség"
+        title="Dokumentumtár és hivatalos pályázatok"
         subtitle="Az átláthatóság és a társadalmi felelősségvállalás alapítványunk működésének alappillére. Itt érheti el hivatalos dokumentumainkat, közhasznúsági beszámolóinkat és pályázati elszámolásainkat."
       />
 
       {/* 2. Hivatalos Iratok & Beszámolók */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <SectionHeader
-          title="Hivatalos Iratok és Éves Beszámolók"
+          title="Hivatalos iratok és éves beszámolók"
           subtitle="Minden törvényi előírásnak és közhasznúsági követelménynek maradéktalanul eleget teszünk."
           align="center"
         />
@@ -137,7 +137,7 @@ export default function DokumentumokPage() {
       {/* 3. Pályázatok és Önkormányzati Támogatások */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <SectionHeader
-          title="Megvalósult Pályázatok és Elszámolások"
+          title="Megvalósult pályázatok és elszámolások"
           subtitle="Tudjon meg többet a támogatások célszerű és szakszerű felhasználásáról."
           align="center"
         />

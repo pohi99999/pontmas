@@ -20,7 +20,7 @@ export default function RolunkPage() {
     },
     {
       icon: <Award className="text-blue-600" size={26} />,
-      title: "Szakmai hitelesség & AOSZ partnerség",
+      title: "Szakmai hitelesség és AOSZ-partnerség",
       desc: "Autizmus-specifikus gyógypedagógusok, szakasszisztensek és érintett szülők közös munkája garantálja a legfrissebb módszertani színvonalat."
     },
     {
@@ -88,7 +88,7 @@ export default function RolunkPage() {
                 <Building2 size={24} />
               </div>
               <div>
-                <h3 className="font-bold text-lg text-white">Szervezeti Hitelesség</h3>
+                <h3 className="font-bold text-lg text-white">Szervezeti hitelesség</h3>
                 <span className="text-xs text-slate-400">PontMás Alapítvány</span>
               </div>
             </div>

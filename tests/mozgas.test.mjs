@@ -65,3 +65,23 @@ test('the H1 and the hero text never wait for motion (they are the first paint)'
   assert.match(layout, /dangerouslySetInnerHTML=\{\{ __html: MOZGAS_SCRIPT \}\}/);
   assert.match(layout, /<MozgasKapu \/>/);
 });
+
+// Ellenőr, #36: the ink jumped in one frame because its end state was clip-path "none", and the browser
+// does not interpolate between inset() and none. Every motion type that starts from a clip-path must name
+// its end state with the same function in its base rule.
+test('a clip-path start state has an interpolable end state (same function, not none)', () => {
+  const css = read('src/app/globals.css');
+  const starts = [...css.matchAll(/html\.pm-mozgas \[data-mozgas="([\w-]+)"\]:not\(\.pm-latszik\) \{([^}]*)\}/g)];
+  let checked = 0;
+  for (const [, type, body] of starts) {
+    const start = body.match(/clip-path:\s*([a-z-]+)\(/);
+    if (!start) continue;
+    const base = css.match(new RegExp(`html\\.pm-mozgas \\[data-mozgas="${type}"\\] \\{([^}]*)\\}`));
+    assert.ok(base, `${type}: no base rule`);
+    const end = base[1].match(/clip-path:\s*([a-z-]+)\(/);
+    assert.ok(end, `${type}: the base rule must set the end clip-path (the default "none" does not interpolate)`);
+    assert.equal(end[1], start[1], `${type}: start ${start[1]}() and end ${end[1]}() must be the same function`);
+    checked++;
+  }
+  assert.ok(checked >= 1, 'the ink rule (iv) was checked');
+});

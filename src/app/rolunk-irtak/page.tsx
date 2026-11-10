@@ -7,7 +7,7 @@ import { Newspaper, Quote, Tv, HeartHandshake, Calendar, Sparkles } from "lucide
 import CtaBand from '@/components/ui/CtaBand';
 
 export const metadata: Metadata = {
-  title: "Rólunk írták & Sajtómegjelenések | PontMás Alapítvány",
+  title: "Rólunk írták és sajtómegjelenések | PontMás Alapítvány",
   description: "Cikkek, tudósítások, interjúk és köszönetnyilvánítások a PontMás Alapítvány tevékenységéről és a Vas vármegyei autizmus közösségről.",
   openGraph: {
     title: "Rólunk írták | PontMás Alapítvány",
@@ -30,7 +30,7 @@ export default function RolunkIrtakPage() {
     },
     {
       type: "koszonet",
-      badge: "Szülői Visszajelzés • Köszönetnyilvánítás",
+      badge: "Szülői visszajelzés • Köszönetnyilvánítás",
       icon: Quote,
       title: "„A szülőklub adott erőt és kapaszkodót az óvodai integrációban”",
       date: "2024. október",
@@ -46,7 +46,7 @@ export default function RolunkIrtakPage() {
       date: "2024. június",
       summary: "Szombathely MJV Önkormányzati Támogatásának köszönhetően 13 szombathelyi gyógypedagógus és asszisztens vehetett részt az Autizmus Alapítvány 30 órás, magas szintű szakmai továbbképzésén, 100%-os alapítványi finanszírozással.",
       quote: "„A legjobb befektetés gyermekeink jövőjébe az, ha a velük nap mint nap foglalkozó pedagógusok a legkorszerűbb autizmus-specifikus módszertannal rendelkeznek.”",
-      source: "SZTV Híradó & Önkormányzati tudósítás",
+      source: "SZTV Híradó és önkormányzati tudósítás",
     },
     {
       type: "esemeny",
@@ -60,7 +60,7 @@ export default function RolunkIrtakPage() {
     },
     {
       type: "koszonet",
-      badge: "Intézményi Köszönet • Aranyhíd EGYMI",
+      badge: "Intézményi köszönet • Aranyhíd EGYMI",
       icon: Quote,
       title: "Új fejlesztő eszközök és speciális könyvtári állomány az autista diákoknak",
       date: "2024. május",
@@ -74,8 +74,8 @@ export default function RolunkIrtakPage() {
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Hero */}
       <PageHeader
-        badge="Média, Sajtó & Elismerések"
-        title="Rólunk írták & Közösségi Visszhangok"
+        badge="Média, sajtó és elismerések"
+        title="Rólunk írták és közösségi visszhangok"
         subtitle="Szeretnénk tevékenységünket és az autizmussal élő gyermekek mindennapjait minél szélesebb körben bemutatni, hogy a társadalom megértéssel és támogató szeretettel fogadja el őket."
       />
 

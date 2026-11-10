@@ -2,6 +2,7 @@ import { MapPin, Phone, MessageSquare, ExternalLink } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ContactForm from '@/components/forms/ContactForm';
+import { FOUNDATION, ADDRESS_LINE, PHONE_HREF } from '@/lib/foundation';
 
 export default function KapcsolatPage() {
   return (
@@ -28,8 +29,8 @@ export default function KapcsolatPage() {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h2 className="font-bold text-slate-900 text-base">Székhely & Cím</h2>
-                  <p className="text-slate-600 text-sm mt-0.5">9700 Szombathely, Váci M. utca 12. 3./15.</p>
+                  <h2 className="font-bold text-slate-900 text-base">Székhely és cím</h2>
+                  <p className="text-slate-600 text-sm mt-0.5">{ADDRESS_LINE}</p>
                 </div>
               </div>
 
@@ -39,9 +40,9 @@ export default function KapcsolatPage() {
                 </div>
                 <div>
                   <h2 className="font-bold text-slate-900 text-base">Kapcsolattartó</h2>
-                  <p className="text-slate-600 text-sm mt-0.5">Rumi Edina</p>
-                  <a href="tel:+36209698715" className="text-blue-600 hover:text-blue-800 font-semibold text-sm mt-0.5 block">
-                    +36 20 969 8715
+                  <p className="text-slate-600 text-sm mt-0.5">{FOUNDATION.contactPerson}</p>
+                  <a href={PHONE_HREF} className="text-blue-600 hover:text-blue-800 font-semibold text-sm mt-0.5 block">
+                    {FOUNDATION.phone}
                   </a>
                 </div>
               </div>
@@ -51,7 +52,7 @@ export default function KapcsolatPage() {
                   <MessageSquare size={24} />
                 </div>
                 <div>
-                  <h2 className="font-bold text-slate-900 text-base">Közösségi Csoport</h2>
+                  <h2 className="font-bold text-slate-900 text-base">Közösségi csoport</h2>
                   <a 
                     href="https://www.facebook.com/groups/1622445488007296/?locale=hu_HU" 
                     target="_blank" 

@@ -6,6 +6,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import CtaBand from '@/components/ui/CtaBand';
+import { FOUNDATION } from '@/lib/foundation';
 
 export default function AutizmusPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -13,12 +14,12 @@ export default function AutizmusPage() {
   const spektrumJellemzok = [
     {
       icon: <MessageCircle size={28} />,
-      title: "Kommunikáció és Szociális interakció",
+      title: "Kommunikáció és szociális interakció",
       desc: "Nehézséget okozhat a nonverbális jelzések, a mimika, a testbeszéd vagy a metaforák megértése. Jellemző az egyenes, őszinte és közvetlen kommunikáció."
     },
     {
       icon: <RefreshCw size={28} />,
-      title: "Rugalmasság és Kiszámíthatóság",
+      title: "Rugalmasság és kiszámíthatóság",
       desc: "A megszokott napirend, a vizuális időrend és a strukturált környezet biztonságot nyújt. A váratlan változások átmeneti feszültséget kelthetnek."
     },
     {
@@ -54,7 +55,7 @@ export default function AutizmusPage() {
     },
     {
       question: "Hová fordulhatok Vas vármegyében diagnosztikai vizsgálatért?",
-      answer: "A Vas Vármegyei Pedagógiai Szakszolgálat Szakértői Bizottságához, illetve a gyermekorvos vagy védőnő javaslatára gyermekpszichiátriai szakrendelésre. Telefonon (+36 20 969 8715) készséggel segítünk eligazodni az eljárásban."
+      answer: `A Vas Vármegyei Pedagógiai Szakszolgálat Szakértői Bizottságához, illetve a gyermekorvos vagy védőnő javaslatára gyermekpszichiátriai szakrendelésre. Telefonon (${FOUNDATION.phone}) készséggel segítünk eligazodni az eljárásban.`
     },
     {
       question: "Hogyan segíthet a család a mindennapi napirend kialakításában?",
@@ -78,7 +79,7 @@ export default function AutizmusPage() {
       
       {/* 1. Fejléc szekció */}
       <PageHeader
-        badge="Tudástár & Útmutató"
+        badge="Tudástár és útmutató"
         title="Mi az az autizmus?"
         subtitle="Az autizmus nem betegség, hanem egy eltérő fejlődésmenet és észlelési sajátosság. Ismerje meg a spektrum működését szakmai, mégis közérthető formában."
       />
@@ -86,7 +87,7 @@ export default function AutizmusPage() {
       {/* 2. Spektrum Jellemzők (3 Pillér) */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <SectionHeader
-          badge="A Spektrum Fő Területei"
+          badge="A spektrum fő területei"
           title="A működés sokszínűsége"
           subtitle="Nincs két egyforma autista ember: a képességek, kihívások és erősségek kombinációja egyedi mintázatot alkot."
         />
@@ -109,7 +110,7 @@ export default function AutizmusPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <SectionHeader
             badge="Tévhitoszlató"
-            title="Tények és Tévhitek az autizmusról"
+            title="Tények és tévhitek az autizmusról"
             subtitle="A társadalmi előítéletek lebontása a helyes és pontos ismeretek átadásával kezdődik."
           />
 
@@ -160,11 +161,11 @@ export default function AutizmusPage() {
         </div>
       </section>
 
-      {/* 5. Gyakori Kérdések (FAQ) */}
+      {/* 5. Gyakori kérdések (FAQ) */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
         <SectionHeader
-          badge="Gyakori Kérdések"
-          title="Gyakran Ismételt Kérdések (FAQ)"
+          badge="Gyakori kérdések"
+          title="Gyakran ismételt kérdések (FAQ)"
           subtitle="Összegyűjtöttük a leggyakrabban felmerülő kérdéseket a diagnózistól a fejlesztési lehetőségekig."
         />
 

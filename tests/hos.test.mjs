@@ -36,10 +36,11 @@ test('a static blue thread runs through the four points, the last one ends it', 
   const threads = [...home.matchAll(/thread="([a-z-]+)"/g)].map((m) => m[1]);
   assert.deepEqual(threads, ['continue-right', 'continue', 'continue-right', 'last']);
   const card = read('src/components/ui/FeatureCard.tsx');
-  assert.match(card, /border-blue-400/);
+  // the rule is a line element (so it can be drawn, tests/mozgas.test.mjs); without motion it simply stands
+  assert.match(card, /h-0\.5 bg-blue-400" data-mozgas="vonal"/);
 });
 
-test('no motion in the hero window (the 11-05 decision; motion waits for Péter)', () => {
-  assert.doesNotMatch(ablak, /animate|transition|framer|keyframes|@keyframes/);
-  assert.doesNotMatch(read('src/components/ui/FeatureCard.tsx'), /animate-/);
+test('the hero window itself has no animation of its own: its only movement is the gated data-mozgas', () => {
+  assert.doesNotMatch(ablak, /animate-|framer|@keyframes/);
+  assert.match(ablak, /data-mozgas="iv"/);
 });

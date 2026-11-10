@@ -9,6 +9,8 @@ import ReadingRuler from "@/components/ui/ReadingRuler";
 import { SensoryProvider } from "@/context/SensoryContext";
 import { jsonLdScript } from "@/lib/jsonLd";
 import { THEME_SCRIPT } from "@/lib/theme";
+import { MOZGAS_SCRIPT } from "@/lib/mozgas";
+import MozgasKapu from "@/components/ui/MozgasKapu";
 import { foundationJsonLd } from "@/lib/foundation";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
@@ -53,6 +55,8 @@ export default function RootLayout({
         {/* The page has its own dark theme: browsers then do not darken it on their own (review 2026-11-10) */}
         <meta name="color-scheme" content="light dark" />
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+        {/* Motion only when allowed; decided before the first paint (src/lib/mozgas.ts) */}
+        <script dangerouslySetInnerHTML={{ __html: MOZGAS_SCRIPT }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
@@ -71,6 +75,7 @@ export default function RootLayout({
           <Header />
           <main id="tartalom" tabIndex={-1} className="flex-1 focus:outline-none">{children}</main>
           <AccessibilityToolbar />
+          <MozgasKapu />
           <Footer />
         </SensoryProvider>
       </body>

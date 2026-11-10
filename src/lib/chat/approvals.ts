@@ -10,9 +10,9 @@ export const CHAT_APPROVALS = {
    *  (Telegram 14680, relayed by Marveen 6922, 2026-11-10); written to the plan he approved (14675). */
   rules: true,
   /** The crisis text (rules.ts CRISIS_TEXT), also left to us by Péter, on the condition that every
-   *  number is measured on an official source. Pending: a byte-exact read-back of kek-vonal.hu and
-   *  sos116-123.hu in a browser (the measurement so far re-wrote the pages; 112 has two sources). */
-  crisisText: false,
+   *  number is measured on an official source. 112 has two sources; 116-000 and 116-123 were read
+   *  back byte-exact on their operators' pages (Brunella's raw curl measurement, 2026-11-10, Marveen 6944). */
+  crisisText: true,
   /** The privacy notice, with its chat section, is approved and published (src/lib/legal.ts). */
   privacyNotice: !LEGAL_DRAFT,
   /** Péter and the foundation read the answers of the 30-question evaluation (tests/chat-eval). */

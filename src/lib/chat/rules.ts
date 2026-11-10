@@ -9,9 +9,9 @@ export const CHAT_LOCALES: readonly ChatLocale[] = ['hu', 'en', 'de'];
 
 /**
  * The crisis answer. Péter (Telegram 14680) left the text to us on one condition: only helpline
- * numbers measured on an official source, with the source here. Measured 2026-11-10 (through the
- * quarantine reader, which re-writes pages and is not byte-exact; approvals.ts crisisText waits for a
- * byte-exact read-back in a browser):
+ * numbers measured on an official source, with the source here. Measured 2026-11-10 through the
+ * quarantine reader, and the two 116 pages read back byte-exact the same day (Brunella's raw curl,
+ * both HTTP 200, Marveen 6944):
  * - 112, the EU emergency number, 24 hours, free; two independent official sources:
  *   https://www.police.hu/hu/112 (where https://112.hu redirects): "A 112 az Európai Unió tagállamainak
  *   a nap 24 órájában hívható segélyhívó száma"; and

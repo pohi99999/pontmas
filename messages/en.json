@@ -9,5 +9,140 @@
     "title": "Az oldal nem található",
     "text": "Ezt az oldalt nem találjuk. Lehet, hogy a cím elírás, vagy az oldal már nem létezik.",
     "home": "Vissza a kezdőlapra"
+  },
+  "Header": {
+    "tagline": "Vas Megyei Alapítvány",
+    "nav": {
+      "home": "Kezdőlap",
+      "autism": "Autizmusról",
+      "help": "Segítség",
+      "about": "Rólunk",
+      "press": "Rólunk írták",
+      "news": "Hírek",
+      "programs": "Programok",
+      "documents": "Dokumentumok",
+      "contact": "Kapcsolat"
+    },
+    "navLabel": "Fő navigáció",
+    "mobileNavLabel": "Mobil navigáció",
+    "sensoryOnTitle": "Lágy, csökkentett ingerű mód aktív (kattintson a normál módhoz)",
+    "sensoryOffTitle": "Csökkentett ingerű (szenszoros) mód bekapcsolása",
+    "sensoryOn": "Lágy mód: BE",
+    "sensoryOff": "Lágy mód",
+    "sensoryToggle": "Szenszoros mód kapcsolása",
+    "menuClose": "Menü bezárása",
+    "menuOpen": "Menü megnyitása",
+    "support": "Támogatás",
+    "accessibility": "Akadálymentesítés",
+    "customActive": "(egyedi beállítások aktívak)",
+    "supportMobile": "Támogatás és adó 1%"
+  },
+  "Footer": {
+    "tagline": "Vas Megyei Alapítvány",
+    "about": "{name}. 2015 óta a Vas vármegyei érintett családok és intézmények elkötelezett támogatója.",
+    "aosz": "Autisták Országos Szövetsége (AOSZ) tagszervezet",
+    "sitemapTitle": "Oldaltérkép",
+    "links": {
+      "about": "Rólunk és értékeink",
+      "autism": "Autizmus-ismerettár és FAQ",
+      "help": "Amiben segíteni tudunk",
+      "press": "Rólunk írták és sajtó",
+      "news": "Hírek és szülőklub",
+      "programs": "Programok és események",
+      "support": "Támogatás és adó 1%",
+      "documents": "Dokumentumtár és pályázatok",
+      "contact": "Kapcsolat"
+    },
+    "contactTitle": "Elérhetőség",
+    "facebook": "Közösségi Facebook csoport",
+    "supportTitle": "Támogatási adatok",
+    "taxNumber": "Adószám (1% felajánlás):",
+    "bankAccount": "Bankszámlaszám ({bank}):",
+    "donationInfo": "Adományozási tudnivalók",
+    "copyright": "© {year} {name}. Minden jog fenntartva.",
+    "reports": "Közhasznúsági jelentések",
+    "privacy": "Adatkezelési tájékoztató",
+    "imprint": "Impresszum"
+  },
+  "ContactForm": {
+    "required": "Kérjük, töltse ki az összes kötelező mezőt!",
+    "tooMany": "Túl sok üzenet érkezett rövid idő alatt. Kérjük, próbálja újra néhány perc múlva.",
+    "invalid": "Kérjük, ellenőrizze a megadott adatokat (név, e-mail cím, üzenet).",
+    "failed": "Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy hívjon minket: {phone}.",
+    "successTitle": "Köszönjük megkeresését!",
+    "successText": "Üzenetét sikeresen megkaptuk. Alapítványunk munkatársai hamarosan felveszik Önnel a kapcsolatot a megadott elérhetőségeken.",
+    "newMessage": "Új üzenet küldése",
+    "title": "Írjon nekünk üzenetet",
+    "subtitle": "Munkatársunk 1-2 munkanapon belül válaszol",
+    "honeypot": "Weboldal (hagyja üresen)",
+    "name": "Teljes név",
+    "namePlaceholder": "Kovács Péter",
+    "email": "E-mail cím",
+    "emailPlaceholder": "pelda@email.hu",
+    "phone": "Telefonszám (opcionális)",
+    "phonePlaceholder": "+36 30 123 4567",
+    "topic": "Üzenet témája",
+    "topics": {
+      "altalanos": "Általános megkeresés / Kérdés",
+      "mentorszuloi-tanacsadas": "Mentorszülői tanácsadás kérése",
+      "data-applikacio": "DATA applikáció letöltési és használati segítség",
+      "szakkonyvtar": "Szakkönyvtári kölcsönzés",
+      "intezmenyi-tanacsadas": "Intézményi és iskolai integrációs tájékoztatás",
+      "szulo": "Szülőklub-regisztráció és részvétel",
+      "onkentes": "Önkéntes segítőnek jelentkezem",
+      "tamogatas": "Támogatás és céges adományozás"
+    },
+    "message": "Üzenet szövege",
+    "messagePlaceholder": "Miben segíthetünk? Kérjük, fejtse ki részletesen...",
+    "sending": "Küldés folyamatban...",
+    "send": "Üzenet elküldése",
+    "privacy": "Az üzenetét csak a válaszhoz használjuk. Részletek az <link>adatkezelési tájékoztatóban</link>.",
+    "loading": "Űrlap betöltése..."
+  },
+  "Accessibility": {
+    "trigger": "Akadálymentesítés és szenzoros beállítások vezérlőpultja",
+    "hoverLabel": "Akadálymentesítés",
+    "panelLabel": "Akadálymentesítési beállítások",
+    "title": "Szenzoros és akadálymentességi panel",
+    "subtitle": "Személyre szabott élmény és nyugodt olvasás",
+    "close": "Panel bezárása",
+    "sensory": {
+      "title": "Szenzoros / Nyugtató Mód",
+      "text": "Lágyabb színek, minimális kontraszt és ingerek"
+    },
+    "contrast": {
+      "title": "Magas Kontraszt",
+      "text": "Jobban elkülönülő sötét/világos elemek"
+    },
+    "fontSize": {
+      "title": "Betűméret",
+      "current": "Jelenleg: {size}",
+      "normal": "Normál (100%)",
+      "large": "Nagy (115%)",
+      "xlarge": "Extra nagy (130%)",
+      "cycle": "Váltás (A+)"
+    },
+    "ruler": {
+      "title": "Olvasóvonalzó sáv",
+      "text": "Egérkurzort követő fókuszcsík"
+    },
+    "motion": {
+      "title": "Mozgáscsökkentés",
+      "text": "Minden animáció és mozgó hatás letiltása"
+    },
+    "reset": "Alaphelyzet",
+    "badge": "PontMás WCAG 2.1 AA"
+  },
+  "Shell": {
+    "skipToContent": "Ugrás a tartalomra"
+  },
+  "Chat": {
+    "open": "Ask us",
+    "title": "Ask us",
+    "close": "Close",
+    "input": "Your question",
+    "send": "Send",
+    "sending": "Preparing an answer…",
+    "privacy": "Privacy notice"
   }
 }

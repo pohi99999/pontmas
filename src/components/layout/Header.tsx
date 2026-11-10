@@ -6,9 +6,11 @@ import Image from 'next/image';
 // the path without the language prefix, so the active menu item is found in every language
 import { usePathname } from '@/i18n/navigation';
 import { Menu, X, Eye, EyeOff, Heart, SlidersHorizontal } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useSensory } from '@/context/SensoryContext';
 
 export default function Header() {
+  const t = useTranslations('Header');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isSensoryFriendly, toggleSensoryMode, highContrast, fontSize, readingRuler, reducedMotion, dyslexicFont, isPanelOpen, setPanelOpen } = useSensory();
   const hasCustomSettings = isSensoryFriendly || highContrast || fontSize !== 'normal' || readingRuler || reducedMotion || dyslexicFont;
@@ -37,15 +39,15 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   const navItems = [
-    { label: 'Kezdőlap', href: '/' },
-    { label: 'Autizmusról', href: '/autizmus' },
-    { label: 'Segítség', href: '/segitseg' },
-    { label: 'Rólunk', href: '/rolunk' },
-    { label: 'Rólunk írták', href: '/rolunk-irtak' },
-    { label: 'Hírek', href: '/hirek' },
-    { label: 'Programok', href: '/programok' },
-    { label: 'Dokumentumok', href: '/dokumentumok' },
-    { label: 'Kapcsolat', href: '/kapcsolat' },
+    { label: t('nav.home'), href: '/' },
+    { label: t('nav.autism'), href: '/autizmus' },
+    { label: t('nav.help'), href: '/segitseg' },
+    { label: t('nav.about'), href: '/rolunk' },
+    { label: t('nav.press'), href: '/rolunk-irtak' },
+    { label: t('nav.news'), href: '/hirek' },
+    { label: t('nav.programs'), href: '/programok' },
+    { label: t('nav.documents'), href: '/dokumentumok' },
+    { label: t('nav.contact'), href: '/kapcsolat' },
   ];
 
   return (
@@ -80,7 +82,7 @@ export default function Header() {
               className="h-auto w-[140px]"
             />
             <span className="text-[11px] font-medium text-slate-500 tracking-wide uppercase whitespace-nowrap">
-              Vas Megyei Alapítvány
+              {t('tagline')}
             </span>
           </div>
         </Link>
@@ -89,7 +91,7 @@ export default function Header() {
             (1024 px) and pushed "Támogatás" off screen, so narrower windows keep the hamburger menu.
             Every item stays on one line: tighter padding and no gap below 2xl (1536 px), and the
             "Lágy mód" button shows only its icon there (the text stays for screen readers). */}
-        <nav className="hidden min-[1360px]:flex items-center gap-0 2xl:gap-2" aria-label="Fő navigáció">
+        <nav className="hidden min-[1360px]:flex items-center gap-0 2xl:gap-2" aria-label={t('navLabel')}>
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -120,18 +122,18 @@ export default function Header() {
                 ? 'bg-slate-800 text-white border-slate-700 shadow-inner'
                 : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
             }`}
-            title={isSensoryFriendly ? "Lágy, csökkentett ingerű mód aktív (kattintson a normál módhoz)" : "Csökkentett ingerű (szenszoros) mód bekapcsolása"}
+            title={isSensoryFriendly ? t('sensoryOnTitle') : t('sensoryOffTitle')}
             aria-pressed={isSensoryFriendly}
           >
             {isSensoryFriendly ? (
               <>
                 <EyeOff size={16} className="text-sky-300" aria-hidden="true" />
-                <span className="sr-only 2xl:not-sr-only">Lágy mód: BE</span>
+                <span className="sr-only 2xl:not-sr-only">{t('sensoryOn')}</span>
               </>
             ) : (
               <>
                 <Eye size={16} className="text-slate-600" aria-hidden="true" />
-                <span className="sr-only 2xl:not-sr-only">Lágy mód</span>
+                <span className="sr-only 2xl:not-sr-only">{t('sensoryOff')}</span>
               </>
             )}
           </button>
@@ -142,7 +144,7 @@ export default function Header() {
             className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm hover:shadow whitespace-nowrap transition-all active:scale-95"
           >
             <Heart size={16} className="fill-white/20" />
-            <span>Támogatás</span>
+            <span>{t('support')}</span>
           </Link>
         </div>
 
@@ -156,7 +158,7 @@ export default function Header() {
                 ? 'bg-slate-800 text-white border-slate-700'
                 : 'bg-slate-50 text-slate-700 border-slate-200'
             }`}
-            aria-label="Szenszoros mód kapcsolása"
+            aria-label={t('sensoryToggle')}
           >
             {isSensoryFriendly ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
@@ -166,7 +168,7 @@ export default function Header() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             type="button"
             className="p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 border border-slate-200 transition-colors"
-            aria-label={isMobileMenuOpen ? "Menü bezárása" : "Menü megnyitása"}
+            aria-label={isMobileMenuOpen ? t('menuClose') : t('menuOpen')}
             aria-expanded={isMobileMenuOpen}
             aria-controls="fo-menu"
           >
@@ -192,16 +194,16 @@ export default function Header() {
               className="flex w-full items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors"
             >
               <SlidersHorizontal size={20} aria-hidden="true" />
-              <span>Akadálymentesítés</span>
+              <span>{t('accessibility')}</span>
               {hasCustomSettings && (
                 <>
                   <span className="ml-auto h-2.5 w-2.5 rounded-full bg-emerald-500" aria-hidden="true" />
-                  <span className="sr-only">(egyedi beállítások aktívak)</span>
+                  <span className="sr-only">{t('customActive')}</span>
                 </>
               )}
             </button>
           </div>
-          <nav className="flex flex-col gap-1" aria-label="Mobil navigáció">
+          <nav className="flex flex-col gap-1" aria-label={t('mobileNavLabel')}>
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -227,7 +229,7 @@ export default function Header() {
                 className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-sm text-center transition-colors"
               >
                 <Heart size={18} />
-                <span>Támogatás és adó 1%</span>
+                <span>{t('supportMobile')}</span>
               </Link>
             </div>
           </nav>

@@ -4,6 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
+import { HU_VALUES } from './helpers/messages.mjs';
 
 const ROOT = join(import.meta.dirname, '..');
 const read = (f) => readFileSync(join(ROOT, f), 'utf8');
@@ -31,6 +32,10 @@ test('no "&" between words in a visible text of the site', () => {
       }
     });
   }
+  // the texts moved into messages/hu.json by the i18n extraction (card c017f163) are checked too
+  for (const v of HU_VALUES) {
+    if (/[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű] & [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]/.test(v) && !KEEP.includes(v.trim())) hits.push(`messages/hu.json: ${v}`);
+  }
   assert.deepEqual(hits, []);
 });
 
@@ -44,9 +49,11 @@ test('headings and labels in sentence case (a sample of the fixed ones)', () => 
     'src/components/layout/Footer.tsx': ['Programok és események', 'Adatkezelési tájékoztató'],
     'src/app/[locale]/tamogatas/page.tsx': ['Támogatási központ'],
   };
-  for (const [f, words] of Object.entries(expect)) for (const w of words) assert.ok(read(f).includes(w), `${f}: ${w}`);
+  // a text moved into messages/hu.json counts as the file's own (card c017f163)
+  for (const [f, words] of Object.entries(expect)) for (const w of words) assert.ok(read(f).includes(w) || HU_VALUES.includes(w.replace(/^'|'$/g, '')), `${f}: ${w}`);
   for (const old of ['Kiemelt Események', 'Nyári Táborok', 'Programjaink és Rendezvényeink', 'A Spektrum Fő Területei', 'Gyakori Kérdések']) {
     for (const f of walk('src')) if (!SKIP_FILES.has(f)) assert.ok(!read(f).includes(old), `${f}: ${old}`);
+    assert.ok(!HU_VALUES.some((v) => v.includes(old)), `messages/hu.json: ${old}`);
   }
 });
 

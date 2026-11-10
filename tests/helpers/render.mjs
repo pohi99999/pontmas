@@ -14,7 +14,7 @@ const messagesOf = (locale) => JSON.parse(fs.readFileSync(path.resolve(`messages
 
 /** One element inside the language provider (a component that uses the locale-aware Link needs it). */
 export function renderElement(el, locale = 'hu') {
-  return renderToStaticMarkup(h(NextIntlClientProvider, { locale, messages: messagesOf(locale) }, el));
+  return renderToStaticMarkup(h(NextIntlClientProvider, { locale, messages: messagesOf(locale), timeZone: 'Europe/Budapest' }, el));
 }
 
 export async function renderHtml(p, props = {}, locale = 'hu') {

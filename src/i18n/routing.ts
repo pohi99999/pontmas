@@ -25,6 +25,9 @@ export const OG_LOCALE: Record<Locale, string> = { hu: 'hu_HU', en: 'en_GB', de:
  */
 export const PUBLISHED_LOCALES: readonly Locale[] = ['hu'];
 
+/** The foundation is in Szombathely: dates and times are Budapest time on the server and in the browser. */
+export const TIME_ZONE = 'Europe/Budapest';
+
 export function isLocale(v: unknown): v is Locale {
   return typeof v === 'string' && (LOCALES as readonly string[]).includes(v);
 }

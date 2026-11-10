@@ -10,7 +10,8 @@ import { foundationJsonLd } from "@/lib/foundation";
 import ChatWidget from "@/components/chat/ChatWidget";
 import { chatConfig } from "@/lib/chat/config";
 import type { ChatLocale } from "@/lib/chat/rules";
-import { NextIntlClientProvider, type AbstractIntlMessages } from "next-intl";
+import { NextIntlClientProvider, useTranslations, type AbstractIntlMessages } from "next-intl";
+import { TIME_ZONE } from "@/i18n/routing";
 
 // The page frame every public page and the editor share: <html>, the fonts, the JSON-LD, the skip
 // link, header, footer, the accessibility tools and (when switched on) the chat. Two root layouts use
@@ -26,6 +27,7 @@ export default function SiteShell({
   children: React.ReactNode;
 }>) {
   const jsonLd = foundationJsonLd();
+  const t = useTranslations("Shell");
 
   return (
     <html lang={lang} className={`scroll-smooth ${fraunces.variable}`}>
@@ -36,14 +38,14 @@ export default function SiteShell({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
         />
-        <NextIntlClientProvider locale={lang} messages={messages}>
+        <NextIntlClientProvider locale={lang} messages={messages} timeZone={TIME_ZONE}>
         <SensoryProvider>
           {/* First stop for keyboard users: past the header straight to the page content */}
           <a
             href="#tartalom"
             className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-xl focus:bg-white focus:px-4 focus:py-3 focus:text-sm focus:font-bold focus:text-blue-700 focus:shadow-lg"
           >
-            Ugrás a tartalomra
+            {t("skipToContent")}
           </a>
           <ReadingRuler />
           <Header />

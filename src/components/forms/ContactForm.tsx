@@ -3,6 +3,7 @@
 import React, { useState, Suspense } from 'react';
 import { Link } from '@/i18n/navigation';
 import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Send, CheckCircle2, Sparkles, AlertCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { TOPICS } from '@/lib/contact';
@@ -12,6 +13,7 @@ import { FOUNDATION } from '@/lib/foundation';
 const topicFrom = (t: string | null | undefined) => ((TOPICS as readonly string[]).includes(t ?? '') ? (t as string) : 'altalanos');
 
 function ContactFormInner() {
+  const t = useTranslations('ContactForm');
   const searchParams = useSearchParams();
   const initialTopic = topicFrom(searchParams?.get('topic'));
 
@@ -47,7 +49,7 @@ function ContactFormInner() {
     setErrorMsg('');
 
     if (!formData.nev || !formData.email || !formData.uzenet) {
-      setErrorMsg('Kérjük, töltse ki az összes kötelező mezőt!');
+      setErrorMsg(t('required'));
       return;
     }
 
@@ -66,15 +68,15 @@ function ContactFormInner() {
       if (res.ok && data?.ok === true) {
         setIsSuccess(true);
       } else if (res.status === 429) {
-        setErrorMsg('Túl sok üzenet érkezett rövid idő alatt. Kérjük, próbálja újra néhány perc múlva.');
+        setErrorMsg(t('tooMany'));
       } else if (res.status === 400) {
-        setErrorMsg('Kérjük, ellenőrizze a megadott adatokat (név, e-mail cím, üzenet).');
+        setErrorMsg(t('invalid'));
       } else {
-        setErrorMsg(`Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy hívjon minket: ${FOUNDATION.phone}.`);
+        setErrorMsg(t('failed', { phone: FOUNDATION.phone }));
       }
     } catch {
       setIsSubmitting(false);
-      setErrorMsg(`Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy hívjon minket: ${FOUNDATION.phone}.`);
+      setErrorMsg(t('failed', { phone: FOUNDATION.phone }));
     }
   };
 
@@ -84,9 +86,9 @@ function ContactFormInner() {
         <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-6">
           <CheckCircle2 size={36} />
         </div>
-        <h2 className="text-2xl font-bold text-slate-900 mb-2">Köszönjük megkeresését!</h2>
+        <h2 className="text-2xl font-bold text-slate-900 mb-2">{t('successTitle')}</h2>
         <p className="text-slate-600 text-sm sm:text-base max-w-md mb-6 leading-relaxed">
-          Üzenetét sikeresen megkaptuk. Alapítványunk munkatársai hamarosan felveszik Önnel a kapcsolatot a megadott elérhetőségeken.
+          {t('successText')}
         </p>
         <Button
           variant="outline"
@@ -96,7 +98,7 @@ function ContactFormInner() {
             setFormData({ nev: '', email: '', telefon: '', tema: 'altalanos', uzenet: '' });
           }}
         >
-          Új üzenet küldése
+          {t('newMessage')}
         </Button>
       </div>
     );
@@ -109,8 +111,8 @@ function ContactFormInner() {
           <Sparkles size={20} />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-slate-900">Írjon nekünk üzenetet</h2>
-          <p className="text-xs text-slate-500">Munkatársunk 1-2 munkanapon belül válaszol</p>
+          <h2 className="text-xl font-bold text-slate-900">{t('title')}</h2>
+          <p className="text-xs text-slate-500">{t('subtitle')}</p>
         </div>
       </div>
 
@@ -123,12 +125,12 @@ function ContactFormInner() {
 
       <form onSubmit={handleSubmit} className="space-y-4" noValidate={false}>
         <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
-          <label htmlFor="website">Weboldal (hagyja üresen)</label>
+          <label htmlFor="website">{t('honeypot')}</label>
           <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
         </div>
         <div>
           <label htmlFor="nev" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-            Teljes név <span className="text-red-700">*</span>
+            {t('name')} <span className="text-red-700">*</span>
           </label>
           <input
             required
@@ -138,14 +140,14 @@ function ContactFormInner() {
             value={formData.nev}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-sm text-slate-900 bg-slate-50/50"
-            placeholder="Kovács Péter"
+            placeholder={t('namePlaceholder')}
           />
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-              E-mail cím <span className="text-red-700">*</span>
+              {t('email')} <span className="text-red-700">*</span>
             </label>
             <input
               required
@@ -155,13 +157,13 @@ function ContactFormInner() {
               value={formData.email}
               onChange={handleChange}
               className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-sm text-slate-900 bg-slate-50/50"
-              placeholder="pelda@email.hu"
+              placeholder={t('emailPlaceholder')}
             />
           </div>
 
           <div>
             <label htmlFor="telefon" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-              Telefonszám (opcionális)
+              {t('phone')}
             </label>
             <input
               type="tel"
@@ -170,14 +172,14 @@ function ContactFormInner() {
               value={formData.telefon}
               onChange={handleChange}
               className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-sm text-slate-900 bg-slate-50/50"
-              placeholder="+36 30 123 4567"
+              placeholder={t('phonePlaceholder')}
             />
           </div>
         </div>
 
         <div>
           <label htmlFor="tema" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-            Üzenet témája
+            {t('topic')}
           </label>
           <select
             id="tema"
@@ -186,20 +188,20 @@ function ContactFormInner() {
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-sm text-slate-900 bg-slate-50/50 cursor-pointer font-medium"
           >
-            <option value="altalanos">Általános megkeresés / Kérdés</option>
-            <option value="mentorszuloi-tanacsadas">Mentorszülői tanácsadás kérése</option>
-            <option value="data-applikacio">DATA applikáció letöltési és használati segítség</option>
-            <option value="szakkonyvtar">Szakkönyvtári kölcsönzés</option>
-            <option value="intezmenyi-tanacsadas">Intézményi és iskolai integrációs tájékoztatás</option>
-            <option value="szulo">Szülőklub-regisztráció és részvétel</option>
-            <option value="onkentes">Önkéntes segítőnek jelentkezem</option>
-            <option value="tamogatas">Támogatás és céges adományozás</option>
+            <option value="altalanos">{t('topics.altalanos')}</option>
+            <option value="mentorszuloi-tanacsadas">{t('topics.mentorszuloi-tanacsadas')}</option>
+            <option value="data-applikacio">{t('topics.data-applikacio')}</option>
+            <option value="szakkonyvtar">{t('topics.szakkonyvtar')}</option>
+            <option value="intezmenyi-tanacsadas">{t('topics.intezmenyi-tanacsadas')}</option>
+            <option value="szulo">{t('topics.szulo')}</option>
+            <option value="onkentes">{t('topics.onkentes')}</option>
+            <option value="tamogatas">{t('topics.tamogatas')}</option>
           </select>
         </div>
 
         <div>
           <label htmlFor="uzenet" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-            Üzenet szövege <span className="text-red-700">*</span>
+            {t('message')} <span className="text-red-700">*</span>
           </label>
           <textarea
             required
@@ -209,7 +211,7 @@ function ContactFormInner() {
             value={formData.uzenet}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-sm text-slate-900 bg-slate-50/50 resize-none"
-            placeholder="Miben segíthetünk? Kérjük, fejtse ki részletesen..."
+            placeholder={t('messagePlaceholder')}
           />
         </div>
 
@@ -222,11 +224,12 @@ function ContactFormInner() {
             fullWidth
             rightIcon={!isSubmitting ? <Send size={18} /> : undefined}
           >
-            {isSubmitting ? 'Küldés folyamatban...' : 'Üzenet elküldése'}
+            {isSubmitting ? t('sending') : t('send')}
           </Button>
           <p className="mt-3 text-xs text-slate-600 leading-relaxed">
-            Az üzenetét csak a válaszhoz használjuk. Részletek az{' '}
-            <Link href="/adatkezeles" className="underline hover:text-slate-900">adatkezelési tájékoztatóban</Link>.
+            {t.rich('privacy', {
+              link: (chunks) => <Link href="/adatkezeles" className="underline hover:text-slate-900">{chunks}</Link>,
+            })}
           </p>
         </div>
       </form>
@@ -235,8 +238,9 @@ function ContactFormInner() {
 }
 
 export default function ContactForm() {
+  const t = useTranslations('ContactForm');
   return (
-    <Suspense fallback={<div className="bg-white rounded-3xl p-8 text-center text-slate-500">Űrlap betöltése...</div>}>
+    <Suspense fallback={<div className="bg-white rounded-3xl p-8 text-center text-slate-500">{t('loading')}</div>}>
       <ContactFormInner />
     </Suspense>
   );

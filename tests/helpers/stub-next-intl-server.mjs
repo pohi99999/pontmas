@@ -18,7 +18,7 @@ export async function getMessages(opts) {
 }
 export async function getTranslations(arg) {
   const { locale = current, namespace } = typeof arg === 'string' || arg === undefined ? { namespace: arg } : arg;
-  return createTranslator({ locale, messages: messagesOf(locale), namespace });
+  return createTranslator({ locale, messages: messagesOf(locale), namespace, timeZone: 'Europe/Budapest' });
 }
 export function getRequestConfig(fn) {
   return fn;

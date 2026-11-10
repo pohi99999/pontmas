@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import { MessageCircle, Send, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { detectPii } from '@/lib/chat/pii';
 import { FIXED, type ChatLocale } from '@/lib/chat/rules';
 
@@ -23,14 +24,11 @@ interface Msg {
   local?: boolean;
 }
 
-const LABELS: Record<ChatLocale, { open: string; title: string; close: string; input: string; send: string; sending: string; privacy: string }> = {
-  hu: { open: 'Kérdezzen tőlünk', title: 'Kérdezzen tőlünk', close: 'Bezárás', input: 'Az Ön kérdése', send: 'Küldés', sending: 'Válasz készül…', privacy: 'Adatkezelési tájékoztató' },
-  en: { open: 'Ask us', title: 'Ask us', close: 'Close', input: 'Your question', send: 'Send', sending: 'Preparing an answer…', privacy: 'Privacy notice' },
-  de: { open: 'Fragen Sie uns', title: 'Fragen Sie uns', close: 'Schließen', input: 'Ihre Frage', send: 'Senden', sending: 'Antwort wird erstellt…', privacy: 'Datenschutzhinweis' },
-};
-
 export default function ChatWidget({ locale = 'hu' }: { locale?: ChatLocale }) {
-  const t = LABELS[locale];
+  // the window's own labels are in messages/<locale>.json (Chat); the fixed answers stay in rules.ts,
+  // because the server sends them too
+  const tr = useTranslations('Chat');
+  const t = { open: tr('open'), title: tr('title'), close: tr('close'), input: tr('input'), send: tr('send'), sending: tr('sending'), privacy: tr('privacy') };
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([{ role: 'assistant', content: FIXED.welcome[locale], local: true }]);
   const [input, setInput] = useState('');

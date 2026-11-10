@@ -8,10 +8,10 @@ import { splitNews } from "@/content/public";
 import CtaBand from '@/components/ui/CtaBand';
 
 export const metadata: Metadata = {
-  title: "Hírek & Aktualitások | PontMás Alapítvány",
+  title: "Hírek és aktualitások | PontMás Alapítvány",
   description: "A PontMás Alapítvány legfrissebb hírei, szülőklub meghívói, családi nap beszámolói és szakmai továbbképzései.",
   openGraph: {
-    title: "Hírek & Aktualitások | PontMás Alapítvány",
+    title: "Hírek és aktualitások | PontMás Alapítvány",
     description: "Értesüljön a PontMás Alapítvány legújabb eseményeiről, programjairól és híreiről.",
     url: "https://pontmas.hu/hirek",
   },
@@ -29,7 +29,7 @@ export default async function HirekPage() {
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Hero */}
       <PageHeader
-        badge="Hírek, Aktualitások & Események"
+        badge="Hírek, aktualitások és események"
         title="Közösségi élet, programok és szakmai hírek"
         subtitle="Kövesse figyelemmel a PontMás Alapítvány legfrissebb eseményeit, szülőklubjait, szakmai támogatási programjait és élménybeszámolóit!"
       />
@@ -59,7 +59,7 @@ export default async function HirekPage() {
       <CtaBand
         title="Szeretne önkéntesként segíteni munkánkat?"
         text="Legyen szó rendezvényekről, gyermekfoglalkozásokról, szülőklubokról vagy online kommunikációról, minden segítő kéznek és jó szándéknak nagyon örülünk!"
-        label="Csatlakozzon Hozzánk"
+        label="Csatlakozzon hozzánk"
       >
         <Button href="/kapcsolat?topic=onkentes" variant="primary">
           Jelentkezem Önkéntesnek

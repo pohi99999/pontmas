@@ -64,8 +64,8 @@ test('/programok with no store renders exactly the item texts of main', async ()
   const html = await renderPage('app/programok/page.tsx');
   const text = htmlText(html);
   inOrder(assert, text, MAIN_PROGRAMS.flatMap((p) => [p.badge, p.title, p.date, p.location, p.description, ...p.highlights]));
-  assert.equal((html.match(/Érdeklődés &amp; Részletek/g) ?? []).length, MAIN_PROGRAMS.length);
-  for (const label of ['Összes program', 'Kiemelt Események', 'Nyári Táborok', 'Szülőklub &amp; Családok']) assert.ok(html.includes(label), label);
+  assert.equal((html.match(/Érdeklődés és részletek/g) ?? []).length, MAIN_PROGRAMS.length);
+  for (const label of ['Összes program', 'Kiemelt események', 'Nyári táborok', 'Szülőklub és családok']) assert.ok(html.includes(label), label);
 });
 
 test('fallback: empty, failing or invalid store content means the seed', async () => {
@@ -107,11 +107,12 @@ test('NOT editable, ever: the model has no bank, tax, registration, address or p
   }
 });
 
-test('the protected data stays in the code and is not part of the editable seed', () => {
-  const donation = fs.readFileSync(path.resolve('src/app/tamogatas/page.tsx'), 'utf8');
-  const account = donation.match(/\d{8}-\d{8}(?:-\d{8})?/)?.[0];
-  const tax = donation.match(/\d{8}-\d-\d{2}/)?.[0];
-  assert.ok(account && tax, 'the donation page still holds the account and the tax number');
+test('the protected data stays in the code and is not part of the editable seed', async () => {
+  // they live in src/lib/foundation.ts, which the editor cannot write
+  const { FOUNDATION } = await src('lib/foundation.ts');
+  const account = FOUNDATION.bankAccount;
+  const tax = FOUNDATION.taxNumber;
+  assert.ok(/^\d{8}-\d{8}-\d{8}$/.test(account) && /^\d{8}-\d-\d{2}$/.test(tax), 'the account and the tax number are set');
   const seedJson = JSON.stringify(seed.SEED_CONTENT);
   assert.ok(!seedJson.includes(account) && !seedJson.includes(tax));
   assert.ok(!seedJson.includes('+36 20'), 'no phone number in the editable content');

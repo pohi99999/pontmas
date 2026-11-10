@@ -73,7 +73,7 @@ export default function AccessibilityToolbar() {
           }`}
           aria-expanded={isOpen}
           aria-controls="accessibility-panel"
-          aria-label="Akadálymentesítés és Szenzoros beállítások vezérlőpultja"
+          aria-label="Akadálymentesítés és szenzoros beállítások vezérlőpultja"
         >
           <div className="relative flex items-center justify-center">
             <SlidersHorizontal className="h-5 w-5 text-current" />
@@ -107,7 +107,7 @@ export default function AccessibilityToolbar() {
                 <Eye className="h-4 w-4" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900">Szenzoros & A11y Panel</h3>
+                <h3 className="text-base font-bold text-slate-900">Szenzoros és akadálymentességi panel</h3>
                 <p className="text-xs text-slate-500">Személyre szabott élmény és nyugodt olvasás</p>
               </div>
             </div>

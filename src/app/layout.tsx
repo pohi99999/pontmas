@@ -10,17 +10,21 @@ import { SensoryProvider } from "@/context/SensoryContext";
 import { jsonLdScript } from "@/lib/jsonLd";
 import { MOZGAS_SCRIPT } from "@/lib/mozgas";
 import MozgasKapu from "@/components/ui/MozgasKapu";
+import { foundationJsonLd } from "@/lib/foundation";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 // The heading font: one static weight, subset to Hungarian in one small file (fonts/README.txt). The variable
 // Google file cost about 1.5 s of mobile LCP (measured). display: optional: a slow first visit stays on the
 // fallback, and the big titles never jump.
+// The generated fallback face is metric-matched to a SERIF (review 2026-11-10): with next/font's default
+// (Arial) a slow first visit showed the titles in a sans face, so the page lost its character exactly then.
 const fraunces = localFont({
   src: "./fonts/fraunces-500-hu.woff2",
   weight: "500",
   display: "optional",
   variable: "--font-display",
   fallback: ["Georgia", "serif"],
+  adjustFontFallback: "Times New Roman",
 });
 
 export const metadata: Metadata = {
@@ -41,20 +45,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "NGO",
-    "name": "PontMás Vas Megyei Autista Gyermekekért Alapítvány",
-    "url": "https://pontmas.hu",
-    "telephone": "+36 20 969 8715",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Váci M. utca 12. 3./15.",
-      "addressLocality": "Szombathely",
-      "postalCode": "9700",
-      "addressCountry": "HU"
-    }
-  };
+  const jsonLd = foundationJsonLd();
 
   return (
     <html lang="hu" className={`scroll-smooth ${fraunces.variable}`}>

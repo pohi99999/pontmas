@@ -6,6 +6,7 @@ import Button from '@/components/ui/Button';
 import CopyButton from '@/components/ui/CopyButton';
 import PontAblak from '@/components/brand/PontAblak';
 import CtaBand from '@/components/ui/CtaBand';
+import { FOUNDATION } from '@/lib/foundation';
 
 export default function Home() {
   const stats = [
@@ -25,7 +26,7 @@ export default function Home() {
             <div className="lg:col-span-7 min-w-0">
               <p className="eyebrow mb-6">
                 <span className="pont" aria-hidden="true" />
-                PontMás Vas Megyei Autista Gyermekekért Alapítvány
+                {FOUNDATION.name}
               </p>
               <h1 className="text-[2.75rem] leading-[1.08] sm:text-6xl lg:text-[3.25rem] xl:text-[4.25rem] text-slate-900 mb-7">
                 Közösen egy megértőbb, <br className="hidden sm:inline" />
@@ -92,7 +93,7 @@ export default function Home() {
         <SectionHeader
           align="left"
           className="xl:sticky xl:top-28"
-          badge="Küldetésünk & Tevékenységeink"
+          badge="Küldetésünk és tevékenységeink"
           title="Hogyan segítünk a mindennapokban?"
           subtitle="Összetett támogatási rendszert működtetünk, amely a gyermekektől a szülőkön át az intézményekig minden érintettre kiterjed."
         />
@@ -167,13 +168,13 @@ export default function Home() {
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
               <CopyButton
-                textToCopy="18654996-1-18"
-                label="Adószám (Adó 1%)"
+                textToCopy={FOUNDATION.taxNumber}
+                label="Adószám (adó 1%)"
                 sublabel="Kattintson az adószám vágólapra másolásához"
               />
               <CopyButton
-                textToCopy="11600006-00000000-75701521"
-                label="Bankszámlaszám (Erste Bank)"
+                textToCopy={FOUNDATION.bankAccount}
+                label={`Bankszámlaszám (${FOUNDATION.bankName})`}
                 sublabel="Közvetlen banki átutaláshoz"
               />
             </div>

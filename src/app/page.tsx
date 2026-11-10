@@ -6,6 +6,7 @@ import Button from '@/components/ui/Button';
 import CopyButton from '@/components/ui/CopyButton';
 import PontAblak from '@/components/brand/PontAblak';
 import CtaBand from '@/components/ui/CtaBand';
+import { EGYSZAZALEK, forint } from '@/content/egyszazalek';
 import { FOUNDATION } from '@/lib/foundation';
 
 export default function Home() {
@@ -145,6 +146,19 @@ export default function Home() {
             <p className="text-blue-100 text-lg leading-relaxed max-w-2xl mb-8">
               A személyi jövedelemadó 1%-ának felajánlása Önnek semmibe sem kerül, de számunkra a táborok, a szülőklubok és a krízis alap biztonságos működését jelenti.
             </p>
+            {/* What the 1% brought, from the NAV's list (src/content/egyszazalek.ts); the source stays visible */}
+            <figure className="border-l-2 border-blue-400 pl-5 max-w-2xl mb-8">
+              {/* The NAV figure is the OFFERED amount (Ellenőr, #40), so the sentence says "ajánlott fel".
+                  Words with a hyphenated suffix stay whole (whitespace-nowrap): the browser may break after
+                  a hyphen, and "Ft-" / "ot" on two lines was measured at 284-294, 510-530 and 640-766 px. */}
+              <p className="text-white text-xl sm:text-2xl leading-snug">
+                <span className="whitespace-nowrap">{EGYSZAZALEK.evben}</span>{' '}
+                <strong className="font-semibold">{EGYSZAZALEK.felajanlok} adózó</strong> összesen{' '}
+                <strong className="font-semibold whitespace-nowrap">{forint(EGYSZAZALEK.osszeg)}-ot</strong> ajánlott fel{' '}
+                <span className="whitespace-nowrap">1%-ából</span> a vasi autista gyermekek és családjaik támogatására.
+              </p>
+              <figcaption className="mt-2 text-sm text-blue-200">Forrás: NAV, {EGYSZAZALEK.kozzeteve}</figcaption>
+            </figure>
             <Link
               href="/tamogatas"
               className="inline-flex items-center text-sm font-semibold text-blue-100 underline decoration-blue-400 underline-offset-4 hover:text-white transition-colors"

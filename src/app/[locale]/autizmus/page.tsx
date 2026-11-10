@@ -85,7 +85,7 @@ export default function AutizmusPage() {
 
       {/* 4. Gyakorlati Tanácsok Szülőknek */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
-        <div className="bg-blue-950 text-white rounded-3xl p-8 sm:p-12 shadow-xl">
+        <div className="bg-blue-950 text-white pm-sotet rounded-3xl p-8 sm:p-12 shadow-xl">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-xl bg-blue-500/30 flex items-center justify-center text-blue-300">
               <Heart size={24} />

@@ -11,7 +11,7 @@
     "home": "Zurück zur Startseite"
   },
   "Header": {
-    "tagline": "Stiftung im Komitat Vas",
+    "tagline": "Stiftung, Komitat Vas",
     "nav": {
       "home": "Startseite",
       "autism": "Über Autismus",
@@ -27,18 +27,26 @@
     "mobileNavLabel": "Mobile Navigation",
     "sensoryOnTitle": "Ruhiger, reizarmer Modus ist an (klicken für die normale Ansicht)",
     "sensoryOffTitle": "Reizarmen (sensorisch freundlichen) Modus einschalten",
-    "sensoryOn": "Ruhiger Modus: AN",
+    "sensoryOn": "Ruhiger Modus: an",
     "sensoryOff": "Ruhiger Modus",
-    "sensoryToggle": "Sensorisch freundlichen Modus umschalten",
     "menuClose": "Menü schließen",
     "menuOpen": "Menü öffnen",
     "support": "Unterstützen",
     "accessibility": "Barrierefreiheit",
     "customActive": "(eigene Einstellungen aktiv)",
-    "supportMobile": "Unterstützen und 1 % der Steuer"
+    "supportMobile": "Unterstützen und 1 % der Steuer",
+    "sensoryTitle": "Reizarmer (sensorischer) Modus",
+    "sensoryShort": "Ruhiger <br></br>Modus"
+  },
+  "Theme": {
+    "label": "Dunkler Modus",
+    "onTitle": "Dunkler Modus: an (klicken für den hellen Modus)",
+    "offTitle": "Dunklen Modus einschalten",
+    "on": "an",
+    "off": "aus"
   },
   "Footer": {
-    "tagline": "Stiftung im Komitat Vas",
+    "tagline": "Stiftung, Komitat Vas",
     "about": "{name}. Seit 2015 engagierte Unterstützerin der betroffenen Familien und Einrichtungen im Komitat Vas.",
     "aosz": "Mitgliedsorganisation der Hungarian Autistic Society (AOSZ)",
     "sitemapTitle": "Seitenübersicht",
@@ -682,8 +690,8 @@
       },
       {
         "title": "Städtischer Zivilfonds – Familientag und Entwicklung des Elternklubs",
-        "badge": "Gemeinschaftsförderung",
-        "grantAmount": "Gemeinschaftliche und fachliche Mittel",
+        "badge": "Gemeinschafts­förderung",
+        "grantAmount": "Gemeinschafts- und Fachmittel",
         "description": "Organisation des jährlichen Familientags im Freilichtmuseum Vasi Skanzen mit Töpfern und Förderangeboten für Kinder sowie einer von einer psychologischen Fachkraft geleiteten Unterstützung für Eltern.",
         "details": [
           "Durchgeführt: September 2024",

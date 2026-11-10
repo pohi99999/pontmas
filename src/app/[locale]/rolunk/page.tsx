@@ -67,7 +67,7 @@ export default async function RolunkPage({ params }: PageParams) {
           </div>
 
           {/* Hitelességi kártya */}
-          <div className="lg:col-span-5 bg-blue-950 text-white rounded-3xl p-8 shadow-xl border border-slate-800 space-y-6">
+          <div className="lg:col-span-5 bg-blue-950 text-white pm-sotet rounded-3xl p-8 shadow-xl border border-slate-800 space-y-6">
             <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
               <div className="w-12 h-12 rounded-2xl bg-blue-600/30 border border-blue-500/40 flex items-center justify-center text-blue-400">
                 <Building2 size={24} />

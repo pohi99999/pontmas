@@ -5,9 +5,10 @@ import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 // the path without the language prefix, so the active menu item is found in every language
 import { usePathname } from '@/i18n/navigation';
-import { Menu, X, Eye, EyeOff, Heart, SlidersHorizontal } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { Menu, X, Eye, EyeOff, Heart, SlidersHorizontal } from 'lucide-react';
 import { useSensory } from '@/context/SensoryContext';
+import { ThemeToggleButton, ThemeToggleRow } from '@/components/ui/ThemeToggle';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -57,7 +58,7 @@ export default function Header() {
         {/* Brand Logo */}
         <Link 
           href="/" 
-          className="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none rounded-lg p-1"
+          className="flex items-center gap-1.5 min-[340px]:gap-2 min-[420px]:gap-3 group focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none rounded-lg p-1"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           {/* The foundation's own mark and wordmark (SVG cut-outs of the original vector logo, /public/brand).
@@ -69,7 +70,16 @@ export default function Header() {
             height={398}
             sizes="45px"
             preload
-            className="h-12 w-auto group-hover:scale-105 transition-transform"
+            className="h-9 min-[340px]:h-10 min-[420px]:h-12 w-auto group-hover:scale-105 transition-transform dark:hidden"
+          />
+          {/* Dark theme: the same artwork with light ink (review 2026-11-10) */}
+          <Image
+            src="/brand/pontmas-jel-sotet.svg"
+            alt=""
+            width={369}
+            height={398}
+            sizes="45px"
+            className="hidden h-9 min-[340px]:h-10 min-[420px]:h-12 w-auto group-hover:scale-105 transition-transform dark:block"
           />
           <div className="flex flex-col gap-1">
             <Image
@@ -79,9 +89,17 @@ export default function Header() {
               height={132}
               sizes="140px"
               preload
-              className="h-auto w-[140px]"
+              className="pm-halo h-auto w-[112px] min-[340px]:w-[120px] min-[420px]:w-[140px] dark:hidden"
             />
-            <span className="text-[11px] font-medium text-slate-500 tracking-wide uppercase whitespace-nowrap">
+            <Image
+              src="/brand/pontmas-felirat-sotet.svg"
+              alt="PontMás"
+              width={599}
+              height={132}
+              sizes="140px"
+              className="hidden h-auto w-[112px] min-[340px]:w-[120px] min-[420px]:w-[140px] dark:block"
+            />
+            <span className="text-[9px] min-[340px]:text-[10px] min-[420px]:text-[11px] font-medium text-slate-500 tracking-tight min-[340px]:tracking-normal min-[420px]:tracking-wide uppercase whitespace-nowrap">
               {t('tagline')}
             </span>
           </div>
@@ -113,29 +131,22 @@ export default function Header() {
 
         {/* Action Controls & CTA */}
         <div className="hidden min-[1360px]:flex items-center gap-3">
-          {/* Sensory Toggle */}
+          <ThemeToggleButton />
+          {/* Sensory Toggle: always with its label, outlined in the brand blue; on, it is a light blue tint,
+              not black, so it cannot be taken for a dark-mode switch (review 2026-11-10) */}
           <button
             onClick={toggleSensoryMode}
             type="button"
-            className={`px-3 py-2 rounded-xl border text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer ${
+            className={`h-10 px-3 rounded-xl border text-xs font-semibold flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer ${
               isSensoryFriendly
-                ? 'bg-slate-800 text-white border-slate-700 shadow-inner'
-                : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                ? 'bg-blue-50 text-blue-800 border-blue-600'
+                : 'bg-transparent text-blue-700 border-blue-600/60 hover:bg-blue-50'
             }`}
             title={isSensoryFriendly ? t('sensoryOnTitle') : t('sensoryOffTitle')}
             aria-pressed={isSensoryFriendly}
           >
-            {isSensoryFriendly ? (
-              <>
-                <EyeOff size={16} className="text-sky-300" aria-hidden="true" />
-                <span className="sr-only 2xl:not-sr-only">{t('sensoryOn')}</span>
-              </>
-            ) : (
-              <>
-                <Eye size={16} className="text-slate-600" aria-hidden="true" />
-                <span className="sr-only 2xl:not-sr-only">{t('sensoryOff')}</span>
-              </>
-            )}
+            {isSensoryFriendly ? <EyeOff size={16} aria-hidden="true" /> : <Eye size={16} aria-hidden="true" />}
+            <span>{isSensoryFriendly ? t('sensoryOn') : t('sensoryOff')}</span>
           </button>
 
           {/* Donation CTA */}
@@ -153,14 +164,17 @@ export default function Header() {
           <button
             onClick={toggleSensoryMode}
             type="button"
-            className={`p-2.5 rounded-xl border text-xs font-medium transition-all ${
+            aria-pressed={isSensoryFriendly}
+            title={t('sensoryTitle')}
+            className={`h-11 px-2 min-[400px]:px-2.5 min-[420px]:px-3 rounded-xl border text-[11px] min-[400px]:text-[13px] min-[420px]:text-sm font-semibold flex items-center gap-1.5 transition-all ${
               isSensoryFriendly
-                ? 'bg-slate-800 text-white border-slate-700'
-                : 'bg-slate-50 text-slate-700 border-slate-200'
+                ? 'bg-blue-50 text-blue-800 border-blue-600'
+                : 'bg-transparent text-blue-700 border-blue-600/60'
             }`}
-            aria-label={t('sensoryToggle')}
           >
-            {isSensoryFriendly ? <EyeOff size={18} /> : <Eye size={18} />}
+            {isSensoryFriendly ? <EyeOff size={17} aria-hidden="true" /> : <Eye size={17} aria-hidden="true" />}
+            {/* below 400 px the label goes on two lines, so the button fits next to the logo (review 2026-11-10, Ellenőr: 320-360 px) */}
+            <span className="leading-[1.1] text-left">{t.rich('sensoryShort', { br: () => <br className="min-[400px]:hidden" /> })}</span>
           </button>
 
           <button
@@ -202,6 +216,10 @@ export default function Header() {
                 </>
               )}
             </button>
+          </div>
+          {/* The dark theme switch: in the menu on phones and tablets, an icon in the desktop header */}
+          <div className="mb-2 border-b border-slate-100 pb-2">
+            <ThemeToggleRow />
           </div>
           <nav className="flex flex-col gap-1" aria-label={t('mobileNavLabel')}>
             {navItems.map((item) => {

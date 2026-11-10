@@ -97,6 +97,25 @@ function measure() {
       if (lines > 1) skips.push(`header item on ${lines} lines: "${el.textContent.trim()}"`);
     }
   }
+  // The header's logo and its controls never overlap (review 2026-11-10: the labelled soft-mode button
+  // ran over the wordmark at 375 px while the page itself had no horizontal scroll)
+  {
+    const header = document.querySelector('header');
+    // the logo's own pictures and text, not the link box: a squeezed flex link lets its content run out of it
+    // the home link is "/" in Hungarian and "/en", "/de" in the other languages (locale-aware Link)
+    const home = [...header.querySelectorAll('a')].find((x) => /^\/(en|de)?$/.test(x.getAttribute('href') || ''));
+    const parts = [...home.querySelectorAll('img, span')].filter((e) => e.getClientRects().length).map((e) => e.getBoundingClientRect());
+    const logo = { left: Math.min(...parts.map((r) => r.left)), right: Math.max(...parts.map((r) => r.right)), top: Math.min(...parts.map((r) => r.top)), bottom: Math.max(...parts.map((r) => r.bottom)) };
+    for (const c of header.querySelectorAll('button, a[href$="/tamogatas"]')) {
+      if (!c.offsetParent || c.closest('#fo-menu')) continue;
+      const r = c.getBoundingClientRect();
+      if (r.width && r.left < logo.right - 0.5 && r.right > logo.left && r.top < logo.bottom && r.bottom > logo.top) {
+        skips.push(`header: "${(c.textContent || c.getAttribute('aria-label') || '').trim()}" overlaps the logo (${Math.round(r.left)} < ${Math.round(logo.right)} px)`);
+      }
+      // the label stays inside its own button
+      if (c.scrollWidth > c.clientWidth + 1) skips.push(`header: "${c.textContent.trim()}" overflows its button`);
+    }
+  }
   const width = document.documentElement.scrollWidth, view = document.documentElement.clientWidth;
   if (width > view) skips.push(`horizontal scroll: page ${width} px wide in a ${view} px window`);
   return { low, skips };
@@ -106,12 +125,16 @@ let failures = 0;
 try {
   await waitForServer();
   const browser = await chromium.launch({ executablePath: CHROME, headless: true });
-  for (const width of [1440, 1366, 1280, 1180, 1024, 768, 375]) {
-    const page = await browser.newPage({ viewport: { width, height: 900 } });
+  // Both themes (review 2026-11-10): the device setting picks the theme, so a dark colour scheme measures
+  // the dark theme; the page must really be dark there (class on <html>), not just pass on a light page.
+  for (const scheme of ['light', 'dark']) for (const width of [1440, 1366, 1280, 1180, 1024, 768, 375, 360, 320]) {
+    const page = await browser.newPage({ viewport: { width, height: 900 }, colorScheme: scheme });
     for (const route of ROUTES) {
       await page.goto(BASE + route, { waitUntil: 'networkidle' });
+      const dark = await page.evaluate(() => document.documentElement.classList.contains('dark'));
+      if (dark !== (scheme === 'dark')) { failures++; console.log(`FAIL ${scheme} ${width}px ${route}: the page is ${dark ? 'dark' : 'light'}`); }
       const { low, skips } = await page.evaluate(measure);
-      for (const m of [...low, ...skips]) { failures++; console.log(`FAIL ${width}px ${route}: ${m}`); }
+      for (const m of [...low, ...skips]) { failures++; console.log(`FAIL ${scheme} ${width}px ${route}: ${m}`); }
     }
     await page.close();
   }
@@ -206,5 +229,5 @@ try {
 } finally {
   stop();
 }
-console.log(failures ? `${failures} contrast/heading/width/menu problem(s)` : `contrast, headings, width, one-line header and menu keyboard OK on ${ROUTES.length} routes at 1440, 1366, 1280, 1180, 1024, 768 and 375 px`);
+console.log(failures ? `${failures} contrast/heading/width/menu problem(s)` : `contrast, headings, width, one-line header and menu keyboard OK on ${ROUTES.length} routes at 1440, 1366, 1280, 1180, 1024, 768, 375, 360 and 320 px`);
 process.exit(failures ? 1 : 0);

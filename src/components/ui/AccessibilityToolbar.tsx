@@ -68,7 +68,7 @@ export default function AccessibilityToolbar() {
           onClick={() => setPanelOpen(!isOpen)}
           className={`group relative flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold shadow-xl transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-400 ${
             isOpen
-              ? 'bg-slate-900 text-white shadow-slate-900/30'
+              ? 'bg-slate-900 text-white pm-sotet shadow-slate-900/30'
               : hasCustomSettings
               ? 'bg-blue-700 text-white hover:bg-blue-800 shadow-blue-700/30 ring-2 ring-blue-300'
               : 'bg-white text-slate-800 hover:bg-slate-50 border border-slate-200/80 shadow-slate-300/40'
@@ -88,7 +88,7 @@ export default function AccessibilityToolbar() {
           {/* Icon only, so the button does not sit on the text of the page; the word appears beside it on hover and on keyboard focus */}
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute right-full mr-2 hidden whitespace-nowrap rounded-full bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white group-hover:block group-focus-visible:block"
+            className="pointer-events-none absolute right-full mr-2 hidden whitespace-nowrap rounded-full bg-slate-900 pm-sotet px-3 py-1.5 text-xs font-semibold text-white group-hover:block group-focus-visible:block"
           >
             {t('hoverLabel')}
           </span>

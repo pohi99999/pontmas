@@ -11,7 +11,7 @@
     "home": "Back to the home page"
   },
   "Header": {
-    "tagline": "Foundation in Vas County",
+    "tagline": "Vas County Foundation",
     "nav": {
       "home": "Home",
       "autism": "About autism",
@@ -27,18 +27,26 @@
     "mobileNavLabel": "Mobile navigation",
     "sensoryOnTitle": "Calm, low-stimulus mode is on (click for the normal view)",
     "sensoryOffTitle": "Turn on the low-stimulus (sensory-friendly) mode",
-    "sensoryOn": "Calm mode: ON",
+    "sensoryOn": "Calm mode: on",
     "sensoryOff": "Calm mode",
-    "sensoryToggle": "Switch the sensory-friendly mode",
     "menuClose": "Close menu",
     "menuOpen": "Open menu",
     "support": "Support us",
     "accessibility": "Accessibility",
     "customActive": "(custom settings on)",
-    "supportMobile": "Support us and the 1% tax offer"
+    "supportMobile": "Support us and the 1% tax offer",
+    "sensoryTitle": "Reduced-stimulus (sensory) mode",
+    "sensoryShort": "Calm <br></br>mode"
+  },
+  "Theme": {
+    "label": "Dark mode",
+    "onTitle": "Dark mode: on (click for the light mode)",
+    "offTitle": "Turn on dark mode",
+    "on": "on",
+    "off": "off"
   },
   "Footer": {
-    "tagline": "Foundation in Vas County",
+    "tagline": "Vas County Foundation",
     "about": "{name}. Since 2015 a committed supporter of the affected families and institutions of Vas County.",
     "aosz": "Member organisation of the Hungarian Autistic Society (AOSZ)",
     "sitemapTitle": "Site map",

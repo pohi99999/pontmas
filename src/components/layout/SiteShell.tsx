@@ -6,6 +6,7 @@ import AccessibilityToolbar from "@/components/ui/AccessibilityToolbar";
 import ReadingRuler from "@/components/ui/ReadingRuler";
 import { SensoryProvider } from "@/context/SensoryContext";
 import { jsonLdScript } from "@/lib/jsonLd";
+import { THEME_SCRIPT } from "@/lib/theme";
 import { foundationJsonLd } from "@/lib/foundation";
 import ChatWidget from "@/components/chat/ChatWidget";
 import { chatConfig } from "@/lib/chat/config";
@@ -30,10 +31,17 @@ export default function SiteShell({
   const t = useTranslations("Shell");
 
   return (
-    <html lang={lang} className={`scroll-smooth ${fraunces.variable}`}>
-      <body className={`${inter.className} flex min-h-screen flex-col bg-slate-50 text-slate-900 antialiased`}>
-        {/* JSON-LD in the body (valid there, read the same way); this frame is not an app/ layout file,
-            so a <head> element here would only be a lint warning without a reason */}
+    // suppressHydrationWarning: THEME_SCRIPT adds the "dark" class before React hydrates (by design, #33)
+    <html lang={lang} className={`scroll-smooth ${fraunces.variable}`} suppressHydrationWarning>
+      {/* On /en and /de the headings may hyphenate: long German compounds ("Datenschutzhinweis",
+          "Gemeinschaftsleben") ran out of a 320-360 px window. Hungarian pages are not touched. */}
+      <body className={`${inter.className} flex min-h-screen flex-col bg-slate-50 text-slate-900 antialiased${lang === "hu" ? "" : " [&_h1]:hyphens-auto [&_h2]:hyphens-auto [&_h3]:hyphens-auto"}`}>
+        {/* The theme script is the body's first element: a parser-blocking inline script, it runs before
+            anything is painted, so the dark theme does not flash. It lived in <head> in #33; this frame is
+            not an app/ layout file, so a <head> here would only be a lint warning. The color-scheme meta
+            of #33 comes from the layouts' viewport export (colorScheme). */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+        {/* JSON-LD in the body (valid there, read the same way) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}

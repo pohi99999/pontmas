@@ -5,6 +5,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import { Newspaper, Quote, Tv, HeartHandshake, Calendar, Sparkles } from "lucide-react";
 import CtaBand from '@/components/ui/CtaBand';
+import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 const metadataBase: Metadata = {
@@ -17,77 +18,30 @@ const metadataBase: Metadata = {
   },
 };
 
-export const generateMetadata = alternatesFor('/rolunk-irtak', metadataBase);
+export const generateMetadata = alternatesFor('/rolunk-irtak', metadataBase, 'Press');
 
 export default async function RolunkIrtakPage({ params }: PageParams) {
   await pageLocale(params);
-  const articles = [
-    {
-      type: "sajto",
-      badge: "Sajtóhír • VAOL / Vas Népe",
-      icon: Newspaper,
-      title: "Kékbe öltözött Szombathely – Séta és figyelemfelhívás az Autizmus Világnapján",
-      date: "2024. április",
-      summary: "Több száz résztvevővel, érintett családdal és támogatóval tartotta meg a PontMás Alapítvány az Autizmus Világnapja alkalmából szervezett szombathelyi Kék Sétát. A Városháza és a Fő tér kék megvilágítása a szolidaritást és a társadalmi elfogadást szimbolizálta.",
-      quote: "„Célunk, hogy a társadalom ne félelemmel vagy távolságtartással, hanem nyitottsággal és megértéssel tekintsen az autizmussal élőkre.”",
-      source: "Vas Vármegyei Hírportál (VAOL)",
-    },
-    {
-      type: "koszonet",
-      badge: "Szülői visszajelzés • Köszönetnyilvánítás",
-      icon: Quote,
-      title: "„A szülőklub adott erőt és kapaszkodót az óvodai integrációban”",
-      date: "2024. október",
-      summary: "Egy szombathelyi édesanya megható levele arról, hogyan segített a PontMás Alapítvány szülőklubja és a szakképzett gyógypedagógusok tanácsa abban, hogy kisfia zökkenőmentesen kezdhesse meg a közösségi életet a helyi óvodában.",
-      quote: "„Amikor megkaptuk a diagnózist, elszigeteltnek éreztük magunkat. A PontMás közössége nemcsak szakmai választ adott minden kérdésünkre, de igazi biztonságot és barátokat találtunk.”",
-      source: "Érintett szülői beszámoló",
-    },
-    {
-      type: "sajto",
-      badge: "Tudósítás • Szombathelyi Televízió",
-      icon: Tv,
-      title: "Akkreditált gyógypedagógiai képzést finanszírozott a PontMás Alapítvány",
-      date: "2024. június",
-      summary: "Szombathely MJV Önkormányzati Támogatásának köszönhetően 13 szombathelyi gyógypedagógus és asszisztens vehetett részt az Autizmus Alapítvány 30 órás, magas szintű szakmai továbbképzésén, 100%-os alapítványi finanszírozással.",
-      quote: "„A legjobb befektetés gyermekeink jövőjébe az, ha a velük nap mint nap foglalkozó pedagógusok a legkorszerűbb autizmus-specifikus módszertannal rendelkeznek.”",
-      source: "SZTV Híradó és önkormányzati tudósítás",
-    },
-    {
-      type: "esemeny",
-      badge: "Élménybeszámoló • Vasi Skanzen",
-      icon: HeartHandshake,
-      title: "Családi Nap és Szülőklub a Vasi Skanzenben – Közösség és feltöltődés",
-      date: "2024. szeptember",
-      summary: "A hagyományos őszi családi napon kézműves foglalkozásokkal, agyagozással, nyúlkuglival és gyógypedagógusok által kísért akadálypályával várták a gyermekeket, míg a szülők pszichológus által vezetett támogató csoportban oszthatták meg tapasztalataikat.",
-      quote: "„A gyerekek szabadon, feszültség nélkül önmaguk lehettek, mi szülők pedig megkönnyebbülten beszélgethettünk a mindennapok kihívásairól.”",
-      source: "PontMás Alapítványi Krónika",
-    },
-    {
-      type: "koszonet",
-      badge: "Intézményi köszönet • Aranyhíd EGYMI",
-      icon: Quote,
-      title: "Új fejlesztő eszközök és speciális könyvtári állomány az autista diákoknak",
-      date: "2024. május",
-      summary: "A helyi partnerintézmények gyógypedagógusai fejezték ki köszönetüket a PontMás Alapítványnak az adományozott vizuális napirendi eszközökért, érzékszervi fejlesztő játékokért és a folyamatosan bővülő szakirodalmi könyvtárért.",
-      quote: "„Az alapítvány támogatása nélkül sokkal nehezebb lenne biztosítani a differenciált, személyre szabott fejlesztést tanulóinknak.”",
-      source: "Pedagógiai munkaközösség",
-    },
-  ];
+  const t = await getTranslations('Press');
+  // type and icon stay in the code; the texts are in messages (Press.articles, same order)
+  const kinds = [{ type: 'sajto', icon: Newspaper }, { type: 'koszonet', icon: Quote }, { type: 'sajto', icon: Tv }, { type: 'esemeny', icon: HeartHandshake }, { type: 'koszonet', icon: Quote }];
+  const texts = t.raw('articles') as { badge: string; title: string; date: string; summary: string; quote: string; source: string }[];
+  const articles = kinds.map((k, i) => ({ ...k, ...texts[i] }));
 
   return (
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Hero */}
       <PageHeader
-        badge="Média, sajtó és elismerések"
-        title="Rólunk írták és közösségi visszhangok"
-        subtitle="Szeretnénk tevékenységünket és az autizmussal élő gyermekek mindennapjait minél szélesebb körben bemutatni, hogy a társadalom megértéssel és támogató szeretettel fogadja el őket."
+        badge={t('header.badge')}
+        title={t('header.title')}
+        subtitle={t('header.subtitle')}
       />
 
       {/* 2. Cikkek és köszönetnyilvánítások rácsa */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <SectionHeader
-          title="Sajtómegjelenések, tudósítások és szülői köszönőlevelek"
-          subtitle="Összegyűjtöttük az elmúlt évek legfontosabb médiamegjelenéseit, televíziós tudósításait és személyes történeteit."
+          title={t('list.title')}
+          subtitle={t('list.subtitle')}
           align="center"
         />
 
@@ -128,7 +82,7 @@ export default async function RolunkIrtakPage({ params }: PageParams) {
                 </div>
 
                 <div className="pt-6 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
-                  <span>Forrás: {item.source}</span>
+                  <span>{t('list.source', { source: item.source })}</span>
                   <Sparkles className="h-4 w-4 text-blue-400" />
                 </div>
               </article>
@@ -139,14 +93,14 @@ export default async function RolunkIrtakPage({ params }: PageParams) {
 
       {/* 3. Kapcsolati felhívás sajtónak és szülőknek */}
       <CtaBand
-        title="Sajtómegkeresése van vagy megosztaná saját történetét?"
-        text="Örömmel állunk az újságírók, médiafelületek és az érintett családok rendelkezésére interjúk, cikkek és szakmai beszélgetések kapcsán."
+        title={t('cta.title')}
+        text={t('cta.text')}
       >
         <Button href="/kapcsolat" variant="primary">
-          Kapcsolatfelvétel
+          {t('cta.contact')}
         </Button>
         <Button href="/rolunk" variant="outline">
-          Alapítványunkról
+          {t('cta.about')}
         </Button>
       </CtaBand>
     </div>

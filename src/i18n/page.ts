@@ -37,7 +37,7 @@ export function alternatesFor(path: string, base: Metadata = {}, metaNamespace?:
       ...meta,
       title: t('meta.title'),
       description: t('meta.description'),
-      openGraph: { ...og, title: t('meta.title'), description: t.has('meta.ogDescription') ? t('meta.ogDescription') : t('meta.description') },
+      openGraph: { ...og, title: t.has('meta.ogTitle') ? t('meta.ogTitle') : t('meta.title'), description: t.has('meta.ogDescription') ? t('meta.ogDescription') : t('meta.description') },
     };
   };
 }

@@ -8,6 +8,7 @@ import Button from '@/components/ui/Button';
 import DocAvailability from '@/components/ui/DocAvailability';
 import CtaBand from '@/components/ui/CtaBand';
 import { FOUNDATION } from '@/lib/foundation';
+import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 const metadataBase: Metadata = {
@@ -20,77 +21,34 @@ const metadataBase: Metadata = {
   },
 };
 
-export const generateMetadata = alternatesFor('/dokumentumok', metadataBase);
+export const generateMetadata = alternatesFor('/dokumentumok', metadataBase, 'Documents');
 
 export default async function DokumentumokPage({ params }: PageParams) {
   await pageLocale(params);
-  const officialDocs = [
-    {
-      title: "Alapító okirat és határozatok",
-      category: "Jogi alapdokumentum",
-      date: `Nyilvántartási szám: ${FOUNDATION.registrationNumber}`,
-      description: "A PontMás Vas Megyei Autista Gyermekekért Alapítvány hivatalos alapító okirata, célkitűzései és kuratóriumi működési rendje.",
-    },
-    {
-      title: "Adatvédelmi és adatkezelési szabályzat (GDPR)",
-      category: "Adatvédelem",
-      date: "A weboldalon olvasható",
-      description: "Tájékoztató a weboldal látogatóinak, a kapcsolatfelvételi űrlap kitöltőinek és az érintett családok adatainak jogszerű kezeléséről.",
-      href: "/adatkezeles",
-    },
-    {
-      title: "2023. évi közhasznúsági és pénzügyi beszámoló",
-      category: "Közhasznúsági jelentés",
-      date: "Elfogadva: 2024. május",
-      description: "Részletes mérleg és eredménykimutatás a beérkezett adó 1% felajánlásokról és a cél szerinti programok finanszírozásáról.",
-    },
-    {
-      title: "2022. évi közhasznúsági és szakmai beszámoló",
-      category: "Közhasznúsági jelentés",
-      date: "Elfogadva: 2023. május",
-      description: "Éves összefoglaló a Kék Séta, nyári táborok és szülőklubok megvalósításáról és pénzügyi mérlegéről.",
-    },
-  ];
-
-  const grantProjects = [
-    {
-      title: "Szombathely MJV Önkormányzati Támogatás – Pedagógus Képzések",
-      badge: "Megvalósult pályázat",
-      grantAmount: "800.000 Ft támogatási összeg",
-      description: "A szombathelyi intézmények (Aranyhíd EGYMI, Micimackó Óvoda, Váci Mihály Általános Iskola) 13 gyógypedagógusának és asszisztensének akkreditált Autizmus Alapítványi továbbképzése (Alapozó 30 órás képzés és Szociális-kommunikációs képzés).",
-      details: [
-        "Megvalósítás időszaka: 2024. április – május",
-        "Összes finanszírozott képzési költség: 715.000 Ft (100%-os támogatás)",
-        "Támogató szervezet: Szombathely Megyei Jogú Város Önkormányzata",
-      ],
-    },
-    {
-      title: "Városi Civil Alap – Családi Nap & Szülőklub Fejlesztés",
-      badge: "Közösségi támogatás",
-      grantAmount: "Közösségi és szakmai forrás",
-      description: "Éves családi nap megszervezése a Vasi Skanzenben, agyagozó és készségfejlesztő gyermekfoglalkozásokkal, valamint pszichológus által vezetett szülői támogatással.",
-      details: [
-        "Megvalósítás: 2024. szeptember",
-        "Helyszín: Vasi Skanzen Szombathely",
-        "Résztvevők száma: Több tucat Vas vármegyei érintett család",
-      ],
-    },
-  ];
+  const t = await getTranslations('Documents');
+  // raw strings (no ICU parsing); the registration number from foundation.ts; the link target in code
+  const docLinks: (string | undefined)[] = [undefined, '/adatkezeles', undefined, undefined];
+  const officialDocs = (t.raw('docs') as { title: string; category: string; date: string; description: string }[]).map((d, i) => ({
+    ...d,
+    date: d.date.replace('{registrationNumber}', FOUNDATION.registrationNumber),
+    href: docLinks[i],
+  }));
+  const grantProjects = t.raw('grants') as { title: string; badge: string; grantAmount: string; description: string; details: string[] }[];
 
   return (
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Fejléc */}
       <PageHeader
-        badge="Átláthatóság és hitelesség"
-        title="Dokumentumtár és hivatalos pályázatok"
-        subtitle="Az átláthatóság és a társadalmi felelősségvállalás alapítványunk működésének alappillére. Itt érheti el hivatalos dokumentumainkat, közhasznúsági beszámolóinkat és pályázati elszámolásainkat."
+        badge={t('header.badge')}
+        title={t('header.title')}
+        subtitle={t('header.subtitle')}
       />
 
       {/* 2. Hivatalos Iratok & Beszámolók */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <SectionHeader
-          title="Hivatalos iratok és éves beszámolók"
-          subtitle="Minden törvényi előírásnak és közhasznúsági követelménynek maradéktalanul eleget teszünk."
+          title={t('official.title')}
+          subtitle={t('official.subtitle')}
           align="center"
         />
 
@@ -121,14 +79,14 @@ export default async function DokumentumokPage({ params }: PageParams) {
               <div className="pt-6 mt-4 border-t border-slate-100 flex items-center justify-between">
                 {doc.href ? (
                   <>
-                    <span className="text-xs text-slate-500 font-medium">Weboldalon olvasható</span>
+                    <span className="text-xs text-slate-500 font-medium">{t('official.onSite')}</span>
                     <Link href={doc.href} className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors">
-                      Megnyitás
+                      {t('official.open')}
                     </Link>
                   </>
                 ) : (
                   <>
-                    <span className="text-xs text-slate-500 font-medium">Hivatalos PDF formátum</span>
+                    <span className="text-xs text-slate-500 font-medium">{t('official.pdf')}</span>
                     <DocAvailability />
                   </>
                 )}
@@ -141,8 +99,8 @@ export default async function DokumentumokPage({ params }: PageParams) {
       {/* 3. Pályázatok és Önkormányzati Támogatások */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <SectionHeader
-          title="Megvalósult pályázatok és elszámolások"
-          subtitle="Tudjon meg többet a támogatások célszerű és szakszerű felhasználásáról."
+          title={t('grantSection.title')}
+          subtitle={t('grantSection.subtitle')}
           align="center"
         />
 
@@ -184,11 +142,11 @@ export default async function DokumentumokPage({ params }: PageParams) {
 
       {/* 4. Kapcsolat / Kérdés */}
       <CtaBand
-        title="További hivatalos információt keres?"
-        text={`Kérdéseivel, szakmai együttműködési javaslataival forduljon bizalommal hozzánk telefonon (${FOUNDATION.phone}) vagy kapcsolatfelvételi űrlapunkon keresztül!`}
+        title={t('cta.title')}
+        text={t('cta.text', { phone: FOUNDATION.phone })}
       >
         <Button href="/kapcsolat" variant="primary">
-          Kapcsolatfelvétel
+          {t('cta.button')}
         </Button>
       </CtaBand>
     </div>

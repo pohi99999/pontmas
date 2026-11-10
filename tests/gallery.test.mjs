@@ -105,6 +105,7 @@ test('/programok shows the gallery after the programs, /rolunk after the milesto
   const [filter, gallery, institutions] = ['<ProgramFilter', '<Gallery />', 'Támogatott intézmények'].map((s) => programok.indexOf(s));
   assert.ok(filter > 0 && filter < gallery && gallery < institutions);
   const rolunk = fs.readFileSync(path.resolve('src/app/[locale]/rolunk/page.tsx'), 'utf8');
-  const [milestones, community, cta] = ['Főbb mérföldköveink', '<CommunityGallery />', '<CtaBand'].map((s) => rolunk.indexOf(s));
+  // the heading is a message key since the i18n extraction (card c017f163)
+  const [milestones, community, cta] = ["t('milestones.title')", '<CommunityGallery />', '<CtaBand'].map((s) => rolunk.indexOf(s));
   assert.ok(milestones > 0 && milestones < community && community < cta);
 });

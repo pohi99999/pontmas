@@ -64,8 +64,8 @@ test('/programok with no store renders exactly the item texts of main', async ()
   const html = await renderPage('app/programok/page.tsx');
   const text = htmlText(html);
   inOrder(assert, text, MAIN_PROGRAMS.flatMap((p) => [p.badge, p.title, p.date, p.location, p.description, ...p.highlights]));
-  assert.equal((html.match(/Érdeklődés &amp; Részletek/g) ?? []).length, MAIN_PROGRAMS.length);
-  for (const label of ['Összes program', 'Kiemelt Események', 'Nyári Táborok', 'Szülőklub &amp; Családok']) assert.ok(html.includes(label), label);
+  assert.equal((html.match(/Érdeklődés és részletek/g) ?? []).length, MAIN_PROGRAMS.length);
+  for (const label of ['Összes program', 'Kiemelt események', 'Nyári táborok', 'Szülőklub és családok']) assert.ok(html.includes(label), label);
 });
 
 test('fallback: empty, failing or invalid store content means the seed', async () => {

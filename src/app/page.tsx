@@ -71,7 +71,7 @@ export default function Home() {
         <SectionHeader
           align="left"
           className="xl:sticky xl:top-28"
-          badge="Küldetésünk & Tevékenységeink"
+          badge="Küldetésünk és tevékenységeink"
           title="Hogyan segítünk a mindennapokban?"
           subtitle="Összetett támogatási rendszert működtetünk, amely a gyermekektől a szülőkön át az intézményekig minden érintettre kiterjed."
         />
@@ -143,7 +143,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-4">
               <CopyButton
                 textToCopy="18654996-1-18"
-                label="Adószám (Adó 1%)"
+                label="Adószám (adó 1%)"
                 sublabel="Kattintson az adószám vágólapra másolásához"
               />
               <CopyButton

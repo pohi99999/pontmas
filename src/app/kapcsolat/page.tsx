@@ -28,7 +28,7 @@ export default function KapcsolatPage() {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h2 className="font-bold text-slate-900 text-base">Székhely & Cím</h2>
+                  <h2 className="font-bold text-slate-900 text-base">Székhely és cím</h2>
                   <p className="text-slate-600 text-sm mt-0.5">9700 Szombathely, Váci M. utca 12. 3./15.</p>
                 </div>
               </div>
@@ -51,7 +51,7 @@ export default function KapcsolatPage() {
                   <MessageSquare size={24} />
                 </div>
                 <div>
-                  <h2 className="font-bold text-slate-900 text-base">Közösségi Csoport</h2>
+                  <h2 className="font-bold text-slate-900 text-base">Közösségi csoport</h2>
                   <a 
                     href="https://www.facebook.com/groups/1622445488007296/?locale=hu_HU" 
                     target="_blank" 

@@ -8,6 +8,7 @@ import { usePathname } from '@/i18n/navigation';
 import { Menu, X, Eye, EyeOff, Heart, SlidersHorizontal } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useSensory } from '@/context/SensoryContext';
+import LanguageSwitcher, { LanguageMenuList } from './LanguageSwitcher';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -113,6 +114,7 @@ export default function Header() {
 
         {/* Action Controls & CTA */}
         <div className="hidden min-[1360px]:flex items-center gap-3">
+          <LanguageSwitcher />
           {/* Sensory Toggle */}
           <button
             onClick={toggleSensoryMode}
@@ -203,6 +205,9 @@ export default function Header() {
               )}
             </button>
           </div>
+          {/* The language, in full names (only when more than one language is published); after the
+              accessibility row, which stays the first stop of the menu (tests/a11y-contrast.mjs) */}
+          <LanguageMenuList onPick={() => setIsMobileMenuOpen(false)} />
           <nav className="flex flex-col gap-1" aria-label={t('mobileNavLabel')}>
             {navItems.map((item) => {
               const isActive = pathname === item.href;

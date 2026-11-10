@@ -5,40 +5,25 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import CopyButton from '@/components/ui/CopyButton';
 import Button from '@/components/ui/Button';
+import { useTranslations } from 'next-intl';
 import { FOUNDATION } from '@/lib/foundation';
 
 export default function TamogatasPage() {
-  const lepesek = [
-    {
-      szam: "01",
-      cim: "Lépjen be az eSZJA felületére",
-      leiras: "Jelentkezzen be a NAV online felületére (eszja.nav.gov.hu) az Ügyfélkapus azonosítójával május 20-ig."
-    },
-    {
-      szam: "02",
-      cim: "Nyissa meg a rendelkező nyilatkozatot",
-      leiras: "Kattintson az '1+1% nyilatkozat' kitöltése gombra a bevallási tervezet jóváhagyásakor vagy attól függetlenül."
-    },
-    {
-      szam: "03",
-      cim: "Adja meg adószámunkat",
-      leiras: `A kedvezményezett adószáma mezőbe másolja be az alábbi adószámot: ${FOUNDATION.taxNumber} (${FOUNDATION.shortName}).`
-    },
-    {
-      szam: "04",
-      cim: "Véglegesítse és küldje be",
-      leiras: "Mentse el a nyilatkozatot, amellyel további költségek nélkül támogatja a Vas vármegyei autista gyermekeket."
-    }
-  ];
+  const t = useTranslations('Donation');
+  // raw strings (the apostrophes in step 2 are shown as written); the tax number and name from foundation.ts
+  const lepesek = (t.raw('steps') as { szam: string; cim: string; leiras: string }[]).map((l) => ({
+    ...l,
+    leiras: l.leiras.replace('{taxNumber}', FOUNDATION.taxNumber).replace('{shortName}', FOUNDATION.shortName),
+  }));
 
   return (
     <div className="pb-20">
       
       {/* 1. Fejléc szekció */}
       <PageHeader
-        badge="Támogatási központ"
-        title="Támogassa munkánkat – minden segítség számít!"
-        subtitle="Az Ön támogatása közvetlenül hozzájárul a Vas vármegyei autizmussal élő gyermekek képességfejlesztéséhez, a szülői közösség megtartásához és a krízishelyzetbe került családok segítéséhez."
+        badge={t('header.badge')}
+        title={t('header.title')}
+        subtitle={t('header.subtitle')}
       />
 
       {/* 2. Három Fő Támogatási Forma (Kártyák) */}
@@ -48,7 +33,7 @@ export default function TamogatasPage() {
           {/* 1. Adó 1% Kártya */}
           <div className="bg-white rounded-3xl p-8 border-2 border-blue-600 shadow-md flex flex-col relative overflow-hidden">
             <div className="absolute top-0 right-0 bg-blue-600 text-white text-[11px] font-extrabold uppercase tracking-wider px-3.5 py-1 rounded-bl-xl">
-              Legnépszerűbb
+              {t('tax.popular')}
             </div>
 
             <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 shadow-2xs">
@@ -56,17 +41,17 @@ export default function TamogatasPage() {
             </div>
 
             <h2 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">
-              Személyi jövedelemadó 1%
+              {t('tax.title')}
             </h2>
 
             <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
-              Rendelkezzen adója 1%-áról a május 20-i határidőig! Ez a felajánlás Önnek semmibe sem kerül, számunkra viszont alapvető működési biztonságot jelent.
+              {t('tax.text')}
             </p>
 
             <div className="space-y-4 pt-4 border-t border-slate-100">
               <CopyButton
                 textToCopy={FOUNDATION.taxNumber}
-                label="Adószámunk"
+                label={t('tax.label')}
                 sublabel={FOUNDATION.name}
               />
             </div>
@@ -79,18 +64,18 @@ export default function TamogatasPage() {
             </div>
 
             <h2 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">
-              Banki átutalás és adomány
+              {t('bank.title')}
             </h2>
 
             <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
-              Egyszeri vagy rendszeres átutalással azonnal segítheti krízis alapunkat, valamint a nyári táborok és intézményi fejlesztőeszközök finanszírozását.
+              {t('bank.text')}
             </p>
 
             <div className="space-y-4 pt-4 border-t border-slate-100">
               <CopyButton
                 textToCopy={FOUNDATION.bankAccount}
-                label={`Bankszámlaszám (${FOUNDATION.bankName})`}
-                sublabel="Közlemény: Adomány"
+                label={t('bank.label', { bank: FOUNDATION.bankName })}
+                sublabel={t('bank.reference')}
               />
             </div>
           </div>
@@ -102,16 +87,16 @@ export default function TamogatasPage() {
             </div>
 
             <h2 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">
-              Vállalati CSR és partnerség
+              {t('csr.title')}
             </h2>
 
             <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
-              Céges adományozás esetén hivatalos adóigazolást állítunk ki, amellyel vállalkozása társasági adókedvezményt vehet igénybe. Célzott eseményszponzorációra is lehetőség van.
+              {t('csr.text')}
             </p>
 
             <div className="pt-4 border-t border-slate-100 mt-auto">
               <Button href="/kapcsolat" variant="primary" fullWidth rightIcon={<ArrowRight size={16} />}>
-                Kapcsolatfelvétel cégeknek
+                {t('csr.button')}
               </Button>
             </div>
           </div>
@@ -123,9 +108,9 @@ export default function TamogatasPage() {
       <section className="bg-slate-100/70 border-y border-slate-200/80 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <SectionHeader
-            badge="Útmutató"
-            title={<>Hogyan ajánlhatja fel az <span className="whitespace-nowrap">1%-ot</span> 4 egyszerű lépésben?</>}
-            subtitle="Nem igényel több mint 2 percet az eSZJA felületén vagy a munkáltatóján keresztül."
+            badge={t('guide.badge')}
+            title={t.rich('guide.title', { nowrap: (chunks) => <span className="whitespace-nowrap">{chunks}</span> })}
+            subtitle={t('guide.subtitle')}
           />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -148,22 +133,22 @@ export default function TamogatasPage() {
           <div className="space-y-3 text-center md:text-left">
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-sky-300 bg-white/10 px-3 py-1 rounded-full">
               <ShieldCheck size={16} />
-              <span>100% Átláthatóság</span>
+              <span>{t('transparency.badge')}</span>
             </div>
             <h3 className="display text-2xl sm:text-3xl">
-              Mire fordítjuk az adományokat?
+              {t('transparency.title')}
             </h3>
             <p className="text-slate-300 text-sm leading-relaxed max-w-xl">
-              Alapítványunk minden forint felhasználásáról részletes közhasznúsági beszámolót készít, amely nyilvánosan elérhető a dokumentumtárunkban.
+              {t('transparency.text')}
             </p>
           </div>
 
           <div className="flex flex-col gap-3 flex-shrink-0 w-full sm:w-auto">
             <Button href="/dokumentumok" variant="secondary" size="md" leftIcon={<FileText size={16} />} className="bg-white text-slate-900 hover:bg-slate-100 border-0">
-              Beszámolók megtekintése
+              {t('transparency.reports')}
             </Button>
             <Button href="/kapcsolat" variant="outline" size="md" className="bg-transparent border-slate-400 text-slate-200 hover:bg-slate-800 hover:text-white">
-              Kérdése van? Írjon nekünk
+              {t('transparency.ask')}
             </Button>
           </div>
         </div>

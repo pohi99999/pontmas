@@ -7,7 +7,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { src } from './helpers/load.mjs';
 
-const { renderToStaticMarkup } = await import('react-dom/server');
 const { createElement: h } = await import('react');
 const { CAMP_PHOTOS, WORK_PHOTOS, COMMUNITY_COVER, COMMUNITY_PHOTOS, default: Gallery, CommunityGallery } = await src('components/content/Gallery.tsx');
 import { HU_MESSAGES } from './helpers/messages.mjs';
@@ -102,7 +101,7 @@ test('rendered: section headings only, every photo a figure with a real alt text
 
 test('/programok shows the gallery after the programs, /rolunk after the milestones', () => {
   const programok = fs.readFileSync(path.resolve('src/app/[locale]/programok/page.tsx'), 'utf8');
-  const [filter, gallery, institutions] = ['<ProgramFilter', '<Gallery />', 'Támogatott intézmények'].map((s) => programok.indexOf(s));
+  const [filter, gallery, institutions] = ['<ProgramFilter', '<Gallery />', "t('support.title')"].map((s) => programok.indexOf(s));
   assert.ok(filter > 0 && filter < gallery && gallery < institutions);
   const rolunk = fs.readFileSync(path.resolve('src/app/[locale]/rolunk/page.tsx'), 'utf8');
   // the heading is a message key since the i18n extraction (card c017f163)

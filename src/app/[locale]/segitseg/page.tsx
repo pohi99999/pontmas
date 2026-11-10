@@ -13,13 +13,8 @@ import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 const metadataBase: Metadata = {
-  title: "Amiben segíteni tudunk | PontMás Alapítvány",
-  description: "Mentorszülői tanácsadás, DATA applikáció támogatás, szakmai könyvtár kölcsönzés és intézményi eligazítás Vas vármegyében.",
-  openGraph: {
-    title: "Amiben segíteni tudunk | PontMás Alapítvány",
-    description: "Autizmussal élő gyermekek és családjaik átfogó támogatása Vas vármegyében.",
-    url: "https://pontmas.hu/segitseg",
-  },
+  // title and description: <namespace>.meta in messages/<locale>.json
+  openGraph: { url: "https://pontmas.hu/segitseg" },
 };
 
 export const generateMetadata = alternatesFor('/segitseg', metadataBase, 'Help');

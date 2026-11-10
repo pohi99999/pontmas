@@ -12,13 +12,8 @@ import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 const metadataBase: Metadata = {
-  title: "Dokumentumtár és pályázatok | PontMás Alapítvány",
-  description: "A PontMás Alapítvány hivatalos alapító okirata, közhasznúsági beszámolói, adatvédelmi tájékoztatója és önkormányzati pályázati elszámolásai.",
-  openGraph: {
-    title: "Dokumentumtár és pályázatok | PontMás Alapítvány",
-    description: "Hivatalos átláthatósági dokumentumok és pályázatok.",
-    url: "https://pontmas.hu/dokumentumok",
-  },
+  // title and description: <namespace>.meta in messages/<locale>.json
+  openGraph: { url: "https://pontmas.hu/dokumentumok" },
 };
 
 export const generateMetadata = alternatesFor('/dokumentumok', metadataBase, 'Documents');

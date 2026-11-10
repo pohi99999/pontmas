@@ -712,5 +712,160 @@
       "text": "Kérdéseivel, szakmai együttműködési javaslataival forduljon bizalommal hozzánk telefonon ({phone}) vagy kapcsolatfelvételi űrlapunkon keresztül!",
       "button": "Kapcsolatfelvétel"
     }
+  },
+  "Donation": {
+    "steps": [
+      {
+        "szam": "01",
+        "cim": "Lépjen be az eSZJA felületére",
+        "leiras": "Jelentkezzen be a NAV online felületére (eszja.nav.gov.hu) az Ügyfélkapus azonosítójával május 20-ig."
+      },
+      {
+        "szam": "02",
+        "cim": "Nyissa meg a rendelkező nyilatkozatot",
+        "leiras": "Kattintson az '1+1% nyilatkozat' kitöltése gombra a bevallási tervezet jóváhagyásakor vagy attól függetlenül."
+      },
+      {
+        "szam": "03",
+        "cim": "Adja meg adószámunkat",
+        "leiras": "A kedvezményezett adószáma mezőbe másolja be az alábbi adószámot: {taxNumber} ({shortName})."
+      },
+      {
+        "szam": "04",
+        "cim": "Véglegesítse és küldje be",
+        "leiras": "Mentse el a nyilatkozatot, amellyel további költségek nélkül támogatja a Vas vármegyei autista gyermekeket."
+      }
+    ],
+    "header": {
+      "badge": "Támogatási központ",
+      "title": "Támogassa munkánkat – minden segítség számít!",
+      "subtitle": "Az Ön támogatása közvetlenül hozzájárul a Vas vármegyei autizmussal élő gyermekek képességfejlesztéséhez, a szülői közösség megtartásához és a krízishelyzetbe került családok segítéséhez."
+    },
+    "tax": {
+      "popular": "Legnépszerűbb",
+      "title": "Személyi jövedelemadó 1%",
+      "text": "Rendelkezzen adója 1%-áról a május 20-i határidőig! Ez a felajánlás Önnek semmibe sem kerül, számunkra viszont alapvető működési biztonságot jelent.",
+      "label": "Adószámunk"
+    },
+    "bank": {
+      "title": "Banki átutalás és adomány",
+      "text": "Egyszeri vagy rendszeres átutalással azonnal segítheti krízis alapunkat, valamint a nyári táborok és intézményi fejlesztőeszközök finanszírozását.",
+      "label": "Bankszámlaszám ({bank})",
+      "reference": "Közlemény: Adomány"
+    },
+    "csr": {
+      "title": "Vállalati CSR és partnerség",
+      "text": "Céges adományozás esetén hivatalos adóigazolást állítunk ki, amellyel vállalkozása társasági adókedvezményt vehet igénybe. Célzott eseményszponzorációra is lehetőség van.",
+      "button": "Kapcsolatfelvétel cégeknek"
+    },
+    "guide": {
+      "badge": "Útmutató",
+      "title": "Hogyan ajánlhatja fel az <nowrap>1%-ot</nowrap> 4 egyszerű lépésben?",
+      "subtitle": "Nem igényel több mint 2 percet az eSZJA felületén vagy a munkáltatóján keresztül."
+    },
+    "transparency": {
+      "badge": "100% Átláthatóság",
+      "title": "Mire fordítjuk az adományokat?",
+      "text": "Alapítványunk minden forint felhasználásáról részletes közhasznúsági beszámolót készít, amely nyilvánosan elérhető a dokumentumtárunkban.",
+      "reports": "Beszámolók megtekintése",
+      "ask": "Kérdése van? Írjon nekünk"
+    }
+  },
+  "Contact": {
+    "header": {
+      "badge": "Elérhetőség",
+      "title": "Lépjen kapcsolatba velünk!",
+      "subtitle": "Forduljon hozzánk bizalommal kérdéseivel, tanácsadási igényével: hívjon minket telefonon, vagy írjon nekünk az űrlapon."
+    },
+    "seat": "Székhely és cím",
+    "person": "Kapcsolattartó",
+    "group": "Közösségi csoport",
+    "facebook": "Zárt Facebook csoportunk"
+  },
+  "News": {
+    "meta": {
+      "title": "Hírek és aktualitások | PontMás Alapítvány",
+      "description": "A PontMás Alapítvány legfrissebb hírei, szülőklub meghívói, családi nap beszámolói és szakmai továbbképzései.",
+      "ogDescription": "Értesüljön a PontMás Alapítvány legújabb eseményeiről, programjairól és híreiről."
+    },
+    "header": {
+      "badge": "Hírek, aktualitások és események",
+      "title": "Közösségi élet, programok és szakmai hírek",
+      "subtitle": "Kövesse figyelemmel a PontMás Alapítvány legfrissebb eseményeit, szülőklubjait, szakmai támogatási programjait és élménybeszámolóit!"
+    },
+    "more": {
+      "title": "További híreink és beszámolóink",
+      "subtitle": "Ismerje meg az alapítvány legfrissebb eseményeit és szakmai tevékenységeit."
+    },
+    "cta": {
+      "title": "Szeretne önkéntesként segíteni munkánkat?",
+      "text": "Legyen szó rendezvényekről, gyermekfoglalkozásokról, szülőklubokról vagy online kommunikációról, minden segítő kéznek és jó szándéknak nagyon örülünk!",
+      "label": "Csatlakozzon hozzánk",
+      "button": "Jelentkezem Önkéntesnek"
+    }
+  },
+  "Programs": {
+    "institutions": [
+      {
+        "nev": "Aranyhíd EGYMI (Szombathely)",
+        "reszlet": "Speciális oktatási-nevelési fejlesztőeszközök, szenzoros szobák felszerelésének támogatása."
+      },
+      {
+        "nev": "Micimackó Óvoda (Szombathely)",
+        "reszlet": "Autizmus-specifikus korai fejlesztő játékok és vizuális támogató eszközök biztosítása."
+      },
+      {
+        "nev": "Vas Vármegyei Pedagógiai Szakszolgálat",
+        "reszlet": "Szakmai együttműködés, diagnosztikai és tanácsadási folyamatok támogatása."
+      },
+      {
+        "nev": "Integráló általános és középiskolák",
+        "reszlet": "Módszertani segítségnyújtás és érzékenyítő előadások a pedagógusok és osztályközösségek számára."
+      }
+    ],
+    "header": {
+      "badge": "Események és kezdeményezések",
+      "title": "Programjaink és rendezvényeink",
+      "subtitle": "Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!"
+    },
+    "support": {
+      "badge": "Együttműködés",
+      "title": "Támogatott intézmények Vas vármegyében",
+      "subtitle": "Nemcsak közvetlenül a családokat segítjük, hanem azokat a szakmai intézményeket is, ahol a gyermekek a mindennapjaikat töltik.",
+      "askTitle": "Szeretné, hogy az Ön intézménye is részesüljön támogatásban?",
+      "askText": "Vegye fel velünk a kapcsolatot a konkrét szakmai igények, eszközbeszerzések és érzékenyítő tréningek egyeztetéséhez.",
+      "askButton": "Intézményi megkeresés"
+    },
+    "cta": {
+      "title": "Segítsen megvalósítani programjainkat!",
+      "text": "Adója 1%-ával vagy közvetlen támogatással Ön is hozzájárulhat a táborok, a Kék séta és a szülőklubok sikeres megszervezéséhez.",
+      "button": "Támogatási tudnivalók (1%)"
+    }
+  },
+  "Legal": {
+    "draftTitle": "Tervezet: ez a szöveg még nem hatályos.",
+    "draftText": "A kiemelt pontokat az alapítványnak és jogi tanácsadójának jóvá kell hagynia. A [JOGI ÁTNÉZÉS] jelölés megfogalmazást, a [KÉRDÉS] jelölés hiányzó adatot jelez.",
+    "languageNote": "Ez a tájékoztató magyar nyelven érhető el; a magyar szöveg az irányadó."
+  },
+  "Privacy": {
+    "meta": {
+      "title": "Adatkezelési tájékoztató | PontMás Alapítvány",
+      "description": "Hogyan kezeli a PontMás Alapítvány a weboldal látogatóinak és a kapcsolatfelvételi űrlapot kitöltőknek a személyes adatait."
+    },
+    "header": {
+      "badge": "Adatvédelem",
+      "title": "Adatkezelési tájékoztató",
+      "subtitle": "Milyen adatot kezelünk, miért, meddig, és milyen jogai vannak."
+    }
+  },
+  "Imprint": {
+    "meta": {
+      "title": "Impresszum | PontMás Alapítvány",
+      "description": "A pontmas.hu weboldal üzemeltetőjének és tárhelyszolgáltatójának adatai."
+    },
+    "header": {
+      "badge": "Jogi adatok",
+      "title": "Impresszum"
+    }
   }
 }

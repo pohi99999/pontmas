@@ -9,13 +9,8 @@ import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 const metadataBase: Metadata = {
-  title: "Rólunk írták és sajtómegjelenések | PontMás Alapítvány",
-  description: "Cikkek, tudósítások, interjúk és köszönetnyilvánítások a PontMás Alapítvány tevékenységéről és a Vas vármegyei autizmus közösségről.",
-  openGraph: {
-    title: "Rólunk írták | PontMás Alapítvány",
-    description: "Sajtócikkek, elismerések és személyes történetek a PontMás Alapítvány munkájáról.",
-    url: "https://pontmas.hu/rolunk-irtak",
-  },
+  // title and description: <namespace>.meta in messages/<locale>.json
+  openGraph: { url: "https://pontmas.hu/rolunk-irtak" },
 };
 
 export const generateMetadata = alternatesFor('/rolunk-irtak', metadataBase, 'Press');

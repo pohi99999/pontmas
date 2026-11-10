@@ -32,12 +32,15 @@ export function alternatesFor(path: string, base: Metadata = {}, metaNamespace?:
     if (!metaNamespace) return meta;
     // the page's title and description in the request's language: <namespace>.meta in messages
     const t = await getTranslations({ locale, namespace: metaNamespace });
-    const og = (base.openGraph ?? {}) as NonNullable<Metadata['openGraph']>;
-    return {
-      ...meta,
-      title: t('meta.title'),
-      description: t('meta.description'),
-      openGraph: { ...og, title: t.has('meta.ogTitle') ? t('meta.ogTitle') : t('meta.title'), description: t.has('meta.ogDescription') ? t('meta.ogDescription') : t('meta.description') },
-    };
+    const translated: Metadata = { ...meta, title: t('meta.title'), description: t('meta.description') };
+    // Open Graph only where the page had it: its own title and description in the request's language
+    if (base.openGraph) {
+      translated.openGraph = {
+        ...base.openGraph,
+        title: t.has('meta.ogTitle') ? t('meta.ogTitle') : t('meta.title'),
+        description: t.has('meta.ogDescription') ? t('meta.ogDescription') : t('meta.description'),
+      };
+    }
+    return translated;
   };
 }

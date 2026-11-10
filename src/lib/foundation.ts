@@ -28,6 +28,7 @@ export const FOUNDATION = {
    * The seat as the tax authority writes it (NAV 2026 list of 1% beneficiaries: "9700 SZOMBATHELY VÁCI M.
    * UTCA 12. 3.em. 15.a.", measured by Aura on 2026-11-10). The same address as `address`, in the
    * official notation; used on the legal pages. The pages already live keep `ADDRESS_LINE`.
+   * Confirmed by Péter on 2026-11-10 (Telegram 14695).
    */
   registeredSeat: '9700 Szombathely, Váci M. utca 12. 3. em. 15. a.',
   contactPerson: 'Rumi Edina',

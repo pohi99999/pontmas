@@ -27,7 +27,10 @@ test('the theme and the soft-mode buttons are in the bar, not in the header row'
 
 test('the theme button says its state in words, like the soft mode, and the words are its name', () => {
   const t = read('src/components/ui/ThemeToggle.tsx');
-  const btn = t.slice(t.indexOf('export function ThemeToggleButton'), t.indexOf('export function ThemeToggleRow'));
+  // the bar's button only: up to the next exported component (#42 put the phone's icon button right after it)
+  const from = t.indexOf('export function ThemeToggleButton');
+  const btn = t.slice(from, t.indexOf('export function', from + 1));
+  assert.ok(from > 0 && btn.includes('<button'), 'the bar button is found');
   assert.match(btn, /\{dark \? 'Sötét téma: be' : 'Sötét téma'\}/);
   assert.match(btn, /aria-pressed=\{dark\}/);
   assert.doesNotMatch(btn, /aria-label=/, 'no aria-label that could drift from the visible label');

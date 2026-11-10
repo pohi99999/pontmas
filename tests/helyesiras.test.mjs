@@ -15,7 +15,9 @@ const walk = (dir) => readdirSync(join(ROOT, dir)).flatMap((n) => {
 // Kept on purpose: the official grant title, the editor's seed content (the foundation's own texts) and
 // the editor code, where "&" is TypeScript.
 const KEEP = ['Városi Civil Alap – Családi Nap & Szülőklub Fejlesztés'];
-const SKIP_FILES = new Set(['src/content/seed.ts', 'src/components/editor/EditorApp.tsx']);
+// knowledge.generated.ts: the chat's rendered copy of the pages, whose sources this test already reads
+// (tests/chat-knowledge.test.mjs keeps the copy equal to them)
+const SKIP_FILES = new Set(['src/content/seed.ts', 'src/components/editor/EditorApp.tsx', 'src/lib/chat/knowledge.generated.ts']);
 
 test('no "&" between words in a visible text of the site', () => {
   const hits = [];

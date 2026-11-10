@@ -1,9 +1,10 @@
 // Module hooks for the editor tests: lets node:test load the site's .ts/.tsx modules the way Next
 // does (the "@/" alias, imports without an extension, JSX), by transpiling them with the
-// TypeScript compiler already in devDependencies. Five modules are replaced:
+// TypeScript compiler already in devDependencies. Six modules are replaced:
 // - next/cache: a pass-through (unstable_cache needs a running Next server);
 // - next/link, next/image: the real component, unwrapped from its CommonJS default export;
 // - next/navigation: the hooks answer as on "/" with no query string (stub-next-navigation.mjs);
+// - next/server: the real module, unwrapped from its CommonJS export (stub-next-server.mjs);
 // - @vercel/blob: a module that throws when loaded, so no test can reach the real service.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -18,6 +19,7 @@ const STUBS = {
   'next/link': here('stub-next-link.mjs'),
   'next/image': here('stub-next-image.mjs'),
   'next/navigation': here('stub-next-navigation.mjs'),
+  'next/server': here('stub-next-server.mjs'),
   '@vercel/blob': here('stub-vercel-blob.mjs'),
 };
 const EXTS = ['', '.ts', '.tsx', '/index.ts', '/index.tsx'];

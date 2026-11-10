@@ -10,6 +10,8 @@ import { SensoryProvider } from "@/context/SensoryContext";
 import { jsonLdScript } from "@/lib/jsonLd";
 import { THEME_SCRIPT } from "@/lib/theme";
 import { foundationJsonLd } from "@/lib/foundation";
+import ChatWidget from "@/components/chat/ChatWidget";
+import { chatConfig } from "@/lib/chat/config";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 // The heading font: one static weight, subset to Hungarian in one small file (fonts/README.txt). The variable
@@ -71,6 +73,8 @@ export default function RootLayout({
           <Header />
           <main id="tartalom" tabIndex={-1} className="flex-1 focus:outline-none">{children}</main>
           <AccessibilityToolbar />
+          {/* off unless every condition in src/lib/chat/config.ts holds (switch, approvals, key, hard cap) */}
+          {chatConfig(process.env).enabled && <ChatWidget locale="hu" />}
           <Footer />
         </SensoryProvider>
       </body>

@@ -1,9 +1,15 @@
-// The NAV figure in the home page's 1% band (Marveen 6931): the values as measured in the NAV's 2026 list,
-// the sentence as agreed, the source visible under it.
+// The NAV figure in the home page's 1% band (Marveen 6931, 6994): the values as measured in the NAV's 2026
+// list, the sentence as agreed (the OFFERED amount: "ajánlott fel"), the source visible under it, and the
+// hyphenated words kept whole.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { EGYSZAZALEK, forint } from '../src/content/egyszazalek.ts';
+
+const figure = () => {
+  const page = fs.readFileSync('src/app/page.tsx', 'utf8');
+  return page.slice(page.indexOf('<figure'), page.indexOf('</figure>'));
+};
 
 test('the values are the NAV 2026 row of the foundation', () => {
   assert.equal(EGYSZAZALEK.ev, 2026);
@@ -21,11 +27,11 @@ test('the amount never breaks across lines', () => {
   assert.equal(forint(999), '999 Ft');
 });
 
-test('the sentence reads as agreed, and the source is shown', () => {
-  const page = fs.readFileSync('src/app/page.tsx', 'utf8');
-  const fig = page.slice(page.indexOf('<figure'), page.indexOf('</figure>'));
-  const text = fig
-    .replace(/<figcaption[\s\S]*<\/figcaption>/, '')
+test('the sentence reads as agreed (offered, not paid), and the source is shown', () => {
+  const fig = figure();
+  const p = fig.slice(fig.indexOf('<p'), fig.indexOf('</p>'));
+  const text = p
+    .replace(/\{\/\*[\s\S]*?\*\/\}/g, '')
     .replace(/\{EGYSZAZALEK\.evben\}/g, EGYSZAZALEK.evben)
     .replace(/\{EGYSZAZALEK\.felajanlok\}/g, String(EGYSZAZALEK.felajanlok))
     .replace(/\{forint\(EGYSZAZALEK\.osszeg\)\}/g, forint(EGYSZAZALEK.osszeg).replace(/ /g, ' '))
@@ -33,6 +39,14 @@ test('the sentence reads as agreed, and the source is shown', () => {
     .replace(/<[^>]+>/g, '')
     .replace(/\s+/g, ' ')
     .trim();
-  assert.equal(text, '2026-ban 77 adózó 1%-a összesen 822 407 Ft-tal támogatta a vasi autista gyermekeket és családjaikat.');
+  assert.equal(text, '2026-ban 77 adózó összesen 822 407 Ft-ot ajánlott fel 1%-ából a vasi autista gyermekek és családjaik támogatására.');
+  assert.doesNotMatch(text, /támogatta/, 'the NAV figure is offered, not paid');
   assert.match(fig, /<figcaption[^>]*>Forrás: NAV, \{EGYSZAZALEK\.kozzeteve\}<\/figcaption>/);
+});
+
+test('every word with a hyphenated suffix is kept whole', () => {
+  const fig = figure();
+  assert.match(fig, /<strong className="[^"]*whitespace-nowrap[^"]*">\{forint\(EGYSZAZALEK\.osszeg\)\}-ot<\/strong>/);
+  assert.match(fig, /<span className="whitespace-nowrap">\{EGYSZAZALEK\.evben\}<\/span>/);
+  assert.match(fig, /<span className="whitespace-nowrap">1%-ából<\/span>/);
 });

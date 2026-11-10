@@ -5,49 +5,30 @@ import Button from '@/components/ui/Button';
 import CtaBand from '@/components/ui/CtaBand';
 import { CommunityGallery } from '@/components/content/Gallery';
 import { FOUNDATION, ADDRESS_LINE } from '@/lib/foundation';
+import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 export const generateMetadata = alternatesFor('/rolunk');
 
 export default async function RolunkPage({ params }: PageParams) {
   await pageLocale(params);
-  const alapelvek = [
-    {
-      icon: <Target className="text-blue-600" size={26} />,
-      title: "Célzott és közvetlen támogatás",
-      desc: "Anyagi, eszközbeli és módszertani segítségnyújtás a Vas vármegyében élő autista gyermekeknek, szüleiknek és iskoláiknak."
-    },
-    {
-      icon: <Users className="text-blue-600" size={26} />,
-      title: "Összetartó közösség",
-      desc: "Több mint 40 családdal állunk napi kapcsolatban. Szülőklubokat, családi napokat és közös programokat szervezünk az elszigetelődés ellen."
-    },
-    {
-      icon: <Award className="text-blue-600" size={26} />,
-      title: "Szakmai hitelesség és AOSZ-partnerség",
-      desc: "Autizmus-specifikus gyógypedagógusok, szakasszisztensek és érintett szülők közös munkája garantálja a legfrissebb módszertani színvonalat."
-    },
-    {
-      icon: <Heart className="text-blue-600" size={26} />,
-      title: "Elfogadás és esélyegyenlőség",
-      desc: "Társadalmi szemléletformálással és intézményi segítségnyújtással küzdünk azért, hogy minden gyermek a képességeihez mérten kibontakozhasson."
-    }
-  ];
-
-  const merfoldkovek = [
-    { ev: "2015", cim: "Alapítás Szombathelyen", leiras: "Érintett szülők és gyógypedagógusok elhatározásából létrejön a PontMás Vas Megyei Autista Gyermekekért Alapítvány." },
-    { ev: "2018", cim: "Intézményi eszközbeszerzések", leiras: "Megkezdődik a Vas megyei speciális és integráló intézmények célzott fejlesztőeszköz-ellátása." },
-    { ev: "2024+", cim: "Közösségi hálózat bővülése", leiras: "Éves Kék séták, képességfejlesztő nyári táborok és folyamatos krízisalap működtetése." }
-  ];
+  const t = await getTranslations('About');
+  // icons stay in the code; the texts are in messages (About.values.items, same order)
+  const valueIcons = [Target, Users, Award, Heart];
+  const alapelvek = (t.raw('values.items') as { title: string; desc: string }[]).map((v, i) => {
+    const Icon = valueIcons[i];
+    return { ...v, icon: <Icon className="text-blue-600" size={26} /> };
+  });
+  const merfoldkovek = t.raw('milestones.items') as { ev: string; cim: string; leiras: string }[];
 
   return (
     <div className="pb-20">
       
       {/* 1. Fejléc szekció */}
       <PageHeader
-        badge="Kik vagyunk mi?"
-        title="A PontMás Alapítvány története és küldetése"
-        subtitle="2015 óta hidat képezünk az autizmussal élő gyermekek, családjaik, a szakemberek és a társadalom között Vas vármegyében."
+        badge={t('header.badge')}
+        title={t('header.title')}
+        subtitle={t('header.subtitle')}
       />
 
       {/* 2. Történetünk és Elnökség szekció */}
@@ -57,15 +38,15 @@ export default async function RolunkPage({ params }: PageParams) {
           {/* Szöveges tartalom */}
           <div className="lg:col-span-7 space-y-6">
             <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-              Személyes elhivatottságból született segítség
+              {t('story.title')}
             </h2>
             
             <p className="text-slate-600 leading-relaxed text-base">
-              Alapítványunkat az élet hívta életre. Olyan elkötelezett szülők és gyógypedagógusok fogtak össze, akik a mindennapi valóságban tapasztalták meg, milyen akadályokkal szembesül egy autizmussal élő gyermek és családja Vas vármegyében.
+              {t('story.p1')}
             </p>
             
             <p className="text-slate-600 leading-relaxed text-base">
-              Nem csupán egy adminisztratív szervezet vagyunk: megtartó közösséget építünk, ahol a szülők megoszthatják tapasztalataikat és aggodalmaikat, a gyermekek pedig biztonságos, ingerszegény és szeretetteljes közegben fejlődhetnek.
+              {t('story.p2')}
             </p>
 
             {/* Elnökség & AOSZ Kiemelés */}
@@ -75,12 +56,12 @@ export default async function RolunkPage({ params }: PageParams) {
                   <ShieldCheck size={22} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-blue-950">Országos szakmai beágyazottság</h3>
-                  <p className="text-xs text-blue-700 font-semibold">Autisták Országos Szövetsége (AOSZ) tagszervezet</p>
+                  <h3 className="text-lg font-bold text-blue-950">{t('story.nationalTitle')}</h3>
+                  <p className="text-xs text-blue-700 font-semibold">{t('story.aosz')}</p>
                 </div>
               </div>
               <p className="text-slate-700 text-sm leading-relaxed pt-1">
-                A kuratórium elnöke <strong>Pohánka Edit</strong>, aki egyben az <strong>Autisták Országos Szövetségének (AOSZ) alelnöke</strong> is. Ez a pozíció és elismert szakmai háttér biztosítja, hogy alapítványunk az országos irányelvek és a legkorszerűbb módszertanok alapján támogassa a Vas vármegyei közösséget.
+                {t.rich('story.board', { b: (chunks) => <strong>{chunks}</strong> })}
               </p>
             </div>
           </div>
@@ -92,33 +73,33 @@ export default async function RolunkPage({ params }: PageParams) {
                 <Building2 size={24} />
               </div>
               <div>
-                <h3 className="font-bold text-lg text-white">Szervezeti hitelesség</h3>
-                <span className="text-xs text-slate-400">PontMás Alapítvány</span>
+                <h3 className="font-bold text-lg text-white">{t('facts.title')}</h3>
+                <span className="text-xs text-slate-400">{t('facts.org')}</span>
               </div>
             </div>
 
             <ul className="space-y-3.5 text-sm">
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-slate-300"><strong className="text-white">Bejegyzés éve:</strong> 2015.09.08.</span>
+                <span className="text-slate-300"><strong className="text-white">{t('facts.registeredLabel')}</strong> {t('facts.registered')}</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-slate-300"><strong className="text-white">Adószám:</strong> {FOUNDATION.taxNumber}</span>
+                <span className="text-slate-300"><strong className="text-white">{t('facts.taxLabel')}</strong> {FOUNDATION.taxNumber}</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-slate-300"><strong className="text-white">Fő tevékenység:</strong> Egyéb szociális ellátás bentlakás nélkül (TEÁOR 8899)</span>
+                <span className="text-slate-300"><strong className="text-white">{t('facts.activityLabel')}</strong> {t('facts.activity')}</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-slate-300"><strong className="text-white">Székhely:</strong> {ADDRESS_LINE}</span>
+                <span className="text-slate-300"><strong className="text-white">{t('facts.seatLabel')}</strong> {ADDRESS_LINE}</span>
               </li>
             </ul>
 
             <div className="pt-2">
               <Button href="/tamogatas" variant="primary" size="md" fullWidth>
-                Támogassa Alapítványunkat
+                {t('facts.support')}
               </Button>
             </div>
           </div>
@@ -130,9 +111,9 @@ export default async function RolunkPage({ params }: PageParams) {
       <section className="bg-white border-y border-slate-200/80 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <SectionHeader
-            badge="Iránytűnk"
-            title="Alapértékeink és szemléletünk"
-            subtitle="Minden döntésünket és programunkat az érintett gyermekek és családjaik valódi jólléte vezérli."
+            badge={t('values.badge')}
+            title={t('values.title')}
+            subtitle={t('values.subtitle')}
           />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -152,9 +133,9 @@ export default async function RolunkPage({ params }: PageParams) {
       {/* 4. Mérföldkövek / Idővonal */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-5xl">
         <SectionHeader
-          badge="Útunk"
-          title="Főbb mérföldköveink"
-          subtitle="Hogyan fejlődött a PontMás Alapítvány a megalakulása óta?"
+          badge={t('milestones.badge')}
+          title={t('milestones.title')}
+          subtitle={t('milestones.subtitle')}
         />
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -173,15 +154,15 @@ export default async function RolunkPage({ params }: PageParams) {
 
       {/* 5. Csatlakozás és Kapcsolat CTA */}
       <CtaBand
-        title="Legyen része közösségünknek!"
-        text="Akár érintett szülőként, akár szakemberként vagy támogatóként keres minket, szeretettel várjuk megkeresését."
+        title={t('cta.title')}
+        text={t('cta.text')}
         headingLevel="h2"
       >
         <Button href="/kapcsolat" variant="primary">
-          Kapcsolatfelvétel
+          {t('cta.contact')}
         </Button>
         <Button href="/tamogatas" variant="outline">
-          Támogatási formák
+          {t('cta.support')}
         </Button>
       </CtaBand>
 

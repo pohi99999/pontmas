@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Link } from '@/i18n/navigation';
 import PageHeader from '@/components/ui/PageHeader';
-import { DraftBanner, DraftSources, Review, Section } from '@/components/legal/LegalParts';
+import { DraftBanner, DraftSources, LegalLanguageNote, Review, Section } from '@/components/legal/LegalParts';
 import { FOUNDATION } from '@/lib/foundation';
 import { LEGAL_DRAFT } from '@/lib/legal';
+import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 // Adatkezelési tájékoztató, DRAFT (src/lib/legal.ts). Every statement about what the site does is
@@ -11,24 +12,25 @@ import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 // is the source of the rest. What has no source is a [KÉRDÉS], every legal judgement a [JOGI ÁTNÉZÉS].
 
 const metadataBase: Metadata = {
-  title: "Adatkezelési tájékoztató | PontMás Alapítvány",
-  description: "Hogyan kezeli a PontMás Alapítvány a weboldal látogatóinak és a kapcsolatfelvételi űrlapot kitöltőknek a személyes adatait.",
+  // title and description: <namespace>.meta in messages/<locale>.json
   robots: LEGAL_DRAFT ? { index: false, follow: false } : undefined,
 };
 
-export const generateMetadata = alternatesFor('/adatkezeles', metadataBase);
+export const generateMetadata = alternatesFor('/adatkezeles', metadataBase, 'Privacy');
 
 export default async function AdatkezelesPage({ params }: PageParams) {
-  await pageLocale(params);
+  const locale = await pageLocale(params);
+  const t = await getTranslations('Privacy');
   return (
     <>
       <PageHeader
-        badge="Adatvédelem"
-        title="Adatkezelési tájékoztató"
-        subtitle="Milyen adatot kezelünk, miért, meddig, és milyen jogai vannak."
+        badge={t('header.badge')}
+        title={t('header.title')}
+        subtitle={t('header.subtitle')}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <article className="mx-auto max-w-3xl">
+        <LegalLanguageNote />
+        <article className="mx-auto max-w-3xl" lang={locale === 'hu' ? undefined : 'hu'}>
           <DraftBanner />
 
           <p className="text-lg text-slate-700 leading-relaxed">

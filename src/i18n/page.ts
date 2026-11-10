@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { isPublished, type Locale } from './routing';
 import { languageAlternates } from '../lib/site';
 
@@ -24,9 +24,23 @@ export async function pageLocale(params: PageParams['params']): Promise<Locale> 
  * on top of the page's static metadata. Every page needs its own: the [locale] layout cannot know the
  * path, and a canonical set there was inherited by every page (measured: /autizmus said "/", card c017f163).
  */
-export function alternatesFor(path: string, base: Metadata = {}) {
+export function alternatesFor(path: string, base: Metadata = {}, metaNamespace?: string) {
   return async function generateMetadata({ params }: PageParams): Promise<Metadata> {
     const { locale } = await params;
-    return isPublished(locale) ? { ...base, alternates: languageAlternates(path, locale) } : base;
+    if (!isPublished(locale)) return base;
+    const meta: Metadata = { ...base, alternates: languageAlternates(path, locale) };
+    if (!metaNamespace) return meta;
+    // the page's title and description in the request's language: <namespace>.meta in messages
+    const t = await getTranslations({ locale, namespace: metaNamespace });
+    const translated: Metadata = { ...meta, title: t('meta.title'), description: t('meta.description') };
+    // Open Graph only where the page had it: its own title and description in the request's language
+    if (base.openGraph) {
+      translated.openGraph = {
+        ...base.openGraph,
+        title: t.has('meta.ogTitle') ? t('meta.ogTitle') : t('meta.title'),
+        description: t.has('meta.ogDescription') ? t('meta.ogDescription') : t('meta.description'),
+      };
+    }
+    return translated;
   };
 }

@@ -1,11 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
 import path from 'node:path';
+import { readWithNamespaces } from './helpers/messages.mjs';
 
 test('Programs page includes SectionHeader, event list, institutional support, and filter tabs', () => {
   const programsPath = path.resolve('src/app/[locale]/programok/page.tsx');
-  const programsContent = fs.readFileSync(programsPath, 'utf8');
+  // the page's texts are in messages/hu.json (Programs) since the i18n extraction (card c017f163)
+  const programsContent = readWithNamespaces(path.relative(process.cwd(), programsPath), 'Programs');
 
   assert.ok(programsContent.includes('SectionHeader'), 'Programs page must use SectionHeader');
   assert.ok(programsContent.includes('Kék Séta') || programsContent.includes('Kék séta'), 'Programs page must feature Kék Séta');

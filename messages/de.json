@@ -1,141 +1,140 @@
 {
   "Meta": {
-    "title": "PontMás Alapítvány | Vas Megyei Autista Gyermekekért",
-    "description": "A PontMás Alapítvány célja a Vas vármegyében élő autista gyermekek és családjaik támogatása. Csatlakozzon közösségünkhöz, támogassa munkánkat!",
-    "ogDescription": "A PontMás Alapítvány célja a Vas vármegyében élő autista gyermekek és családjaik támogatása.",
-    "siteName": "PontMás Alapítvány"
+    "title": "PontMás-Stiftung | Für autistische Kinder im Komitat Vas",
+    "description": "Die PontMás-Stiftung unterstützt autistische Kinder und ihre Familien im Komitat Vas (Ungarn). Werden Sie Teil unserer Gemeinschaft und unterstützen Sie unsere Arbeit!",
+    "ogDescription": "Die PontMás-Stiftung unterstützt autistische Kinder und ihre Familien im Komitat Vas (Ungarn).",
+    "siteName": "PontMás-Stiftung"
   },
   "NotFound": {
-    "title": "Az oldal nem található",
-    "text": "Ezt az oldalt nem találjuk. Lehet, hogy a cím elírás, vagy az oldal már nem létezik.",
-    "home": "Vissza a kezdőlapra"
+    "title": "Seite nicht gefunden",
+    "text": "Diese Seite finden wir nicht. Vielleicht ist die Adresse falsch geschrieben, oder die Seite existiert nicht mehr.",
+    "home": "Zurück zur Startseite"
   },
   "Header": {
-    "tagline": "Vas Megyei Alapítvány",
-    "language": "Nyelv",
+    "tagline": "Stiftung im Komitat Vas",
     "nav": {
-      "home": "Kezdőlap",
-      "autism": "Autizmusról",
-      "help": "Segítség",
-      "about": "Rólunk",
-      "press": "Rólunk írták",
-      "news": "Hírek",
-      "programs": "Programok",
-      "documents": "Dokumentumok",
-      "contact": "Kapcsolat"
+      "home": "Startseite",
+      "autism": "Über Autismus",
+      "help": "Hilfe",
+      "about": "Über uns",
+      "press": "Presse",
+      "news": "Neuigkeiten",
+      "programs": "Programme",
+      "documents": "Dokumente",
+      "contact": "Kontakt"
     },
-    "navLabel": "Fő navigáció",
-    "mobileNavLabel": "Mobil navigáció",
-    "sensoryOnTitle": "Lágy, csökkentett ingerű mód aktív (kattintson a normál módhoz)",
-    "sensoryOffTitle": "Csökkentett ingerű (szenszoros) mód bekapcsolása",
-    "sensoryOn": "Lágy mód: BE",
-    "sensoryOff": "Lágy mód",
-    "sensoryToggle": "Szenszoros mód kapcsolása",
-    "menuClose": "Menü bezárása",
-    "menuOpen": "Menü megnyitása",
-    "support": "Támogatás",
-    "accessibility": "Akadálymentesítés",
-    "customActive": "(egyedi beállítások aktívak)",
-    "supportMobile": "Támogatás és adó 1%"
+    "navLabel": "Hauptnavigation",
+    "mobileNavLabel": "Mobile Navigation",
+    "sensoryOnTitle": "Ruhiger, reizarmer Modus ist an (klicken für die normale Ansicht)",
+    "sensoryOffTitle": "Reizarmen (sensorisch freundlichen) Modus einschalten",
+    "sensoryOn": "Ruhiger Modus: AN",
+    "sensoryOff": "Ruhiger Modus",
+    "sensoryToggle": "Sensorisch freundlichen Modus umschalten",
+    "menuClose": "Menü schließen",
+    "menuOpen": "Menü öffnen",
+    "support": "Unterstützen",
+    "accessibility": "Barrierefreiheit",
+    "customActive": "(eigene Einstellungen aktiv)",
+    "supportMobile": "Unterstützen und 1 % der Steuer"
   },
   "Footer": {
-    "tagline": "Vas Megyei Alapítvány",
-    "about": "{name}. 2015 óta a Vas vármegyei érintett családok és intézmények elkötelezett támogatója.",
-    "aosz": "Autisták Országos Szövetsége (AOSZ) tagszervezet",
-    "sitemapTitle": "Oldaltérkép",
+    "tagline": "Stiftung im Komitat Vas",
+    "about": "{name}. Seit 2015 engagierte Unterstützerin der betroffenen Familien und Einrichtungen im Komitat Vas.",
+    "aosz": "Mitgliedsorganisation der Hungarian Autistic Society (AOSZ)",
+    "sitemapTitle": "Seitenübersicht",
     "links": {
-      "about": "Rólunk és értékeink",
-      "autism": "Autizmus-ismerettár és FAQ",
-      "help": "Amiben segíteni tudunk",
-      "press": "Rólunk írták és sajtó",
-      "news": "Hírek és szülőklub",
-      "programs": "Programok és események",
-      "support": "Támogatás és adó 1%",
-      "documents": "Dokumentumtár és pályázatok",
-      "contact": "Kapcsolat"
+      "about": "Über uns und unsere Werte",
+      "autism": "Wissen über Autismus und FAQ",
+      "help": "Wobei wir helfen",
+      "press": "Presse",
+      "news": "Neuigkeiten und Elternklub",
+      "programs": "Programme und Veranstaltungen",
+      "support": "Unterstützen und 1 % der Steuer",
+      "documents": "Dokumente und Förderprojekte",
+      "contact": "Kontakt"
     },
-    "contactTitle": "Elérhetőség",
-    "facebook": "Közösségi Facebook csoport",
-    "supportTitle": "Támogatási adatok",
-    "taxNumber": "Adószám (1% felajánlás):",
-    "bankAccount": "Bankszámlaszám ({bank}):",
-    "donationInfo": "Adományozási tudnivalók",
-    "copyright": "© {year} {name}. Minden jog fenntartva.",
-    "reports": "Közhasznúsági jelentések",
-    "privacy": "Adatkezelési tájékoztató",
-    "imprint": "Impresszum"
+    "contactTitle": "Kontakt",
+    "facebook": "Facebook-Gruppe der Gemeinschaft",
+    "supportTitle": "Spendendaten",
+    "taxNumber": "Steuernummer (1 % der Einkommensteuer):",
+    "bankAccount": "Bankkonto ({bank}):",
+    "donationInfo": "So können Sie spenden",
+    "copyright": "© {year} {name}. Alle Rechte vorbehalten.",
+    "reports": "Gemeinnützigkeitsberichte",
+    "privacy": "Datenschutzhinweis",
+    "imprint": "Impressum"
   },
   "ContactForm": {
-    "required": "Kérjük, töltse ki az összes kötelező mezőt!",
-    "tooMany": "Túl sok üzenet érkezett rövid idő alatt. Kérjük, próbálja újra néhány perc múlva.",
-    "invalid": "Kérjük, ellenőrizze a megadott adatokat (név, e-mail cím, üzenet).",
-    "failed": "Az üzenetet most nem sikerült elküldeni. Kérjük, próbálja újra később, vagy hívjon minket: {phone}.",
-    "successTitle": "Köszönjük megkeresését!",
-    "successText": "Üzenetét sikeresen megkaptuk. Alapítványunk munkatársai hamarosan felveszik Önnel a kapcsolatot a megadott elérhetőségeken.",
-    "newMessage": "Új üzenet küldése",
-    "title": "Írjon nekünk üzenetet",
-    "subtitle": "Munkatársunk 1-2 munkanapon belül válaszol",
-    "honeypot": "Weboldal (hagyja üresen)",
-    "name": "Teljes név",
-    "namePlaceholder": "Kovács Péter",
-    "email": "E-mail cím",
-    "emailPlaceholder": "pelda@email.hu",
-    "phone": "Telefonszám (opcionális)",
+    "required": "Bitte füllen Sie alle Pflichtfelder aus.",
+    "tooMany": "In kurzer Zeit sind zu viele Nachrichten eingegangen. Bitte versuchen Sie es in einigen Minuten erneut.",
+    "invalid": "Bitte prüfen Sie Ihre Angaben (Name, E-Mail-Adresse, Nachricht).",
+    "failed": "Die Nachricht konnte gerade nicht gesendet werden. Bitte versuchen Sie es später erneut oder rufen Sie uns an: {phone}.",
+    "successTitle": "Vielen Dank für Ihre Nachricht!",
+    "successText": "Wir haben Ihre Nachricht erhalten. Ein Mitglied unserer Stiftung meldet sich bald über die angegebenen Kontaktdaten bei Ihnen.",
+    "newMessage": "Neue Nachricht senden",
+    "title": "Schreiben Sie uns",
+    "subtitle": "Wir antworten innerhalb von 1-2 Werktagen",
+    "honeypot": "Website (bitte leer lassen)",
+    "name": "Vollständiger Name",
+    "namePlaceholder": "Anna Schmidt",
+    "email": "E-Mail-Adresse",
+    "emailPlaceholder": "name@beispiel.de",
+    "phone": "Telefonnummer (optional)",
     "phonePlaceholder": "+36 30 123 4567",
-    "topic": "Üzenet témája",
+    "topic": "Betreff",
     "topics": {
-      "altalanos": "Általános megkeresés / Kérdés",
-      "mentorszuloi-tanacsadas": "Mentorszülői tanácsadás kérése",
-      "data-applikacio": "DATA applikáció letöltési és használati segítség",
-      "szakkonyvtar": "Szakkönyvtári kölcsönzés",
-      "intezmenyi-tanacsadas": "Intézményi és iskolai integrációs tájékoztatás",
-      "szulo": "Szülőklub-regisztráció és részvétel",
-      "onkentes": "Önkéntes segítőnek jelentkezem",
-      "tamogatas": "Támogatás és céges adományozás"
+      "altalanos": "Allgemeine Anfrage / Frage",
+      "mentorszuloi-tanacsadas": "Beratung durch Mentoreltern anfragen",
+      "data-applikacio": "Hilfe beim Herunterladen und Nutzen der DATA-App",
+      "szakkonyvtar": "Ausleihe aus der Fachbibliothek",
+      "intezmenyi-tanacsadas": "Informationen zu Einrichtungen und schulischer Inklusion",
+      "szulo": "Teilnahme am Elternklub",
+      "onkentes": "Ich möchte ehrenamtlich helfen",
+      "tamogatas": "Unterstützung und Firmenspenden"
     },
-    "message": "Üzenet szövege",
-    "messagePlaceholder": "Miben segíthetünk? Kérjük, fejtse ki részletesen...",
-    "sending": "Küldés folyamatban...",
-    "send": "Üzenet elküldése",
-    "privacy": "Az üzenetét csak a válaszhoz használjuk. Részletek az <link>adatkezelési tájékoztatóban</link>.",
-    "loading": "Űrlap betöltése..."
+    "message": "Ihre Nachricht",
+    "messagePlaceholder": "Wie können wir helfen? Erzählen Sie uns gern ausführlich...",
+    "sending": "Wird gesendet...",
+    "send": "Nachricht senden",
+    "privacy": "Wir verwenden Ihre Nachricht nur für die Antwort. Einzelheiten im <link>Datenschutzhinweis</link>.",
+    "loading": "Formular wird geladen..."
   },
   "Accessibility": {
-    "trigger": "Akadálymentesítés és szenzoros beállítások vezérlőpultja",
-    "hoverLabel": "Akadálymentesítés",
-    "panelLabel": "Akadálymentesítési beállítások",
-    "title": "Szenzoros és akadálymentességi panel",
-    "subtitle": "Személyre szabott élmény és nyugodt olvasás",
-    "close": "Panel bezárása",
+    "trigger": "Bedienfeld für Barrierefreiheit und sensorische Einstellungen",
+    "hoverLabel": "Barrierefreiheit",
+    "panelLabel": "Einstellungen zur Barrierefreiheit",
+    "title": "Sensorik und Barrierefreiheit",
+    "subtitle": "Persönliche Einstellungen und ruhiges Lesen",
+    "close": "Bedienfeld schließen",
     "sensory": {
-      "title": "Szenzoros / Nyugtató Mód",
-      "text": "Lágyabb színek, minimális kontraszt és ingerek"
+      "title": "Sensorischer / ruhiger Modus",
+      "text": "Sanftere Farben, minimaler Kontrast und wenig Reize"
     },
     "contrast": {
-      "title": "Magas Kontraszt",
-      "text": "Jobban elkülönülő sötét/világos elemek"
+      "title": "Hoher Kontrast",
+      "text": "Deutlicher getrennte dunkle und helle Elemente"
     },
     "fontSize": {
-      "title": "Betűméret",
-      "current": "Jelenleg: {size}",
-      "normal": "Normál (100%)",
-      "large": "Nagy (115%)",
-      "xlarge": "Extra nagy (130%)",
-      "cycle": "Váltás (A+)"
+      "title": "Schriftgröße",
+      "current": "Aktuell: {size}",
+      "normal": "Normal (100 %)",
+      "large": "Groß (115 %)",
+      "xlarge": "Sehr groß (130 %)",
+      "cycle": "Ändern (A+)"
     },
     "ruler": {
-      "title": "Olvasóvonalzó sáv",
-      "text": "Egérkurzort követő fókuszcsík"
+      "title": "Leselineal",
+      "text": "Ein Fokusstreifen, der dem Mauszeiger folgt"
     },
     "motion": {
-      "title": "Mozgáscsökkentés",
-      "text": "Minden animáció és mozgó hatás letiltása"
+      "title": "Weniger Bewegung",
+      "text": "Schaltet alle Animationen und Bewegungseffekte aus"
     },
-    "reset": "Alaphelyzet",
+    "reset": "Zurücksetzen",
     "badge": "PontMás WCAG 2.1 AA"
   },
   "Shell": {
-    "skipToContent": "Ugrás a tartalomra"
+    "skipToContent": "Zum Inhalt springen"
   },
   "Chat": {
     "open": "Fragen Sie uns",
@@ -145,5 +144,738 @@
     "send": "Senden",
     "sending": "Antwort wird erstellt…",
     "privacy": "Datenschutzhinweis"
+  },
+  "Home": {
+    "stats": [
+      {
+        "value": "Seit 2015",
+        "label": "Wir helfen Familien"
+      },
+      {
+        "value": "40+",
+        "label": "Betroffene Familien in unserem Netzwerk"
+      },
+      {
+        "value": "AOSZ",
+        "label": "Vizepräsidentschaft im Landesverband"
+      }
+    ],
+    "heroTitle": "Gemeinsam für mehr Verständnis <br></br><accent>und mehr Unterstützung</accent>",
+    "heroText": "Vielseitige Unterstützung für Kinder im Autismus-Spektrum, ihre Familien und Bildungseinrichtungen im Komitat Vas. Fachwissen, Gemeinschaft und echte Hilfe seit 2015.",
+    "ctaSupport": "Unterstützen Sie uns (1 %)",
+    "ctaAutism": "Was ist Autismus?",
+    "mission": {
+      "badge": "Unsere Mission und Tätigkeit",
+      "title": "Wie helfen wir im Alltag?",
+      "subtitle": "Wir betreiben ein umfassendes Unterstützungssystem, das alle Beteiligten erreicht: von den Kindern über die Eltern bis zu den Einrichtungen."
+    },
+    "pillars": {
+      "community": {
+        "title": "Gemeinschaft aufbauen",
+        "text": "Elternklubs, Blaue Spaziergänge und Sommerlager zur Förderung von Fähigkeiten, in denen betroffene Familien in einem verständnisvollen und sicheren Rahmen zueinanderfinden.",
+        "link": "Unsere Veranstaltungen"
+      },
+      "awareness": {
+        "title": "Bewusstsein schaffen",
+        "text": "Bildungsmaterialien, Informationen und Veranstaltungen für mehr gesellschaftliches Verständnis und mehr Akzeptanz von Autismus.",
+        "link": "Wissen"
+      },
+      "institutions": {
+        "title": "Hilfe für Einrichtungen",
+        "text": "Unterstützung autismusspezifischer und inklusiver Schulen und Kindergärten im Komitat Vas mit speziellen Förder- und Lernmitteln.",
+        "link": "Wen wir unterstützen"
+      },
+      "crisis": {
+        "title": "Krisenfonds",
+        "text": "Gezielte finanzielle und praktische Soforthilfe für betroffene Familien, die unerwartet in eine schwierige Lage geraten sind.",
+        "link": "Unterstützen"
+      }
+    },
+    "donation": {
+      "eyebrow": "Spenden Sie 1 % Ihrer Einkommensteuer!",
+      "title": "Ein Klick von Ihnen, eine große Hilfe für Familien",
+      "text": "Wer in Ungarn Einkommensteuer zahlt, kann 1 % davon kostenlos widmen. Für uns sichert das die Lager, die Elternklubs und den Krisenfonds.",
+      "more": "Alle Möglichkeiten der Unterstützung ansehen",
+      "dataTitle": "Daten der PontMás-Stiftung",
+      "taxLabel": "Steuernummer (1 % der Steuer)",
+      "taxSub": "Klicken, um die Steuernummer zu kopieren",
+      "bankLabel": "Bankkonto ({bank})",
+      "bankSub": "Für eine direkte Überweisung"
+    },
+    "cta": {
+      "title": "Haben Sie eine Frage oder brauchen Sie Hilfe?",
+      "text": "Rufen Sie uns an oder schreiben Sie uns direkt.",
+      "button": "Kontakt aufnehmen"
+    }
+  },
+  "Common": {
+    "learnMore": "Mehr erfahren",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "copyTitle": "Zum Kopieren klicken",
+    "comingSoon": "Bald verfügbar"
+  },
+  "Cards": {
+    "nextParentClub": "Nächster Elternklub",
+    "place": "Ort:",
+    "speaker": "Referentin/Referent:",
+    "topics": "Hauptthemen und Programm:",
+    "googleForm": "Google-Formular öffnen",
+    "features": "Wichtigste Merkmale:",
+    "enquire": "Anfragen und Einzelheiten",
+    "huOnly": "Die Neuigkeiten und Programme erscheinen nur auf Ungarisch."
+  },
+  "ProgramFilter": {
+    "label": "Programmkategorien",
+    "all": "Alle Programme",
+    "event": "Besondere Veranstaltungen",
+    "camp": "Sommerlager",
+    "family": "Elternklub und Familien"
+  },
+  "Gallery": {
+    "badge": "Bilder",
+    "camp": {
+      "title": "Aus dem Sommerlager",
+      "subtitle": "Spiel, gemeinsame Arbeit und Ruhe im Lager."
+    },
+    "works": {
+      "title": "Handgemachte Arbeiten",
+      "subtitle": "Einige Momente aus den Sommerlagern und von einem Wohltätigkeitsstand."
+    },
+    "community": {
+      "title": "Unsere Gemeinschaft in Bildern",
+      "subtitle": "Einige Momente von gemeinsamen Veranstaltungen."
+    },
+    "photos": {
+      "tabor-korjatek": {
+        "caption": "Gemeinsames Spiel im Kreis",
+        "alt": "Erwachsene und Kinder sitzen im Kreis auf einem schwarzen Boden, die Hände vor sich gelegt. Hinter ihnen Reifen, Bälle und ein blauer Vorhang."
+      },
+      "tabor-vaszontaska-az-asztalnal": {
+        "caption": "Stofftasche und Blätter am Tisch",
+        "alt": "Ein Kind in einem blauen T-Shirt sitzt am Tisch, vor ihm eine Stofftasche und ein Blatt. Daneben Erwachsene: eine Person hält die Tasche, eine andere lacht, jemand im PontMás-T-Shirt schaut in die Kamera."
+      },
+      "tabor-tal-folott": {
+        "caption": "Mit den Händen arbeiten, über einer Schüssel",
+        "alt": "Ein Kind von der Seite in einem weißen Trägershirt hält die Hände über eine Metallschüssel mit einer braunen, krümeligen Masse. Im Hintergrund ein blauer Vorhang und das Meeresbild an der Wand."
+      },
+      "tabor-rajzolt-arcok": {
+        "caption": "Gezeichnete Gesichter auf dem Tisch, ein gemeinsames Gespräch",
+        "alt": "An einem langen Tisch unterhalten sich Erwachsene und Kinder. Auf dem Tisch liegen Blätter, auf jedem ein gezeichnetes Gesicht mit einem anderen Ausdruck. Ein Kind hält einen blauen Sitzsack."
+      },
+      "tabor-kepkartyak-a-falon": {
+        "caption": "Bildkarten an der Wand",
+        "alt": "Ein Kind von hinten, neben ihm hockt ein Erwachsener: Gemeinsam greifen sie nach Bildkarten, die auf Karton an der Wand befestigt sind. Vorne und seitlich weitere Menschen."
+      },
+      "tabor-pihenes-babzsakon": {
+        "caption": "Ausruhen auf Sitzsäcken",
+        "alt": "Zwei Kinder liegen auf rot-orangen Sitzsäcken auf dem Boden eines großen Saals, ihre Gesichter sind nicht zu sehen. Um sie herum Zeitungen, hinter ihnen Fenster mit blauen Vorhängen."
+      },
+      "noveny-lenyomatok": {
+        "caption": "Pflanzendrucke aus dem Lager",
+        "alt": "Zwei Blätter auf einem grauen Tisch: Drucke von dunkelroten Blättern und Blüten auf orange bemaltem Grund."
+      },
+      "bogrefestes": {
+        "caption": "Tassen bemalen im Lager",
+        "alt": "Zwei Hände an einer weißen Tasse: Eine hält den Henkel, die andere zeichnet mit einem Stift ein graues Muster darauf. Die Tasse hat auch ein rosa Muster."
+      },
+      "tengeri-falikep": {
+        "caption": "Ein Meeresbild aus Kinderarbeiten",
+        "alt": "Vor einem blauen Vorhang ein langes, blau bemaltes Blatt mit ausgeschnittenen Figuren an Schnüren: Fische, ein Krebs, ein Seepferdchen und ein Seestern."
+      },
+      "kezzel-keszult-szivek": {
+        "caption": "Handgemachte Herzen an einem Wohltätigkeitsstand",
+        "alt": "Ein geflochtener Korb voller blauer gehäkelter und genähter Herzen, von einer Hand gehalten. Dahinter in einem anderen Korb blaue Schlüsselanhänger."
+      },
+      "kozosseg-felvonulas": {
+        "caption": "Ein Umzug mit blauen Schals in der Stadt. Foto: Nagy Jácint",
+        "alt": "Ein langer Zug von Menschen mit blauen Schals geht durch eine Straße mit bunten Fassaden, vorne tragen sie ein blaues Schild, daneben spielt ein Akkordeonspieler. Zwei Personen fotografieren vom Gehweg aus."
+      },
+      "kozosseg-kek-feny": {
+        "caption": "Ein blau beleuchtetes Gebäude. Foto: Nagy Jácint",
+        "alt": "Unter bedecktem Himmel ein blau beleuchtetes Hochhaus, davor eine Bronzefigurengruppe. Auf dem Platz vor dem Gebäude unterhalten sich Menschen, mehrere in Blau."
+      },
+      "kozosseg-regisztracio": {
+        "caption": "Anmeldung am langen Tisch",
+        "alt": "An beiden Seiten eines langen Holztisches im Freien beugen sich viele Menschen über Papiere und füllen sie aus, mehrere in blauen T-Shirts. Im Hintergrund reetgedeckte Häuser und Kiefern."
+      },
+      "kozosseg-osszeallitas": {
+        "caption": "Eine Collage von einer gemeinsamen Veranstaltung im Freien",
+        "alt": "Eine Collage aus sechs Bildern: ein Gruppenfoto von Erwachsenen in PontMás-T-Shirts mit einem kleinen Kind unter einem Baum, die Anmeldung an einem langen Tisch, ein Korb mit blauen gehäkelten Herzen, zwei Menschen in blauen T-Shirts, die ein Bein schwingen, der Schriftzug PontMás auf dem Rücken eines T-Shirts und viele Menschen, die auf dem Rasen turnen."
+      }
+    }
+  },
+  "Autism": {
+    "header": {
+      "badge": "Wissen und Orientierung",
+      "title": "Was ist Autismus?",
+      "subtitle": "Autismus ist keine Krankheit, sondern ein anderer Entwicklungsverlauf und eine andere Art der Wahrnehmung. Erfahren Sie fachlich fundiert und doch verständlich, wie das Spektrum funktioniert."
+    },
+    "traits": {
+      "badge": "Hauptbereiche des Spektrums",
+      "title": "Die Vielfalt des Funktionierens",
+      "subtitle": "Keine zwei autistischen Menschen sind gleich: Fähigkeiten, Herausforderungen und Stärken ergeben ein einzigartiges Muster.",
+      "items": [
+        {
+          "title": "Kommunikation und soziale Interaktion",
+          "desc": "Nonverbale Signale, Mimik, Körpersprache oder Metaphern können schwer zu verstehen sein. Typisch ist eine gerade, ehrliche und direkte Kommunikation."
+        },
+        {
+          "title": "Flexibilität und Vorhersehbarkeit",
+          "desc": "Ein gewohnter Tagesablauf, ein visueller Zeitplan und eine strukturierte Umgebung geben Sicherheit. Unerwartete Veränderungen können vorübergehend Anspannung auslösen."
+        },
+        {
+          "title": "Sensorische Empfindlichkeit",
+          "desc": "Sinnesreize (Licht, Geräusche, Berührungen, Texturen) werden individuell verarbeitet; im Spektrum kommen sowohl Über- als auch Unterempfindlichkeit vor."
+        }
+      ]
+    },
+    "myths": {
+      "badge": "Mythen auf dem Prüfstand",
+      "title": "Fakten und Mythen über Autismus",
+      "subtitle": "Vorurteile abzubauen beginnt mit richtigem und genauem Wissen.",
+      "mythLabel": "Mythos",
+      "factLabel": "Fakt",
+      "items": [
+        {
+          "myth": "Autismus ist eine Krankheit, die man heilen kann.",
+          "fact": "Autismus ist keine Krankheit, sondern eine neurologische Entwicklungsbesonderheit. Mit passender früher Förderung und einem unterstützenden Umfeld können sich die Fähigkeiten der Betroffenen entfalten."
+        },
+        {
+          "myth": "Autistische Menschen wollen keine Freundschaften und haben keine Gefühle.",
+          "fact": "Sie sehnen sich sehr nach Verbindung und haben tiefe Gefühle; sie brauchen nur Verständnis dafür, wie soziale Regeln ausgedrückt und verstanden werden."
+        },
+        {
+          "myth": "Alle autistischen Menschen haben außergewöhnliche Fähigkeiten (Savant-Syndrom).",
+          "fact": "Wie alle Menschen haben auch Menschen im Autismus-Spektrum ein individuelles Profil: jede und jeder hat eigene Stärken und Bereiche, in denen Unterstützung nötig ist."
+        },
+        {
+          "myth": "Eine kalte Erziehung verursacht Autismus.",
+          "fact": "Ein wissenschaftlich widerlegter Mythos. Autismus geht auf ein komplexes Zusammenspiel genetischer und biologischer Faktoren zurück und hat nichts mit elterlicher Fürsorge zu tun."
+        }
+      ]
+    },
+    "tips": {
+      "title": "Praktische Tipps für betroffene Eltern",
+      "subtitle": "Aus der fachlichen Erfahrung von PontMás",
+      "items": [
+        "Bleiben Sie nicht allein: Schließen Sie sich der Elterngemeinschaft der PontMás-Stiftung an, wo Sie verständnisvolle Menschen in ähnlicher Lage finden.",
+        "Erkennen Sie die sensorischen Bedürfnisse Ihres Kindes (Gehörschutz, sanftes Licht, bequeme Kleidung).",
+        "Nutzen Sie visuelle Unterstützung: Kommunikation mit Bildern verringert Ängste deutlich.",
+        "Achten Sie jeden Tag auf kleine Erfolge und die eigenen Stärken Ihres Kindes."
+      ]
+    },
+    "faq": {
+      "badge": "Häufige Fragen",
+      "title": "Häufig gestellte Fragen (FAQ)",
+      "subtitle": "Wir haben die häufigsten Fragen gesammelt, von der Diagnose bis zu den Fördermöglichkeiten.",
+      "items": [
+        {
+          "question": "Was sind die frühesten Anzeichen von Autismus im Kleinkindalter?",
+          "answer": "Seltener Blickkontakt, eine verzögerte Reaktion auf den eigenen Namen, fehlende geteilte Aufmerksamkeit (Zeigen), eine stockende Sprachentwicklung sowie wiederholte Bewegungen (z. B. Flattern, Aufreihen) können Gründe sein, eine Fachperson aufzusuchen."
+        },
+        {
+          "question": "Wohin kann ich mich im Komitat Vas für eine diagnostische Abklärung wenden?",
+          "answer": "An den Sachverständigenausschuss des Pädagogischen Fachdienstes des Komitats Vas (Vas Vármegyei Pedagógiai Szakszolgálat) oder, auf Empfehlung der Kinderarztpraxis oder der Gesundheitsfürsorge (védőnő), an eine kinderpsychiatrische Ambulanz. Rufen Sie uns an ({phone}), wir helfen Ihnen gern, sich im Verfahren zurechtzufinden."
+        },
+        {
+          "question": "Wie kann die Familie den Tagesablauf mitgestalten?",
+          "answer": "Visuelle Tagesplankarten (PECS, Tagesstreifen), Vorankündigungen („in 5 Minuten gehen wir los“) und eine reizarme Ruheecke erleichtern nachweislich einen reibungslosen Alltag."
+        },
+        {
+          "question": "Welche Unterstützung bietet die PontMás-Stiftung Eltern?",
+          "answer": "Wir bieten monatliche Elternklubs, fachliche Beratung, Hilfe für Einrichtungen, Sommerlager und in einer außergewöhnlichen Krise direkte finanzielle Unterstützung."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Benötigen Sie weitere offizielle Dokumente oder Erklärungen?",
+      "text": "Sehen Sie sich unsere herunterladbaren Gemeinnützigkeitsberichte an oder nehmen Sie Kontakt mit unseren Fachleuten auf.",
+      "documents": "Dokumente",
+      "contact": "Kontakt aufnehmen"
+    }
+  },
+  "Help": {
+    "meta": {
+      "title": "Wobei wir helfen | PontMás-Stiftung",
+      "description": "Beratung durch Mentoreltern, Hilfe bei der DATA-App, eine Fachbibliothek zum Ausleihen und Orientierung zu Einrichtungen im Komitat Vas (Ungarn).",
+      "ogDescription": "Umfassende Unterstützung für Kinder im Autismus-Spektrum und ihre Familien im Komitat Vas (Ungarn)."
+    },
+    "services": [
+      {
+        "badge": "Elterngemeinschaft",
+        "title": "Beratung durch Mentoreltern",
+        "description": "Sprechen Sie mit einer Mutter oder einem Vater, die oder der ebenfalls ein Kind im Autismus-Spektrum großzieht! Von der Hungarian Autistic Society (AOSZ) geschulte Mentoreltern helfen mit persönlicher Erfahrung und Einfühlungsvermögen Familien, die gerade eine Diagnose erhalten haben oder vor Schwierigkeiten stehen.",
+        "bullets": [
+          "Gespräche mit Menschen in ähnlicher Lage, persönlich und am Telefon",
+          "Praktische Tipps für den Alltag und Bewältigungsstrategien",
+          "Ein vertrauenswürdiges Netzwerk von der AOSZ geschulter Mentoreltern"
+        ],
+        "linkText": "Mentoreltern finden"
+      },
+      {
+        "badge": "Digitale Hilfe",
+        "title": "Hilfe bei der DATA-App",
+        "description": "Die DATA-App (Digitális Autonómia Támogató Alkalmazás, eine App zur Förderung der digitalen Selbstständigkeit) hilft autistischen Menschen, Tagesabläufe, Ablaufpläne und visuelle Unterstützung zu gestalten. In unserem Büro helfen wir beim Herunterladen und Einrichten.",
+        "bullets": [
+          "Installation der App auf Smartphone und Tablet",
+          "Eigene Tagespläne und visuelle Abläufe anlegen",
+          "Praktische Einweisung für Eltern und Lehrkräfte"
+        ],
+        "linkText": "Ich möchte Hilfe bei DATA"
+      },
+      {
+        "badge": "Wissen",
+        "title": "Fachbibliothek im Komitat Vas",
+        "description": "Aus unserer wachsenden Fachbibliothek können betroffene Eltern, Lehrkräfte, Sonderpädagoginnen und -pädagogen sowie Studierende kostenlos autismusspezifische Fachbücher und Fördermaterialien ausleihen.",
+        "bullets": [
+          "Aktuelle ungarische und internationale Fachliteratur",
+          "Förderhefte, visuelle Hilfsmittel und PECS-Materialien",
+          "Kostenlose Ausleihe nach Anmeldung"
+        ],
+        "linkText": "Aus der Bibliothek ausleihen"
+      },
+      {
+        "badge": "Schulwegweiser",
+        "title": "Orientierung zu Einrichtungen und Inklusion",
+        "description": "Wir informieren ausführlich über die Autismus-Versorgung im Komitat Vas, über sonderpädagogische und inklusive Kindergärten, Grund- und weiterführende Schulen sowie über Förderzentren.",
+        "bullets": [
+          "Beratung zur Eingewöhnung in Kindergarten und Schule",
+          "Zusammenarbeit: Aranyhíd EGYMI, Micimackó Óvoda, Grundschule Váci Mihály",
+          "Die Verfahren des Sachverständigenausschusses verstehen"
+        ],
+        "linkText": "Beratung zu Einrichtungen"
+      },
+      {
+        "badge": "Gemeinschaft",
+        "title": "Elternklub und Erlebnistage",
+        "description": "Regelmäßige Treffen des Elternklubs mit Fachleuten (Sonderpädagoginnen und -pädagogen, Psychologinnen und Psychologen) sowie ein jährlicher Familientag im Freilichtmuseum Vasi Skanzen und der Blaue Spaziergang für Akzeptanz.",
+        "bullets": [
+          "Zwangloser Austausch unter Eltern und Fachvorträge",
+          "Sichere, autismusfreundliche Familienprogramme",
+          "Kinderangebote mit geschulten Helferinnen und Helfern"
+        ],
+        "linkText": "Den nächsten Elternklub ansehen"
+      }
+    ],
+    "header": {
+      "badge": "Unsere Angebote und Hilfe",
+      "title": "Sie müssen diesen Weg nicht allein gehen.",
+      "subtitle": "Seit ihrer Gründung im Jahr 2015 setzt sich die PontMás-Stiftung dafür ein, dass Kinder im Autismus-Spektrum im Komitat Vas und ihre Familien in jeder Lebenslage echte, fachkundige und menschliche Unterstützung erhalten.",
+      "services": "Unsere Angebote ansehen",
+      "ask": "Fragen Sie unser Team"
+    },
+    "servicesSection": {
+      "title": "Wobei wir Ihnen und Ihrer Familie helfen",
+      "subtitle": "Umfassende Hilfe vom ersten Verdacht über die Diagnose bis zur schulischen Inklusion und zur Unterstützung im Alltag."
+    },
+    "steps": {
+      "title": "An wen können Sie sich wenden, wenn Sie vermuten, dass Ihr Kind im Autismus-Spektrum ist?",
+      "subtitle": "Ein praktischer Wegweiser für die ersten Schritte der Abklärung und der Suche nach Hilfe.",
+      "items": [
+        {
+          "title": "Kinderarztpraxis und Gesundheitsfürsorge",
+          "text": "Teilen Sie Ihre Beobachtungen zuerst der Kinderarztpraxis oder der Gesundheitsfürsorge (védőnő) mit und bitten Sie um eine Überweisung in die Entwicklungsneurologie oder Kinderpsychiatrie."
+        },
+        {
+          "title": "Pädagogischer Fachdienst und Diagnostik",
+          "text": "Der Sachverständigenausschuss des Pädagogischen Fachdienstes des Komitats Vas führt die pädagogische Diagnostik durch und empfiehlt Fördermaßnahmen."
+        },
+        {
+          "title": "PontMás-Stiftung und AOSZ",
+          "text": "Rufen Sie uns an oder kommen Sie in unseren Elternklub: Sie finden Gemeinschaft, Rat und praktische Hilfe."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Brauchen Sie Hilfe persönlich oder am Telefon?",
+      "text": "Rufen Sie Edina Rumi unter {phone} an oder schreiben Sie uns über unser Online-Formular!",
+      "button": "Kontakt aufnehmen"
+    }
+  },
+  "About": {
+    "values": {
+      "badge": "Unser Kompass",
+      "title": "Unsere Grundwerte und unsere Haltung",
+      "subtitle": "Jede Entscheidung und jedes Programm richtet sich nach dem echten Wohl der betroffenen Kinder und ihrer Familien.",
+      "items": [
+        {
+          "title": "Gezielte und direkte Unterstützung",
+          "desc": "Finanzielle, praktische und methodische Hilfe für autistische Kinder im Komitat Vas, ihre Eltern und ihre Schulen."
+        },
+        {
+          "title": "Eine starke Gemeinschaft",
+          "desc": "Wir stehen täglich mit mehr als 40 Familien in Kontakt. Wir organisieren Elternklubs, Familientage und gemeinsame Programme gegen Isolation."
+        },
+        {
+          "title": "Fachliche Glaubwürdigkeit und AOSZ-Partnerschaft",
+          "desc": "Die gemeinsame Arbeit autismusspezifisch ausgebildeter Sonderpädagoginnen und -pädagogen, Assistenzkräfte und betroffener Eltern sichert aktuelle Methoden."
+        },
+        {
+          "title": "Akzeptanz und Chancengleichheit",
+          "desc": "Mit Bewusstseinsarbeit und Hilfe für Einrichtungen setzen wir uns dafür ein, dass sich jedes Kind nach seinen Fähigkeiten entfalten kann."
+        }
+      ]
+    },
+    "milestones": {
+      "badge": "Unser Weg",
+      "title": "Unsere wichtigsten Meilensteine",
+      "subtitle": "Wie hat sich die PontMás-Stiftung seit ihrer Gründung entwickelt?",
+      "items": [
+        {
+          "ev": "2015",
+          "cim": "Gründung in Szombathely",
+          "leiras": "Betroffene Eltern und Sonderpädagoginnen und -pädagogen gründen die PontMás Vas Megyei Autista Gyermekekért Alapítvány."
+        },
+        {
+          "ev": "2018",
+          "cim": "Ausstattung für Einrichtungen",
+          "leiras": "Die gezielte Versorgung sonderpädagogischer und inklusiver Einrichtungen im Komitat Vas mit Fördermitteln beginnt."
+        },
+        {
+          "ev": "2024+",
+          "cim": "Ein wachsendes Netzwerk",
+          "leiras": "Jährliche Blaue Spaziergänge, Sommerlager zur Förderung von Fähigkeiten und ein dauerhafter Krisenfonds."
+        }
+      ]
+    },
+    "header": {
+      "badge": "Wer sind wir?",
+      "title": "Geschichte und Mission der PontMás-Stiftung",
+      "subtitle": "Seit 2015 bauen wir im Komitat Vas Brücken zwischen Kindern im Autismus-Spektrum, ihren Familien, Fachleuten und der Gesellschaft."
+    },
+    "story": {
+      "title": "Hilfe aus persönlichem Engagement",
+      "p1": "Unsere Stiftung ist aus dem Leben selbst entstanden. Engagierte Eltern und Sonderpädagoginnen und -pädagogen haben sich zusammengetan, die im Alltag erlebt hatten, auf welche Hindernisse ein Kind im Autismus-Spektrum und seine Familie im Komitat Vas stoßen.",
+      "p2": "Wir sind nicht nur eine Verwaltungsorganisation: Wir bauen eine tragende Gemeinschaft auf, in der Eltern ihre Erfahrungen und Sorgen teilen können und Kinder sich in einer sicheren, reizarmen und liebevollen Umgebung entwickeln.",
+      "nationalTitle": "Fachlich landesweit vernetzt",
+      "aosz": "Mitgliedsorganisation der Hungarian Autistic Society (AOSZ)",
+      "board": "Den Vorsitz des Kuratoriums führt <b>Edit Pohánka</b>, zugleich <b>im Amt der Vizepräsidentschaft der Hungarian Autistic Society (AOSZ)</b>, des ungarischen Autismus-Dachverbands. Diese Position und der anerkannte fachliche Hintergrund sorgen dafür, dass unsere Stiftung die Gemeinschaft im Komitat Vas nach den landesweiten Leitlinien und den modernsten Methoden unterstützt."
+    },
+    "facts": {
+      "title": "Glaubwürdigkeit der Organisation",
+      "org": "PontMás-Stiftung",
+      "registeredLabel": "Eingetragen:",
+      "registered": "08.09.2015",
+      "taxLabel": "Steuernummer:",
+      "activityLabel": "Haupttätigkeit:",
+      "activity": "Sonstiges Sozialwesen ohne Unterbringung (TEÁOR 8899)",
+      "seatLabel": "Sitz:",
+      "support": "Unterstützen Sie unsere Stiftung"
+    },
+    "cta": {
+      "title": "Werden Sie Teil unserer Gemeinschaft!",
+      "text": "Ob Sie als betroffene Eltern, als Fachperson oder als Unterstützerin oder Unterstützer zu uns kommen: Wir freuen uns auf Ihre Nachricht.",
+      "contact": "Kontakt aufnehmen",
+      "support": "Möglichkeiten der Unterstützung"
+    }
+  },
+  "Press": {
+    "meta": {
+      "title": "Presse | PontMás-Stiftung",
+      "description": "Artikel, Berichte, Interviews und Dankschreiben über die Arbeit der PontMás-Stiftung und die Autismus-Gemeinschaft im Komitat Vas (Ungarn).",
+      "ogTitle": "Presse | PontMás-Stiftung",
+      "ogDescription": "Presseartikel, Anerkennungen und persönliche Geschichten über die Arbeit der PontMás-Stiftung."
+    },
+    "articles": [
+      {
+        "badge": "Pressemeldung • VAOL / Vas Népe",
+        "title": "Szombathely in Blau – Spaziergang und Aufmerksamkeit am Welt-Autismus-Tag",
+        "date": "April 2024",
+        "summary": "Mit mehreren hundert Teilnehmenden, betroffenen Familien und Unterstützenden veranstaltete die PontMás-Stiftung zum Welt-Autismus-Tag den Blauen Spaziergang in Szombathely. Die blaue Beleuchtung des Rathauses und des Hauptplatzes stand für Solidarität und gesellschaftliche Akzeptanz.",
+        "quote": "„Unser Ziel ist, dass die Gesellschaft Menschen im Autismus-Spektrum nicht mit Angst oder Distanz, sondern mit Offenheit und Verständnis begegnet.“",
+        "source": "Nachrichtenportal des Komitats Vas (VAOL)"
+      },
+      {
+        "badge": "Rückmeldung von Eltern • Dank",
+        "title": "„Der Elternklub gab uns Kraft und Halt bei der Inklusion im Kindergarten“",
+        "date": "Oktober 2024",
+        "summary": "Der bewegende Brief einer Mutter aus Szombathely darüber, wie der Elternklub der PontMás-Stiftung und der Rat ausgebildeter Sonderpädagoginnen und -pädagogen ihrem kleinen Sohn halfen, im örtlichen Kindergarten ohne Schwierigkeiten in das Gemeinschaftsleben zu starten.",
+        "quote": "„Als wir die Diagnose bekamen, fühlten wir uns isoliert. Die PontMás-Gemeinschaft hat nicht nur jede unserer Fragen fachlich beantwortet, wir haben auch echte Sicherheit und Freunde gefunden.“",
+        "source": "Bericht betroffener Eltern"
+      },
+      {
+        "badge": "Bericht • Szombathelyer Fernsehen",
+        "title": "Die PontMás-Stiftung finanzierte eine akkreditierte sonderpädagogische Fortbildung",
+        "date": "Juni 2024",
+        "summary": "Dank der kommunalen Förderung der Stadt Szombathely konnten 13 Sonderpädagoginnen und -pädagogen sowie Assistenzkräfte aus Szombathely an der 30-stündigen Fortbildung der Autizmus Alapítvány (einer Autismus-Stiftung) teilnehmen, zu 100 % von unserer Stiftung finanziert.",
+        "quote": "„Die beste Investition in die Zukunft unserer Kinder ist, dass die Lehrkräfte, die täglich mit ihnen arbeiten, über die modernsten autismusspezifischen Methoden verfügen.“",
+        "source": "SZTV-Nachrichten und Bericht der Stadt"
+      },
+      {
+        "badge": "Erlebnisbericht • Vasi Skanzen",
+        "title": "Familientag und Elternklub im Freilichtmuseum Vasi Skanzen – Gemeinschaft und neue Kraft",
+        "date": "September 2024",
+        "summary": "Am traditionellen Familientag im Herbst erwarteten die Kinder Bastelangebote, Töpfern, Kegeln und ein von Sonderpädagoginnen und -pädagogen begleiteter Hindernisparcours, während die Eltern in einer von einer psychologischen Fachkraft geleiteten Selbsthilfegruppe ihre Erfahrungen teilten.",
+        "quote": "„Die Kinder konnten frei und ohne Anspannung sie selbst sein, und wir Eltern konnten erleichtert über die Herausforderungen des Alltags sprechen.“",
+        "source": "Chronik der PontMás-Stiftung"
+      },
+      {
+        "badge": "Dank einer Einrichtung • Aranyhíd EGYMI",
+        "title": "Neue Fördermittel und ein spezieller Bibliotheksbestand für autistische Schülerinnen und Schüler",
+        "date": "Mai 2024",
+        "summary": "Sonderpädagoginnen und -pädagogen örtlicher Partnereinrichtungen dankten der PontMás-Stiftung für die gespendeten visuellen Tagesplanhilfen, sensorischen Förderspiele und die wachsende Fachbibliothek.",
+        "quote": "„Ohne die Unterstützung der Stiftung wäre es viel schwerer, unseren Schülerinnen und Schülern eine differenzierte, individuelle Förderung zu bieten.“",
+        "source": "Pädagogische Arbeitsgemeinschaft"
+      }
+    ],
+    "header": {
+      "badge": "Medien, Presse und Anerkennung",
+      "title": "Presse und Stimmen aus der Gemeinschaft",
+      "subtitle": "Wir möchten unsere Arbeit und den Alltag von Kindern im Autismus-Spektrum möglichst breit zeigen, damit die Gesellschaft sie mit Verständnis und unterstützender Wärme annimmt."
+    },
+    "list": {
+      "title": "Presseberichte, Reportagen und Dankschreiben von Eltern",
+      "subtitle": "Wir haben die wichtigsten Medienberichte, Fernsehbeiträge und persönlichen Geschichten der letzten Jahre gesammelt.",
+      "source": "Quelle: {source}"
+    },
+    "cta": {
+      "title": "Haben Sie eine Presseanfrage oder möchten Sie Ihre eigene Geschichte teilen?",
+      "text": "Wir stehen Journalistinnen und Journalisten, Medien und betroffenen Familien gern für Interviews, Artikel und Fachgespräche zur Verfügung.",
+      "contact": "Kontakt aufnehmen",
+      "about": "Über unsere Stiftung"
+    }
+  },
+  "Documents": {
+    "meta": {
+      "title": "Dokumente und Förderprojekte | PontMás-Stiftung",
+      "description": "Die offizielle Gründungsurkunde, Gemeinnützigkeitsberichte, der Datenschutzhinweis und die kommunalen Förderabrechnungen der PontMás-Stiftung.",
+      "ogDescription": "Offizielle Transparenzdokumente und Förderprojekte."
+    },
+    "docs": [
+      {
+        "title": "Gründungsurkunde und Beschlüsse",
+        "category": "Gründungsdokument",
+        "date": "Registernummer: {registrationNumber}",
+        "description": "Die offizielle Gründungsurkunde der PontMás Vas Megyei Autista Gyermekekért Alapítvány, ihre Ziele und die Geschäftsordnung des Kuratoriums."
+      },
+      {
+        "title": "Datenschutzhinweis (DSGVO)",
+        "category": "Datenschutz",
+        "date": "Auf dieser Website zu lesen",
+        "description": "Informationen zum rechtmäßigen Umgang mit den Daten der Website-Besucher, der Personen, die das Kontaktformular ausfüllen, und der betroffenen Familien."
+      },
+      {
+        "title": "Gemeinnützigkeits- und Finanzbericht 2023",
+        "category": "Gemeinnützigkeitsbericht",
+        "date": "Angenommen: Mai 2024",
+        "description": "Eine ausführliche Bilanz und Ergebnisrechnung über die erhaltenen 1-%-Widmungen und die Finanzierung unserer Programme."
+      },
+      {
+        "title": "Gemeinnützigkeits- und Tätigkeitsbericht 2022",
+        "category": "Gemeinnützigkeitsbericht",
+        "date": "Angenommen: Mai 2023",
+        "description": "Eine jährliche Zusammenfassung zum Blauen Spaziergang, zu den Sommerlagern und den Elternklubs und zu ihren Finanzen."
+      }
+    ],
+    "grants": [
+      {
+        "title": "Kommunale Förderung der Stadt Szombathely – Fortbildungen für Lehrkräfte",
+        "badge": "Abgeschlossenes Förderprojekt",
+        "grantAmount": "Fördersumme 800.000 HUF",
+        "description": "Akkreditierte Fortbildung der Autizmus Alapítvány (einer Autismus-Stiftung) für 13 Sonderpädagoginnen und -pädagogen sowie Assistenzkräfte von Einrichtungen in Szombathely (Aranyhíd EGYMI, Micimackó Óvoda, Grundschule Váci Mihály): ein 30-stündiger Grundkurs und ein Kurs zur sozialen Kommunikation.",
+        "details": [
+          "Zeitraum: April – Mai 2024",
+          "Insgesamt finanzierte Fortbildungskosten: 715.000 HUF (100 % gefördert)",
+          "Fördergeber: Stadtverwaltung Szombathely"
+        ]
+      },
+      {
+        "title": "Städtischer Zivilfonds – Familientag und Entwicklung des Elternklubs",
+        "badge": "Gemeinschaftsförderung",
+        "grantAmount": "Gemeinschaftliche und fachliche Mittel",
+        "description": "Organisation des jährlichen Familientags im Freilichtmuseum Vasi Skanzen mit Töpfern und Förderangeboten für Kinder sowie einer von einer psychologischen Fachkraft geleiteten Unterstützung für Eltern.",
+        "details": [
+          "Durchgeführt: September 2024",
+          "Ort: Freilichtmuseum Vasi Skanzen, Szombathely",
+          "Teilnehmende: mehrere Dutzend betroffene Familien aus dem Komitat Vas"
+        ]
+      }
+    ],
+    "header": {
+      "badge": "Transparenz und Glaubwürdigkeit",
+      "title": "Dokumente und offizielle Förderprojekte",
+      "subtitle": "Transparenz und gesellschaftliche Verantwortung sind die Grundlage unserer Arbeit. Hier finden Sie unsere offiziellen Dokumente, Gemeinnützigkeitsberichte und Förderabrechnungen."
+    },
+    "official": {
+      "title": "Offizielle Dokumente und Jahresberichte",
+      "subtitle": "Wir erfüllen alle gesetzlichen und gemeinnützigkeitsrechtlichen Anforderungen vollständig.",
+      "onSite": "Auf dieser Website zu lesen",
+      "open": "Öffnen",
+      "pdf": "Offizielles PDF-Dokument"
+    },
+    "grantSection": {
+      "title": "Abgeschlossene Förderprojekte und Abrechnungen",
+      "subtitle": "Erfahren Sie mehr darüber, wie die erhaltene Förderung verwendet wird."
+    },
+    "cta": {
+      "title": "Suchen Sie weitere offizielle Informationen?",
+      "text": "Mit Fragen oder Vorschlägen zur fachlichen Zusammenarbeit wenden Sie sich gern telefonisch ({phone}) oder über unser Kontaktformular an uns!",
+      "button": "Kontakt aufnehmen"
+    }
+  },
+  "Donation": {
+    "steps": [
+      {
+        "szam": "01",
+        "cim": "Bei eSZJA anmelden",
+        "leiras": "Melden Sie sich bis zum 20. Mai mit Ihrem Ügyfélkapu-Zugang (Kundenportal) beim Online-Dienst der ungarischen Steuerbehörde NAV an (eszja.nav.gov.hu)."
+      },
+      {
+        "szam": "02",
+        "cim": "Die Erklärung öffnen",
+        "leiras": "Klicken Sie beim Bestätigen des Steuererklärungsentwurfs oder unabhängig davon auf das Ausfüllen der „1+1-%-Erklärung“."
+      },
+      {
+        "szam": "03",
+        "cim": "Unsere Steuernummer eingeben",
+        "leiras": "Kopieren Sie diese Steuernummer in das Feld für die Steuernummer der begünstigten Organisation: {taxNumber} ({shortName})."
+      },
+      {
+        "szam": "04",
+        "cim": "Abschließen und absenden",
+        "leiras": "Speichern Sie die Erklärung: Damit unterstützen Sie ohne zusätzliche Kosten autistische Kinder im Komitat Vas."
+      }
+    ],
+    "header": {
+      "badge": "Spendenzentrum",
+      "title": "Unterstützen Sie unsere Arbeit – jede Hilfe zählt!",
+      "subtitle": "Ihre Unterstützung fließt direkt in die Förderung von Kindern im Autismus-Spektrum im Komitat Vas, in den Zusammenhalt der Elterngemeinschaft und in die Hilfe für Familien in Krisen."
+    },
+    "tax": {
+      "popular": "Am beliebtesten",
+      "title": "1 % der Einkommensteuer",
+      "text": "Wenn Sie in Ungarn Einkommensteuer zahlen, widmen Sie 1 % davon bis zum 20. Mai! Es kostet Sie nichts und gibt uns grundlegende Sicherheit für unsere Arbeit.",
+      "label": "Unsere Steuernummer"
+    },
+    "bank": {
+      "title": "Überweisung und Spende",
+      "text": "Mit einer einmaligen oder regelmäßigen Überweisung helfen Sie sofort unserem Krisenfonds sowie der Finanzierung der Sommerlager und der Fördermittel für Einrichtungen. Eine Überweisung ist von überall möglich.",
+      "label": "Bankkonto ({bank})",
+      "reference": "Verwendungszweck: Adomány (Spende)"
+    },
+    "csr": {
+      "title": "Für Unternehmen: CSR und Partnerschaft",
+      "text": "Für Unternehmensspenden stellen wir eine offizielle Bescheinigung aus, mit der ein Unternehmen in Ungarn eine Körperschaftsteuerermäßigung geltend machen kann. Auch das Sponsoring einer bestimmten Veranstaltung ist möglich.",
+      "button": "Kontakt für Unternehmen"
+    },
+    "guide": {
+      "badge": "Anleitung",
+      "title": "So widmen Sie die <nowrap>1 %</nowrap> in 4 einfachen Schritten",
+      "subtitle": "Für Personen, die in Ungarn Einkommensteuer zahlen. Es dauert über eSZJA oder über Ihren Arbeitgeber nicht länger als 2 Minuten."
+    },
+    "transparency": {
+      "badge": "100 % Transparenz",
+      "title": "Wofür verwenden wir die Spenden?",
+      "text": "Unsere Stiftung legt über die Verwendung jedes Forints einen ausführlichen Gemeinnützigkeitsbericht vor, der in unserer Dokumentensammlung öffentlich zugänglich ist.",
+      "reports": "Berichte ansehen",
+      "ask": "Fragen? Schreiben Sie uns"
+    }
+  },
+  "Contact": {
+    "header": {
+      "badge": "Kontakt",
+      "title": "Nehmen Sie Kontakt mit uns auf!",
+      "subtitle": "Wenden Sie sich mit Ihren Fragen oder Ihrem Beratungswunsch vertrauensvoll an uns: Rufen Sie uns an oder schreiben Sie uns über das Formular."
+    },
+    "seat": "Sitz und Adresse",
+    "person": "Kontaktperson",
+    "group": "Gemeinschaftsgruppe",
+    "facebook": "Unsere geschlossene Facebook-Gruppe"
+  },
+  "News": {
+    "meta": {
+      "title": "Neuigkeiten | PontMás-Stiftung",
+      "description": "Die neuesten Nachrichten der PontMás-Stiftung: Einladungen zum Elternklub, Berichte vom Familientag und Fortbildungen.",
+      "ogDescription": "Erfahren Sie mehr über die neuesten Veranstaltungen, Programme und Nachrichten der PontMás-Stiftung."
+    },
+    "header": {
+      "badge": "Neuigkeiten und Veranstaltungen",
+      "title": "Gemeinschaftsleben, Programme und Fachnachrichten",
+      "subtitle": "Verfolgen Sie die neuesten Veranstaltungen, Elternklubs, fachlichen Förderprogramme und Erlebnisberichte der PontMás-Stiftung!"
+    },
+    "more": {
+      "title": "Weitere Nachrichten und Berichte",
+      "subtitle": "Lernen Sie die neuesten Veranstaltungen und fachlichen Tätigkeiten der Stiftung kennen."
+    },
+    "cta": {
+      "title": "Möchten Sie unsere Arbeit ehrenamtlich unterstützen?",
+      "text": "Ob bei Veranstaltungen, Kinderangeboten, Elternklubs oder in der Online-Kommunikation: Über jede helfende Hand und jeden guten Willen freuen wir uns sehr!",
+      "label": "Machen Sie mit",
+      "button": "Ich möchte ehrenamtlich helfen"
+    }
+  },
+  "Programs": {
+    "institutions": [
+      {
+        "nev": "Aranyhíd EGYMI (Szombathely)",
+        "reszlet": "Unterstützung bei sonderpädagogischen Fördermitteln und bei der Ausstattung von Sinnesräumen."
+      },
+      {
+        "nev": "Micimackó Óvoda, Kindergarten (Szombathely)",
+        "reszlet": "Autismusspezifische Spiele zur Frühförderung und visuelle Hilfsmittel."
+      },
+      {
+        "nev": "Pädagogischer Fachdienst des Komitats Vas (Vas Vármegyei Pedagógiai Szakszolgálat)",
+        "reszlet": "Fachliche Zusammenarbeit und Unterstützung von Diagnostik und Beratung."
+      },
+      {
+        "nev": "Inklusive Grund- und weiterführende Schulen",
+        "reszlet": "Methodische Hilfe und Sensibilisierungsvorträge für Lehrkräfte und Klassen."
+      }
+    ],
+    "header": {
+      "badge": "Veranstaltungen und Initiativen",
+      "title": "Unsere Programme und Veranstaltungen",
+      "subtitle": "Wir stiften Gemeinschaft, schaffen Erlebnisse und unterstützen Einrichtungen im Komitat Vas. Lernen Sie unsere wichtigsten jährlichen Initiativen kennen!"
+    },
+    "support": {
+      "badge": "Zusammenarbeit",
+      "title": "Unterstützte Einrichtungen im Komitat Vas",
+      "subtitle": "Wir helfen nicht nur direkt den Familien, sondern auch den Einrichtungen, in denen die Kinder ihren Alltag verbringen.",
+      "askTitle": "Möchten Sie, dass auch Ihre Einrichtung Unterstützung erhält?",
+      "askText": "Nehmen Sie Kontakt mit uns auf, um konkrete fachliche Bedarfe, Anschaffungen und Sensibilisierungstrainings abzustimmen.",
+      "askButton": "Anfrage für Einrichtungen"
+    },
+    "cta": {
+      "title": "Helfen Sie, unsere Programme zu verwirklichen!",
+      "text": "Mit 1 % Ihrer Einkommensteuer (wenn Sie in Ungarn steuerpflichtig sind) oder mit einer direkten Spende tragen Sie dazu bei, die Lager, den Blauen Spaziergang und die Elternklubs zu organisieren.",
+      "button": "So unterstützen Sie uns (1 %)"
+    }
+  },
+  "Legal": {
+    "draftTitle": "Entwurf: Dieser Text ist noch nicht in Kraft.",
+    "draftText": "Die hervorgehobenen Punkte müssen von der Stiftung und ihrer Rechtsberatung genehmigt werden. [JOGI ÁTNÉZÉS] kennzeichnet Formulierungen in rechtlicher Prüfung, [KÉRDÉS] fehlende Angaben.",
+    "languageNote": "Dieser Hinweis ist nur auf Ungarisch verfügbar; maßgeblich ist der ungarische Text."
+  },
+  "Privacy": {
+    "meta": {
+      "title": "Datenschutzhinweis | PontMás-Stiftung",
+      "description": "Wie die PontMás-Stiftung die personenbezogenen Daten der Website-Besucher und der Personen verarbeitet, die das Kontaktformular ausfüllen."
+    },
+    "header": {
+      "badge": "Datenschutz",
+      "title": "Datenschutzhinweis",
+      "subtitle": "Welche Daten wir verarbeiten, warum, wie lange und welche Rechte Sie haben."
+    }
+  },
+  "Imprint": {
+    "meta": {
+      "title": "Impressum | PontMás-Stiftung",
+      "description": "Angaben zum Betreiber und zum Hosting-Anbieter der Website pontmas.hu."
+    },
+    "header": {
+      "badge": "Rechtliche Angaben",
+      "title": "Impressum"
+    }
+  },
+  "LanguageSwitcher": {
+    "label": "Sprache wählen",
+    "current": "Aktuelle Sprache: {language}",
+    "names": {
+      "hu": "Magyar",
+      "en": "English",
+      "de": "Deutsch"
+    }
   }
 }

@@ -12,7 +12,6 @@
   },
   "Header": {
     "tagline": "Vas Megyei Alapítvány",
-    "language": "Nyelv",
     "nav": {
       "home": "Kezdőlap",
       "autism": "Autizmusról",
@@ -145,5 +144,738 @@
     "send": "Küldés",
     "sending": "Válasz készül…",
     "privacy": "Adatkezelési tájékoztató"
+  },
+  "Home": {
+    "stats": [
+      {
+        "value": "2015 óta",
+        "label": "Segítjük a családokat"
+      },
+      {
+        "value": "40+",
+        "label": "Érintett család hálózatunkban"
+      },
+      {
+        "value": "AOSZ",
+        "label": "Országos szövetségi alelnökség"
+      }
+    ],
+    "heroTitle": "Közösen egy megértőbb, <br></br><accent>támogatóbb világért</accent>",
+    "heroText": "Autizmussal élő gyermekek, családjaik és oktatási intézmények sokoldalú támogatása Vas vármegyében. Szakértelem, közösség és valódi segítség 2015 óta.",
+    "ctaSupport": "Támogassa munkánkat (1%)",
+    "ctaAutism": "Mi az az autizmus?",
+    "mission": {
+      "badge": "Küldetésünk és tevékenységeink",
+      "title": "Hogyan segítünk a mindennapokban?",
+      "subtitle": "Összetett támogatási rendszert működtetünk, amely a gyermekektől a szülőkön át az intézményekig minden érintettre kiterjed."
+    },
+    "pillars": {
+      "community": {
+        "title": "Közösségépítés",
+        "text": "Szülőklubok, Kék séták és képességfejlesztő nyári táborok, ahol az érintett családok megértő és biztonságos közegben kapcsolódhatnak.",
+        "link": "Eseményeink"
+      },
+      "awareness": {
+        "title": "Szemléletformálás",
+        "text": "Edukációs anyagok, tájékoztatók és rendezvények az autizmus társadalmi megértésének és elfogadásának növeléséért.",
+        "link": "Tudástár"
+      },
+      "institutions": {
+        "title": "Intézményi segítség",
+        "text": "Vas vármegyei autizmus-specifikus és integráló iskolák, óvodák támogatása speciális fejlesztőeszközökkel.",
+        "link": "Támogatottak"
+      },
+      "crisis": {
+        "title": "Krízis Alap",
+        "text": "Célzott anyagi és eszközbeli gyorssegély a váratlanul nehéz élethelyzetbe került érintett családok számára.",
+        "link": "Támogatás"
+      }
+    },
+    "donation": {
+      "eyebrow": "Rendelkezzen adója 1%-áról!",
+      "title": "Egyetlen kattintás az Ön részéről, óriási segítség a családoknak",
+      "text": "A személyi jövedelemadó 1%-ának felajánlása Önnek semmibe sem kerül, de számunkra a táborok, a szülőklubok és a krízis alap biztonságos működését jelenti.",
+      "more": "Minden támogatási lehetőség megtekintése",
+      "dataTitle": "PontMás Alapítvány Adatok",
+      "taxLabel": "Adószám (adó 1%)",
+      "taxSub": "Kattintson az adószám vágólapra másolásához",
+      "bankLabel": "Bankszámlaszám ({bank})",
+      "bankSub": "Közvetlen banki átutaláshoz"
+    },
+    "cta": {
+      "title": "Kérdése van, vagy segítségre van szüksége?",
+      "text": "Hívjon minket telefonon, vagy írjon nekünk közvetlenül üzenetet.",
+      "button": "Kapcsolatfelvétel"
+    }
+  },
+  "Common": {
+    "learnMore": "Tudjon meg többet",
+    "copy": "Másolás",
+    "copied": "Másolva!",
+    "copyTitle": "Kattintson a másoláshoz",
+    "comingSoon": "Hamarosan elérhető"
+  },
+  "Cards": {
+    "nextParentClub": "Legközelebbi Szülőklub",
+    "place": "Helyszín:",
+    "speaker": "Előadó:",
+    "topics": "Főbb témák és program:",
+    "googleForm": "Google-űrlap megnyitása",
+    "features": "Főbb jellemzők:",
+    "enquire": "Érdeklődés és részletek",
+    "huOnly": "A hírek és a programok csak magyarul jelennek meg."
+  },
+  "ProgramFilter": {
+    "label": "Programkategóriák",
+    "all": "Összes program",
+    "event": "Kiemelt események",
+    "camp": "Nyári táborok",
+    "family": "Szülőklub és családok"
+  },
+  "Gallery": {
+    "badge": "Képek",
+    "camp": {
+      "title": "A nyári táborból",
+      "subtitle": "Játék, közös munka és pihenés a táborban."
+    },
+    "works": {
+      "title": "Kézzel készült munkák",
+      "subtitle": "Néhány pillanat a nyári táborokból és egy jótékonysági standról."
+    },
+    "community": {
+      "title": "A közösségünk képekben",
+      "subtitle": "Néhány pillanat közös eseményekről."
+    },
+    "photos": {
+      "tabor-korjatek": {
+        "caption": "Közös játék körben",
+        "alt": "Felnőttek és gyerekek ülnek körben a fekete padlón, kezüket maguk elé teszik. Mögöttük karikák, labdák és kék függöny."
+      },
+      "tabor-vaszontaska-az-asztalnal": {
+        "caption": "Vászontáska és lapok az asztalnál",
+        "alt": "Egy gyerek kék pólóban asztalnál ül, előtte vászontáska és egy lap. Mellette felnőttek: egyikük a táskát fogja, másikuk nevet, egy PontMás-pólós a kamerába néz."
+      },
+      "tabor-tal-folott": {
+        "caption": "Kézzel dolgozva, egy tál fölött",
+        "alt": "Egy gyerek oldalról, fehér trikóban, fém tál fölött tartja a kezét, a tálban barna, morzsás massza. A háttérben kék függöny és a tengeri falikép."
+      },
+      "tabor-rajzolt-arcok": {
+        "caption": "Rajzolt arcok az asztalon, közös beszélgetés",
+        "alt": "Hosszú asztalnál felnőttek és gyerekek beszélgetnek. Az asztalon lapok, mindegyiken egy rajzolt arc más-más arckifejezéssel. Az egyik gyerek kék babzsákot tart."
+      },
+      "tabor-kepkartyak-a-falon": {
+        "caption": "Képkártyák a falon",
+        "alt": "Egy gyerek hátulról, mellette egy felnőtt guggol: együtt nyúlnak a falra tett, kartonra tűzött képkártyákhoz. Elöl és oldalt további emberek."
+      },
+      "tabor-pihenes-babzsakon": {
+        "caption": "Pihenő babzsákokon",
+        "alt": "Két gyerek fekszik piros-narancs babzsákokon egy tágas terem padlóján, arcuk nem látszik. Körülöttük újságok, mögöttük kék függönyös ablakok."
+      },
+      "noveny-lenyomatok": {
+        "caption": "Növénylenyomatok a táborból",
+        "alt": "Két lap szürke asztalon: narancssárgára festett alapon sötétvörös levelek és virágok lenyomata."
+      },
+      "bogrefestes": {
+        "caption": "Bögrefestés a táborban",
+        "alt": "Két kéz egy fehér bögrénél: az egyik a bögre fülét fogja, a másik tollal szürke mintát rajzol rá. A bögrén rózsaszín minta is van."
+      },
+      "tengeri-falikep": {
+        "caption": "Tengeri falikép gyerekmunkákból",
+        "alt": "Kék függöny előtt kékre festett, hosszú lap, rajta zsinóron lógó, kivágott figurák: halak, rák, csikóhal és tengeri csillag."
+      },
+      "kezzel-keszult-szivek": {
+        "caption": "Kézzel készült szívek egy jótékonysági standon",
+        "alt": "Fonott kosár tele kék horgolt és varrott szívekkel, a kosarat egy kéz tartja. Mögötte egy másik kosárban kék kulcstartók."
+      },
+      "kozosseg-felvonulas": {
+        "caption": "Kék sálas felvonulás a városban. Fotó: Nagy Jácint",
+        "alt": "Kék sálas emberek hosszú menete halad egy színes homlokzatú utcán, elöl kék táblát visznek, mellettük harmonikás zenél. A járdáról ketten fényképeznek."
+      },
+      "kozosseg-kek-feny": {
+        "caption": "Kék fénnyel megvilágított épület. Fotó: Nagy Jácint",
+        "alt": "Borús ég alatt kék fénnyel megvilágított toronyház, előtte bronz szoborcsoport. Az épület előtti téren emberek beszélgetnek, többen kék ruhában."
+      },
+      "kozosseg-regisztracio": {
+        "caption": "Jelentkezés a hosszú asztalnál",
+        "alt": "Szabadban álló hosszú faasztal két oldalán sokan hajolnak papírok fölé és töltik ki azokat, többen kék pólóban. A háttérben nádfedeles házak és fenyők."
+      },
+      "kozosseg-osszeallitas": {
+        "caption": "Összeállítás egy szabadtéri közös programról",
+        "alt": "Hat képből álló összeállítás: PontMás-pólós felnőttek és egy kisgyerek csoportképe egy fa alatt, jelentkezés hosszú asztalnál, kosár kék horgolt szívekkel, két kék pólós ember lendíti a lábát, egy póló hátán a PontMás felirat, és sokan tornáznak a füvön."
+      }
+    }
+  },
+  "Autism": {
+    "header": {
+      "badge": "Tudástár és útmutató",
+      "title": "Mi az az autizmus?",
+      "subtitle": "Az autizmus nem betegség, hanem egy eltérő fejlődésmenet és észlelési sajátosság. Ismerje meg a spektrum működését szakmai, mégis közérthető formában."
+    },
+    "traits": {
+      "badge": "A spektrum fő területei",
+      "title": "A működés sokszínűsége",
+      "subtitle": "Nincs két egyforma autista ember: a képességek, kihívások és erősségek kombinációja egyedi mintázatot alkot.",
+      "items": [
+        {
+          "title": "Kommunikáció és szociális interakció",
+          "desc": "Nehézséget okozhat a nonverbális jelzések, a mimika, a testbeszéd vagy a metaforák megértése. Jellemző az egyenes, őszinte és közvetlen kommunikáció."
+        },
+        {
+          "title": "Rugalmasság és kiszámíthatóság",
+          "desc": "A megszokott napirend, a vizuális időrend és a strukturált környezet biztonságot nyújt. A váratlan változások átmeneti feszültséget kelthetnek."
+        },
+        {
+          "title": "Szenzoros érzékenység",
+          "desc": "Az érzékszervi ingerek (fények, zajok, érintések, textúrák) feldolgozása egyedi; hiper- vagy hiposzenzitivitás is előfordul a spektrumon."
+        }
+      ]
+    },
+    "myths": {
+      "badge": "Tévhitoszlató",
+      "title": "Tények és tévhitek az autizmusról",
+      "subtitle": "A társadalmi előítéletek lebontása a helyes és pontos ismeretek átadásával kezdődik.",
+      "mythLabel": "Tévhit",
+      "factLabel": "Tény",
+      "items": [
+        {
+          "myth": "Az autizmus egy betegség, amelyből ki lehet gyógyulni.",
+          "fact": "Az autizmus nem betegség, hanem idegrendszeri fejlődési sajátosság. Megfelelő korai fejlesztéssel és támogató közeggel az érintettek képességei kibontakoztathatók."
+        },
+        {
+          "myth": "Az autista emberek nem akarnak barátkozni és nincsenek érzéseik.",
+          "fact": "Nagyon is vágynak a kapcsolódásra és mély érzéseik vannak; csupán a szociális szabályok kifejezése és értelmezése terén igényelnek megértést."
+        },
+        {
+          "myth": "Minden autista zseniális képességekkel rendelkezik (Savant-szindróma).",
+          "fact": "Mint minden ember, az autizmussal élők is egyedi profilúak: mindenkinek megvannak az egyéni erősségei és a támogatást igénylő területei."
+        },
+        {
+          "myth": "A rideg szülői nevelés okozza az autizmust.",
+          "fact": "Tudományosan megdöntött tévhit. Az autizmus genetikai és biológiai tényezők összetett hátterére vezethető vissza, semmi köze a szülői gondoskodáshoz."
+        }
+      ]
+    },
+    "tips": {
+      "title": "Gyakorlati tanácsok érintett szülőknek",
+      "subtitle": "A PontMás szakmai tapasztalatai alapján",
+      "items": [
+        "Ne maradjon egyedül: csatlakozzon a PontMás Alapítvány szülői közösségéhez, ahol megértő sorstársakra talál.",
+        "Azonosítsa gyermeke szenzoros igényeit (zajszűrő fülvédő, lágy fények, kényelmes ruházat).",
+        "Alkalmazzon vizuális segítséget: a képekkel támogatott kommunikáció jelentősen csökkenti a szorongást.",
+        "Fókuszáljon a kis sikerekre és a gyermek egyedi erősségeire minden nap."
+      ]
+    },
+    "faq": {
+      "badge": "Gyakori kérdések",
+      "title": "Gyakran ismételt kérdések (FAQ)",
+      "subtitle": "Összegyűjtöttük a leggyakrabban felmerülő kérdéseket a diagnózistól a fejlesztési lehetőségekig.",
+      "items": [
+        {
+          "question": "Mik az autizmus legkorábbi jelei kisgyermekkorban?",
+          "answer": "A szemkontaktus tartásának ritkasága, a névre való válaszadás késése, a közös figyelem (mutatás) elmaradása, a beszédfejlődés megakadása, valamint az ismétlődő mozgások (pl. repkedés, sorba rendezés) adhatnak okot szakember felkeresésére."
+        },
+        {
+          "question": "Hová fordulhatok Vas vármegyében diagnosztikai vizsgálatért?",
+          "answer": "A Vas Vármegyei Pedagógiai Szakszolgálat Szakértői Bizottságához, illetve a gyermekorvos vagy védőnő javaslatára gyermekpszichiátriai szakrendelésre. Telefonon ({phone}) készséggel segítünk eligazodni az eljárásban."
+        },
+        {
+          "question": "Hogyan segíthet a család a mindennapi napirend kialakításában?",
+          "answer": "Vizuális napirendkártyák (PECS, napirendi sávok), előrejelzések ('5 perc múlva indulunk') és ingerszegény pihenősarok kialakítása bizonyítottan megkönnyíti a zökkenőmentes hétköznapokat."
+        },
+        {
+          "question": "Milyen támogatást nyújt a PontMás Alapítvány a szülőknek?",
+          "answer": "Havi szülőklubokat, szakértői tanácsadást, intézményi segítségnyújtást, nyári táborokat és rendkívüli krízishelyzet esetén közvetlen anyagi támogatást biztosítunk."
+        }
+      ]
+    },
+    "cta": {
+      "title": "További hivatalos dokumentumokra és nyilatkozatokra van szüksége?",
+      "text": "Tekintse meg letölthető közhasznúsági beszámolóinkat, vagy vegye fel a kapcsolatot szakértőinkkel.",
+      "documents": "Dokumentumtár",
+      "contact": "Kapcsolatfelvétel"
+    }
+  },
+  "Help": {
+    "meta": {
+      "title": "Amiben segíteni tudunk | PontMás Alapítvány",
+      "description": "Mentorszülői tanácsadás, DATA applikáció támogatás, szakmai könyvtár kölcsönzés és intézményi eligazítás Vas vármegyében.",
+      "ogDescription": "Autizmussal élő gyermekek és családjaik átfogó támogatása Vas vármegyében."
+    },
+    "services": [
+      {
+        "badge": "Szülői közösség",
+        "title": "Mentorszülői tanácsadás",
+        "description": "Kérdezzen olyan édesanyától vagy édesapától, aki szintén autizmussal élő gyermeket nevel! Az AOSZ által felkészített mentorszülők személyes tapasztalattal és empátiával segítik a frissen diagnosztizált vagy nehézségekkel küzdő családokat.",
+        "bullets": [
+          "Személyes és telefonos sorstársi beszélgetés",
+          "Gyakorlati mindennapi tanácsok és megküzdési stratégiák",
+          "AOSZ által képzett, hiteles mentorszülői hálózat"
+        ],
+        "linkText": "Mentorszülő keresése"
+      },
+      {
+        "badge": "Digitális segítség",
+        "title": "DATA applikáció támogatás",
+        "description": "A Digitális Autonómia Támogató Alkalmazás (DATA) segít az autista személyeknek a mindennapi napirend, folyamatábrák és vizuális támogatás kialakításában. Irodánkban segítünk a letöltésben és a testreszabásban.",
+        "bullets": [
+          "Alkalmazás telepítése okostelefonra és tabletre",
+          "Egyéni napirendek és vizuális folyamatok feltöltése",
+          "Gyakorlati betanítás szülőknek és pedagógusoknak"
+        ],
+        "linkText": "DATA támogatást kérek"
+      },
+      {
+        "badge": "Tudástár",
+        "title": "Vas Vármegyei Szakkönyvtár",
+        "description": "Folyamatosan bővülő szakkönyvtárunkból érintett szülők, pedagógusok, gyógypedagógusok és egyetemi hallgatók egyaránt ingyenesen kölcsönözhetnek autizmus-specifikus szakkönyveket és fejlesztő anyagokat.",
+        "bullets": [
+          "Korszerű magyar és külföldi szakirodalom",
+          "Fejlesztő füzetek, vizuális támogató eszközök és PECS anyagok",
+          "Ingyenes kölcsönzés regisztráció után"
+        ],
+        "linkText": "Könyvtári kölcsönzés"
+      },
+      {
+        "badge": "Oktatási kalauz",
+        "title": "Intézményi és integrációs eligazítás",
+        "description": "Részletes felvilágosítást nyújtunk a Vas vármegyei autizmus-ellátásról, a szegregáltan és integráltan nevelő óvodákról, általános és középiskolákról, valamint fejlesztő központokról.",
+        "bullets": [
+          "Óvodai és iskolai beilleszkedési tanácsadás",
+          "Együttműködés: Aranyhíd EGYMI, Micimackó Óvoda, Váci Mihály Ált. Isk.",
+          "Szakértői bizottsági folyamatok megértése"
+        ],
+        "linkText": "Intézményi tanácsadás"
+      },
+      {
+        "badge": "Közösség",
+        "title": "Szülőklub és élménynapok",
+        "description": "Rendszeres szülőklub alkalmak szakemberek (gyógypedagógusok, pszichológusok) bevonásával, valamint éves Családi Nap a Vasi Skanzenben és Kék Séta az elfogadásért.",
+        "bullets": [
+          "Kötetlen szülői tapasztalatcsere és szakmai előadások",
+          "Biztonságos, autizmus-barát családi programok",
+          "Gyermekfoglalkozások képzett segítőkkel"
+        ],
+        "linkText": "Következő szülőklub megtekintése"
+      }
+    ],
+    "header": {
+      "badge": "Szolgáltatásaink és segítségnyújtás",
+      "title": "Nem kell egyedül végigmennie ezen az úton.",
+      "subtitle": "A PontMás Alapítvány 2015-ös megalakulása óta azért dolgozik, hogy a Vas vármegyei autizmussal élő gyermekek és családtagjaik minden élethelyzetben valódi, szakszerű és emberközeli támogatást kapjanak.",
+      "services": "Szolgáltatásaink megtekintése",
+      "ask": "Kérdezzen kollégánktól"
+    },
+    "servicesSection": {
+      "title": "Amiben segíteni tudunk Önnek és családjának",
+      "subtitle": "Átfogó segítségnyújtás a gyanú felmerülésétől a diagnózison át az iskolai integrációig és mindennapi életviteli támogatásig."
+    },
+    "steps": {
+      "title": "Hova forduljon, ha úgy gondolja, gyermeke autizmussal élhet?",
+      "subtitle": "Gyakorlati útmutató a kivizsgálás és a segítségkérés első lépéseihez.",
+      "items": [
+        {
+          "title": "Gyermekorvos és védőnő",
+          "text": "Első lépésként jelezze észrevételeit a házi gyermekorvosnak vagy a védőnőnek, kérjen fejlődésneurológiai vagy gyermekpszichiátriai beutalót."
+        },
+        {
+          "title": "Szakszolgálat és diagnosztika",
+          "text": "A Vas Vármegyei Pedagógiai Szakszolgálat Megyei Szakértői Bizottsága végzi a pedagógiai diagnosztikát és javaslatot tesz a fejlesztésekre."
+        },
+        {
+          "title": "PontMás Alapítvány és AOSZ",
+          "text": "Hívjon minket, vagy vegyen részt Szülőklubunkon: sorstársi közösséget, tanácsokat és gyakorlati segítséget kap."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Személyes vagy telefonos segítségre van szüksége?",
+      "text": "Hívja Rumi Edinát a {phone} számon, vagy írjon nekünk üzenetet online űrlapunkon keresztül!",
+      "button": "Kapcsolatfelvétel"
+    }
+  },
+  "About": {
+    "values": {
+      "badge": "Iránytűnk",
+      "title": "Alapértékeink és szemléletünk",
+      "subtitle": "Minden döntésünket és programunkat az érintett gyermekek és családjaik valódi jólléte vezérli.",
+      "items": [
+        {
+          "title": "Célzott és közvetlen támogatás",
+          "desc": "Anyagi, eszközbeli és módszertani segítségnyújtás a Vas vármegyében élő autista gyermekeknek, szüleiknek és iskoláiknak."
+        },
+        {
+          "title": "Összetartó közösség",
+          "desc": "Több mint 40 családdal állunk napi kapcsolatban. Szülőklubokat, családi napokat és közös programokat szervezünk az elszigetelődés ellen."
+        },
+        {
+          "title": "Szakmai hitelesség és AOSZ-partnerség",
+          "desc": "Autizmus-specifikus gyógypedagógusok, szakasszisztensek és érintett szülők közös munkája garantálja a legfrissebb módszertani színvonalat."
+        },
+        {
+          "title": "Elfogadás és esélyegyenlőség",
+          "desc": "Társadalmi szemléletformálással és intézményi segítségnyújtással küzdünk azért, hogy minden gyermek a képességeihez mérten kibontakozhasson."
+        }
+      ]
+    },
+    "milestones": {
+      "badge": "Útunk",
+      "title": "Főbb mérföldköveink",
+      "subtitle": "Hogyan fejlődött a PontMás Alapítvány a megalakulása óta?",
+      "items": [
+        {
+          "ev": "2015",
+          "cim": "Alapítás Szombathelyen",
+          "leiras": "Érintett szülők és gyógypedagógusok elhatározásából létrejön a PontMás Vas Megyei Autista Gyermekekért Alapítvány."
+        },
+        {
+          "ev": "2018",
+          "cim": "Intézményi eszközbeszerzések",
+          "leiras": "Megkezdődik a Vas megyei speciális és integráló intézmények célzott fejlesztőeszköz-ellátása."
+        },
+        {
+          "ev": "2024+",
+          "cim": "Közösségi hálózat bővülése",
+          "leiras": "Éves Kék séták, képességfejlesztő nyári táborok és folyamatos krízisalap működtetése."
+        }
+      ]
+    },
+    "header": {
+      "badge": "Kik vagyunk mi?",
+      "title": "A PontMás Alapítvány története és küldetése",
+      "subtitle": "2015 óta hidat képezünk az autizmussal élő gyermekek, családjaik, a szakemberek és a társadalom között Vas vármegyében."
+    },
+    "story": {
+      "title": "Személyes elhivatottságból született segítség",
+      "p1": "Alapítványunkat az élet hívta életre. Olyan elkötelezett szülők és gyógypedagógusok fogtak össze, akik a mindennapi valóságban tapasztalták meg, milyen akadályokkal szembesül egy autizmussal élő gyermek és családja Vas vármegyében.",
+      "p2": "Nem csupán egy adminisztratív szervezet vagyunk: megtartó közösséget építünk, ahol a szülők megoszthatják tapasztalataikat és aggodalmaikat, a gyermekek pedig biztonságos, ingerszegény és szeretetteljes közegben fejlődhetnek.",
+      "nationalTitle": "Országos szakmai beágyazottság",
+      "aosz": "Autisták Országos Szövetsége (AOSZ) tagszervezet",
+      "board": "A kuratórium elnöke <b>Pohánka Edit</b>, aki egyben az <b>Autisták Országos Szövetségének (AOSZ) alelnöke</b> is. Ez a pozíció és elismert szakmai háttér biztosítja, hogy alapítványunk az országos irányelvek és a legkorszerűbb módszertanok alapján támogassa a Vas vármegyei közösséget."
+    },
+    "facts": {
+      "title": "Szervezeti hitelesség",
+      "org": "PontMás Alapítvány",
+      "registeredLabel": "Bejegyzés éve:",
+      "registered": "2015.09.08.",
+      "taxLabel": "Adószám:",
+      "activityLabel": "Fő tevékenység:",
+      "activity": "Egyéb szociális ellátás bentlakás nélkül (TEÁOR 8899)",
+      "seatLabel": "Székhely:",
+      "support": "Támogassa Alapítványunkat"
+    },
+    "cta": {
+      "title": "Legyen része közösségünknek!",
+      "text": "Akár érintett szülőként, akár szakemberként vagy támogatóként keres minket, szeretettel várjuk megkeresését.",
+      "contact": "Kapcsolatfelvétel",
+      "support": "Támogatási formák"
+    }
+  },
+  "Press": {
+    "meta": {
+      "title": "Rólunk írták és sajtómegjelenések | PontMás Alapítvány",
+      "description": "Cikkek, tudósítások, interjúk és köszönetnyilvánítások a PontMás Alapítvány tevékenységéről és a Vas vármegyei autizmus közösségről.",
+      "ogTitle": "Rólunk írták | PontMás Alapítvány",
+      "ogDescription": "Sajtócikkek, elismerések és személyes történetek a PontMás Alapítvány munkájáról."
+    },
+    "articles": [
+      {
+        "badge": "Sajtóhír • VAOL / Vas Népe",
+        "title": "Kékbe öltözött Szombathely – Séta és figyelemfelhívás az Autizmus Világnapján",
+        "date": "2024. április",
+        "summary": "Több száz résztvevővel, érintett családdal és támogatóval tartotta meg a PontMás Alapítvány az Autizmus Világnapja alkalmából szervezett szombathelyi Kék Sétát. A Városháza és a Fő tér kék megvilágítása a szolidaritást és a társadalmi elfogadást szimbolizálta.",
+        "quote": "„Célunk, hogy a társadalom ne félelemmel vagy távolságtartással, hanem nyitottsággal és megértéssel tekintsen az autizmussal élőkre.”",
+        "source": "Vas Vármegyei Hírportál (VAOL)"
+      },
+      {
+        "badge": "Szülői visszajelzés • Köszönetnyilvánítás",
+        "title": "„A szülőklub adott erőt és kapaszkodót az óvodai integrációban”",
+        "date": "2024. október",
+        "summary": "Egy szombathelyi édesanya megható levele arról, hogyan segített a PontMás Alapítvány szülőklubja és a szakképzett gyógypedagógusok tanácsa abban, hogy kisfia zökkenőmentesen kezdhesse meg a közösségi életet a helyi óvodában.",
+        "quote": "„Amikor megkaptuk a diagnózist, elszigeteltnek éreztük magunkat. A PontMás közössége nemcsak szakmai választ adott minden kérdésünkre, de igazi biztonságot és barátokat találtunk.”",
+        "source": "Érintett szülői beszámoló"
+      },
+      {
+        "badge": "Tudósítás • Szombathelyi Televízió",
+        "title": "Akkreditált gyógypedagógiai képzést finanszírozott a PontMás Alapítvány",
+        "date": "2024. június",
+        "summary": "Szombathely MJV Önkormányzati Támogatásának köszönhetően 13 szombathelyi gyógypedagógus és asszisztens vehetett részt az Autizmus Alapítvány 30 órás, magas szintű szakmai továbbképzésén, 100%-os alapítványi finanszírozással.",
+        "quote": "„A legjobb befektetés gyermekeink jövőjébe az, ha a velük nap mint nap foglalkozó pedagógusok a legkorszerűbb autizmus-specifikus módszertannal rendelkeznek.”",
+        "source": "SZTV Híradó és önkormányzati tudósítás"
+      },
+      {
+        "badge": "Élménybeszámoló • Vasi Skanzen",
+        "title": "Családi Nap és Szülőklub a Vasi Skanzenben – Közösség és feltöltődés",
+        "date": "2024. szeptember",
+        "summary": "A hagyományos őszi családi napon kézműves foglalkozásokkal, agyagozással, nyúlkuglival és gyógypedagógusok által kísért akadálypályával várták a gyermekeket, míg a szülők pszichológus által vezetett támogató csoportban oszthatták meg tapasztalataikat.",
+        "quote": "„A gyerekek szabadon, feszültség nélkül önmaguk lehettek, mi szülők pedig megkönnyebbülten beszélgethettünk a mindennapok kihívásairól.”",
+        "source": "PontMás Alapítványi Krónika"
+      },
+      {
+        "badge": "Intézményi köszönet • Aranyhíd EGYMI",
+        "title": "Új fejlesztő eszközök és speciális könyvtári állomány az autista diákoknak",
+        "date": "2024. május",
+        "summary": "A helyi partnerintézmények gyógypedagógusai fejezték ki köszönetüket a PontMás Alapítványnak az adományozott vizuális napirendi eszközökért, érzékszervi fejlesztő játékokért és a folyamatosan bővülő szakirodalmi könyvtárért.",
+        "quote": "„Az alapítvány támogatása nélkül sokkal nehezebb lenne biztosítani a differenciált, személyre szabott fejlesztést tanulóinknak.”",
+        "source": "Pedagógiai munkaközösség"
+      }
+    ],
+    "header": {
+      "badge": "Média, sajtó és elismerések",
+      "title": "Rólunk írták és közösségi visszhangok",
+      "subtitle": "Szeretnénk tevékenységünket és az autizmussal élő gyermekek mindennapjait minél szélesebb körben bemutatni, hogy a társadalom megértéssel és támogató szeretettel fogadja el őket."
+    },
+    "list": {
+      "title": "Sajtómegjelenések, tudósítások és szülői köszönőlevelek",
+      "subtitle": "Összegyűjtöttük az elmúlt évek legfontosabb médiamegjelenéseit, televíziós tudósításait és személyes történeteit.",
+      "source": "Forrás: {source}"
+    },
+    "cta": {
+      "title": "Sajtómegkeresése van vagy megosztaná saját történetét?",
+      "text": "Örömmel állunk az újságírók, médiafelületek és az érintett családok rendelkezésére interjúk, cikkek és szakmai beszélgetések kapcsán.",
+      "contact": "Kapcsolatfelvétel",
+      "about": "Alapítványunkról"
+    }
+  },
+  "Documents": {
+    "meta": {
+      "title": "Dokumentumtár és pályázatok | PontMás Alapítvány",
+      "description": "A PontMás Alapítvány hivatalos alapító okirata, közhasznúsági beszámolói, adatvédelmi tájékoztatója és önkormányzati pályázati elszámolásai.",
+      "ogDescription": "Hivatalos átláthatósági dokumentumok és pályázatok."
+    },
+    "docs": [
+      {
+        "title": "Alapító okirat és határozatok",
+        "category": "Jogi alapdokumentum",
+        "date": "Nyilvántartási szám: {registrationNumber}",
+        "description": "A PontMás Vas Megyei Autista Gyermekekért Alapítvány hivatalos alapító okirata, célkitűzései és kuratóriumi működési rendje."
+      },
+      {
+        "title": "Adatvédelmi és adatkezelési szabályzat (GDPR)",
+        "category": "Adatvédelem",
+        "date": "A weboldalon olvasható",
+        "description": "Tájékoztató a weboldal látogatóinak, a kapcsolatfelvételi űrlap kitöltőinek és az érintett családok adatainak jogszerű kezeléséről."
+      },
+      {
+        "title": "2023. évi közhasznúsági és pénzügyi beszámoló",
+        "category": "Közhasznúsági jelentés",
+        "date": "Elfogadva: 2024. május",
+        "description": "Részletes mérleg és eredménykimutatás a beérkezett adó 1% felajánlásokról és a cél szerinti programok finanszírozásáról."
+      },
+      {
+        "title": "2022. évi közhasznúsági és szakmai beszámoló",
+        "category": "Közhasznúsági jelentés",
+        "date": "Elfogadva: 2023. május",
+        "description": "Éves összefoglaló a Kék Séta, nyári táborok és szülőklubok megvalósításáról és pénzügyi mérlegéről."
+      }
+    ],
+    "grants": [
+      {
+        "title": "Szombathely MJV Önkormányzati Támogatás – Pedagógus Képzések",
+        "badge": "Megvalósult pályázat",
+        "grantAmount": "800.000 Ft támogatási összeg",
+        "description": "A szombathelyi intézmények (Aranyhíd EGYMI, Micimackó Óvoda, Váci Mihály Általános Iskola) 13 gyógypedagógusának és asszisztensének akkreditált Autizmus Alapítványi továbbképzése (Alapozó 30 órás képzés és Szociális-kommunikációs képzés).",
+        "details": [
+          "Megvalósítás időszaka: 2024. április – május",
+          "Összes finanszírozott képzési költség: 715.000 Ft (100%-os támogatás)",
+          "Támogató szervezet: Szombathely Megyei Jogú Város Önkormányzata"
+        ]
+      },
+      {
+        "title": "Városi Civil Alap – Családi Nap & Szülőklub Fejlesztés",
+        "badge": "Közösségi támogatás",
+        "grantAmount": "Közösségi és szakmai forrás",
+        "description": "Éves családi nap megszervezése a Vasi Skanzenben, agyagozó és készségfejlesztő gyermekfoglalkozásokkal, valamint pszichológus által vezetett szülői támogatással.",
+        "details": [
+          "Megvalósítás: 2024. szeptember",
+          "Helyszín: Vasi Skanzen Szombathely",
+          "Résztvevők száma: Több tucat Vas vármegyei érintett család"
+        ]
+      }
+    ],
+    "header": {
+      "badge": "Átláthatóság és hitelesség",
+      "title": "Dokumentumtár és hivatalos pályázatok",
+      "subtitle": "Az átláthatóság és a társadalmi felelősségvállalás alapítványunk működésének alappillére. Itt érheti el hivatalos dokumentumainkat, közhasznúsági beszámolóinkat és pályázati elszámolásainkat."
+    },
+    "official": {
+      "title": "Hivatalos iratok és éves beszámolók",
+      "subtitle": "Minden törvényi előírásnak és közhasznúsági követelménynek maradéktalanul eleget teszünk.",
+      "onSite": "Weboldalon olvasható",
+      "open": "Megnyitás",
+      "pdf": "Hivatalos PDF formátum"
+    },
+    "grantSection": {
+      "title": "Megvalósult pályázatok és elszámolások",
+      "subtitle": "Tudjon meg többet a támogatások célszerű és szakszerű felhasználásáról."
+    },
+    "cta": {
+      "title": "További hivatalos információt keres?",
+      "text": "Kérdéseivel, szakmai együttműködési javaslataival forduljon bizalommal hozzánk telefonon ({phone}) vagy kapcsolatfelvételi űrlapunkon keresztül!",
+      "button": "Kapcsolatfelvétel"
+    }
+  },
+  "Donation": {
+    "steps": [
+      {
+        "szam": "01",
+        "cim": "Lépjen be az eSZJA felületére",
+        "leiras": "Jelentkezzen be a NAV online felületére (eszja.nav.gov.hu) az Ügyfélkapus azonosítójával május 20-ig."
+      },
+      {
+        "szam": "02",
+        "cim": "Nyissa meg a rendelkező nyilatkozatot",
+        "leiras": "Kattintson az '1+1% nyilatkozat' kitöltése gombra a bevallási tervezet jóváhagyásakor vagy attól függetlenül."
+      },
+      {
+        "szam": "03",
+        "cim": "Adja meg adószámunkat",
+        "leiras": "A kedvezményezett adószáma mezőbe másolja be az alábbi adószámot: {taxNumber} ({shortName})."
+      },
+      {
+        "szam": "04",
+        "cim": "Véglegesítse és küldje be",
+        "leiras": "Mentse el a nyilatkozatot, amellyel további költségek nélkül támogatja a Vas vármegyei autista gyermekeket."
+      }
+    ],
+    "header": {
+      "badge": "Támogatási központ",
+      "title": "Támogassa munkánkat – minden segítség számít!",
+      "subtitle": "Az Ön támogatása közvetlenül hozzájárul a Vas vármegyei autizmussal élő gyermekek képességfejlesztéséhez, a szülői közösség megtartásához és a krízishelyzetbe került családok segítéséhez."
+    },
+    "tax": {
+      "popular": "Legnépszerűbb",
+      "title": "Személyi jövedelemadó 1%",
+      "text": "Rendelkezzen adója 1%-áról a május 20-i határidőig! Ez a felajánlás Önnek semmibe sem kerül, számunkra viszont alapvető működési biztonságot jelent.",
+      "label": "Adószámunk"
+    },
+    "bank": {
+      "title": "Banki átutalás és adomány",
+      "text": "Egyszeri vagy rendszeres átutalással azonnal segítheti krízis alapunkat, valamint a nyári táborok és intézményi fejlesztőeszközök finanszírozását.",
+      "label": "Bankszámlaszám ({bank})",
+      "reference": "Közlemény: Adomány"
+    },
+    "csr": {
+      "title": "Vállalati CSR és partnerség",
+      "text": "Céges adományozás esetén hivatalos adóigazolást állítunk ki, amellyel vállalkozása társasági adókedvezményt vehet igénybe. Célzott eseményszponzorációra is lehetőség van.",
+      "button": "Kapcsolatfelvétel cégeknek"
+    },
+    "guide": {
+      "badge": "Útmutató",
+      "title": "Hogyan ajánlhatja fel az <nowrap>1%-ot</nowrap> 4 egyszerű lépésben?",
+      "subtitle": "Nem igényel több mint 2 percet az eSZJA felületén vagy a munkáltatóján keresztül."
+    },
+    "transparency": {
+      "badge": "100% Átláthatóság",
+      "title": "Mire fordítjuk az adományokat?",
+      "text": "Alapítványunk minden forint felhasználásáról részletes közhasznúsági beszámolót készít, amely nyilvánosan elérhető a dokumentumtárunkban.",
+      "reports": "Beszámolók megtekintése",
+      "ask": "Kérdése van? Írjon nekünk"
+    }
+  },
+  "Contact": {
+    "header": {
+      "badge": "Elérhetőség",
+      "title": "Lépjen kapcsolatba velünk!",
+      "subtitle": "Forduljon hozzánk bizalommal kérdéseivel, tanácsadási igényével: hívjon minket telefonon, vagy írjon nekünk az űrlapon."
+    },
+    "seat": "Székhely és cím",
+    "person": "Kapcsolattartó",
+    "group": "Közösségi csoport",
+    "facebook": "Zárt Facebook csoportunk"
+  },
+  "News": {
+    "meta": {
+      "title": "Hírek és aktualitások | PontMás Alapítvány",
+      "description": "A PontMás Alapítvány legfrissebb hírei, szülőklub meghívói, családi nap beszámolói és szakmai továbbképzései.",
+      "ogDescription": "Értesüljön a PontMás Alapítvány legújabb eseményeiről, programjairól és híreiről."
+    },
+    "header": {
+      "badge": "Hírek, aktualitások és események",
+      "title": "Közösségi élet, programok és szakmai hírek",
+      "subtitle": "Kövesse figyelemmel a PontMás Alapítvány legfrissebb eseményeit, szülőklubjait, szakmai támogatási programjait és élménybeszámolóit!"
+    },
+    "more": {
+      "title": "További híreink és beszámolóink",
+      "subtitle": "Ismerje meg az alapítvány legfrissebb eseményeit és szakmai tevékenységeit."
+    },
+    "cta": {
+      "title": "Szeretne önkéntesként segíteni munkánkat?",
+      "text": "Legyen szó rendezvényekről, gyermekfoglalkozásokról, szülőklubokról vagy online kommunikációról, minden segítő kéznek és jó szándéknak nagyon örülünk!",
+      "label": "Csatlakozzon hozzánk",
+      "button": "Jelentkezem Önkéntesnek"
+    }
+  },
+  "Programs": {
+    "institutions": [
+      {
+        "nev": "Aranyhíd EGYMI (Szombathely)",
+        "reszlet": "Speciális oktatási-nevelési fejlesztőeszközök, szenzoros szobák felszerelésének támogatása."
+      },
+      {
+        "nev": "Micimackó Óvoda (Szombathely)",
+        "reszlet": "Autizmus-specifikus korai fejlesztő játékok és vizuális támogató eszközök biztosítása."
+      },
+      {
+        "nev": "Vas Vármegyei Pedagógiai Szakszolgálat",
+        "reszlet": "Szakmai együttműködés, diagnosztikai és tanácsadási folyamatok támogatása."
+      },
+      {
+        "nev": "Integráló általános és középiskolák",
+        "reszlet": "Módszertani segítségnyújtás és érzékenyítő előadások a pedagógusok és osztályközösségek számára."
+      }
+    ],
+    "header": {
+      "badge": "Események és kezdeményezések",
+      "title": "Programjaink és rendezvényeink",
+      "subtitle": "Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!"
+    },
+    "support": {
+      "badge": "Együttműködés",
+      "title": "Támogatott intézmények Vas vármegyében",
+      "subtitle": "Nemcsak közvetlenül a családokat segítjük, hanem azokat a szakmai intézményeket is, ahol a gyermekek a mindennapjaikat töltik.",
+      "askTitle": "Szeretné, hogy az Ön intézménye is részesüljön támogatásban?",
+      "askText": "Vegye fel velünk a kapcsolatot a konkrét szakmai igények, eszközbeszerzések és érzékenyítő tréningek egyeztetéséhez.",
+      "askButton": "Intézményi megkeresés"
+    },
+    "cta": {
+      "title": "Segítsen megvalósítani programjainkat!",
+      "text": "Adója 1%-ával vagy közvetlen támogatással Ön is hozzájárulhat a táborok, a Kék séta és a szülőklubok sikeres megszervezéséhez.",
+      "button": "Támogatási tudnivalók (1%)"
+    }
+  },
+  "Legal": {
+    "draftTitle": "Tervezet: ez a szöveg még nem hatályos.",
+    "draftText": "A kiemelt pontokat az alapítványnak és jogi tanácsadójának jóvá kell hagynia. A [JOGI ÁTNÉZÉS] jelölés megfogalmazást, a [KÉRDÉS] jelölés hiányzó adatot jelez.",
+    "languageNote": "Ez a tájékoztató magyar nyelven érhető el; a magyar szöveg az irányadó."
+  },
+  "Privacy": {
+    "meta": {
+      "title": "Adatkezelési tájékoztató | PontMás Alapítvány",
+      "description": "Hogyan kezeli a PontMás Alapítvány a weboldal látogatóinak és a kapcsolatfelvételi űrlapot kitöltőknek a személyes adatait."
+    },
+    "header": {
+      "badge": "Adatvédelem",
+      "title": "Adatkezelési tájékoztató",
+      "subtitle": "Milyen adatot kezelünk, miért, meddig, és milyen jogai vannak."
+    }
+  },
+  "Imprint": {
+    "meta": {
+      "title": "Impresszum | PontMás Alapítvány",
+      "description": "A pontmas.hu weboldal üzemeltetőjének és tárhelyszolgáltatójának adatai."
+    },
+    "header": {
+      "badge": "Jogi adatok",
+      "title": "Impresszum"
+    }
+  },
+  "LanguageSwitcher": {
+    "label": "Nyelv választása",
+    "current": "Jelenlegi nyelv: {language}",
+    "names": {
+      "hu": "Magyar",
+      "en": "English",
+      "de": "Deutsch"
+    }
   }
 }

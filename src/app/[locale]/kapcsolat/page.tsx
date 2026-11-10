@@ -3,20 +3,22 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ContactForm from '@/components/forms/ContactForm';
 import { FOUNDATION, ADDRESS_LINE, PHONE_HREF } from '@/lib/foundation';
+import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 export const generateMetadata = alternatesFor('/kapcsolat');
 
 export default async function KapcsolatPage({ params }: PageParams) {
   await pageLocale(params);
+  const t = await getTranslations('Contact');
   return (
     <div className="pb-20">
       
       {/* 1. Fejléc szekció */}
       <PageHeader
-        badge="Elérhetőség"
-        title="Lépjen kapcsolatba velünk!"
-        subtitle="Forduljon hozzánk bizalommal kérdéseivel, tanácsadási igényével: hívjon minket telefonon, vagy írjon nekünk az űrlapon."
+        badge={t('header.badge')}
+        title={t('header.title')}
+        subtitle={t('header.subtitle')}
       />
 
       {/* 2. Kapcsolati és Irodai Információk + Form */}
@@ -33,7 +35,7 @@ export default async function KapcsolatPage({ params }: PageParams) {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h2 className="font-bold text-slate-900 text-base">Székhely és cím</h2>
+                  <h2 className="font-bold text-slate-900 text-base">{t('seat')}</h2>
                   <p className="text-slate-600 text-sm mt-0.5">{ADDRESS_LINE}</p>
                 </div>
               </div>
@@ -43,7 +45,7 @@ export default async function KapcsolatPage({ params }: PageParams) {
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h2 className="font-bold text-slate-900 text-base">Kapcsolattartó</h2>
+                  <h2 className="font-bold text-slate-900 text-base">{t('person')}</h2>
                   <p className="text-slate-600 text-sm mt-0.5">{FOUNDATION.contactPerson}</p>
                   <a href={PHONE_HREF} className="text-blue-600 hover:text-blue-800 font-semibold text-sm mt-0.5 block">
                     {FOUNDATION.phone}
@@ -56,14 +58,14 @@ export default async function KapcsolatPage({ params }: PageParams) {
                   <MessageSquare size={24} />
                 </div>
                 <div>
-                  <h2 className="font-bold text-slate-900 text-base">Közösségi csoport</h2>
+                  <h2 className="font-bold text-slate-900 text-base">{t('group')}</h2>
                   <a 
                     href="https://www.facebook.com/groups/1622445488007296/?locale=hu_HU" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-800 font-semibold text-sm mt-0.5 inline-flex items-center gap-1"
                   >
-                    <span>Zárt Facebook csoportunk</span>
+                    <span>{t('facebook')}</span>
                     <ExternalLink size={14} />
                   </a>
                 </div>

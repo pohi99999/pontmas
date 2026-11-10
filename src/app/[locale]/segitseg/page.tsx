@@ -9,104 +9,45 @@ import Button from "@/components/ui/Button";
 import { Users, Smartphone, BookOpen, School, CheckCircle2, ArrowRight, HeartHandshake } from "lucide-react";
 import CtaBand from '@/components/ui/CtaBand';
 import { FOUNDATION } from '@/lib/foundation';
+import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 const metadataBase: Metadata = {
-  title: "Amiben segíteni tudunk | PontMás Alapítvány",
-  description: "Mentorszülői tanácsadás, DATA applikáció támogatás, szakmai könyvtár kölcsönzés és intézményi eligazítás Vas vármegyében.",
-  openGraph: {
-    title: "Amiben segíteni tudunk | PontMás Alapítvány",
-    description: "Autizmussal élő gyermekek és családjaik átfogó támogatása Vas vármegyében.",
-    url: "https://pontmas.hu/segitseg",
-  },
+  // title and description: <namespace>.meta in messages/<locale>.json
+  openGraph: { url: "https://pontmas.hu/segitseg" },
 };
 
-export const generateMetadata = alternatesFor('/segitseg', metadataBase);
+export const generateMetadata = alternatesFor('/segitseg', metadataBase, 'Help');
 
 export default async function HelpPage({ params }: PageParams) {
   await pageLocale(params);
-  const services = [
-    {
-      icon: Users,
-      badge: "Szülői közösség",
-      title: "Mentorszülői tanácsadás",
-      description: "Kérdezzen olyan édesanyától vagy édesapától, aki szintén autizmussal élő gyermeket nevel! Az AOSZ által felkészített mentorszülők személyes tapasztalattal és empátiával segítik a frissen diagnosztizált vagy nehézségekkel küzdő családokat.",
-      bullets: [
-        "Személyes és telefonos sorstársi beszélgetés",
-        "Gyakorlati mindennapi tanácsok és megküzdési stratégiák",
-        "AOSZ által képzett, hiteles mentorszülői hálózat",
-      ],
-      linkText: "Mentorszülő keresése",
-      linkHref: "/kapcsolat?topic=mentorszuloi-tanacsadas",
-    },
-    {
-      icon: Smartphone,
-      badge: "Digitális segítség",
-      title: "DATA applikáció támogatás",
-      description: "A Digitális Autonómia Támogató Alkalmazás (DATA) segít az autista személyeknek a mindennapi napirend, folyamatábrák és vizuális támogatás kialakításában. Irodánkban segítünk a letöltésben és a testreszabásban.",
-      bullets: [
-        "Alkalmazás telepítése okostelefonra és tabletre",
-        "Egyéni napirendek és vizuális folyamatok feltöltése",
-        "Gyakorlati betanítás szülőknek és pedagógusoknak",
-      ],
-      linkText: "DATA támogatást kérek",
-      linkHref: "/kapcsolat?topic=data-applikacio",
-    },
-    {
-      icon: BookOpen,
-      badge: "Tudástár",
-      title: "Vas Vármegyei Szakkönyvtár",
-      description: "Folyamatosan bővülő szakkönyvtárunkból érintett szülők, pedagógusok, gyógypedagógusok és egyetemi hallgatók egyaránt ingyenesen kölcsönözhetnek autizmus-specifikus szakkönyveket és fejlesztő anyagokat.",
-      bullets: [
-        "Korszerű magyar és külföldi szakirodalom",
-        "Fejlesztő füzetek, vizuális támogató eszközök és PECS anyagok",
-        "Ingyenes kölcsönzés regisztráció után",
-      ],
-      linkText: "Könyvtári kölcsönzés",
-      linkHref: "/kapcsolat?topic=szakkonyvtar",
-    },
-    {
-      icon: School,
-      badge: "Oktatási kalauz",
-      title: "Intézményi és integrációs eligazítás",
-      description: "Részletes felvilágosítást nyújtunk a Vas vármegyei autizmus-ellátásról, a szegregáltan és integráltan nevelő óvodákról, általános és középiskolákról, valamint fejlesztő központokról.",
-      bullets: [
-        "Óvodai és iskolai beilleszkedési tanácsadás",
-        "Együttműködés: Aranyhíd EGYMI, Micimackó Óvoda, Váci Mihály Ált. Isk.",
-        "Szakértői bizottsági folyamatok megértése",
-      ],
-      linkText: "Intézményi tanácsadás",
-      linkHref: "/kapcsolat?topic=intezmenyi-tanacsadas",
-    },
-    {
-      icon: HeartHandshake,
-      badge: "Közösség",
-      title: "Szülőklub és élménynapok",
-      description: "Rendszeres szülőklub alkalmak szakemberek (gyógypedagógusok, pszichológusok) bevonásával, valamint éves Családi Nap a Vasi Skanzenben és Kék Séta az elfogadásért.",
-      bullets: [
-        "Kötetlen szülői tapasztalatcsere és szakmai előadások",
-        "Biztonságos, autizmus-barát családi programok",
-        "Gyermekfoglalkozások képzett segítőkkel",
-      ],
-      linkText: "Következő szülőklub megtekintése",
-      linkHref: "/hirek",
-    },
+  const t = await getTranslations('Help');
+  // icons and targets stay in the code; the texts are in messages (Help.services, same order)
+  const serviceLinks = [
+    { icon: Users, linkHref: '/kapcsolat?topic=mentorszuloi-tanacsadas' },
+    { icon: Smartphone, linkHref: '/kapcsolat?topic=data-applikacio' },
+    { icon: BookOpen, linkHref: '/kapcsolat?topic=szakkonyvtar' },
+    { icon: School, linkHref: '/kapcsolat?topic=intezmenyi-tanacsadas' },
+    { icon: HeartHandshake, linkHref: '/hirek' },
   ];
+  const texts = t.raw('services') as { badge: string; title: string; description: string; bullets: string[]; linkText: string }[];
+  const services = serviceLinks.map((l, i) => ({ ...l, ...texts[i] }));
+  const steps = t.raw('steps.items') as { title: string; text: string }[];
 
   return (
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Hero szekció */}
       <PageHeader
-        badge="Szolgáltatásaink és segítségnyújtás"
-        title="Nem kell egyedül végigmennie ezen az úton."
-        subtitle="A PontMás Alapítvány 2015-ös megalakulása óta azért dolgozik, hogy a Vas vármegyei autizmussal élő gyermekek és családtagjaik minden élethelyzetben valódi, szakszerű és emberközeli támogatást kapjanak."
+        badge={t('header.badge')}
+        title={t('header.title')}
+        subtitle={t('header.subtitle')}
       >
         <div className="flex flex-wrap gap-4">
           <Button href="#szolgaltatasok" variant="primary">
-            Szolgáltatásaink megtekintése
+            {t('header.services')}
           </Button>
           <Button href="/kapcsolat" variant="outline">
-            Kérdezzen kollégánktól
+            {t('header.ask')}
           </Button>
         </div>
       </PageHeader>
@@ -114,8 +55,8 @@ export default async function HelpPage({ params }: PageParams) {
       {/* 2. Szolgáltatások részletesen */}
       <section id="szolgaltatasok" className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <SectionHeader
-          title="Amiben segíteni tudunk Önnek és családjának"
-          subtitle="Átfogó segítségnyújtás a gyanú felmerülésétől a diagnózison át az iskolai integrációig és mindennapi életviteli támogatásig."
+          title={t('servicesSection.title')}
+          subtitle={t('servicesSection.subtitle')}
           align="center"
         />
 
@@ -167,32 +108,32 @@ export default async function HelpPage({ params }: PageParams) {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl bg-slate-100 p-8 sm:p-12 space-y-8 border border-slate-200/80">
           <SectionHeader
-            title="Hova forduljon, ha úgy gondolja, gyermeke autizmussal élhet?"
-            subtitle="Gyakorlati útmutató a kivizsgálás és a segítségkérés első lépéseihez."
+            title={t('steps.title')}
+            subtitle={t('steps.subtitle')}
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold">1</div>
-              <h3 className="font-bold text-slate-900 text-lg">Gyermekorvos és védőnő</h3>
+              <h3 className="font-bold text-slate-900 text-lg">{steps[0].title}</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Első lépésként jelezze észrevételeit a házi gyermekorvosnak vagy a védőnőnek, kérjen fejlődésneurológiai vagy gyermekpszichiátriai beutalót.
+                {steps[0].text}
               </p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold">2</div>
-              <h3 className="font-bold text-slate-900 text-lg">Szakszolgálat és diagnosztika</h3>
+              <h3 className="font-bold text-slate-900 text-lg">{steps[1].title}</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                A Vas Vármegyei Pedagógiai Szakszolgálat Megyei Szakértői Bizottsága végzi a pedagógiai diagnosztikát és javaslatot tesz a fejlesztésekre.
+                {steps[1].text}
               </p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold">3</div>
-              <h3 className="font-bold text-slate-900 text-lg">PontMás Alapítvány és AOSZ</h3>
+              <h3 className="font-bold text-slate-900 text-lg">{steps[2].title}</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Hívjon minket, vagy vegyen részt Szülőklubunkon: sorstársi közösséget, tanácsokat és gyakorlati segítséget kap.
+                {steps[2].text}
               </p>
             </div>
           </div>
@@ -201,11 +142,11 @@ export default async function HelpPage({ params }: PageParams) {
 
       {/* 4. Kapcsolatfelvételi CTA sáv */}
       <CtaBand
-        title="Személyes vagy telefonos segítségre van szüksége?"
-        text={`Hívja Rumi Edinát a ${FOUNDATION.phone} számon, vagy írjon nekünk üzenetet online űrlapunkon keresztül!`}
+        title={t('cta.title')}
+        text={t('cta.text', { phone: FOUNDATION.phone })}
       >
         <Button href="/kapcsolat" variant="primary">
-          Kapcsolatfelvétel
+          {t('cta.button')}
         </Button>
       </CtaBand>
     </div>

@@ -3,10 +3,12 @@ import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import ProgramFilter from '@/components/content/ProgramFilter';
+import { HungarianContentNote } from '@/components/content/ContentCards';
 import Gallery from '@/components/content/Gallery';
 import { getPublicContent } from '@/content/publicContent';
 import { visiblePrograms } from '@/content/public';
 import CtaBand from '@/components/ui/CtaBand';
+import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 // A server page now, so it can read the editor's store (or the seed); only the category filter
@@ -19,26 +21,23 @@ export default async function ProgramokPage({ params }: PageParams) {
   await pageLocale(params);
   const { content } = await getPublicContent();
   const programok = visiblePrograms(content.programs);
-  const tamogatottIntezmenyek = [
-    { nev: "Aranyhíd EGYMI (Szombathely)", reszlet: "Speciális oktatási-nevelési fejlesztőeszközök, szenzoros szobák felszerelésének támogatása." },
-    { nev: "Micimackó Óvoda (Szombathely)", reszlet: "Autizmus-specifikus korai fejlesztő játékok és vizuális támogató eszközök biztosítása." },
-    { nev: "Vas Vármegyei Pedagógiai Szakszolgálat", reszlet: "Szakmai együttműködés, diagnosztikai és tanácsadási folyamatok támogatása." },
-    { nev: "Integráló általános és középiskolák", reszlet: "Módszertani segítségnyújtás és érzékenyítő előadások a pedagógusok és osztályközösségek számára." }
-  ];
+  const t = await getTranslations('Programs');
+  const tamogatottIntezmenyek = t.raw('institutions') as { nev: string; reszlet: string }[];
 
   return (
     <div className="pb-20">
       
       {/* 1. Fejléc szekció */}
       <PageHeader
-        badge="Események és kezdeményezések"
-        title="Programjaink és rendezvényeink"
-        subtitle="Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!"
+        badge={t('header.badge')}
+        title={t('header.title')}
+        subtitle={t('header.subtitle')}
       />
 
       {/* 2. Programok és Események Kategóriaválasztóval */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
+        <HungarianContentNote className="mb-10" />
         <ProgramFilter programs={programok} />
 
       </section>
@@ -50,9 +49,9 @@ export default async function ProgramokPage({ params }: PageParams) {
       <section className="bg-gradient-to-b from-slate-100/80 to-slate-50 border-y border-slate-200/80 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <SectionHeader
-            badge="Együttműködés"
-            title="Támogatott intézmények Vas vármegyében"
-            subtitle="Nemcsak közvetlenül a családokat segítjük, hanem azokat a szakmai intézményeket is, ahol a gyermekek a mindennapjaikat töltik."
+            badge={t('support.badge')}
+            title={t('support.title')}
+            subtitle={t('support.subtitle')}
           />
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -71,14 +70,14 @@ export default async function ProgramokPage({ params }: PageParams) {
 
           <div className="mt-12 bg-white rounded-2xl p-8 border border-slate-200 text-center max-w-3xl mx-auto space-y-4 shadow-sm">
             <h3 className="display text-xl text-slate-900">
-              Szeretné, hogy az Ön intézménye is részesüljön támogatásban?
+              {t('support.askTitle')}
             </h3>
             <p className="text-slate-600 text-sm leading-relaxed max-w-xl mx-auto">
-              Vegye fel velünk a kapcsolatot a konkrét szakmai igények, eszközbeszerzések és érzékenyítő tréningek egyeztetéséhez.
+              {t('support.askText')}
             </p>
             <div className="pt-2">
               <Button href="/kapcsolat" variant="primary" size="md">
-                Intézményi megkeresés
+                {t('support.askButton')}
               </Button>
             </div>
           </div>
@@ -88,12 +87,12 @@ export default async function ProgramokPage({ params }: PageParams) {
 
       {/* 4. Támogatási felhívás */}
       <CtaBand
-        title="Segítsen megvalósítani programjainkat!"
-        text="Adója 1%-ával vagy közvetlen támogatással Ön is hozzájárulhat a táborok, a Kék séta és a szülőklubok sikeres megszervezéséhez."
+        title={t('cta.title')}
+        text={t('cta.text')}
         headingLevel="h2"
       >
         <Button href="/tamogatas" variant="primary">
-          Támogatási tudnivalók (1%)
+          {t('cta.button')}
         </Button>
       </CtaBand>
 

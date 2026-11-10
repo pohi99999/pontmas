@@ -1,29 +1,31 @@
 import type { Metadata } from "next";
 import { Link } from '@/i18n/navigation';
 import PageHeader from '@/components/ui/PageHeader';
-import { DraftBanner, DraftSources, Review, Section } from '@/components/legal/LegalParts';
+import { DraftBanner, DraftSources, LegalLanguageNote, Review, Section } from '@/components/legal/LegalParts';
 import { FOUNDATION } from '@/lib/foundation';
 import { LEGAL_DRAFT } from '@/lib/legal';
+import { getTranslations } from 'next-intl/server';
 import { alternatesFor, pageLocale, type PageParams } from '@/i18n/page';
 
 // Impresszum, DRAFT (src/lib/legal.ts): the service provider's data a website has to show
 // (2001. évi CVIII. törvény 4. §, to be confirmed in the legal review).
 
 const metadataBase: Metadata = {
-  title: "Impresszum | PontMás Alapítvány",
-  description: "A pontmas.hu weboldal üzemeltetőjének és tárhelyszolgáltatójának adatai.",
+  // title and description: <namespace>.meta in messages/<locale>.json
   robots: LEGAL_DRAFT ? { index: false, follow: false } : undefined,
 };
 
-export const generateMetadata = alternatesFor('/impresszum', metadataBase);
+export const generateMetadata = alternatesFor('/impresszum', metadataBase, 'Imprint');
 
 export default async function ImpresszumPage({ params }: PageParams) {
-  await pageLocale(params);
+  const locale = await pageLocale(params);
+  const t = await getTranslations('Imprint');
   return (
     <>
-      <PageHeader badge="Jogi adatok" title="Impresszum" />
+      <PageHeader badge={t('header.badge')} title={t('header.title')} />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <article className="mx-auto max-w-3xl">
+        <LegalLanguageNote />
+        <article className="mx-auto max-w-3xl" lang={locale === 'hu' ? undefined : 'hu'}>
           <DraftBanner />
 
           <Section id="uzemelteto" title="A weboldal üzemeltetője">

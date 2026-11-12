@@ -122,10 +122,12 @@ export default function Footer() {
       <div className="border-t border-slate-800 bg-slate-950 py-6">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
           <p>© {currentYear} {FOUNDATION.name}. Minden jog fenntartva.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             <Link href="/dokumentumok" className="hover:text-slate-300 transition-colors">Közhasznúsági jelentések</Link>
-            <span>•</span>
-            <Link href="/kapcsolat" className="hover:text-slate-300 transition-colors">Adatvédelem és kapcsolat</Link>
+            <span aria-hidden="true">•</span>
+            <Link href="/adatkezeles" className="hover:text-slate-300 transition-colors">Adatkezelési tájékoztató</Link>
+            <span aria-hidden="true">•</span>
+            <Link href="/impresszum" className="hover:text-slate-300 transition-colors">Impresszum</Link>
           </div>
         </div>
       </div>

@@ -30,8 +30,9 @@ export default function DokumentumokPage() {
     {
       title: "Adatvédelmi és adatkezelési szabályzat (GDPR)",
       category: "Adatvédelem",
-      date: "Hatályos: 2024. január 1-től",
-      description: "Tájékoztató a weboldal látogatóinak, hírlevél feliratkozóknak és az érintett családok adatainak jogszerű kezeléséről.",
+      date: "A weboldalon olvasható",
+      description: "Tájékoztató a weboldal látogatóinak, a kapcsolatfelvételi űrlap kitöltőinek és az érintett családok adatainak jogszerű kezeléséről.",
+      href: "/adatkezeles",
     },
     {
       title: "2023. évi közhasznúsági és pénzügyi beszámoló",
@@ -114,8 +115,19 @@ export default function DokumentumokPage() {
               </div>
 
               <div className="pt-6 mt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs text-slate-500 font-medium">Hivatalos PDF formátum</span>
-                <DocAvailability />
+                {doc.href ? (
+                  <>
+                    <span className="text-xs text-slate-500 font-medium">Weboldalon olvasható</span>
+                    <Link href={doc.href} className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors">
+                      Megnyitás
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-xs text-slate-500 font-medium">Hivatalos PDF formátum</span>
+                    <DocAvailability />
+                  </>
+                )}
               </div>
             </div>
           ))}

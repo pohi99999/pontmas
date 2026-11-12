@@ -38,7 +38,8 @@ test('headings and labels in sentence case (a sample of the fixed ones)', () => 
     'src/app/programok/page.tsx': ['Programjaink és rendezvényeink', 'Események és kezdeményezések'],
     'src/app/autizmus/page.tsx': ['A spektrum fő területei', 'Gyakran ismételt kérdések (FAQ)'],
     'src/app/dokumentumok/page.tsx': ['Hivatalos iratok és éves beszámolók'],
-    'src/components/layout/Footer.tsx': ['Programok és események', 'Adatvédelem és kapcsolat'],
+    // #30 replaced the footer's "Adatvédelem és kapcsolat" link (it led to /kapcsolat) with the two legal pages
+    'src/components/layout/Footer.tsx': ['Programok és események', 'Adatkezelési tájékoztató'],
     'src/app/tamogatas/page.tsx': ['Támogatási központ'],
   };
   for (const [f, words] of Object.entries(expect)) for (const w of words) assert.ok(read(f).includes(w), `${f}: ${w}`);

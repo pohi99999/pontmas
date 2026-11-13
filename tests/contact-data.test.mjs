@@ -31,6 +31,13 @@ test('no page names a vice-presidency any more, in the source or on the rendered
   }
 });
 
+// Edina 2026-11-13 15:39 (Péter 15466): the home stat's label in her own words; the value stays "AOSZ".
+test('the home AOSZ stat reads "Alapítványunk az AOSZ tagszervezete" on the rendered page', async () => {
+  const shown = visibleText(await renderHtml('app/page.tsx'));
+  assert.ok(shown.includes('Alapítványunk az AOSZ tagszervezete'), 'the home stat label is not Edina\'s wording');
+  assert.ok(!shown.includes('Országos szövetségi tagság'), 'the previous label is still shown');
+});
+
 test('the bank account is named Erste Bank wherever it is shown, and the number is unchanged', async () => {
   assert.equal(FOUNDATION.bankAccount, '11600006-00000000-75701521');
   assert.equal(FOUNDATION.bankName, 'Erste Bank');

@@ -18,7 +18,7 @@ import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import { chromium } from 'playwright-core';
 
-const ROUTES = ['/', '/autizmus', '/segitseg', '/rolunk', '/rolunk-irtak', '/hirek', '/programok', '/tamogatas', '/dokumentumok', '/kapcsolat', '/kisfilmek'];
+const ROUTES = ['/', '/autizmus', '/segitseg', '/rolunk', '/rolunk-irtak', '/hirek', '/programok', '/tamogatas', '/dokumentumok', '/kapcsolat', '/kisfilmek', '/irodank'];
 const PORT = process.env.A11Y_PORT || '3999';
 const BASE = `http://127.0.0.1:${PORT}`;
 const CHROME = [process.env.CHROME_PATH, '/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium',

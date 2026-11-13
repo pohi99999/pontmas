@@ -121,7 +121,7 @@ export function NewsFeaturedCard({ item }: { item: NewsItem }) {
 export function NewsCard({ item }: { item: NewsItem }) {
   return (
     <article
-      className="flex flex-col justify-between rounded-[2rem] border border-slate-200 bg-white p-7"
+      className="min-w-0 flex flex-col justify-between rounded-[2rem] border border-slate-200 bg-white p-7"
     >
       <div className="space-y-4">
         <ContentImageView image={item.image} />
@@ -134,7 +134,8 @@ export function NewsCard({ item }: { item: NewsItem }) {
           </span>
         </div>
 
-        <h3 className="display text-2xl text-slate-900 leading-snug">
+        {/* hyphens: a long word ("tevékenységek") in a 768 px three-column card pushed the page sideways */}
+        <h3 className="display text-2xl text-slate-900 leading-snug hyphens-auto break-words">
           {item.title}
         </h3>
 

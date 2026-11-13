@@ -9,7 +9,8 @@ import { renderHtml, visibleText } from './helpers/render.mjs';
 test('the facts are the published ones', () => {
   assert.equal(FOUNDATION.name, 'PontMás Vas Megyei Autista Gyermekekért Alapítvány');
   assert.equal(FOUNDATION.taxNumber, '18654996-1-18');
-  assert.equal(FOUNDATION.registrationNumber, '18-01-0001850');
+  // Edina 2026-11-13: the number in the foundation's rules, 18-01-0000323, is the right one (it was 18-01-0001850)
+  assert.equal(FOUNDATION.registrationNumber, '18-01-0000323');
   assert.equal(FOUNDATION.bankName, 'Erste Bank');
   assert.equal(FOUNDATION.bankAccount, '11600006-00000000-75701521');
   assert.equal(ADDRESS_LINE, '9700 Szombathely, Váci M. utca 12. 3./15.');
@@ -41,7 +42,7 @@ const files = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) 
 const COPIES = [
   ['tax number', /18654996-1-18/],
   ['bank account', /11600006-00000000-75701521/],
-  ['registration number', /18-01-0001850/],
+  ['registration number', /18-01-0000323/],
   ['phone', /\+36\s?20\s?969\s?8715|36209698715/],
   ['street', /Váci M\. utca 12/],
 ];
@@ -58,7 +59,7 @@ test('no file under src/ other than src/lib/foundation.ts holds a copy of a fact
 test('the guard above catches a copy (it is not vacuous)', () => {
   for (const [what, re] of COPIES) {
     const sample = { 'tax number': 'Adószám: 18654996-1-18', 'bank account': '11600006-00000000-75701521',
-      'registration number': 'Nyilvántartási szám: 18-01-0001850', phone: 'hívjon: +36 20 969 8715', street: 'Váci M. utca 12. 3./15.' }[what];
+      'registration number': 'Nyilvántartási szám: 18-01-0000323', phone: 'hívjon: +36 20 969 8715', street: 'Váci M. utca 12. 3./15.' }[what];
     assert.ok(re.test(sample), what);
   }
   assert.ok(/\+36\s?20\s?969\s?8715|36209698715/.test('tel:+36209698715'));
@@ -72,7 +73,7 @@ test('every page that showed a fact still shows it, as the visitor reads it', as
     'app/kapcsolat/page.tsx': ['9700 Szombathely, Váci M. utca 12. 3./15.', 'Rumi Edina', '+36 20 969 8715'],
     // /autizmus: the phone is in a FAQ answer, rendered only when the visitor opens it
     'app/segitseg/page.tsx': ['Hívja Rumi Edinát a +36 20 969 8715 számon'],
-    'app/dokumentumok/page.tsx': ['Nyilvántartási szám: 18-01-0001850', 'telefonon (+36 20 969 8715)'],
+    'app/dokumentumok/page.tsx': ['Nyilvántartási szám: 18-01-0000323', 'telefonon (+36 20 969 8715)'],
     'components/layout/Footer.tsx': [`${FOUNDATION.name}. 2015 óta`, '9700 Szombathely', 'Rumi Edina, +36 20 969 8715', '18654996-1-18',
       'Bankszámlaszám (Erste Bank):', '11600006-00000000-75701521', `${FOUNDATION.name}. Minden jog fenntartva.`],
   };

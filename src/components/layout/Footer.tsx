@@ -47,6 +47,9 @@ export default function Footer() {
                 <Link href="/segitseg" className="hover:text-white transition-colors">Amiben segíteni tudunk</Link>
               </li>
               <li>
+                <Link href="/kisfilmek" className="hover:text-white transition-colors">Kisfilmek</Link>
+              </li>
+              <li>
                 <Link href="/rolunk-irtak" className="hover:text-white transition-colors">Rólunk írták és sajtó</Link>
               </li>
               <li>

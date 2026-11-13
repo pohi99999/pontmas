@@ -166,12 +166,14 @@ test('the editor is noindex and in no menu', () => {
   assert.ok(!fs.existsSync(path.resolve('src/app/sitemap.ts')) || !fs.readFileSync(path.resolve('src/app/sitemap.ts'), 'utf8').includes('szerkeszto'));
 });
 
-test('CSP: images also from the Blob store, nothing else changed (the exact string)', async () => {
+// 2026-11-13 (/kisfilmek, Péter 15469): frame-src for the click-to-play YouTube player, nocookie domain only.
+test('CSP: images also from the Blob store, the nocookie player framed, nothing else changed (the exact string)', async () => {
   const { CONTENT_SECURITY_POLICY, EDITOR_HEADERS } = await src('lib/securityHeaders.ts');
   assert.equal(
     CONTENT_SECURITY_POLICY,
     "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; " +
       "img-src 'self' data: https://*.public.blob.vercel-storage.com; font-src 'self'; connect-src 'self'; " +
+      "frame-src https://www.youtube-nocookie.com; " +
       "frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
   );
   assert.deepEqual(EDITOR_HEADERS, [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }]);

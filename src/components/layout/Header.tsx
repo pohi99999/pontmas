@@ -40,6 +40,7 @@ export default function Header() {
     { label: 'Kezdőlap', href: '/' },
     { label: 'Autizmusról', href: '/autizmus' },
     { label: 'Segítség', href: '/segitseg' },
+    { label: 'Kisfilmek', href: '/kisfilmek' },
     { label: 'Rólunk', href: '/rolunk' },
     { label: 'Rólunk írták', href: '/rolunk-irtak' },
     { label: 'Hírek', href: '/hirek' },
@@ -130,7 +131,8 @@ export default function Header() {
 
         {/* Desktop Navigation: from 1360 px only. The full bar (9 items + 2 buttons) did not fit from lg
             (1024 px) and pushed "Támogatás" off screen, so narrower windows keep the hamburger menu.
-            Every item stays on one line: tighter padding and no gap below 2xl (1536 px). */}
+            Every item stays on one line: tighter padding and no gap below 2xl (1536 px). With the tenth item
+            (Kisfilmek, 2026-11-13) the side padding is 8 px there, so the logo keeps its 16 px (a11y check). */}
         <nav className="hidden min-[1360px]:flex items-center gap-0 2xl:gap-2" aria-label="Fő navigáció">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
@@ -138,7 +140,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-2.5 2xl:px-3.5 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
+                className={`px-2 2xl:px-3.5 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
                   isActive
                     ? 'text-blue-700 bg-blue-50/80 font-semibold'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'

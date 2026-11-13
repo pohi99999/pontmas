@@ -11,6 +11,8 @@ export const CONTENT_SECURITY_POLICY = [
   "img-src 'self' data: https://*.public.blob.vercel-storage.com",
   "font-src 'self'",
   "connect-src 'self'",
+  // the short films on /kisfilmek: the player loads only after a click, from the privacy-enhanced domain
+  "frame-src https://www.youtube-nocookie.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

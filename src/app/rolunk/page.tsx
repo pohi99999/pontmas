@@ -77,7 +77,7 @@ export default function RolunkPage() {
                 </div>
               </div>
               <p className="text-slate-700 text-sm leading-relaxed pt-1">
-                A kuratórium elnöke <strong>Pohánka Edit</strong>, aki egyben az <strong>Autisták Országos Szövetségének (AOSZ) alelnöke</strong> is. Ez a pozíció és elismert szakmai háttér biztosítja, hogy alapítványunk az országos irányelvek és a legkorszerűbb módszertanok alapján támogassa a Vas vármegyei közösséget.
+                A kuratórium elnöke <strong>Pohánka Edit</strong>. Elismert szakmai háttere biztosítja, hogy alapítványunk az országos irányelvek és a legkorszerűbb módszertanok alapján támogassa a Vas vármegyei közösséget.
               </p>
             </div>
           </div>

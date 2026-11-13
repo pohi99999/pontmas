@@ -40,6 +40,7 @@ export default function Header() {
     { label: 'Kezdőlap', href: '/' },
     { label: 'Autizmusról', href: '/autizmus' },
     { label: 'Segítség', href: '/segitseg' },
+    { label: 'Kisfilmek', href: '/kisfilmek' },
     { label: 'Rólunk', href: '/rolunk' },
     { label: 'Rólunk írták', href: '/rolunk-irtak' },
     { label: 'Hírek', href: '/hirek' },

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { FileText, CheckCircle2 } from 'lucide-react';
+import fs from 'node:fs';
+import path from 'node:path';
+import { FileText, CheckCircle2, Download } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Badge from '@/components/ui/Badge';
@@ -8,10 +9,11 @@ import Button from '@/components/ui/Button';
 import DocAvailability from '@/components/ui/DocAvailability';
 import CtaBand from '@/components/ui/CtaBand';
 import { FOUNDATION } from '@/lib/foundation';
+import { DOKUMENTUMOK, TAMOGATASOK, meretSzoveg } from '@/content/dokumentumok';
 
 export const metadata: Metadata = {
   title: "Dokumentumtár és pályázatok | PontMás Alapítvány",
-  description: "A PontMás Alapítvány hivatalos alapító okirata, közhasznúsági beszámolói, adatvédelmi tájékoztatója és önkormányzati pályázati elszámolásai.",
+  description: "A PontMás Alapítvány éves beszámolói és közhasznúsági mellékletei, adatvédelmi szabályzata, valamint pályázatai és támogatásai.",
   openGraph: {
     title: "Dokumentumtár és pályázatok | PontMás Alapítvány",
     description: "Hivatalos átláthatósági dokumentumok és pályázatok.",
@@ -20,57 +22,9 @@ export const metadata: Metadata = {
 };
 
 export default function DokumentumokPage() {
-  const officialDocs = [
-    {
-      title: "Alapító okirat és határozatok",
-      category: "Jogi alapdokumentum",
-      date: `Nyilvántartási szám: ${FOUNDATION.registrationNumber}`,
-      description: "A PontMás Vas Megyei Autista Gyermekekért Alapítvány hivatalos alapító okirata, célkitűzései és kuratóriumi működési rendje.",
-    },
-    {
-      title: "Adatvédelmi és adatkezelési szabályzat (GDPR)",
-      category: "Adatvédelem",
-      date: "Hatályos: 2024. január 1-től",
-      description: "Tájékoztató a weboldal látogatóinak, hírlevél feliratkozóknak és az érintett családok adatainak jogszerű kezeléséről.",
-    },
-    {
-      title: "2023. évi közhasznúsági és pénzügyi beszámoló",
-      category: "Közhasznúsági jelentés",
-      date: "Elfogadva: 2024. május",
-      description: "Részletes mérleg és eredménykimutatás a beérkezett adó 1% felajánlásokról és a cél szerinti programok finanszírozásáról.",
-    },
-    {
-      title: "2022. évi közhasznúsági és szakmai beszámoló",
-      category: "Közhasznúsági jelentés",
-      date: "Elfogadva: 2023. május",
-      description: "Éves összefoglaló a Kék Séta, nyári táborok és szülőklubok megvalósításáról és pénzügyi mérlegéről.",
-    },
-  ];
-
-  const grantProjects = [
-    {
-      title: "Szombathely MJV Önkormányzati Támogatás – Pedagógus Képzések",
-      badge: "Megvalósult pályázat",
-      grantAmount: "800.000 Ft támogatási összeg",
-      description: "A szombathelyi intézmények (Aranyhíd EGYMI, Micimackó Óvoda, Váci Mihály Általános Iskola) 13 gyógypedagógusának és asszisztensének akkreditált Autizmus Alapítványi továbbképzése (Alapozó 30 órás képzés és Szociális-kommunikációs képzés).",
-      details: [
-        "Megvalósítás időszaka: 2024. április – május",
-        "Összes finanszírozott képzési költség: 715.000 Ft (100%-os támogatás)",
-        "Támogató szervezet: Szombathely Megyei Jogú Város Önkormányzata",
-      ],
-    },
-    {
-      title: "Városi Civil Alap – Családi Nap & Szülőklub Fejlesztés",
-      badge: "Közösségi támogatás",
-      grantAmount: "Közösségi és szakmai forrás",
-      description: "Éves családi nap megszervezése a Vasi Skanzenben, agyagozó és készségfejlesztő gyermekfoglalkozásokkal, valamint pszichológus által vezetett szülői támogatással.",
-      details: [
-        "Megvalósítás: 2024. szeptember",
-        "Helyszín: Vasi Skanzen Szombathely",
-        "Résztvevők száma: Több tucat Vas vármegyei érintett család",
-      ],
-    },
-  ];
+  // the documents and grants come from src/content/dokumentumok.ts (sourced from the PDFs themselves)
+  const officialDocs = DOKUMENTUMOK.map((d) => (d.date ? d : { ...d, date: `Nyilvántartási szám: ${FOUNDATION.registrationNumber}` }));
+  const grantProjects = TAMOGATASOK;
 
   return (
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
@@ -85,7 +39,7 @@ export default function DokumentumokPage() {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <SectionHeader
           title="Hivatalos iratok és éves beszámolók"
-          subtitle="Minden törvényi előírásnak és közhasznúsági követelménynek maradéktalanul eleget teszünk."
+          subtitle="Éves beszámolóink a bírósághoz benyújtott formában, PDF-ben letölthetők."
           align="center"
         />
 
@@ -115,7 +69,18 @@ export default function DokumentumokPage() {
 
               <div className="pt-6 mt-4 border-t border-slate-100 flex items-center justify-between">
                 <span className="text-xs text-slate-500 font-medium">Hivatalos PDF formátum</span>
-                <DocAvailability />
+                {doc.file ? (
+                  <a
+                    href={doc.file}
+                    download
+                    className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-bold text-blue-700 hover:bg-blue-100"
+                  >
+                    <Download className="h-3.5 w-3.5" aria-hidden="true" />
+                    <span>Letöltés (PDF, {meretSzoveg(fs.statSync(path.join(process.cwd(), 'public', doc.file)).size)})</span>
+                  </a>
+                ) : (
+                  <DocAvailability />
+                )}
               </div>
             </div>
           ))}
@@ -140,7 +105,7 @@ export default function DokumentumokPage() {
                 <div className="flex items-center justify-between">
                   <Badge variant="warning">{project.badge}</Badge>
                   <span className="text-xs font-bold text-blue-900 bg-blue-100 px-3 py-1 rounded-full">
-                    {project.grantAmount}
+                    {project.amount}
                   </span>
                 </div>
 
@@ -156,7 +121,11 @@ export default function DokumentumokPage() {
                   {project.details.map((detail, dIdx) => (
                     <div key={dIdx} className="flex items-start gap-2 text-xs text-slate-700">
                       <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      <span>{detail}</span>
+                      {detail.href ? (
+                        <a href={detail.href} className="font-semibold text-blue-700 underline underline-offset-2 hover:text-blue-900">{detail.text}</a>
+                      ) : (
+                        <span>{detail.text}</span>
+                      )}
                     </div>
                   ))}
                 </div>

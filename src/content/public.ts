@@ -32,15 +32,29 @@ export async function readContentSafely(read: () => Promise<unknown>): Promise<{
 
 /**
  * Events that are over and get no new date (Edina 2026-11-13: the parent club of 2024-10-26). Whatever
- * the store says about them (featured, a registration link), they show among the earlier items, with no
- * registration button or form. By id, not by date: publishedAt is the publishing date, not the event's.
+ * the store says about them (featured, a registration link, the invitation's wording), they show among the
+ * earlier items as a past event: no registration button or form, no invitation sentences. By id, not by
+ * date: publishedAt is the publishing date, not the event's.
+ * The past-tense text comes only from the 2024 report (point 3 and the poster printed in it, page 10):
+ * "Az ősz folyamán két ilyen alkalomra került sor" + date, place, topic, speaker. Marveen 7374.
  */
-export const LEZARULT_ESEMENYEK: ReadonlySet<string> = new Set(['szuloklub-2024-10-26']);
+const LEZARULT: ReadonlyMap<string, Pick<NewsItem, 'badge' | 'title' | 'description' | 'highlights'>> = new Map([
+  ['szuloklub-2024-10-26', {
+    badge: 'Lezárult esemény • Szülőklub',
+    title: 'Szülőklub – „Foglald el magad egy kicsit! Önálló szabadidős tevékenységek tervezése, tanítása”',
+    description: 'A 2024 őszén megtartott két szülőklub egyike, a PontMás Alapítvány irodájában (Szombathely, Sugár út 9.). Téma: „Foglald el magad egy kicsit! Önálló szabadidős tevékenységek tervezése, tanítása”. Előadó: Bárdosi Emőke, az Aranyhíd EGYMI szakirányos gyógypedagógusa.',
+    highlights: [],
+  }],
+]);
 
-/** A news item as the visitor sees it: an ended event loses the banner and its registration links. */
+export const LEZARULT_ESEMENYEK: ReadonlySet<string> = new Set(LEZARULT.keys());
+
+/** A news item as the visitor sees it: an ended event loses the banner, its registration links and the
+ *  invitation's sentences, and carries the "Lezárult esemény" badge. */
 export function publicNews(item: NewsItem): NewsItem {
-  if (!LEZARULT_ESEMENYEK.has(item.id)) return item;
-  return { ...item, featured: false, actionText: '', actionHref: '', googleFormHref: undefined };
+  const past = LEZARULT.get(item.id);
+  if (!past) return item;
+  return { ...item, ...past, featured: false, actionText: '', actionHref: '', googleFormHref: undefined };
 }
 
 /**

@@ -13,6 +13,7 @@ const { renderToStaticMarkup } = await import('react-dom/server');
 const { createElement: h } = await import('react');
 const api = await src('lib/editorApi.ts');
 const auth = await src('lib/editorAuth.ts');
+const { publicNews } = await src('content/public.ts');
 const { MemoryContentStore } = await src('content/store.ts');
 const { SEED_CONTENT, SEED_NEWS, SEED_PROGRAMS } = await src('content/seed.ts');
 const pub = await src('content/public.ts');
@@ -121,7 +122,8 @@ test('the existing 4 news items and 4 programs are unchanged, whatever happens t
   assert.equal(SEED_NEWS.length, 4);
   assert.equal(SEED_PROGRAMS.length, 4);
   assert.ok(SEED_NEWS.every((n) => n.hidden === false) && SEED_PROGRAMS.every((p) => p.hidden === false), 'all of them are public');
-  for (const n of SEED_NEWS) assert.ok(htmlText(before.news).includes(n.title), n.title);
+  // as the visitor sees them: the ended 2024-10-26 club under its past-event title (Marveen 7374)
+  for (const n of SEED_NEWS) assert.ok(htmlText(before.news).includes(publicNews(n).title), publicNews(n).title);
   for (const p of SEED_PROGRAMS) assert.ok(htmlText(before.programs).includes(p.title), p.title);
   const r = await put(null, { ...SEED_CONTENT, news: [filledNews(), ...SEED_NEWS], programs: [filledProgram(), ...SEED_PROGRAMS] });
   assert.equal(r.status, 200, JSON.stringify(r.body));

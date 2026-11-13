@@ -55,7 +55,10 @@ test('/hirek with no store renders exactly the item texts of main; the ended 202
   const text = htmlText(html);
   const [first, ...rest] = MAIN_NEWS;
   assert.ok(!text.includes('Legközelebbi Szülőklub'), 'no banner');
-  inOrder(assert, text, [first.badge, first.date, first.title, first.description, ...first.highlights]);
+  // shown as a past event (Marveen 7374): its own badge, title, text from the 2024 report, the date unchanged
+  const past = pub.publicNews({ ...first, id: 'szuloklub-2024-10-26' });
+  inOrder(assert, text, [past.badge, first.date, past.title, past.description]);
+  for (const s of [first.title, first.description, ...first.highlights]) assert.ok(!text.includes(s), s);
   assert.ok(!text.includes(first.actionText) && !html.includes(`href="${first.actionHref}"`) && !html.includes(first.googleFormHref));
   inOrder(assert, text, rest.flatMap((n) => [n.badge, n.date, n.title, n.description, ...n.highlights, n.actionText]));
   for (const n of rest) assert.ok(html.includes(`href="${n.actionHref}"`), n.actionHref);

@@ -26,7 +26,11 @@ test('the 2024-10-26 parent club is among the earlier items, with no banner and 
   assert.equal(item.googleFormHref, undefined);
   const card = renderToStaticMarkup(h(NewsCard, { item }));
   for (const bad of ['Regisztráció', 'forms.gle', '/kapcsolat?topic=szulo', 'Google-űrlap']) assert.ok(!card.includes(bad), bad);
-  assert.ok(card.includes('2024. október 26.'), 'the invitation itself stays');
+  assert.ok(card.includes('2024. október 26.'), 'the date stays');
+  // Marveen 7374: marked as past, no invitation sentences; the text only from the 2024 report (point 3)
+  assert.ok(card.includes('Lezárult esemény'));
+  for (const bad of ['Meghívó', 'soron következő', 'regisztrációhoz kötött', 'szeretettel meghívja', 'Kiemelt']) assert.ok(!card.includes(bad), bad);
+  for (const good of ['A 2024 őszén megtartott két szülőklub egyike', 'Sugár út 9.', 'Bárdosi Emőke', 'Önálló szabadidős tevékenységek tervezése, tanítása']) assert.ok(card.includes(good), good);
 });
 
 test('the editor cannot bring it back: featured and a registration link in the store still render as an earlier item', () => {

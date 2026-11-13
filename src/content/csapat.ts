@@ -25,7 +25,9 @@ export const CSAPAT: readonly CsapatTag[] = [
     nev: 'Rumi Edina',
     szerep: 'Alapítványi munkatárs',
     forras: 'Edina 2026-11-08-i levele (Marveen 6928)',
-    // Drive "2. Portrék" / Rumi Edina.png, cropped below the poster's garbled words (Péter 14680)
+    // Drive "2. Portrék" / Rumi Edina.png, cropped below the poster's garbled words (Péter 14680).
+    // 2026-11-13 Edina asked for a smaller face: a wider 580x725 crop from (297, 518), the face about as wide
+    // as on Edit's card. The top stays below the poster text, so the top of the hair is cut (Péter 15363).
     foto: '/csapat/rumi-edina.webp',
     publikus: true,
   },

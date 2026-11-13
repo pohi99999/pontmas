@@ -20,6 +20,17 @@ test('no page mentions the closed AOSZ Info-Pont or an unpublished e-mail addres
   assert.ok(!TOPICS.includes('aosz'), 'the contact form must not offer an Info-Pont appointment');
 });
 
+// Edina 2026-11-13 (Péter 15449): Edit is no longer the AOSZ vice-president. The foundation stays an AOSZ
+// member organisation; only the vice-presidency goes, and no new role is written in its place.
+test('no page names a vice-presidency any more, in the source or on the rendered pages', async () => {
+  for (const [f, s] of src) assert.ok(!/alelnök/i.test(s), `${path.relative(process.cwd(), f)} still names a vice-presidency`);
+  for (const p of ['app/page.tsx', 'app/rolunk/page.tsx']) {
+    const shown = visibleText(await renderHtml(p));
+    assert.ok(!/alelnök/i.test(shown), `${p} still shows a vice-presidency`);
+    assert.ok(shown.includes('AOSZ'), `${p} still shows the AOSZ membership`);
+  }
+});
+
 test('the bank account is named Erste Bank wherever it is shown, and the number is unchanged', async () => {
   assert.equal(FOUNDATION.bankAccount, '11600006-00000000-75701521');
   assert.equal(FOUNDATION.bankName, 'Erste Bank');

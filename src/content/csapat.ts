@@ -15,8 +15,9 @@ export type CsapatTag = {
 export const CSAPAT: readonly CsapatTag[] = [
   {
     nev: 'Pohánka Edit',
-    szerep: 'A kuratórium elnöke, az Autisták Országos Szövetségének (AOSZ) alelnöke',
-    forras: 'src/app/rolunk/page.tsx ("A kuratórium elnöke Pohánka Edit, aki egyben az AOSZ alelnöke")',
+    // Edina 2026-11-13: Edit is no longer AOSZ vice-president, so that role was taken out (Péter 15449).
+    szerep: 'A kuratórium elnöke',
+    forras: 'src/app/rolunk/page.tsx ("A kuratórium elnöke Pohánka Edit"); Edina 2026-11-13-i levele',
     // Drive "2. Portrék" / Pohánka Edit.png, cropped (Péter 14680: may go up now)
     foto: '/csapat/pohanka-edit.webp',
     publikus: true,
@@ -25,9 +26,8 @@ export const CSAPAT: readonly CsapatTag[] = [
     nev: 'Rumi Edina',
     szerep: 'Alapítványi munkatárs',
     forras: 'Edina 2026-11-08-i levele (Marveen 6928)',
-    // Drive "2. Portrék" / Rumi Edina.png, cropped below the poster's garbled words (Péter 14680).
-    // 2026-11-13 Edina asked for a smaller face: a wider 580x725 crop from (297, 518), the face about as wide
-    // as on Edit's card. The top stays below the poster text, so the top of the hair is cut (Péter 15363).
+    // 2026-11-13 Edina sent a new photo (1049x1500, plain wall; Péter 15449): a 928x1160 crop from (86, 180),
+    // the face about as wide as on Edit's card, the whole head in with some air above.
     foto: '/csapat/rumi-edina.webp',
     publikus: true,
   },

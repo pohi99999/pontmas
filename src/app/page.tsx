@@ -14,7 +14,7 @@ export default function Home() {
   const stats = [
     { value: '2015 óta', label: 'Segítjük a családokat', count: { from: 2005, to: 2015, suffix: '' } },
     { value: '40+', label: 'Érintett család hálózatunkban', count: { from: 0, to: 40, suffix: '+' } },
-    { value: 'AOSZ', label: 'Országos szövetségi alelnökség', count: null },
+    { value: 'AOSZ', label: 'Országos szövetségi tagság', count: null },
   ];
 
   return (

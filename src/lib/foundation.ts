@@ -15,7 +15,7 @@ export const FOUNDATION = {
   /** Adószám, also the beneficiary number of the 1% offer. */
   taxNumber: '18654996-1-18',
   /** Nyilvántartási szám. */
-  registrationNumber: '18-01-0001850',
+  registrationNumber: '18-01-0000323',
   bankName: 'Erste Bank',
   bankAccount: '11600006-00000000-75701521',
   address: {

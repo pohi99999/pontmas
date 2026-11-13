@@ -31,12 +31,25 @@ export async function readContentSafely(read: () => Promise<unknown>): Promise<{
 }
 
 /**
+ * Events that are over and get no new date (Edina 2026-11-13: the parent club of 2024-10-26). Whatever
+ * the store says about them (featured, a registration link), they show among the earlier items, with no
+ * registration button or form. By id, not by date: publishedAt is the publishing date, not the event's.
+ */
+export const LEZARULT_ESEMENYEK: ReadonlySet<string> = new Set(['szuloklub-2024-10-26']);
+
+/** A news item as the visitor sees it: an ended event loses the banner and its registration links. */
+export function publicNews(item: NewsItem): NewsItem {
+  if (!LEZARULT_ESEMENYEK.has(item.id)) return item;
+  return { ...item, featured: false, actionText: '', actionHref: '', googleFormHref: undefined };
+}
+
+/**
  * The banner item and the cards of /hirek. On main the banner was newsItems[0] and the cards
  * newsItems.slice(1); now the banner is the first visible featured item and the cards are every
  * other visible item, which is the same for the seed.
  */
 export function splitNews(items: NewsItem[]): { featured: NewsItem | null; rest: NewsItem[] } {
-  const visible = items.filter((n) => !n.hidden);
+  const visible = items.filter((n) => !n.hidden).map(publicNews);
   const featured = visible.find((n) => n.featured) ?? null;
   return { featured, rest: visible.filter((n) => n !== featured) };
 }

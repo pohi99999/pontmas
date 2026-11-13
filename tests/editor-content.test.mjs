@@ -48,15 +48,18 @@ test('seed: the items of main, verbatim, plus only id, publishedAt and hidden', 
   assert.deepEqual(v.value, seed.SEED_CONTENT, 'the seed passes validation unchanged');
 });
 
-test('/hirek with no store renders exactly the item texts of main', async () => {
+// Edina 2026-11-13 (Péter 15487): the 2024-10-26 parent club is over, no new date. It is no longer the banner:
+// it is the first of the cards, with its texts but without the registration button and the form link.
+test('/hirek with no store renders exactly the item texts of main; the ended 2024-10-26 club is a card without registration', async () => {
   const html = await renderPage('app/hirek/page.tsx');
   const text = htmlText(html);
   const [first, ...rest] = MAIN_NEWS;
-  inOrder(assert, text, [first.date, first.title, first.location, first.speaker, first.description, ...first.highlights, first.actionText]);
-  assert.ok(html.includes(`href="${first.actionHref}"`) && html.includes(`href="${first.googleFormHref}"`));
+  assert.ok(!text.includes('Legközelebbi Szülőklub'), 'no banner');
+  inOrder(assert, text, [first.badge, first.date, first.title, first.description, ...first.highlights]);
+  assert.ok(!text.includes(first.actionText) && !html.includes(`href="${first.actionHref}"`) && !html.includes(first.googleFormHref));
   inOrder(assert, text, rest.flatMap((n) => [n.badge, n.date, n.title, n.description, ...n.highlights, n.actionText]));
   for (const n of rest) assert.ok(html.includes(`href="${n.actionHref}"`), n.actionHref);
-  assert.equal((html.match(/<article/g) ?? []).length, rest.length, 'one card per item after the banner');
+  assert.equal((html.match(/<article/g) ?? []).length, MAIN_NEWS.length, 'one card per item, the ended one included');
   assert.ok(!html.includes('<img'), 'no image on main');
 });
 
@@ -81,7 +84,8 @@ test('fallback: empty, failing or invalid store content means the seed', async (
 });
 
 test('the banner is the first visible featured item; hidden items are not shown', () => {
-  const news = seed.SEED_NEWS.map((n) => ({ ...n }));
+  // the seed's first item is the ended 2024-10-26 club (never a banner); under another id it shows the rule
+  const news = seed.SEED_NEWS.map((n, i) => ({ ...n, ...(i === 0 ? { id: 'szuloklub-kovetkezo' } : {}) }));
   let s = pub.splitNews(news);
   assert.equal(s.featured.id, news[0].id);
   assert.deepEqual(s.rest.map((n) => n.id), news.slice(1).map((n) => n.id));

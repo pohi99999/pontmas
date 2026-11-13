@@ -19,6 +19,7 @@ import {
 } from '@/content/types';
 import { HIDDEN_TOGGLE_HINT, HIDDEN_TOGGLE_LABEL, blankNews, blankProgram, saveButtonText, savedMessage } from '@/content/newItems';
 import { validateNewsItem, validateProgramItem, type ValidationError } from '@/content/validate';
+import { LEZARULT_ESEMENYEK, publicNews } from '@/content/public';
 import { MAX_BYTES, resizeForUpload } from './imageResize';
 
 type Kind = 'news' | 'programs';
@@ -499,7 +500,8 @@ function ItemForm({ editing, editor, errors, update, busy, canSave, previewShown
         <section aria-label="Előnézet" className="space-y-2">
           <h3 className="text-base font-bold text-slate-900">Előnézet: így jelenik meg a honlapon</h3>
           {item.hidden && <p className="rounded-xl bg-amber-50 p-3 text-sm text-amber-900">Ez az elem rejtett: így nézne ki, de most nem jelenik meg a honlapon.</p>}
-          {news ? (news.featured ? <NewsFeaturedCard item={news} /> : <NewsCard item={news} />) : <ProgramCard program={program!} />}
+          {news && LEZARULT_ESEMENYEK.has(news.id) && <p className="rounded-xl bg-amber-50 p-3 text-sm text-amber-900">Ez az esemény lezárult: a honlapon a korábbi hírek között jelenik meg, kiemelés és regisztráció nélkül.</p>}
+          {news ? (publicNews(news).featured ? <NewsFeaturedCard item={publicNews(news)} /> : <NewsCard item={publicNews(news)} />) : <ProgramCard program={program!} />}
         </section>
       )}
 

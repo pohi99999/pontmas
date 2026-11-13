@@ -46,6 +46,7 @@ export default function Header() {
     { label: 'Hírek', href: '/hirek' },
     { label: 'Programok', href: '/programok' },
     { label: 'Dokumentumok', href: '/dokumentumok' },
+    { label: 'Irodánk', href: '/irodank' },
     { label: 'Kapcsolat', href: '/kapcsolat' },
   ];
 
@@ -56,7 +57,7 @@ export default function Header() {
         away, so while scrolling the sticky header below stays its own 80 px. In the tab order it comes right
         after "Ugrás a tartalomra". The language switcher (#37) goes in here too. */}
     <div data-felso-sav className="hidden min-[1360px]:block border-b border-slate-200/80 bg-slate-50">
-      <div className="container mx-auto flex h-10 items-center justify-end gap-2 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex h-10 items-center justify-end gap-2 px-4 sm:px-6 lg:px-8 min-[1360px]:max-w-none 2xl:max-w-[96rem]">
         <ThemeToggleButton />
         {/* Sensory Toggle: always with its label, outlined in the brand blue; on, it is a light blue tint,
             not black, so it cannot be taken for a dark-mode switch (review 2026-11-10) */}
@@ -77,7 +78,9 @@ export default function Header() {
       </div>
     </div>
     <header ref={headerRef} className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 transition-colors">
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+      {/* 1360-1535 px: the header row (and the bar above) use the full width instead of the 1280 px column, so
+          the eleven menu items keep 16 px from the logo (a11y check); from 1536 px the usual 1536 px column. */}
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8 min-[1360px]:max-w-none 2xl:max-w-[96rem]">
         
         {/* Brand Logo */}
         <Link 

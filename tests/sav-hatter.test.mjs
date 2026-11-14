@@ -1,29 +1,42 @@
-// The navy 1% band's faint background photo (Péter 14781, "B2, tengeri falikép"; Marveen 7037). The browser
-// run (contrast AA from pixels, soft mode hides it, LCP stays the H1, no overflow) is in the PR.
+// The navy 1% band (Péter 15566, Lumen's proposal 2; before: Péter 14781, the mural as a faint background).
+// The sea mural is now shown in full in a frame beside the text (below 1024 px above it), and the text sits on
+// plain navy. The browser run (contrast from pixels, both themes, 390 and 1280 px, no overflow) is in the PR.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { renderHtml } from './helpers/render.mjs';
 
 const read = (f) => fs.readFileSync(f, 'utf8');
-const page = read('src/app/page.tsx');
-const start = page.indexOf('<section className="relative isolate overflow-hidden bg-blue-950');
-const band = page.slice(start, page.indexOf('</section>', start));
+const html = await renderHtml('app/page.tsx');
+const start = html.indexOf('<section class="relative isolate overflow-hidden bg-blue-950');
+const band = html.slice(start, html.indexOf('</section>', start));
 assert.ok(start > 0 && band.length > 200, 'the band section is found');
 
-test('a decorative layer: aria-hidden, empty alt, behind the content', () => {
-  assert.match(band, /<div data-hatter aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">/);
-  assert.match(band, /<Image src="\/images\/galeria\/tengeri-falikep\.webp" alt="" fill sizes="100vw"/);
+test('the mural is a framed picture in the grid, not a layer under the text', () => {
+  assert.match(band, /<div class="pm-egyszazalek grid[^"]*lg:grid-cols-\[minmax\(0,1\.2fr\)_minmax\(0,1fr\)\]/);
+  const fig = band.slice(band.indexOf('<div data-hatter'), band.indexOf('</div>', band.indexOf('<div data-hatter')) + 6);
+  assert.match(fig, /^<div data-hatter="true" aria-hidden="true" class="lg:order-2[^"]*">/);
+  assert.match(fig, /<img alt=""[^>]*width="1200" height="676"/);
+  assert.match(fig, /class="foto w-full h-auto rounded-3xl/);
+  assert.doesNotMatch(band, /absolute inset-0/, 'nothing is laid over or under the text any more');
+  assert.doesNotMatch(band, /pm-hatter-takaras/);
   assert.ok(fs.existsSync('public/images/galeria/tengeri-falikep.webp'));
 });
 
-test('never competes for the LCP: no priority, no eager loading', () => {
-  const img = band.slice(band.indexOf('<Image'), band.indexOf('/>', band.indexOf('<Image')));
-  assert.doesNotMatch(img, /priority|loading=|fetchPriority|preload/);
+test('on phones the picture comes first (above the text), on desktop it moves to the right', () => {
+  assert.ok(band.indexOf('<div data-hatter') < band.indexOf('<h2'), 'the picture is before the heading in the markup');
+  assert.match(band, /<div class="lg:order-1 min-w-0"><p class="eyebrow/);
 });
 
-test('the navy cover as in the mockup, and soft mode removes the layer', () => {
+test('never competes for the LCP: lazy, no priority', () => {
+  const img = band.slice(band.indexOf('<img'), band.indexOf('>', band.indexOf('<img')));
+  assert.match(img, /loading="lazy"/);
+  assert.doesNotMatch(img, /fetchpriority|fetchPriority/);
+});
+
+test('soft mode removes the picture as before, and the text then takes the whole width', () => {
   const css = read('src/app/globals.css');
-  assert.match(css, /\.pm-hatter-takaras \{\s*background: linear-gradient\(90deg, var\(--color-blue-950\) 0%, var\(--color-blue-950\) 45%, color-mix\(in srgb, var\(--color-blue-950\) 78%, transparent\) 100%\);/);
-  assert.match(css, /@media \(max-width: 767\.98px\) \{\s*\.pm-hatter-takaras \{ background: color-mix\(in srgb, var\(--color-blue-950\) 90%, transparent\); \}/);
   assert.match(css, /\.sensory-friendly \[data-hatter\] \{ display: none; \}/);
+  assert.match(css, /\.sensory-friendly \.pm-egyszazalek \{ grid-template-columns: minmax\(0, 1fr\); \}/);
+  assert.doesNotMatch(css, /pm-hatter-takaras/, 'the old cover is gone');
 });

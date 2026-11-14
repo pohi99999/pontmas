@@ -143,46 +143,55 @@ export default function Home() {
 
       {/* 4. Donation: a full-width deep blue band, the tax and bank numbers in one row */}
       <section className="relative isolate overflow-hidden bg-blue-950 text-white pm-sotet">
-        {/* A faint background (Péter 14781, "B2, tengeri falikép"): the children's sea mural from the gallery,
-            no person in it, under a navy cover so the text keeps its contrast (full navy to 45 %, fading to
-            78 % on the right; 90 % all over below 768 px). Decorative: aria-hidden, empty alt, lazy (it is far
-            below the fold, so it never competes for the LCP), and gone in soft mode ([data-hatter]). */}
-        <div data-hatter aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-          <Image src="/images/galeria/tengeri-falikep.webp" alt="" fill sizes="100vw" className="object-cover object-right" />
-          <div className="pm-hatter-takaras absolute inset-0" />
-        </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="max-w-4xl">
-            <p className="eyebrow mb-5" style={{ color: '#c9d5ec' }}>
-              <span className="pont" aria-hidden="true" />
-              Rendelkezzen adója 1%-áról!
-            </p>
-            <h2 className="text-4xl sm:text-5xl text-white leading-[1.1] mb-6">
-              Egyetlen kattintás az Ön részéről, óriási segítség a családoknak
-            </h2>
-            <p className="text-blue-100 text-lg leading-relaxed max-w-2xl mb-8">
-              A személyi jövedelemadó 1%-ának felajánlása Önnek semmibe sem kerül, de számunkra a táborok, a szülőklubok és a krízis alap biztonságos működését jelenti.
-            </p>
-            {/* What the 1% brought, from the NAV's list (src/content/egyszazalek.ts); the source stays visible */}
-            <figure className="border-l-2 border-blue-400 pl-5 max-w-2xl mb-8">
-              {/* The NAV figure is the OFFERED amount (Ellenőr, #40), so the sentence says "ajánlott fel".
-                  Words with a hyphenated suffix stay whole (whitespace-nowrap): the browser may break after
-                  a hyphen, and "Ft-" / "ot" on two lines was measured at 284-294, 510-530 and 640-766 px. */}
-              <p className="text-white text-xl sm:text-2xl leading-snug">
-                <span className="whitespace-nowrap">{EGYSZAZALEK.evben}</span>{' '}
-                <strong className="font-semibold">{EGYSZAZALEK.felajanlok} adózó</strong> összesen{' '}
-                <strong className="font-semibold whitespace-nowrap">{forint(EGYSZAZALEK.osszeg)}-ot</strong> ajánlott fel{' '}
-                <span className="whitespace-nowrap">1%-ából</span> a vasi autista gyermekek és családjaik támogatására.
+          {/* Split layout (Péter 15566, Lumen's proposal 2): the children's sea mural (gallery, no person in it)
+              is now shown in full in a frame instead of as a barely visible background under a navy cover, so
+              the text sits on plain navy. Below 1024 px the picture is above the text, from 1024 px beside it.
+              Decorative: aria-hidden, empty alt, lazy (far below the fold, never the LCP). Soft mode hides it
+              as it hid the background before ([data-hatter]), and the text then takes the whole width. */}
+          <div className="pm-egyszazalek grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center lg:gap-14">
+            <div data-hatter aria-hidden="true" className="lg:order-2 max-w-2xl lg:max-w-none">
+              <Image
+                src="/images/galeria/tengeri-falikep.webp"
+                alt=""
+                width={1200}
+                height={676}
+                sizes="(min-width: 1280px) 520px, (min-width: 1024px) 42vw, (min-width: 768px) 672px, 100vw"
+                className="foto w-full h-auto rounded-3xl ring-1 ring-white/15"
+              />
+            </div>
+            <div className="lg:order-1 min-w-0">
+              <p className="eyebrow mb-5" style={{ color: '#c9d5ec' }}>
+                <span className="pont" aria-hidden="true" />
+                Rendelkezzen adója 1%-áról!
               </p>
-              <figcaption className="mt-2 text-sm text-blue-200">Forrás: NAV, {EGYSZAZALEK.kozzeteve}</figcaption>
-            </figure>
-            <Link
-              href="/tamogatas"
-              className="inline-flex items-center text-sm font-semibold text-blue-100 underline decoration-blue-400 underline-offset-4 hover:text-white transition-colors"
-            >
-              <span>Minden támogatási lehetőség megtekintése</span>
-              <ArrowRight size={16} className="ml-1.5" />
-            </Link>
+              <h2 className="text-4xl sm:text-5xl text-white leading-[1.1] mb-6">
+                Egyetlen kattintás az Ön részéről, óriási segítség a családoknak
+              </h2>
+              <p className="text-blue-100 text-lg leading-relaxed max-w-2xl mb-8">
+                A személyi jövedelemadó 1%-ának felajánlása Önnek semmibe sem kerül, de számunkra a táborok, a szülőklubok és a krízis alap biztonságos működését jelenti.
+              </p>
+              {/* What the 1% brought, from the NAV's list (src/content/egyszazalek.ts); the source stays visible */}
+              <figure className="border-l-2 border-blue-400 pl-5 max-w-2xl mb-8">
+                {/* The NAV figure is the OFFERED amount (Ellenőr, #40), so the sentence says "ajánlott fel".
+                    Words with a hyphenated suffix stay whole (whitespace-nowrap): the browser may break after
+                    a hyphen, and "Ft-" / "ot" on two lines was measured at 284-294, 510-530 and 640-766 px. */}
+                <p className="text-white text-xl sm:text-2xl leading-snug">
+                  <span className="whitespace-nowrap">{EGYSZAZALEK.evben}</span>{' '}
+                  <strong className="font-semibold">{EGYSZAZALEK.felajanlok} adózó</strong> összesen{' '}
+                  <strong className="font-semibold whitespace-nowrap">{forint(EGYSZAZALEK.osszeg)}-ot</strong> ajánlott fel{' '}
+                  <span className="whitespace-nowrap">1%-ából</span> a vasi autista gyermekek és családjaik támogatására.
+                </p>
+                <figcaption className="mt-2 text-sm text-blue-200">Forrás: NAV, {EGYSZAZALEK.kozzeteve}</figcaption>
+              </figure>
+              <Link
+                href="/tamogatas"
+                className="inline-flex items-center text-sm font-semibold text-blue-100 underline decoration-blue-400 underline-offset-4 hover:text-white transition-colors"
+              >
+                <span>Minden támogatási lehetőség megtekintése</span>
+                <ArrowRight size={16} className="ml-1.5" />
+              </Link>
+            </div>
           </div>
 
           <div className="bg-white rounded-3xl p-4 sm:p-6 mt-10 text-slate-900">

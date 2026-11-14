@@ -406,12 +406,12 @@ h2 {
   color: var(--color-blue-700);
 }
 
-/* The navy 1% band's faint background photo (Péter 14781): the cover keeps the text on navy. Inside the band
-   (.pm-sotet) --color-blue-950 is the navy in both themes. Soft mode removes every decorative background. */
-.pm-hatter-takaras {
-  background: linear-gradient(90deg, var(--color-blue-950) 0%, var(--color-blue-950) 45%, color-mix(in srgb, var(--color-blue-950) 78%, transparent) 100%);
-}
-@media (max-width: 767.98px) {
-  .pm-hatter-takaras { background: color-mix(in srgb, var(--color-blue-950) 90%, transparent); }
-}
+/* The navy 1% band (Péter 15566): the sea mural in a frame beside the text (below 1024 px above it), the text
+   on plain navy. Soft mode removes the picture as it removed the former background, and the text column then
+   takes the whole width. */
+/* The band at the top of a news card without a photo: the brand's blue tints (they turn into dark tints in the dark
+   theme by themselves), with the logo's still spheres (.lufi) on it */
+.pm-kartya-sav { background: linear-gradient(120deg, var(--color-blue-50) 0%, var(--color-blue-100) 100%); }
+
+.sensory-friendly .pm-egyszazalek { grid-template-columns: minmax(0, 1fr); }
 .sensory-friendly [data-hatter] { display: none; }

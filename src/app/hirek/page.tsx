@@ -48,7 +48,9 @@ export default async function HirekPage() {
           subtitle="Ismerje meg az alapítvány legfrissebb eseményeit és szakmai tevékenységeit."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Two columns from 768 px (Péter 15566): an even number of cards fills the rows; an odd last card is
+            centred at the same width instead of standing alone at the left edge. */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:[&>:last-child:nth-child(odd)]:col-span-2 md:[&>:last-child:nth-child(odd)]:justify-self-center md:[&>:last-child:nth-child(odd)]:w-[calc(50%-1rem)]">
           {rest.map((item) => (
             <NewsCard key={item.id} item={item} />
           ))}

@@ -74,6 +74,22 @@ export const DOKUMENTUMOK: readonly Dokumentum[] = [
 
 export const TAMOGATASOK: readonly Tamogatas[] = [
   {
+    // the municipal grant contract Edina shared 2026-11-14 13:59 ("Működtetési támogatás.pdf", Péter 15540).
+    // Every figure is from the contract: 41410-2/2025, points 5 and 11, signed Szombathely, 2026. január 14.
+    // The contract itself is NOT on the site: it carries the bank account number and the signatures.
+    // Point 24 asks the foundation to name the municipality as its supporter; this card does that.
+    title: 'Szombathely MJV Önkormányzati Támogatás – Működési támogatás 2026',
+    badge: 'Önkormányzati támogatás',
+    amount: '200.000 Ft egyszeri támogatás',
+    description: 'Szombathely Megyei Jogú Város Önkormányzata a „Kulturális és Civil Alap” terhére egyszeri támogatást nyújt az alapítvány 2026. évi működéséhez.',
+    details: [
+      { text: 'Támogató: Szombathely Megyei Jogú Város Önkormányzata' },
+      { text: 'Döntés: a Közgyűlés 328/2025. (XII.11.) Kgy. számú határozata' },
+      { text: 'Elszámolás: 2027. január 31-ig' },
+      { text: 'Forrás: támogatási szerződés, iktatási szám 41410-2/2025, kelt Szombathely, 2026. január 14.' },
+    ],
+  },
+  {
     // 2025. évi szakmai beszámoló, 8. pont
     title: 'Szülősegítő szolgáltatások támogatása 2025 (SZÜLŐ2025)',
     badge: 'Megvalósult pályázat',

@@ -24,6 +24,7 @@ export type Tamogatas = {
 export const BESZAMOLO_2025 = '/dokumentumok/pontmas-beszamolo-2025.pdf';
 export const BESZAMOLO_2024 = '/dokumentumok/pontmas-beszamolo-2024.pdf';
 export const SZAKMAI_BESZAMOLO_2023 = '/dokumentumok/pontmas-szakmai-beszamolo-2023.pdf';
+export const ALAPITO_OKIRAT = '/dokumentumok/pontmas-alapito-okirat.pdf';
 export const ADATVEDELMI_SZABALYZAT = '/dokumentumok/pontmas-adatvedelmi-szabalyzat-2024.pdf';
 
 export const DOKUMENTUMOK: readonly Dokumentum[] = [
@@ -33,6 +34,9 @@ export const DOKUMENTUMOK: readonly Dokumentum[] = [
     category: 'Jogi alapdokumentum',
     date: '', // the page fills in the registration number
     description: 'A PontMás Vas Megyei Autista Gyermekekért Alapítvány hivatalos alapító okirata, célkitűzései és kuratóriumi működési rendje.',
+    // the redacted copy (birth data, mother's name, addresses, signatures, witnesses covered; image-only pages),
+    // approved by Edina 2026-11-14 11:03 ("Alapító okirat oké így")
+    file: ALAPITO_OKIRAT,
   },
   {
     // the policy's own first page: "Hatályos: 2024.09.13."
@@ -74,7 +78,7 @@ export const TAMOGATASOK: readonly Tamogatas[] = [
     title: 'Szülősegítő szolgáltatások támogatása 2025 (SZÜLŐ2025)',
     badge: 'Megvalósult pályázat',
     amount: '481 800 Ft vissza nem térítendő támogatás',
-    description: 'A SZÜLŐ2025-B-4764 azonosítószámú, „Kezdeti segítség nyújtása az autizmussal élő szülőknek, nevelőknek” című projekt célja egy háromrészes, online hozzáférhető, közérthető és szakmailag megalapozott kisfilmsorozat elkészítése volt.',
+    description: 'A SZÜLŐ2025-B-4764 azonosítószámú, „Kezdeti segítség nyújtása az autizmussal élők szüleinek, nevelőinek” című projekt célja egy háromrészes, online hozzáférhető, közérthető és szakmailag megalapozott kisfilmsorozat elkészítése volt.',
     details: [
       { text: 'Támogató: Slachta Margit Nemzeti Szociálpolitikai Intézet' },
       { text: 'Eredmény: a háromrészes kisfilmsorozat', href: '/kisfilmek' },

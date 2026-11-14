@@ -82,3 +82,17 @@ test('Irodánk is in the main menu (desktop and mobile share the list) and in th
   assert.equal((hd.match(/navItems\.map\(/g) || []).length, 2);
   assert.match(await renderHtml('components/layout/Footer.tsx'), /<a [^>]*href="\/irodank"[^>]*>Irodánk<\/a>/);
 });
+
+test('Irodánk shows Edina\'s approved portrait with her name and role, from the same place as /rolunk (Edina 11-14 14:33)', async () => {
+  const html = await renderHtml('app/irodank/page.tsx');
+  const { CSAPAT } = await src('content/csapat.ts');
+  const edina = CSAPAT.find((t) => t.nev === 'Rumi Edina');
+  assert.equal(edina.foto, '/csapat/rumi-edina.webp');
+  assert.equal(fs.readFileSync(path.resolve('public' + edina.foto)).toString('ascii', 8, 12), 'WEBP');
+  const fig = html.match(/<figure[\s\S]*?<\/figure>/);
+  assert.ok(fig, 'no figure on /irodank');
+  assert.match(fig[0], /<img[^>]*alt="Rumi Edina"[^>]*src="[^"]*rumi-edina\.webp/);
+  const shown = visibleText(fig[0]);
+  assert.ok(shown.includes('Rumi Edina') && shown.includes(edina.szerep), shown);
+});
+

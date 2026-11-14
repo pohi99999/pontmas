@@ -12,10 +12,11 @@ const html = await renderHtml('app/dokumentumok/page.tsx');
 const shown = visibleText(html);
 const pub = (p) => path.resolve('public' + p);
 
-test('the four PDFs are in public/dokumentumok, real PDFs, each offered for download with its true size', () => {
+test('the five PDFs are in public/dokumentumok, real PDFs, each offered for download with its true size', () => {
   const files = DOKUMENTUMOK.filter((d) => d.file).map((d) => d.file);
   assert.deepEqual(files.sort(), [
     '/dokumentumok/pontmas-adatvedelmi-szabalyzat-2024.pdf',
+    '/dokumentumok/pontmas-alapito-okirat.pdf',
     '/dokumentumok/pontmas-beszamolo-2024.pdf',
     '/dokumentumok/pontmas-beszamolo-2025.pdf',
     '/dokumentumok/pontmas-szakmai-beszamolo-2023.pdf',
@@ -30,11 +31,19 @@ test('the four PDFs are in public/dokumentumok, real PDFs, each offered for down
   assert.equal(meretSzoveg(221313), '216 KB');
 });
 
-test('the founding deed is not on the site (private persons\' data); its card says "Hamarosan elérhető"', () => {
+test('the founding deed is the redacted copy Edina approved (11-14): image-only pages, no text layer to leak', () => {
   const deed = DOKUMENTUMOK.find((d) => d.title.startsWith('Alapító okirat'));
-  assert.equal(deed.file, undefined);
-  assert.ok(!fs.readdirSync(path.resolve('public/dokumentumok')).some((f) => /alapit|okirat/i.test(f)));
-  assert.ok(shown.includes('Hamarosan elérhető'));
+  assert.equal(deed.file, '/dokumentumok/pontmas-alapito-okirat.pdf');
+  const buf = fs.readFileSync(pub(deed.file));
+  const raw = buf.toString('latin1');
+  assert.equal((raw.match(/\/Font/g) || []).length, 0, 'a text layer would carry the covered data');
+  assert.equal((raw.match(/\/Subtype\s*\/Image/g) || []).length, 8);
+  assert.ok(!shown.includes('Hamarosan elérhető'));
+});
+
+test('the SZÜLŐ2025 grant carries the project title Edina confirmed (11-14), not the report\'s misprint', () => {
+  assert.ok(shown.includes('„Kezdeti segítség nyújtása az autizmussal élők szüleinek, nevelőinek”'));
+  assert.ok(!shown.includes('autizmussal élő szülőknek'));
 });
 
 test('dates and amounts as the PDFs give them', () => {

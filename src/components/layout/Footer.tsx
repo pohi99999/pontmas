@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="border-t border-slate-200 bg-slate-900 text-slate-300 pm-sotet">
       {/* Fő lábléc tartalom */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           
           {/* Oszlop 1: Alapítványi profil */}
           <div className="space-y-4">
@@ -36,39 +36,42 @@ export default function Footer() {
           {/* Oszlop 2: Gyorslinkek */}
           <div className="space-y-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Oldaltérkép</h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 text-sm">
+            {/* Two columns on phones too (Péter 15566): the eleven links in one column took a quarter of a short page.
+                Below 1024 px every link is at least 44 px tall (a finger-sized target); the one-column desktop list
+                keeps its compact rows. */}
+            <ul className="grid grid-cols-2 lg:grid-cols-1 gap-x-4 gap-y-0 lg:gap-y-2 text-sm">
               <li>
-                <Link href="/rolunk" className="hover:text-white transition-colors">Rólunk és értékeink</Link>
+                <Link href="/rolunk" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Rólunk és értékeink</Link>
               </li>
               <li>
-                <Link href="/autizmus" className="hover:text-white transition-colors">Autizmus-ismerettár és FAQ</Link>
+                <Link href="/autizmus" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Autizmus-ismerettár és FAQ</Link>
               </li>
               <li>
-                <Link href="/segitseg" className="hover:text-white transition-colors">Amiben segíteni tudunk</Link>
+                <Link href="/segitseg" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Amiben segíteni tudunk</Link>
               </li>
               <li>
-                <Link href="/kisfilmek" className="hover:text-white transition-colors">Kisfilmek</Link>
+                <Link href="/kisfilmek" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Kisfilmek</Link>
               </li>
               <li>
-                <Link href="/rolunk-irtak" className="hover:text-white transition-colors">Rólunk írták és sajtó</Link>
+                <Link href="/rolunk-irtak" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Rólunk írták és sajtó</Link>
               </li>
               <li>
-                <Link href="/hirek" className="hover:text-white transition-colors">Hírek és szülőklub</Link>
+                <Link href="/hirek" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Hírek és szülőklub</Link>
               </li>
               <li>
-                <Link href="/programok" className="hover:text-white transition-colors">Programok és események</Link>
+                <Link href="/programok" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Programok és események</Link>
               </li>
               <li>
-                <Link href="/tamogatas" className="hover:text-white transition-colors">Támogatás és adó 1%</Link>
+                <Link href="/tamogatas" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Támogatás és adó 1%</Link>
               </li>
               <li>
-                <Link href="/dokumentumok" className="hover:text-white transition-colors">Dokumentumtár és pályázatok</Link>
+                <Link href="/dokumentumok" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Dokumentumtár és pályázatok</Link>
               </li>
               <li>
-                <Link href="/irodank" className="hover:text-white transition-colors">Irodánk</Link>
+                <Link href="/irodank" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Irodánk</Link>
               </li>
               <li>
-                <Link href="/kapcsolat" className="hover:text-white transition-colors">Kapcsolat</Link>
+                <Link href="/kapcsolat" className="flex max-lg:min-h-11 items-center hover:text-white transition-colors">Kapcsolat</Link>
               </li>
             </ul>
           </div>
@@ -76,21 +79,21 @@ export default function Footer() {
           {/* Oszlop 3: Elérhetőségek */}
           <div className="space-y-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Elérhetőség</h3>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-1 lg:space-y-3 text-sm">
               <li className="flex items-start gap-2.5">
                 <MapPin size={18} className="text-blue-400 flex-shrink-0 mt-0.5" />
                 <span>{ADDRESS_LINE}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone size={18} className="text-blue-400 flex-shrink-0" />
-                <a href={PHONE_HREF} className="hover:text-white transition-colors">{FOUNDATION.contactPerson}, <span className="whitespace-nowrap">{FOUNDATION.phone}</span></a>
+                <a href={PHONE_HREF} className="inline-flex max-lg:min-h-11 items-center hover:text-white transition-colors"><span>{FOUNDATION.contactPerson}, <span className="whitespace-nowrap">{FOUNDATION.phone}</span></span></a>
               </li>
-              <li className="pt-1">
+              <li className="lg:pt-1">
                 <a 
                   href="https://www.facebook.com/groups/1622445488007296/?locale=hu_HU" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-sky-300 hover:text-sky-200 transition-colors"
+                  className="inline-flex max-lg:min-h-11 items-center gap-1.5 text-xs text-sky-300 hover:text-sky-200 transition-colors"
                 >
                   <span>Közösségi Facebook csoport</span>
                   <ExternalLink size={12} />
@@ -114,7 +117,7 @@ export default function Footer() {
             </div>
             <Link
               href="/tamogatas"
-              className="inline-flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2.5 px-3 rounded-lg transition-colors"
+              className="inline-flex max-lg:min-h-11 items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2.5 px-3 rounded-lg transition-colors"
             >
               <Heart size={14} className="fill-white" />
               <span>Adományozási tudnivalók</span>
@@ -126,12 +129,12 @@ export default function Footer() {
 
       {/* Alsó copyright sáv */}
       <div className="border-t border-slate-800 bg-slate-950 py-6">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4 text-xs text-slate-400">
           <p>© {currentYear} {FOUNDATION.name}. Minden jog fenntartva.</p>
           <div className="flex items-center gap-4">
-            <Link href="/dokumentumok" className="hover:text-slate-300 transition-colors">Közhasznúsági jelentések</Link>
+            <Link href="/dokumentumok" className="inline-flex max-lg:min-h-11 items-center hover:text-slate-300 transition-colors">Közhasznúsági jelentések</Link>
             <span>•</span>
-            <Link href="/kapcsolat" className="hover:text-slate-300 transition-colors">Adatvédelem és kapcsolat</Link>
+            <Link href="/kapcsolat" className="inline-flex max-lg:min-h-11 items-center hover:text-slate-300 transition-colors">Adatvédelem és kapcsolat</Link>
           </div>
         </div>
       </div>

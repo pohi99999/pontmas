@@ -124,7 +124,17 @@ export function NewsCard({ item }: { item: NewsItem }) {
       className="min-w-0 flex flex-col justify-between rounded-[2rem] border border-slate-200 bg-white p-7"
     >
       <div className="space-y-4">
-        <ContentImageView image={item.image} />
+        {publicImage(item.image) ? (
+          <ContentImageView image={item.image} />
+        ) : (
+          // No photo (Péter 15566, Lumen's proposal 3): a calm band in the brand's blue with the logo's still
+          // spheres, so a card without a picture does not open with a wall of text. Decorative only.
+          <div data-kartya-sav aria-hidden="true" className="pm-kartya-sav relative -mx-7 -mt-7 mb-6 h-20 overflow-hidden rounded-t-[calc(2rem-1px)]">
+            <span className="lufi" style={{ width: 46, height: 46, right: 32, top: 17 }} />
+            <span className="lufi" style={{ width: 16, height: 16, right: 88, top: 14 }} />
+            <span className="lufi" style={{ width: 10, height: 10, right: 92, top: 46 }} />
+          </div>
+        )}
         <div className="flex items-center justify-between gap-2">
           <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full">
             {item.badge}
@@ -134,8 +144,9 @@ export function NewsCard({ item }: { item: NewsItem }) {
           </span>
         </div>
 
-        {/* hyphens: a long word ("tevékenységek") in a 768 px three-column card pushed the page sideways */}
-        <h3 className="display text-2xl text-slate-900 leading-snug hyphens-auto break-words">
+        {/* Hyphenation only on phones, where a long word ("tevékenységek") in a narrow card could push the page
+            sideways; from 768 px the card is wide enough, and the lines are balanced instead of split words. */}
+        <h3 className="display text-2xl text-slate-900 leading-snug break-words max-md:hyphens-auto md:text-balance">
           {item.title}
         </h3>
 

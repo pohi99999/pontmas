@@ -55,9 +55,19 @@ test('dates and amounts as the PDFs give them', () => {
     'SZÜLŐ2025-B-4764', '481 800 Ft vissza nem térítendő támogatás', 'Slachta Margit Nemzeti Szociálpolitikai Intézet',
     '22 gyógypedagógusa', '1.320.000 Ft', '800.000 Ft a Szombathely Megyei Jogú Város Önkormányzati Támogatási Rendszeréből',
     'Megvalósítás: 2024. április, május és november', '715.000 Ft', 'Megvalósítás: 2023. október és november',
+    // the 2026 municipal grant, from contract 41410-2/2025 (Edina 2026-11-14)
+    '200.000 Ft egyszeri támogatás', 'az alapítvány 2026. évi működéséhez', '328/2025. (XII.11.) Kgy.', '41410-2/2025',
+    'Elszámolás: 2027. január 31-ig', 'Támogató: Szombathely Megyei Jogú Város Önkormányzata',
   ]) assert.ok(shown.includes(t), t);
   assert.match(html, /<a href="\/kisfilmek"[^>]*>Eredmény: a háromrészes kisfilmsorozat<\/a>/);
-  for (const g of TAMOGATASOK) assert.ok(g.details.some((d) => d.text.startsWith('Forrás:') && d.href?.endsWith('.pdf')), g.title);
+  // every grant names its source; a linked source is a PDF on the site. The 2026 municipal grant's source is the
+  // contract, which stays off the site (signatures, stamp; Edina was asked), so it is named without a link.
+  for (const g of TAMOGATASOK) {
+    const f = g.details.find((d) => d.text.startsWith('Forrás:'));
+    assert.ok(f, g.title);
+    if (f.href) assert.ok(f.href.endsWith('.pdf') && fs.existsSync(pub(f.href)), g.title);
+  }
+  assert.equal(TAMOGATASOK.filter((g) => !g.details.find((d) => d.text.startsWith('Forrás:')).href).length, 1);
 });
 
 test('the unsourced or contradicted claims are gone', () => {

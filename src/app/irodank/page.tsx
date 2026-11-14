@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from 'next/image';
 import { Clock, MapPin, Phone } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import { FOUNDATION, PHONE_HREF } from '@/lib/foundation';
 import { IRODA_CIM, IRODANK } from '@/content/irodank';
+import { CSAPAT } from '@/content/csapat';
 
 // The office (Edina 2026-11-13, Péter 15487). Her text word for word (src/content/irodank.ts); this page adds
 // only the title and the "Címünk" label.
@@ -16,6 +18,10 @@ export const metadata: Metadata = {
   },
 };
 
+// Edina's portrait (Edina 2026-11-14 14:33: "Az irodánk fülhöz is ke lehet tenni a fotómat"; Péter 15558), the same
+// approved file and name as on /rolunk, taken from src/content/csapat.ts so the two never drift apart.
+const EDINA = CSAPAT.find((t) => t.nev === 'Rumi Edina');
+
 export default function IrodankPage() {
   return (
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
@@ -26,6 +32,17 @@ export default function IrodankPage() {
           <div className="lg:col-span-7 min-w-0 space-y-5 text-lg leading-relaxed text-slate-700">
             <p>{IRODANK.hely}</p>
             <p>{IRODANK.bovites}</p>
+            {EDINA?.foto && (
+              <figure className="flex items-center gap-5 pt-2">
+                <div className="relative aspect-[4/5] w-32 sm:w-40 flex-shrink-0 overflow-hidden rounded-2xl bg-blue-50 border border-slate-200/80">
+                  <Image src={EDINA.foto} alt={EDINA.nev} fill sizes="160px" className="foto object-cover" />
+                </div>
+                <figcaption className="text-base leading-snug">
+                  <span className="block font-bold text-slate-900">{EDINA.nev}</span>
+                  <span className="block text-slate-600">{EDINA.szerep}</span>
+                </figcaption>
+              </figure>
+            )}
           </div>
 
           <aside className="lg:col-span-5 min-w-0 self-start rounded-3xl border border-blue-200/80 bg-blue-50/80 p-6 md:p-8 space-y-6">

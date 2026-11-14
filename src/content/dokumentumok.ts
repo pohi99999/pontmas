@@ -76,7 +76,7 @@ export const TAMOGATASOK: readonly Tamogatas[] = [
   {
     // the municipal grant contract Edina shared 2026-11-14 13:59 ("Működtetési támogatás.pdf", Péter 15540).
     // Every figure is from the contract: 41410-2/2025, points 5 and 11, signed Szombathely, 2026. január 14.
-    // The contract itself is NOT on the site: it carries the bank account number and the signatures.
+    // The contract itself is NOT on the site (signatures and stamp); Edina is asked whether she wants it up.
     // Point 24 asks the foundation to name the municipality as its supporter; this card does that.
     title: 'Szombathely MJV Önkormányzati Támogatás – Működési támogatás 2026',
     badge: 'Önkormányzati támogatás',

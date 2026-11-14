@@ -61,7 +61,7 @@ test('dates and amounts as the PDFs give them', () => {
   ]) assert.ok(shown.includes(t), t);
   assert.match(html, /<a href="\/kisfilmek"[^>]*>Eredmény: a háromrészes kisfilmsorozat<\/a>/);
   // every grant names its source; a linked source is a PDF on the site. The 2026 municipal grant's source is the
-  // contract, which stays off the site (bank account number, signatures), so it is named without a link.
+  // contract, which stays off the site (signatures, stamp; Edina was asked), so it is named without a link.
   for (const g of TAMOGATASOK) {
     const f = g.details.find((d) => d.text.startsWith('Forrás:'));
     assert.ok(f, g.title);
@@ -76,6 +76,5 @@ test('the unsourced or contradicted claims are gone', () => {
     '800.000 Ft támogatási összeg', '715.000 Ft (100%-os támogatás)', '13 gyógypedagógusának',
     'Hatályos: 2024. január 1-től', 'Elfogadva: 2024. május', 'Elfogadva: 2023. május', '2022. évi',
     'akkreditált', 'maradéktalanul eleget teszünk',
-    '11600006', // the contract's bank account number stays off the site
   ]) assert.ok(!shown.includes(bad), bad);
 });

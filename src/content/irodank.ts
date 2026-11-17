@@ -7,7 +7,19 @@
 // page is not decided. No e-mail address: the foundation's own info@ address receives no mail yet (no MX record,
 // 2026-11-13).
 
+import { FOUNDATION } from '@/lib/foundation';
+
 export const IRODA_CIM = 'Szombathely, Sugár út 9. 3. emelet';
+
+// The route link under the address (Edina 2026-11-17 13:51, Péter 16703). A Google Maps search for the foundation's
+// registered name and the street address; on 2026-11-17 it opened the foundation's verified Google profile directly
+// ("PontMás Vas Megyei Autista Gyermekekért Alapítvány", Alapítvány, Szombathely, Sugár út 9-3. emelet, 9700).
+// A link only, no embedded map: an iframe would load Google's cookies and tracking on our page.
+export const IRODA_TERKEP_URL = `https://www.google.com/maps/search/?${new URLSearchParams({
+  api: '1',
+  query: `${FOUNDATION.name} Szombathely Sugár út 9`,
+})}`;
+export const IRODA_TERKEP_SZOVEG = 'Útvonal a Google Térképen';
 
 export const IRODANK = {
   bevezeto: 'AZ AOSZ Info-pont a régi formájában és névvel szeptembertől már nem elérhető, de nem hagyunk magatokra benneteket!',

@@ -2,9 +2,10 @@
 // The text runs from "AZ AOSZ Info-pont…" to the phone number, word for word. The two hearts after the first
 // sentence are left out (the site uses no emoji); the phone comes from src/lib/foundation.ts, the one place
 // for it, shown in the same format as everywhere else on the site.
-// The hours are the ones in her text (Tuesday 9-13, Friday 9-12). Her poster says Tuesday and Friday 9-13, so
-// the poster stays off the page until she settles it. No e-mail address: the foundation's own info@ address
-// receives no mail yet (no MX record, 2026-11-13).
+// Hours: Tuesday and Friday 9-13. Her 11-13 text had Friday 9-12; her mail of 2026-11-17 11:56 confirms Friday
+// 9-13 too, so the poster and her mail now agree and the hours follow them. Whether the poster itself goes on the
+// page is not decided. No e-mail address: the foundation's own info@ address receives no mail yet (no MX record,
+// 2026-11-13).
 
 export const IRODA_CIM = 'Szombathely, Sugár út 9. 3. emelet';
 
@@ -15,7 +16,7 @@ export const IRODANK = {
   fogadasCim: 'Ügyfélfogadás:',
   fogadas: [
     { nap: 'Kedd', ido: '9.00-13.00' },
-    { nap: 'Péntek', ido: '9.00-12.00' },
+    { nap: 'Péntek', ido: '9.00-13.00' },
   ],
   egyeztetes: 'Telefonos egyeztetés alapján természetesen más időpontot is tudunk találni!',
   elerhetosegCim: 'Elérhetőségünk:',

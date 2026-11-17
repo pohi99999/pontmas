@@ -10,7 +10,7 @@ import { CSAPAT } from '@/content/csapat';
 // only the title and the "Címünk" label.
 export const metadata: Metadata = {
   title: "Irodánk | PontMás Alapítvány",
-  description: "Személyes ügyfélfogadás Szombathelyen, a Sugár út 9. 3. emeletén: kedden 9.00-13.00, pénteken 9.00-12.00.",
+  description: "Személyes ügyfélfogadás Szombathelyen, a Sugár út 9. 3. emeletén: kedden és pénteken 9.00-13.00.",
   openGraph: {
     title: "Irodánk | PontMás Alapítvány",
     description: "Személyes ügyfélfogadás Szombathelyen, a Sugár út 9. 3. emeletén.",

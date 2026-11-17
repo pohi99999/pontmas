@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from 'next/image';
-import { Clock, MapPin, Phone } from 'lucide-react';
+import { Clock, ExternalLink, MapPin, Phone } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import { FOUNDATION, PHONE_HREF } from '@/lib/foundation';
-import { IRODA_CIM, IRODANK } from '@/content/irodank';
+import { IRODA_CIM, IRODA_TERKEP_SZOVEG, IRODA_TERKEP_URL, IRODANK } from '@/content/irodank';
 import { CSAPAT } from '@/content/csapat';
 
 // The office (Edina 2026-11-13, Péter 15487). Her text word for word (src/content/irodank.ts); this page adds
@@ -51,6 +51,16 @@ export default function IrodankPage() {
               <div>
                 <h2 className="text-base font-bold text-slate-900">Címünk</h2>
                 <p className="text-slate-700">{IRODA_CIM}</p>
+                <a
+                  href={IRODA_TERKEP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-blue-700 hover:text-blue-900 underline-offset-4 hover:underline"
+                >
+                  {IRODA_TERKEP_SZOVEG}
+                  <ExternalLink className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                  <span className="sr-only">(új lapon nyílik)</span>
+                </a>
               </div>
             </div>
 

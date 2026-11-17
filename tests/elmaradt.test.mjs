@@ -59,20 +59,25 @@ test('the registration number is 18-01-0000323 everywhere; 18-01-0001850 is nowh
   assert.ok(visibleText(await renderHtml('app/dokumentumok/page.tsx')).includes('Nyilvántartási szám: 18-01-0000323'));
 });
 
-test('Irodánk: Edina\'s text, the address, the hours of her text, the phone; no e-mail address', async () => {
+test('Irodánk: Edina\'s text, the address, the hours (Tuesday and Friday 9-13, her mail 11-17), the phone; no e-mail address', async () => {
   const html = await renderHtml('app/irodank/page.tsx');
   const shown = visibleText(html);
   for (const t of [
     'AZ AOSZ Info-pont a régi formájában és névvel szeptembertől már nem elérhető, de nem hagyunk magatokra benneteket!',
     'A régi helyünkön (Szombathely, Sugár út 9. 3. emelet) ismét van személyes ügyfélfogadás, Rumi Edina várja a családokat a személyes megkeresésekkel.',
     'Szeretnénk bővíteni szolgáltatásainkat, erről hamarosan be is fogunk számolni.',
-    'Ügyfélfogadás:', 'Kedd: 9.00-13.00', 'Péntek: 9.00-12.00',
+    'Ügyfélfogadás:', 'Kedd: 9.00-13.00', 'Péntek: 9.00-13.00',
     'Telefonos egyeztetés alapján természetesen más időpontot is tudunk találni!',
     'Elérhetőségünk:', 'Telefon: +36 20 969 8715', 'Szombathely, Sugár út 9. 3. emelet',
   ]) assert.ok(shown.includes(t), t);
   assert.ok(html.includes('href="tel:+36209698715"'));
-  // the poster's "9-től 13 óráig" for Friday is not on the page until Edina settles it; no e-mail at all
-  assert.ok(!shown.includes('Péntek: 9.00-13.00'));
+  // Edina's mail of 11-17 settled Friday as 9-13; the old 9-12 must not come back, neither on the page nor in the meta
+  assert.ok(!shown.includes('9.00-12.00'));
+  assert.ok(!html.includes('9.00-12.00'));
+  const { metadata } = await src('app/irodank/page.tsx');
+  assert.ok(metadata.description.includes('kedden és pénteken 9.00-13.00'), metadata.description);
+  assert.ok(!JSON.stringify(metadata).includes('9.00-12.00'));
+  // no e-mail at all
   assert.ok(!/@|mailto:/.test(html), 'no e-mail address');
 });
 

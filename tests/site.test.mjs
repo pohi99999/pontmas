@@ -7,7 +7,7 @@ import path from 'node:path';
 import { src } from './helpers/load.mjs';
 import { renderHtml, visibleText } from './helpers/render.mjs';
 
-const { DEFAULT_SITE_URL, DEFAULT_TITLE, SITE_URL, siteUrlFrom, pageUrl, pageMetadata, titledPage, openGraphFor, SHARE_IMAGE } = await src('lib/site.ts');
+const { DEFAULT_SITE_URL, DEFAULT_TITLE, DEFAULT_DESCRIPTION, SITE_URL, siteUrlFrom, pageUrl, pageMetadata, titledPage, openGraphFor, SHARE_IMAGE } = await src('lib/site.ts');
 const { foundationJsonLd } = await src('lib/foundation.ts');
 
 const APP = path.resolve('src/app');
@@ -94,7 +94,8 @@ test('every public page on disk states its own canonical link and og:url, and th
 test('every page has a title and a description of its own, and the share image (T2)', async () => {
   const pages = publicPages();
   const titles = new Map();
-  const descriptions = new Map();
+  // the home page's description is in the set from the start: an OLD page that took it over passed before (review of #57)
+  const descriptions = new Map([[DEFAULT_DESCRIPTION, '/']]);
   for (const page of pages) {
     const metadata = await metadataOf(page);
     // the home page's are the site's own, from the layout

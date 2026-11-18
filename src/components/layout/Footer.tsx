@@ -134,7 +134,9 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <Link href="/dokumentumok" className="inline-flex max-lg:min-h-11 items-center hover:text-slate-300 transition-colors">Közhasznúsági jelentések</Link>
             <span>•</span>
-            <Link href="/kapcsolat" className="inline-flex max-lg:min-h-11 items-center hover:text-slate-300 transition-colors">Adatvédelem és kapcsolat</Link>
+            <Link href="/adatkezeles" className="inline-flex max-lg:min-h-11 items-center hover:text-slate-300 transition-colors">Adatkezelési tájékoztató</Link>
+            <span aria-hidden="true">•</span>
+            <Link href="/impresszum" className="inline-flex max-lg:min-h-11 items-center hover:text-slate-300 transition-colors">Impresszum</Link>
           </div>
         </div>
       </div>

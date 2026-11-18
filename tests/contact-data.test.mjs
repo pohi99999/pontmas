@@ -54,5 +54,5 @@ test('footer, contact page and JSON-LD carry the contact phone', async () => {
     const html = await renderHtml(p);
     assert.ok(visibleText(html).includes('Rumi Edina') && html.includes('href="tel:+36209698715"'), p);
   }
-  assert.equal(foundationJsonLd().telephone, '+36 20 969 8715');
+  assert.equal(foundationJsonLd('https://pontmas.vercel.app').telephone, '+36 20 969 8715');
 });

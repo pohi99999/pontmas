@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphFor, pageUrl } from '@/lib/site';
 import fs from 'node:fs';
 import path from 'node:path';
 import { FileText, CheckCircle2, Download } from 'lucide-react';
@@ -14,11 +15,11 @@ import { DOKUMENTUMOK, TAMOGATASOK, meretSzoveg } from '@/content/dokumentumok';
 export const metadata: Metadata = {
   title: "Dokumentumtár és pályázatok | PontMás Alapítvány",
   description: "A PontMás Alapítvány éves beszámolói és közhasznúsági mellékletei, adatvédelmi szabályzata, valamint pályázatai és támogatásai.",
-  openGraph: {
+  alternates: { canonical: pageUrl('/dokumentumok') },
+  openGraph: openGraphFor('/dokumentumok', {
     title: "Dokumentumtár és pályázatok | PontMás Alapítvány",
     description: "Hivatalos átláthatósági dokumentumok és pályázatok.",
-    url: "https://pontmas.hu/dokumentumok",
-  },
+  }),
 };
 
 export default function DokumentumokPage() {

@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, Users, HandHeart, School, HelpCircle, ArrowRight } from 'lucide-react';
@@ -9,6 +11,9 @@ import PontAblak from '@/components/brand/PontAblak';
 import CtaBand from '@/components/ui/CtaBand';
 import { EGYSZAZALEK, forint } from '@/content/egyszazalek';
 import { FOUNDATION } from '@/lib/foundation';
+
+// The page's own address for the canonical link and og:url; the title and description are the layout's.
+export const metadata: Metadata = pageMetadata('/');
 
 export default function Home() {
   const stats = [

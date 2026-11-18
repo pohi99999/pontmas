@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import { GraduationCap } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -11,6 +13,9 @@ import CtaBand from '@/components/ui/CtaBand';
 // A server page now, so it can read the editor's store (or the seed); only the category filter
 // runs in the browser (ProgramFilter).
 export const revalidate = 3600;
+
+// The page's own address for the canonical link and og:url; the title and description are the layout's.
+export const metadata: Metadata = pageMetadata('/programok');
 
 export default async function ProgramokPage() {
   const { content } = await getPublicContent();

@@ -1,8 +1,13 @@
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import { MapPin, Phone, MessageSquare, ExternalLink } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ContactForm from '@/components/forms/ContactForm';
 import { FOUNDATION, ADDRESS_LINE, PHONE_HREF } from '@/lib/foundation';
+
+// The page's own address for the canonical link and og:url; the title and description are the layout's.
+export const metadata: Metadata = pageMetadata('/kapcsolat');
 
 export default function KapcsolatPage() {
   return (

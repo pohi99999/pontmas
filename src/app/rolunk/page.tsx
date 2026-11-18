@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import { Target, Award, Users, ShieldCheck, Heart, CheckCircle2, Building2 } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -6,6 +8,9 @@ import CtaBand from '@/components/ui/CtaBand';
 import { CommunityGallery } from '@/components/content/Gallery';
 import { AmiertDolgozunk, CsapatSor, SzuloiGondolatok } from '@/components/content/Hangunk';
 import { FOUNDATION, ADDRESS_LINE } from '@/lib/foundation';
+
+// The page's own address for the canonical link and og:url; the title and description are the layout's.
+export const metadata: Metadata = pageMetadata('/rolunk');
 
 export default function RolunkPage() {
   const alapelvek = [

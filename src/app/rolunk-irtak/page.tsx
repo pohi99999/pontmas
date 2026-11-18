@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphFor, pageUrl } from '@/lib/site';
 import Link from "next/link";
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -9,11 +10,11 @@ import CtaBand from '@/components/ui/CtaBand';
 export const metadata: Metadata = {
   title: "Rólunk írták és sajtómegjelenések | PontMás Alapítvány",
   description: "Cikkek, tudósítások, interjúk és köszönetnyilvánítások a PontMás Alapítvány tevékenységéről és a Vas vármegyei autizmus közösségről.",
-  openGraph: {
+  alternates: { canonical: pageUrl('/rolunk-irtak') },
+  openGraph: openGraphFor('/rolunk-irtak', {
     title: "Rólunk írták | PontMás Alapítvány",
     description: "Sajtócikkek, elismerések és személyes történetek a PontMás Alapítvány munkájáról.",
-    url: "https://pontmas.hu/rolunk-irtak",
-  },
+  }),
 };
 
 export default function RolunkIrtakPage() {

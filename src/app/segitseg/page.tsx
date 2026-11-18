@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphFor, pageUrl } from '@/lib/site';
 import Link from "next/link";
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -13,11 +14,11 @@ import { FOUNDATION } from '@/lib/foundation';
 export const metadata: Metadata = {
   title: "Amiben segíteni tudunk | PontMás Alapítvány",
   description: "Mentorszülői tanácsadás, DATA applikáció támogatás, szakmai könyvtár kölcsönzés és intézményi eligazítás Vas vármegyében.",
-  openGraph: {
+  alternates: { canonical: pageUrl('/segitseg') },
+  openGraph: openGraphFor('/segitseg', {
     title: "Amiben segíteni tudunk | PontMás Alapítvány",
     description: "Autizmussal élő gyermekek és családjaik átfogó támogatása Vas vármegyében.",
-    url: "https://pontmas.hu/segitseg",
-  },
+  }),
 };
 
 export default function HelpPage() {

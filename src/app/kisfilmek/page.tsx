@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphFor, pageUrl } from '@/lib/site';
 import { ExternalLink } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import { buttonClasses } from '@/components/ui/buttonClasses';
@@ -10,11 +11,11 @@ import { KISFILMEK, SZULOI_SOROZAT, SZULOI_SOROZAT_LISTA, YOUTUBE_CSATORNA } fro
 export const metadata: Metadata = {
   title: "Kisfilmek | PontMás Alapítvány",
   description: "Az alapítvány háromrészes szülői kisfilmsorozata az autizmusról, a SZÜLŐ2025 pályázat keretében.",
-  openGraph: {
+  alternates: { canonical: pageUrl('/kisfilmek') },
+  openGraph: openGraphFor('/kisfilmek', {
     title: "Kisfilmek | PontMás Alapítvány",
     description: "Autizmus – Szülői kisfilmsorozat, három részben.",
-    url: "https://pontmas.hu/kisfilmek",
-  },
+  }),
 };
 
 export default function KisfilmekPage() {

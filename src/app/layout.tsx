@@ -12,6 +12,7 @@ import { THEME_SCRIPT } from "@/lib/theme";
 import { MOZGAS_SCRIPT } from "@/lib/mozgas";
 import MozgasKapu from "@/components/ui/MozgasKapu";
 import { foundationJsonLd } from "@/lib/foundation";
+import { DEFAULT_DESCRIPTION, DEFAULT_SHARE_DESCRIPTION, DEFAULT_TITLE, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 // The heading font: one static weight, subset to Hungarian in one small file (fonts/README.txt). The variable
@@ -28,14 +29,17 @@ const fraunces = localFont({
   adjustFontFallback: "Times New Roman",
 });
 
+// No canonical and no og:url here: a page would inherit them, and every page that forgot its own would name the
+// root as its address (six did, until 2026-11-18). Each page states its own through src/lib/site.ts, and
+// tests/site.test.mjs fails for a page that does not.
 export const metadata: Metadata = {
-  title: "PontMás Alapítvány | Vas Megyei Autista Gyermekekért",
-  description: "A PontMás Alapítvány célja a Vas vármegyében élő autista gyermekek és családjaik támogatása. Csatlakozzon közösségünkhöz, támogassa munkánkat!",
+  metadataBase: new URL(SITE_URL),
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
   openGraph: {
-    title: "PontMás Alapítvány | Vas Megyei Autista Gyermekekért",
-    description: "A PontMás Alapítvány célja a Vas vármegyében élő autista gyermekek és családjaik támogatása.",
-    url: "https://pontmas.hu",
-    siteName: "PontMás Alapítvány",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_SHARE_DESCRIPTION,
+    siteName: SITE_NAME,
     locale: "hu_HU",
     type: "website",
   },
@@ -46,7 +50,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = foundationJsonLd();
+  const jsonLd = foundationJsonLd(SITE_URL);
 
   return (
     // suppressHydrationWarning: THEME_SCRIPT adds the "dark" class before React hydrates (by design)

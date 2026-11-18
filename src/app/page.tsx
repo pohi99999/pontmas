@@ -6,6 +6,7 @@ import FeatureCard from '@/components/ui/FeatureCard';
 import Button from '@/components/ui/Button';
 import CopyButton from '@/components/ui/CopyButton';
 import PontAblak from '@/components/brand/PontAblak';
+import { CommunityBand } from '@/components/content/Gallery';
 import CtaBand from '@/components/ui/CtaBand';
 import { EGYSZAZALEK, forint } from '@/content/egyszazalek';
 import { FOUNDATION } from '@/lib/foundation';
@@ -140,6 +141,10 @@ export default function Home() {
         </div>
         </div>
       </section>
+
+      {/* The community in pictures (L3, Lumen's plan of 2026-11-18): the bluest, liveliest photos were only at the
+          bottom of /rolunk. The band is in Gallery.tsx, beside the photos it shows. */}
+      <CommunityBand />
 
       {/* 4. Donation: a full-width deep blue band, the tax and bank numbers in one row */}
       <section className="relative isolate overflow-hidden bg-blue-950 text-white pm-sotet">

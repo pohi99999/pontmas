@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { titledPage } from '@/lib/site';
 import { GraduationCap } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
+import { FEJLEC_FOTO } from '@/content/fejlecFotok';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import ProgramFilter from '@/components/content/ProgramFilter';
@@ -36,6 +37,7 @@ export default async function ProgramokPage() {
       
       {/* 1. Fejléc szekció */}
       <PageHeader
+        foto={FEJLEC_FOTO['/programok']}
         badge="Események és kezdeményezések"
         title="Programjaink és rendezvényeink"
         subtitle="Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!"

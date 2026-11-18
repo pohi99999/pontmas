@@ -63,7 +63,10 @@ test('/hirek with no store renders exactly the item texts of main; the ended 202
   inOrder(assert, text, rest.flatMap((n) => [n.badge, n.date, n.title, n.description, ...n.highlights, n.actionText]));
   for (const n of rest) assert.ok(html.includes(`href="${n.actionHref}"`), n.actionHref);
   assert.equal((html.match(/<article/g) ?? []).length, MAIN_NEWS.length, 'one card per item, the ended one included');
-  assert.ok(!html.includes('<img'), 'no image on main');
+  // no image in the cards of main; the page's header has its photo since L2, so the cards are looked at, not the page
+  const cards = html.match(/<article[\s\S]*?<\/article>/g) ?? [];
+  assert.equal(cards.length, MAIN_NEWS.length);
+  for (const card of cards) assert.ok(!card.includes('<img'), 'no image in a card on main');
 });
 
 test('/programok with no store renders exactly the item texts of main', async () => {

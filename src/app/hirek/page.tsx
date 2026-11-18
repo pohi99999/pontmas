@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { openGraphFor, pageUrl } from '@/lib/site';
 import PageHeader from '@/components/ui/PageHeader';
+import { FEJLEC_FOTO } from '@/content/fejlecFotok';
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import { NewsCard, NewsFeaturedCard } from "@/components/content/ContentCards";
@@ -30,6 +31,7 @@ export default async function HirekPage() {
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Hero */}
       <PageHeader
+        foto={FEJLEC_FOTO['/hirek']}
         badge="Hírek, aktualitások és események"
         title="Közösségi élet, programok és szakmai hírek"
         subtitle="Kövesse figyelemmel a PontMás Alapítvány legfrissebb eseményeit, szülőklubjait, szakmai támogatási programjait és élménybeszámolóit!"

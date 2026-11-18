@@ -6,7 +6,8 @@ import path from 'node:path';
 import { src } from './helpers/load.mjs';
 
 const { SITE_URL, pageUrl } = await src('lib/site.ts');
-const { PUBLIC_PATHS, PRIVATE_PREFIXES } = await src('lib/sitePages.ts');
+const { PUBLIC_PATHS, PRIVATE_PREFIXES, DRAFT_PATHS } = await src('lib/sitePages.ts');
+const { LEGAL_DRAFT } = await src('lib/legal.ts');
 const sitemap = (await src('app/sitemap.ts')).default;
 const robots = (await src('app/robots.ts')).default;
 
@@ -20,17 +21,36 @@ function pagesOnDisk(dir = path.resolve('src/app'), base = '') {
 }
 
 test('the list of public pages is exactly the pages on disk: a new page cannot be left out of the sitemap', () => {
-  assert.ok(pagesOnDisk().length >= 12, 'the scan found too few pages');
+  assert.ok(pagesOnDisk().length >= 14, 'the scan found too few pages');
   assert.deepEqual([...PUBLIC_PATHS].sort(), pagesOnDisk().sort());
 });
 
 test('the sitemap lists every public page once, with the address its canonical link names, and nothing private', () => {
   const urls = sitemap().map((e) => e.url);
   assert.equal(new Set(urls).size, urls.length, 'no duplicates');
-  assert.deepEqual(urls, PUBLIC_PATHS.map((p) => pageUrl(p)));
+  assert.deepEqual(urls, PUBLIC_PATHS.filter((p) => !DRAFT_PATHS.includes(p)).map((p) => pageUrl(p)));
   for (const u of urls) assert.ok(u === SITE_URL || u.startsWith(`${SITE_URL}/`), u);
   for (const u of urls) for (const prefix of PRIVATE_PREFIXES) assert.ok(!u.slice(SITE_URL.length).startsWith(prefix.replace(/\/$/, '')), `${u} is private`);
   assert.ok(sitemap().every((e) => !('lastModified' in e)), 'no build-date lastModified');
+});
+
+test('a draft page is not listed: the legal pages say noindex while they are drafts, and the sitemap does not ask for the opposite', async () => {
+  assert.equal(LEGAL_DRAFT, true, 'the drafts were approved: this test and DRAFT_PATHS are for the time before that');
+  assert.deepEqual([...DRAFT_PATHS], ['/adatkezeles', '/impresszum']);
+  const urls = sitemap().map((e) => e.url);
+  assert.equal(urls.length, PUBLIC_PATHS.length - 2);
+  for (const page of DRAFT_PATHS) {
+    assert.ok(!urls.includes(pageUrl(page)), `${page} is listed`);
+    const { metadata } = await src(`app${page}/page.tsx`);
+    assert.deepEqual(metadata.robots, { index: false, follow: false }, `${page} says noindex`);
+  }
+  // and nothing else says noindex among the listed ones
+  for (const page of PUBLIC_PATHS.filter((p) => !DRAFT_PATHS.includes(p) && p !== '/')) {
+    const dir = page.slice(1);
+    const own = (await src(`app/${dir}/page.tsx`)).metadata;
+    const meta = own ?? (fs.existsSync(path.resolve('src/app', dir, 'layout.tsx')) ? (await src(`app/${dir}/layout.tsx`)).metadata : undefined);
+    assert.equal(meta?.robots, undefined, `${page} is listed and says something about robots`);
+  }
 });
 
 test('robots.txt lets everything be crawled but the editor and the API, and names the sitemap on the site address', () => {

@@ -4,6 +4,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import { DraftBanner, DraftSources, Review, Section } from '@/components/legal/LegalParts';
 import { ADDRESS_LINE, FOUNDATION } from '@/lib/foundation';
 import { LEGAL_DRAFT } from '@/lib/legal';
+import { titledPage } from '@/lib/site';
 import { LOGIN_TOKEN_TTL_MS, SESSION_TTL_MS } from '@/lib/editorAuth';
 
 // Adatkezelési tájékoztató, DRAFT (src/lib/legal.ts). Every statement about what the site does is
@@ -11,9 +12,13 @@ import { LOGIN_TOKEN_TTL_MS, SESSION_TTL_MS } from '@/lib/editorAuth';
 // 2024 policy is the source of the rest. What has no source is a [KÉRDÉS], every legal judgement a
 // [JOGI ÁTNÉZÉS]. It describes only what the site does today: nothing about a chat, which it has not.
 
+// Its own address, title and share texts like every page (src/lib/site.ts); not indexed while it is a draft.
 export const metadata: Metadata = {
-  title: "Adatkezelési tájékoztató | PontMás Alapítvány",
-  description: "Hogyan kezeli a PontMás Alapítvány a weboldal látogatóinak és a kapcsolatfelvételi űrlapot kitöltőknek a személyes adatait.",
+  ...titledPage(
+    '/adatkezeles',
+    "Adatkezelési tájékoztató | PontMás Alapítvány",
+    "Hogyan kezeli a PontMás Alapítvány a weboldal látogatóinak és a kapcsolatfelvételi űrlapot kitöltőknek a személyes adatait.",
+  ),
   robots: LEGAL_DRAFT ? { index: false, follow: false } : undefined,
 };
 

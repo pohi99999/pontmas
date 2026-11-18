@@ -4,13 +4,18 @@ import PageHeader from '@/components/ui/PageHeader';
 import { DraftBanner, DraftSources, Review, Section } from '@/components/legal/LegalParts';
 import { ADDRESS_LINE, FOUNDATION } from '@/lib/foundation';
 import { LEGAL_DRAFT } from '@/lib/legal';
+import { titledPage } from '@/lib/site';
 
 // Impresszum, DRAFT (src/lib/legal.ts): the service provider's data a website has to show
 // (2001. évi CVIII. törvény 4. §, to be confirmed in the legal review).
 
+// Its own address, title and share texts like every page (src/lib/site.ts); not indexed while it is a draft.
 export const metadata: Metadata = {
-  title: "Impresszum | PontMás Alapítvány",
-  description: "A weboldal üzemeltetőjének és tárhelyszolgáltatójának adatai.",
+  ...titledPage(
+    '/impresszum',
+    "Impresszum | PontMás Alapítvány",
+    "A weboldal üzemeltetőjének és tárhelyszolgáltatójának adatai.",
+  ),
   robots: LEGAL_DRAFT ? { index: false, follow: false } : undefined,
 };
 

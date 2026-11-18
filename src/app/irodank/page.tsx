@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphFor, pageUrl } from '@/lib/site';
 import Image from 'next/image';
 import { Clock, ExternalLink, MapPin, Phone } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
@@ -11,11 +12,11 @@ import { CSAPAT } from '@/content/csapat';
 export const metadata: Metadata = {
   title: "Irodánk | PontMás Alapítvány",
   description: "Személyes ügyfélfogadás Szombathelyen, a Sugár út 9. 3. emeletén: kedden és pénteken 9.00-13.00.",
-  openGraph: {
+  alternates: { canonical: pageUrl('/irodank') },
+  openGraph: openGraphFor('/irodank', {
     title: "Irodánk | PontMás Alapítvány",
     description: "Személyes ügyfélfogadás Szombathelyen, a Sugár út 9. 3. emeletén.",
-    url: "https://pontmas.hu/irodank",
-  },
+  }),
 };
 
 // Edina's portrait (Edina 2026-11-14 14:33: "Az irodánk fülhöz is ke lehet tenni a fotómat"; Péter 15558), the same

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraphFor, pageUrl } from '@/lib/site';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
@@ -10,11 +11,11 @@ import CtaBand from '@/components/ui/CtaBand';
 export const metadata: Metadata = {
   title: "Hírek és aktualitások | PontMás Alapítvány",
   description: "A PontMás Alapítvány legfrissebb hírei, szülőklub meghívói, családi nap beszámolói és szakmai továbbképzései.",
-  openGraph: {
+  alternates: { canonical: pageUrl('/hirek') },
+  openGraph: openGraphFor('/hirek', {
     title: "Hírek és aktualitások | PontMás Alapítvány",
     description: "Értesüljön a PontMás Alapítvány legújabb eseményeiről, programjairól és híreiről.",
-    url: "https://pontmas.hu/hirek",
-  },
+  }),
 };
 
 // The items come from the editor's store (src/content), or from the seed when the store is empty

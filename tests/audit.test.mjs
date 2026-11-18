@@ -32,6 +32,6 @@ test('Audit: Accessibility & SEO prerequisites in Layout', () => {
 
   assert.ok(layoutContent.includes('lang="hu"'), 'Root HTML must specify lang="hu"');
   // the schema.org block itself is built in src/lib/foundation.ts (tests/foundation.test.mjs)
-  assert.ok(layoutContent.includes('foundationJsonLd()') && layoutContent.includes('application/ld+json'), 'Layout must provide JSON-LD schema.org metadata');
+  assert.ok(layoutContent.includes('foundationJsonLd(SITE_URL)') && layoutContent.includes('application/ld+json'), 'Layout must provide JSON-LD schema.org metadata');
   assert.ok(layoutContent.includes('SensoryProvider'), 'Layout must wrap app in SensoryProvider');
 });

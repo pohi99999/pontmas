@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMetadata } from '@/lib/site';
+import { titledPage } from '@/lib/site';
 import { GraduationCap } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -14,8 +14,12 @@ import CtaBand from '@/components/ui/CtaBand';
 // runs in the browser (ProgramFilter).
 export const revalidate = 3600;
 
-// The page's own address for the canonical link and og:url; the title and description are the layout's.
-export const metadata: Metadata = pageMetadata('/programok');
+// The description is the page's own opening sentence (its header's subtitle).
+export const metadata: Metadata = titledPage(
+  '/programok',
+  "Programjaink és rendezvényeink | PontMás Alapítvány",
+  "Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!",
+);
 
 export default async function ProgramokPage() {
   const { content } = await getPublicContent();

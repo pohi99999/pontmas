@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { titledPage } from '@/lib/site';
 import { Target, Award, Users, ShieldCheck, Heart, CheckCircle2, Building2 } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -6,6 +8,13 @@ import CtaBand from '@/components/ui/CtaBand';
 import { CommunityGallery } from '@/components/content/Gallery';
 import { AmiertDolgozunk, CsapatSor, SzuloiGondolatok } from '@/components/content/Hangunk';
 import { FOUNDATION, ADDRESS_LINE } from '@/lib/foundation';
+
+// The description is the page's own opening sentence (its header's subtitle).
+export const metadata: Metadata = titledPage(
+  '/rolunk',
+  "Rólunk | PontMás Alapítvány",
+  "2015 óta hidat képezünk az autizmussal élő gyermekek, családjaik, a szakemberek és a társadalom között Vas vármegyében.",
+);
 
 export default function RolunkPage() {
   const alapelvek = [

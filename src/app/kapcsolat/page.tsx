@@ -1,8 +1,17 @@
+import type { Metadata } from 'next';
+import { titledPage } from '@/lib/site';
 import { MapPin, Phone, MessageSquare, ExternalLink } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ContactForm from '@/components/forms/ContactForm';
 import { FOUNDATION, ADDRESS_LINE, PHONE_HREF } from '@/lib/foundation';
+
+// The description is the page's own opening sentence (its header's subtitle).
+export const metadata: Metadata = titledPage(
+  '/kapcsolat',
+  "Kapcsolat | PontMás Alapítvány",
+  "Forduljon hozzánk bizalommal kérdéseivel, tanácsadási igényével: hívjon minket telefonon, vagy írjon nekünk az űrlapon.",
+);
 
 export default function KapcsolatPage() {
   return (

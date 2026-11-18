@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 
 // The photos on /programok and /rolunk. Photos of people are shown whole, as approved; the works are cropped so
@@ -173,6 +175,39 @@ export function CommunityGallery() {
         <div className="gap-8 md:columns-2">
           {COMMUNITY_PHOTOS.map((photo) => <Figure key={photo.src} photo={photo} sizes={TWO_COLUMNS} />)}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * The home page's band (L3, Lumen's plan of 2026-11-18): three of the community photos of /rolunk, with the captions
+ * and alt texts they have there, staggered like a contact sheet. Nothing moves; the photos load lazily.
+ */
+export function CommunityBand() {
+  return (
+    <section className="container mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="kozosseg-cim">
+      <div className="grid lg:grid-cols-12 gap-10 items-end mb-10">
+        <div className="lg:col-span-7">
+          <p className="eyebrow mb-4"><span className="pont" aria-hidden="true" />Képek</p>
+          <h2 id="kozosseg-cim" className="text-4xl md:text-5xl leading-[1.1] text-slate-900">A közösségünk képekben</h2>
+          <p className="mt-4 text-lg text-slate-600">Néhány pillanat közös eseményekről.</p>
+        </div>
+        <div className="lg:col-span-5 lg:text-right">
+          <Link href="/rolunk" className="inline-flex items-center gap-2 font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 hover:decoration-blue-700">
+            További képek a Rólunk oldalon <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+      </div>
+      <div className="grid gap-6 sm:grid-cols-3 sm:items-start">
+        {[COMMUNITY_PHOTOS[0], COMMUNITY_PHOTOS[2], COMMUNITY_PHOTOS[1]].map((photo, i) => (
+          <figure key={photo.src} className={i === 1 ? 'sm:mt-16' : i === 2 ? 'sm:mt-8' : ''}>
+            <div className="relative overflow-hidden rounded-[1.75rem] ring-1 ring-slate-900/10" style={{ aspectRatio: '4 / 5' }}>
+              <Image src={photo.src} alt={photo.alt} fill loading="lazy" sizes="(min-width: 1280px) 400px, (min-width: 640px) 31vw, 92vw" className="foto object-cover" />
+            </div>
+            <figcaption className="mt-3 text-sm text-slate-600 leading-relaxed">{photo.caption}</figcaption>
+          </figure>
+        ))}
       </div>
     </section>
   );

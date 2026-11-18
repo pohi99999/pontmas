@@ -20,11 +20,12 @@ test('the facts are the published ones', () => {
 });
 
 test('the JSON-LD block is the one the layout carried before, field for field', () => {
-  assert.deepEqual(foundationJsonLd(), {
+  assert.deepEqual(foundationJsonLd('https://pontmas.vercel.app'), {
     '@context': 'https://schema.org',
     '@type': 'NGO',
     name: 'PontMás Vas Megyei Autista Gyermekekért Alapítvány',
-    url: 'https://pontmas.hu',
+    // the site's own address, handed in by the layout (src/lib/site.ts)
+    url: 'https://pontmas.vercel.app',
     telephone: '+36 20 969 8715',
     address: {
       '@type': 'PostalAddress',

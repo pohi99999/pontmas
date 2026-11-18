@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Brain, MessageCircle, RefreshCw, ShieldCheck, AlertCircle, Heart, BookOpen, ChevronDown, Download } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
+import { FEJLEC_FOTO } from '@/content/fejlecFotok';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import CtaBand from '@/components/ui/CtaBand';
@@ -79,6 +80,7 @@ export default function AutizmusPage() {
       
       {/* 1. Fejléc szekció */}
       <PageHeader
+        foto={FEJLEC_FOTO['/autizmus']}
         badge="Tudástár és útmutató"
         title="Mi az az autizmus?"
         subtitle="Az autizmus nem betegség, hanem egy eltérő fejlődésmenet és észlelési sajátosság. Ismerje meg a spektrum működését szakmai, mégis közérthető formában."

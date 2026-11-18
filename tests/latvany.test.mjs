@@ -45,7 +45,8 @@ test('footer: the sitemap in two columns on phones, every link and button at lea
   const html = await renderHtml('components/layout/Footer.tsx');
   assert.match(html, /<ul class="grid grid-cols-2 lg:grid-cols-1 gap-x-4 gap-y-0 lg:gap-y-2 text-sm">/);
   const targets = [...html.matchAll(/<(a|button)\b[^>]*class="([^"]*)"/g)];
-  assert.equal(targets.length, 16, 'eleven sitemap links, phone, Facebook, the donation button, two bottom links');
+  // T5: the bottom row has three links (reports, the privacy notice, the imprint); it had two
+  assert.equal(targets.length, 17, 'eleven sitemap links, phone, Facebook, the donation button, three bottom links');
   for (const [, , cls] of targets) assert.ok(cls.split(' ').includes('max-lg:min-h-11'), cls);
   // the phone link keeps its space after the comma (a flex <a> would drop it)
   assert.ok(visibleText(html).includes('Rumi Edina, +36 20 969 8715'));

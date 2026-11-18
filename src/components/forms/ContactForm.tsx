@@ -2,6 +2,7 @@
 
 import React, { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { Send, CheckCircle2, Sparkles, AlertCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { TOPICS } from '@/lib/contact';
@@ -223,6 +224,11 @@ function ContactFormInner() {
           >
             {isSubmitting ? 'Küldés folyamatban...' : 'Üzenet elküldése'}
           </Button>
+          {/* T5: the form asks for a name, an e-mail address and a phone number, so it says where that is explained */}
+          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            Az üzenetét csak a válaszhoz használjuk. Részletek az{' '}
+            <Link href="/adatkezeles" className="font-semibold text-blue-700 underline underline-offset-4 hover:text-blue-900">adatkezelési tájékoztatóban</Link>.
+          </p>
         </div>
       </form>
     </div>

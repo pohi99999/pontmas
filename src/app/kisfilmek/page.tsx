@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ExternalLink } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
+import { FEJLEC_FOTO } from '@/content/fejlecFotok';
 import { buttonClasses } from '@/components/ui/buttonClasses';
 import Kisfilm from '@/components/content/Kisfilm';
 import { KISFILMEK, SZULOI_SOROZAT, SZULOI_SOROZAT_LISTA, YOUTUBE_CSATORNA } from '@/content/kisfilmek';
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 export default function KisfilmekPage() {
   return (
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
-      <PageHeader badge="Autizmus – Szülői kisfilmsorozat" title="Kisfilmek" subtitle={SZULOI_SOROZAT.cel} />
+      <PageHeader foto={FEJLEC_FOTO['/kisfilmek']} badge="Autizmus – Szülői kisfilmsorozat" title="Kisfilmek" subtitle={SZULOI_SOROZAT.cel} />
 
       <section className="container mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="filmek-cim">
         <h2 id="filmek-cim" className="sr-only">A kisfilmek</h2>

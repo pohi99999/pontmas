@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { openGraphFor, pageUrl } from '@/lib/site';
 import Link from "next/link";
 import PageHeader from '@/components/ui/PageHeader';
+import { FEJLEC_FOTO } from '@/content/fejlecFotok';
 import SectionHeader from "@/components/ui/SectionHeader";
 import FeatureCard from "@/components/ui/FeatureCard";
 import ActionCard from "@/components/ui/ActionCard";
@@ -13,11 +15,11 @@ import { FOUNDATION } from '@/lib/foundation';
 export const metadata: Metadata = {
   title: "Amiben segíteni tudunk | PontMás Alapítvány",
   description: "Mentorszülői tanácsadás, DATA applikáció támogatás, szakmai könyvtár kölcsönzés és intézményi eligazítás Vas vármegyében.",
-  openGraph: {
+  alternates: { canonical: pageUrl('/segitseg') },
+  openGraph: openGraphFor('/segitseg', {
     title: "Amiben segíteni tudunk | PontMás Alapítvány",
     description: "Autizmussal élő gyermekek és családjaik átfogó támogatása Vas vármegyében.",
-    url: "https://pontmas.hu/segitseg",
-  },
+  }),
 };
 
 export default function HelpPage() {
@@ -93,6 +95,7 @@ export default function HelpPage() {
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Hero szekció */}
       <PageHeader
+        foto={FEJLEC_FOTO['/segitseg']}
         badge="Szolgáltatásaink és segítségnyújtás"
         title="Nem kell egyedül végigmennie ezen az úton."
         subtitle="A PontMás Alapítvány 2015-ös megalakulása óta azért dolgozik, hogy a Vas vármegyei autizmussal élő gyermekek és családtagjaik minden élethelyzetben valódi, szakszerű és emberközeli támogatást kapjanak."

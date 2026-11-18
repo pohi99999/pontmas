@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { openGraphFor, pageUrl } from '@/lib/site';
 import PageHeader from '@/components/ui/PageHeader';
+import { FEJLEC_FOTO } from '@/content/fejlecFotok';
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import { NewsCard, NewsFeaturedCard } from "@/components/content/ContentCards";
@@ -10,11 +12,11 @@ import CtaBand from '@/components/ui/CtaBand';
 export const metadata: Metadata = {
   title: "Hírek és aktualitások | PontMás Alapítvány",
   description: "A PontMás Alapítvány legfrissebb hírei, szülőklub meghívói, családi nap beszámolói és szakmai továbbképzései.",
-  openGraph: {
+  alternates: { canonical: pageUrl('/hirek') },
+  openGraph: openGraphFor('/hirek', {
     title: "Hírek és aktualitások | PontMás Alapítvány",
     description: "Értesüljön a PontMás Alapítvány legújabb eseményeiről, programjairól és híreiről.",
-    url: "https://pontmas.hu/hirek",
-  },
+  }),
 };
 
 // The items come from the editor's store (src/content), or from the seed when the store is empty
@@ -29,6 +31,7 @@ export default async function HirekPage() {
     <div className="flex flex-col gap-16 pb-12 md:pb-20">
       {/* 1. Hero */}
       <PageHeader
+        foto={FEJLEC_FOTO['/hirek']}
         badge="Hírek, aktualitások és események"
         title="Közösségi élet, programok és szakmai hírek"
         subtitle="Kövesse figyelemmel a PontMás Alapítvány legfrissebb eseményeit, szülőklubjait, szakmai támogatási programjait és élménybeszámolóit!"

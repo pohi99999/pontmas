@@ -1,5 +1,8 @@
+import type { Metadata } from 'next';
+import { titledPage } from '@/lib/site';
 import { GraduationCap } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
+import { FEJLEC_FOTO } from '@/content/fejlecFotok';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
 import ProgramFilter from '@/components/content/ProgramFilter';
@@ -11,6 +14,13 @@ import CtaBand from '@/components/ui/CtaBand';
 // A server page now, so it can read the editor's store (or the seed); only the category filter
 // runs in the browser (ProgramFilter).
 export const revalidate = 3600;
+
+// The description is the page's own opening sentence (its header's subtitle).
+export const metadata: Metadata = titledPage(
+  '/programok',
+  "Programjaink és rendezvényeink | PontMás Alapítvány",
+  "Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!",
+);
 
 export default async function ProgramokPage() {
   const { content } = await getPublicContent();
@@ -27,6 +37,7 @@ export default async function ProgramokPage() {
       
       {/* 1. Fejléc szekció */}
       <PageHeader
+        foto={FEJLEC_FOTO['/programok']}
         badge="Események és kezdeményezések"
         title="Programjaink és rendezvényeink"
         subtitle="Közösséget formálunk, élményeket adunk és intézményeket támogatunk Vas vármegyében. Ismerje meg legfontosabb éves kezdeményezéseinket!"

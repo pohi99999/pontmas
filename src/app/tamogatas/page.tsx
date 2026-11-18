@@ -2,6 +2,7 @@
 
 import { Receipt, Landmark, Briefcase, FileText, ArrowRight, ShieldCheck } from 'lucide-react';
 import PageHeader from '@/components/ui/PageHeader';
+import { FEJLEC_FOTO } from '@/content/fejlecFotok';
 import SectionHeader from '@/components/ui/SectionHeader';
 import CopyButton from '@/components/ui/CopyButton';
 import Button from '@/components/ui/Button';
@@ -36,6 +37,7 @@ export default function TamogatasPage() {
       
       {/* 1. Fejléc szekció */}
       <PageHeader
+        foto={FEJLEC_FOTO['/tamogatas']}
         badge="Támogatási központ"
         title="Támogassa munkánkat – minden segítség számít!"
         subtitle="Az Ön támogatása közvetlenül hozzájárul a Vas vármegyei autizmussal élő gyermekek képességfejlesztéséhez, a szülői közösség megtartásához és a krízishelyzetbe került családok segítéséhez."

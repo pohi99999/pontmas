@@ -35,13 +35,13 @@ export const ADDRESS_LINE = `${FOUNDATION.address.postalCode} ${FOUNDATION.addre
 /** "tel:+36209698715": the shown number without spaces. */
 export const PHONE_HREF = `tel:${FOUNDATION.phone.replace(/\s+/g, '')}`;
 
-/** The schema.org NGO block of the root layout. */
-export function foundationJsonLd() {
+/** The schema.org NGO block of the root layout. `url` is the site's own address (src/lib/site.ts SITE_URL). */
+export function foundationJsonLd(url: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'NGO',
     name: FOUNDATION.name,
-    url: 'https://pontmas.hu',
+    url,
     telephone: FOUNDATION.phone,
     address: {
       '@type': 'PostalAddress',

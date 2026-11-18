@@ -56,7 +56,7 @@ export const SHARE_IMAGE = { url: '/opengraph-image.png', width: 1200, height: 6
  * the page's block replaces it whole. So every page states the whole block, through this function,
  * and only its own address, title and description differ.
  */
-export function openGraphFor(path: string, og: { title: string; description: string; image?: boolean }): NonNullable<Metadata['openGraph']> {
+export function openGraphFor(path: string, og: { title: string; description: string }): NonNullable<Metadata['openGraph']> {
   return {
     title: og.title,
     description: og.description,
@@ -64,7 +64,8 @@ export function openGraphFor(path: string, og: { title: string; description: str
     siteName: SITE_NAME,
     locale: 'hu_HU',
     type: 'website',
-    ...(og.image ? { images: [SHARE_IMAGE] } : {}),
+    // on every page: a page shared without an image gets the small card (six pages did, until T2)
+    images: [SHARE_IMAGE],
   };
 }
 
@@ -73,9 +74,18 @@ export function openGraphFor(path: string, og: { title: string; description: str
  * title and description of its own passes the share texts; a page without passes nothing and keeps
  * the layout's title and description.
  */
-export function pageMetadata(path: string, og?: { title: string; description: string; image?: boolean }): Metadata {
+export function pageMetadata(path: string, og?: { title: string; description: string }): Metadata {
   return {
     alternates: { canonical: pageUrl(path) },
-    openGraph: openGraphFor(path, og ?? { title: DEFAULT_TITLE, description: DEFAULT_SHARE_DESCRIPTION, image: true }),
+    openGraph: openGraphFor(path, og ?? { title: DEFAULT_TITLE, description: DEFAULT_SHARE_DESCRIPTION }),
   };
+}
+
+/**
+ * The whole metadata of a page with a title and a description of its own, which are also what a
+ * share shows. The description is the sentence the page itself opens with (its header's subtitle):
+ * the tag says nothing the page does not.
+ */
+export function titledPage(path: string, title: string, description: string): Metadata {
+  return { title, description, ...pageMetadata(path, { title, description }) };
 }

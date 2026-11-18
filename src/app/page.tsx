@@ -12,7 +12,7 @@ import CtaBand from '@/components/ui/CtaBand';
 import { EGYSZAZALEK, forint } from '@/content/egyszazalek';
 import { FOUNDATION } from '@/lib/foundation';
 
-// The page's own address for the canonical link and og:url; the title and description are the layout's.
+// The home page's title and description are the site's own (the layout's); its address is its own.
 export const metadata: Metadata = pageMetadata('/');
 
 export default function Home() {

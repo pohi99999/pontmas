@@ -24,23 +24,27 @@ export default function Home() {
           the facts follow as a navy band, attached to the hero (review 2026-11-10). */}
       <section>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-16 pb-10 md:pb-14">
-          {/* On phones the sphere with the photo sits beside the eyebrow, small, so the first screen has a
-              picture (L1, Lumen's plan of 2026-11-18): at 390 px it started below the first screen (846 of 844). From
-              1024 px the two columns are as before. */}
-          <div className="grid grid-cols-[minmax(0,1fr)_8.75rem] sm:grid-cols-[minmax(0,1fr)_11rem] gap-x-4 lg:grid-cols-12 lg:gap-6 items-center">
-            <div className="max-lg:contents lg:col-span-7 min-w-0">
-              <p className="eyebrow mb-0 lg:mb-6 col-start-1 row-start-1">
-                <span className="pont" aria-hidden="true" />
+          {/* On phones (below 640 px) the sphere with the photo stands in the top right corner, beside the eyebrow, small,
+              so the first screen has a picture (L1, Lumen's plan of 2026-11-18): at 390 px it started below the first
+              screen (846 of 844). It takes no row of its own: the eyebrow makes room for it on its right and is at least
+              as tall as the part of the mark beside it, so the title always starts under the mark; the spacing under the
+              eyebrow, the title and the lead is tighter there, so the buttons do not move down (the first one is inside a
+              360 x 640 first screen, as on main; review of #61). The letters keep their sizes. From 640 px everything is
+              as before: Lumen's first plan made the sphere small on tablets too. */}
+          <div className="relative grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
+            <div className="lg:col-span-7 min-w-0">
+              <p className="eyebrow mb-6 max-sm:mb-2 max-sm:min-h-[3.875rem] max-sm:items-start! max-sm:pr-24">
+                <span className="pont max-sm:mt-[0.3em]" aria-hidden="true" />
                 {FOUNDATION.name}
               </p>
-              <h1 className="max-lg:col-span-2 max-lg:mt-6 text-[2.75rem] leading-[1.08] sm:text-6xl lg:text-[3.25rem] xl:text-[4.25rem] text-slate-900 mb-7">
+              <h1 className="text-[2.75rem] leading-[1.08] sm:text-6xl lg:text-[3.25rem] xl:text-[4.25rem] text-slate-900 mb-7 max-sm:mb-5">
                 Közösen egy megértőbb, <br className="hidden sm:inline" />
                 <span className="text-blue-700">támogatóbb világért</span>
               </h1>
-              <p className="max-lg:col-span-2 max-w-xl text-lg sm:text-xl text-slate-600 leading-relaxed mb-9">
+              <p className="max-w-xl text-lg sm:text-xl text-slate-600 leading-relaxed mb-9 max-sm:mb-6">
                 Autizmussal élő gyermekek, családjaik és oktatási intézmények sokoldalú támogatása Vas vármegyében. Szakértelem, közösség és valódi segítség 2015 óta.
               </p>
-              <div className="max-lg:col-span-2 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 [&>*]:whitespace-nowrap">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 [&>*]:whitespace-nowrap">
                 <Button href="/tamogatas" size="lg" variant="primary" leftIcon={<Heart size={20} className="fill-white/30" />}>
                   Támogassa munkánkat (1%)
                 </Button>
@@ -49,15 +53,15 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className="col-start-2 row-start-1 lg:col-start-auto lg:row-start-auto lg:col-span-5 min-w-0">
-              <div className="relative mx-auto lg:max-w-[480px]" aria-hidden="true">
+            <div className="max-sm:absolute max-sm:right-0 max-sm:-top-6 max-sm:w-20 lg:col-span-5 min-w-0">
+              <div className="relative mx-auto sm:max-w-[380px] lg:max-w-[480px]" aria-hidden="true">
                 <span className="lufi z-10" style={{ width: '10%', aspectRatio: '1', left: '58%', top: '13%' }} />
                 <span className="lufi z-10" style={{ width: '5.5%', aspectRatio: '1', left: '45%', top: '21%' }} />
                 <span className="lufi z-10" style={{ width: '3.6%', aspectRatio: '1', left: '74%', top: '20%' }} />
                 <PontAblak
                   src="/images/galeria/tabor-korjatek.webp"
                   alt="Közös játék körben"
-                  sizes="(min-width: 1024px) 350px, (min-width: 640px) 128px, 102px"
+                  sizes="(min-width: 1024px) 350px, (min-width: 640px) 280px, 80px"
                 />
               </div>
             </div>

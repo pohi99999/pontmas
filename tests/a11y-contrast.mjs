@@ -144,6 +144,40 @@ try {
     await page.close();
   }
 
+  // The home page's first screen (L1, review of #61). On a phone the mark with the photo is inside the first screen,
+  // and it may not push the first button out of it: the first form of #61 moved both buttons down by 112 px, and
+  // on a 360 x 640 screen "Támogassa munkánkat" left the first screen (748 of 640; 636 on main). No text may run
+  // under the photo. On a tablet the mark keeps the size it has on main: the first form made it 176 px wide at
+  // 768 px, where it was 380.
+  for (const scheme of ['light', 'dark']) for (const [width, height] of [[360, 640], [375, 667], [390, 844], [639, 900], [640, 900], [768, 1024]]) {
+    const hero = await browser.newPage({ viewport: { width, height }, colorScheme: scheme, reducedMotion: 'reduce' });
+    const failH = (m) => { failures++; console.log(`FAIL home first screen ${scheme} ${width}x${height}: ${m}`); };
+    await hero.goto(BASE + '/', { waitUntil: 'networkidle' });
+    const m = await hero.evaluate(() => {
+      const first = document.querySelector('main section');
+      const photo = first.querySelector('img').getBoundingClientRect();
+      const mark = first.querySelector('img').closest('.relative').getBoundingClientRect();
+      const buttons = [...first.querySelectorAll('a')].slice(0, 2).map((a) => ({ text: a.textContent.trim(), bottom: Math.round(a.getBoundingClientRect().bottom) }));
+      const under = [];
+      for (const el of [first.querySelector('.eyebrow'), first.querySelector('h1')]) {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        for (const line of range.getClientRects()) if (line.width > 1 && line.right > photo.left && line.left < photo.right && line.bottom > photo.top && line.top < photo.bottom) under.push(el.tagName.toLowerCase());
+      }
+      return { photoTop: Math.round(photo.top), photoBottom: Math.round(photo.bottom), mark: Math.round(mark.width), buttons, under, height: innerHeight };
+    });
+    if (m.buttons.length !== 2) failH(`the first screen has ${m.buttons.length} buttons, not two`);
+    else if (m.buttons[0].bottom > m.height) failH(`"${m.buttons[0].text}" ends at ${m.buttons[0].bottom} px, below the first screen`);
+    if (m.under.length) failH(`text runs under the photo (${[...new Set(m.under)].join(', ')})`);
+    if (width < 640) {
+      if (m.photoTop < 0 || m.photoBottom > m.height) failH(`the photo (${m.photoTop} to ${m.photoBottom} px) is not inside the first screen`);
+      if (m.mark < 76) failH(`the mark is ${m.mark} px wide: under 76 px the photo in it is a blot, not a picture`);
+    } else if (m.mark < 370) {
+      failH(`the mark is ${m.mark} px wide, 380 on main: the phone layout reached the tablet`);
+    }
+    await hero.close();
+  }
+
   // the display bar on the desktop (Péter 14726): the tab order after the skip link, and only the main row sticks
   {
     const desk = await browser.newPage({ viewport: { width: 1440, height: 900 } });

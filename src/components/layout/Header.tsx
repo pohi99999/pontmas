@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -15,6 +16,51 @@ export default function Header() {
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const rowRef = useRef<HTMLDivElement>(null);
+  const brandRef = useRef<HTMLAnchorElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  // True when the full menu does not fit beside the logo although the window is wide enough for it (Péter
+  // 17138: in Windows Chrome the wordmark ran over "Kezdőlap"). Measured, not guessed: a larger browser text
+  // size, the dyslexic spacing or a later language makes the menu wider than the 85rem breakpoint expects.
+  // Then the header keeps the phone controls and the hamburger; the full menu stays laid out, out of sight
+  // and out of the tab order, so it can be measured again when the window or the text changes.
+  const [tooNarrow, setTooNarrow] = useState(false);
+
+  useEffect(() => {
+    const row = rowRef.current, brand = brandRef.current, nav = navRef.current, cta = ctaRef.current;
+    if (!row || !brand || !nav || !cta) return;
+    const wide = window.matchMedia('(min-width: 85rem)');
+    const MIN_GAP = 16; // between the logo and the menu, and the menu and the button (a11y check, Marveen 7007)
+    let current = false;
+    const check = () => {
+      const cs = getComputedStyle(row);
+      const room = row.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      const next = wide.matches && brand.scrollWidth + nav.scrollWidth + cta.scrollWidth + 2 * MIN_GAP > room;
+      if (next === current) return;
+      current = next;
+      // Applied before the browser paints (a ResizeObserver runs between layout and paint): without
+      // flushSync the old layout, logo over the menu, showed for a frame on every crossing of a breakpoint.
+      flushSync(() => setTooNarrow(next));
+    };
+    // A ResizeObserver reports once when it starts, then on every change of the row, the logo, the menu or
+    // any of its items (window width, text size, the dyslexic spacing, the fonts arriving). The items are
+    // watched one by one: while the menu sits in its zero-wide box, its own size does not change with them.
+    const observer = new ResizeObserver(check);
+    for (const el of [row, brand, nav, ...nav.children, ...cta.children]) observer.observe(el);
+    wide.addEventListener('change', check);
+    return () => {
+      observer.disconnect();
+      wide.removeEventListener('change', check);
+    };
+  }, []);
+  // The full desktop header: from 85rem (1360 px at the default 16 px text size; a larger browser text
+  // size moves it up with the menu's own text), and only while the menu fits.
+  // While it does not fit, the full menu keeps its layout in a zero-wide, clipped, invisible box: its own
+  // width stays measurable (scrollWidth), and it is out of sight, of the page width and of the tab order.
+  const full = tooNarrow
+    ? 'hidden min-[85rem]:flex min-[85rem]:invisible min-[85rem]:absolute min-[85rem]:left-0 min-[85rem]:top-0 min-[85rem]:w-0 min-[85rem]:overflow-hidden'
+    : 'hidden min-[85rem]:flex';
 
   // While the menu is open: Escape closes it and gives the focus back to the menu button, and a
   // click or tap outside the header closes it too.
@@ -56,8 +102,8 @@ export default function Header() {
         and up, where the full menu shows); below it the header is as before. It is NOT sticky: it scrolls
         away, so while scrolling the sticky header below stays its own 80 px. In the tab order it comes right
         after "Ugrás a tartalomra". The language switcher (#37) goes in here too. */}
-    <div data-felso-sav className="hidden min-[1360px]:block border-b border-slate-200/80 bg-slate-50">
-      <div className="container mx-auto flex h-10 items-center justify-end gap-2 px-4 sm:px-6 lg:px-8 min-[1360px]:max-w-none 2xl:max-w-[96rem]">
+    <div data-felso-sav className={`hidden ${tooNarrow ? '' : 'min-[85rem]:block'} border-b border-slate-200/80 bg-slate-50`}>
+      <div className="container mx-auto flex h-10 items-center justify-end gap-2 px-4 sm:px-6 lg:px-8 min-[85rem]:max-w-none 2xl:max-w-[96rem]">
         <ThemeToggleButton />
         {/* Sensory Toggle: always with its label, outlined in the brand blue; on, it is a light blue tint,
             not black, so it cannot be taken for a dark-mode switch (review 2026-11-10) */}
@@ -80,12 +126,13 @@ export default function Header() {
     <header ref={headerRef} className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 transition-colors">
       {/* 1360-1535 px: the header row (and the bar above) use the full width instead of the 1280 px column, so
           the eleven menu items keep 16 px from the logo (a11y check); from 1536 px the usual 1536 px column. */}
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8 min-[1360px]:max-w-none 2xl:max-w-[96rem]">
+      <div ref={rowRef} className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8 min-[85rem]:max-w-none 2xl:max-w-[96rem]">
         
         {/* Brand Logo */}
         <Link 
+          ref={brandRef}
           href="/" 
-          className="flex items-center gap-1.5 min-[360px]:gap-2 min-[440px]:gap-3 group focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none rounded-lg p-1"
+          className="flex shrink-0 items-center gap-1.5 min-[360px]:gap-2 min-[440px]:gap-3 group focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none rounded-lg p-1"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           {/* The foundation's own mark and wordmark (SVG cut-outs of the original vector logo, /public/brand).
@@ -135,15 +182,18 @@ export default function Header() {
         {/* Desktop Navigation: from 1360 px only. The full bar (9 items + 2 buttons) did not fit from lg
             (1024 px) and pushed "Támogatás" off screen, so narrower windows keep the hamburger menu.
             Every item stays on one line: tighter padding and no gap below 2xl (1536 px). With the tenth item
-            (Kisfilmek, 2026-11-13) the side padding is 8 px there, so the logo keeps its 16 px (a11y check). */}
-        <nav className="hidden min-[1360px]:flex items-center gap-0 2xl:gap-2" aria-label="Fő navigáció">
+            (Kisfilmek, 2026-11-13) the side padding is 8 px there, so the logo keeps its 16 px (a11y check).
+            From 2xl the gap between the items is 4 px, not 8: with 8 the logo kept only about 11 px there (Lumen,
+            2026-11-19, measured at 1536-1920 px). Only the colours are animated: an eased padding made the menu
+            wider for a moment after every crossing of 2xl, and the fit check above read that. */}
+        <nav ref={navRef} className={`${full} items-center gap-0 2xl:gap-1`} aria-label="Fő navigáció">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-2 2xl:px-3.5 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
+                className={`px-2 2xl:px-3.5 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                   isActive
                     ? 'text-blue-700 bg-blue-50/80 font-semibold'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
@@ -157,7 +207,7 @@ export default function Header() {
         </nav>
 
         {/* Action Controls & CTA: the display settings moved to the bar above (Péter 14726) */}
-        <div className="hidden min-[1360px]:flex items-center gap-3">
+        <div ref={ctaRef} className={`${full} items-center gap-3`}>
           {/* Donation CTA */}
           <Link
             href="/tamogatas"
@@ -171,7 +221,7 @@ export default function Header() {
         {/* Mobile controls: Sensory Toggle + theme switch + Hamburger. The theme switch is right next to the
             menu button (Péter 14743, 14746: in the menu it was hard to find). Room for it: a 4 px gap, and
             below 480 px the soft-mode button keeps its label but not its eye icon, below 360 px the logo is a step smaller, below 340 px it shows without the tagline, and its full size starts at 440 px. */}
-        <div className="flex items-center gap-1 min-[1360px]:hidden">
+        <div className={`flex items-center gap-1 ${tooNarrow ? '' : 'min-[85rem]:hidden'}`}>
           <button
             onClick={toggleSensoryMode}
             type="button"
@@ -207,7 +257,7 @@ export default function Header() {
       {/* Menu drawer: full width on phones; from md (768 px) a narrow panel under the menu button,
           which reads better than a full-width list on a tablet or a 1280 px laptop. */}
       {isMobileMenuOpen && (
-        <div id="fo-menu" className="min-[1360px]:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-150 md:absolute md:top-full md:right-6 lg:right-8 md:mt-2 md:w-[22.5rem] md:rounded-2xl md:border md:pb-4">
+        <div id="fo-menu" className={`${tooNarrow ? '' : 'min-[85rem]:hidden'} border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-150 md:absolute md:top-full md:right-6 lg:right-8 md:mt-2 md:w-[22.5rem] md:rounded-2xl md:border md:pb-4`}>
           {/* Below 1024 px the accessibility panel opens from here; from 1024 px it has the floating button */}
           <div className="lg:hidden mb-2 border-b border-slate-100 pb-2">
             <button

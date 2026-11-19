@@ -77,14 +77,15 @@ test('what the notice says about a visitor is what the code does', async () => {
   const text = visibleText(await renderHtml('app/adatkezeles/page.tsx'));
   const read = (f) => fs.readFileSync(f, 'utf8');
   // the contact form's brake: the sender's IP address, 10 minutes, 5 messages, in memory
-  const route = read('src/app/api/kapcsolat/route.ts');
-  assert.match(route, /const WINDOW_MS = 10 \* 60_000;/);
-  assert.match(route, /const MAX = 5;/);
+  const brake = read('src/lib/contactBrake.ts');
+  assert.match(brake, /export const WINDOW_MS = 10 \* 60_000;/);
+  assert.match(brake, /export const MAX = 5;/);
+  assert.match(read('src/app/api/kapcsolat/route.ts'), /import \{ limited \} from '@\/lib\/contactBrake';/);
   assert.ok(text.includes('legfeljebb 10 percig a memóriájában tartja (ennyi idő alatt egy címről 5 üzenet küldhető)'));
   // the message goes out through Resend and is not logged on the way
   assert.ok(read('src/lib/contact.ts').includes('https://api.resend.com/emails'));
   assert.ok(text.includes('a Resend e-mail-küldő szolgáltatáson keresztül'));
-  for (const f of ['src/lib/contact.ts', 'src/app/api/kapcsolat/route.ts']) assert.ok(!/console\.|logger\./.test(read(f)), `${f} logs something: the notice says the message is not logged`);
+  for (const f of ['src/lib/contact.ts', 'src/lib/contactBrake.ts', 'src/app/api/kapcsolat/route.ts']) assert.ok(!/console\.|logger\./.test(read(f)), `${f} logs something: the notice says the message is not logged`);
   // no cookie for a visitor: the only Set-Cookie of the site is the editor's
   const files = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? files(`${dir}/${e.name}`) : /\.(ts|tsx)$/.test(e.name) ? [`${dir}/${e.name}`] : []);
   const setsCookie = files('src').filter((f) => /Set-Cookie|cookies\(\)\.set|document\.cookie\s*=/.test(read(f)));

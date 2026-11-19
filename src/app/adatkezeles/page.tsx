@@ -123,7 +123,7 @@ export default function AdatkezelesPage() {
               postafiókjába a Resend e-mail-küldő szolgáltatáson keresztül. A weboldal maga az üzenetet nem tárolja és
               nem naplózza.
             </p>
-            {/* read in the code: src/app/api/kapcsolat/route.ts (5 sends per 10 minutes per IP, in memory only) */}
+            {/* read in the code: src/lib/contactBrake.ts (5 sends per 10 minutes per IP, in memory only, forgotten 10 minutes after the last) */}
             <p>
               <strong>Visszaélés elleni fék:</strong> hogy az űrlapot ne lehessen tömeges küldésre használni, a szerver a
               küldő IP-címét legfeljebb 10 percig a memóriájában tartja (ennyi idő alatt egy címről 5 üzenet küldhető).

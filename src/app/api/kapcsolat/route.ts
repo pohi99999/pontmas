@@ -1,22 +1,9 @@
 import { NextResponse } from 'next/server';
 import { sendContact } from '@/lib/contact';
+import { limited } from '@/lib/contactBrake';
 
-// The contact form's endpoint (src/lib/contact.ts has the logic and the why).
-
-// Simple per-IP brake against bursts: 5 sends per 10 minutes. It lives in memory, so it is per
-// server instance; enough against a script hammering one instance, not a hard global limit.
-const WINDOW_MS = 10 * 60_000;
-const MAX = 5;
-const hits = new Map<string, number[]>();
-
-function limited(ip: string): boolean {
-  const now = Date.now();
-  const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
-  if (recent.length >= MAX) { hits.set(ip, recent); return true; }
-  recent.push(now); hits.set(ip, recent);
-  if (hits.size > 5000) for (const [k, v] of hits) if (!v.some((t) => now - t < WINDOW_MS)) hits.delete(k);
-  return false;
-}
+// The contact form's endpoint (src/lib/contact.ts has the logic and the why; src/lib/contactBrake.ts the
+// per-address brake and how long it keeps an address).
 
 export async function POST(request: Request) {
   const ip = (request.headers.get('x-forwarded-for') ?? '').split(',')[0].trim() || 'unknown';

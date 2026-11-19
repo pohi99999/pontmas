@@ -32,6 +32,9 @@ function findFile(base) {
 
 export async function resolve(specifier, context, next) {
   if (STUBS[specifier]) return { url: STUBS[specifier], shortCircuit: true };
+  // The real one, not a stub: next/server has no ESM export map, so plain Node finds it only with its
+  // file name. A route handler's tests then call the route with Next's own NextResponse.
+  if (specifier === 'next/server') return next('next/server.js', context);
   let base = null;
   if (specifier.startsWith('@/')) base = path.join(SRC, specifier.slice(2));
   else if ((specifier.startsWith('./') || specifier.startsWith('../')) && context.parentURL?.startsWith('file:')) {

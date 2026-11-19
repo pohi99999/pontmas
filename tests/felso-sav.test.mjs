@@ -11,7 +11,7 @@ test('the bar sits before the sticky header, is not sticky itself, and shows onl
   const bar = header.indexOf('<div data-felso-sav'), sticky = header.indexOf('<header ref={headerRef} className="sticky');
   assert.ok(bar > 0 && sticky > bar, 'the bar comes before the header, as its sibling');
   const barTag = header.slice(bar, header.indexOf('>', bar));
-  assert.match(barTag, /hidden min-\[1360px\]:block/);
+  assert.match(barTag, /hidden \$\{tooNarrow \? '' : 'min-\[85rem\]:block'\}/);
   assert.doesNotMatch(barTag, /sticky|fixed/);
 });
 

@@ -9,6 +9,8 @@
 // - No horizontal scrolling at any tested width: the desktop header used to overflow 1024-1310 px
 //   and push the "Támogatás" button off screen.
 // - Where the full desktop header shows (1360 px and up), every item in it stays on one line.
+// - The logo and the full menu never overlap, also with Chrome's own text size at 20 and 24 px and with the
+//   dyslexic spacing (Péter 17138): where the menu does not fit, the hamburger shows instead.
 // - The menu (hamburger, 1280 px): opens as a narrow panel, Escape closes it and returns the focus to
 //   the menu button; the first Tab on a page lands on the "Ugrás a tartalomra" skip link.
 //
@@ -16,6 +18,8 @@
 // ubuntu runners have it, so nothing is downloaded.
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { chromium } from 'playwright-core';
 
 const ROUTES = ['/', '/autizmus', '/segitseg', '/rolunk', '/rolunk-irtak', '/hirek', '/programok', '/tamogatas', '/dokumentumok', '/kapcsolat', '/kisfilmek', '/irodank', '/adatkezeles', '/impresszum'];
@@ -205,6 +209,62 @@ try {
     await desk.close();
   }
 
+  // The logo and the full menu never overlap (Péter 17138: in Windows Chrome the wordmark ran over "Kezdőlap";
+  // measured: Chrome's text size "Large" = 20 px did it at 1360-1564 px and pushed "Támogatás" off screen).
+  // Chrome's own text size (chrome://settings/fonts: 16 default, 20 "Large", 24 "Very large") is set in a fresh
+  // profile, with and without the dyslexic spacing, from 1360 to 1920 px. Where the full menu shows, the logo
+  // keeps 16 px from it, no line of the logo's text or pictures meets a menu item's text, and "Támogatás"
+  // stays in the window; where it does not, the hamburger is there instead. Text-line rectangles, not
+  // scrollWidth: the page is no wider than the window while the two run into each other.
+  for (const size of [16, 20, 24]) for (const dyslexic of [false, true]) {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'pm-font-'));
+    fs.mkdirSync(path.join(dir, 'Default'));
+    fs.writeFileSync(path.join(dir, 'Default', 'Preferences'), JSON.stringify({ webkit: { webprefs: { default_font_size: size } } }));
+    const ctx = await chromium.launchPersistentContext(dir, { executablePath: CHROME, headless: true, viewport: { width: 1920, height: 900 } });
+    try {
+      if (dyslexic) await ctx.addInitScript(() => localStorage.setItem('pontmas_a11y_prefs', JSON.stringify({ dyslexicFont: true })));
+      const pg = ctx.pages()[0] ?? (await ctx.newPage());
+      await pg.goto(BASE + '/', { waitUntil: 'load' });
+      if (dyslexic) await pg.waitForFunction(() => document.querySelector('.font-dyslexic'));
+      for (const width of [1360, 1366, 1440, 1536, 1600, 1700, 1800, 1920]) {
+        await pg.setViewportSize({ width, height: 900 });
+        // two frames: the header settles in the frame of the resize (the fit check runs before the paint)
+        await pg.evaluate(() => new Promise((res) => requestAnimationFrame(() => requestAnimationFrame(res))));
+        const r = await pg.evaluate(() => {
+          const header = document.querySelector('header');
+          const shown = (el) => !!el && getComputedStyle(el).display !== 'none' && getComputedStyle(el).visibility !== 'hidden' && el.getBoundingClientRect().width > 0;
+          const textRects = (el) => {
+            const out = [];
+            const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+            while (w.nextNode()) { const rg = document.createRange(); rg.selectNodeContents(w.currentNode); for (const b of rg.getClientRects()) if (b.width > 0) out.push(b); }
+            for (const img of el.querySelectorAll('img')) if (shown(img)) out.push(img.getBoundingClientRect());
+            return out;
+          };
+          const nav = header.querySelector('nav[aria-label="Fő navigáció"]');
+          const burger = header.querySelector('button[aria-controls="fo-menu"]');
+          if (!shown(nav)) return { full: false, burger: shown(burger) };
+          const logo = textRects(header.querySelector('a[href="/"]'));
+          const items = [...nav.querySelectorAll('a')].flatMap(textRects);
+          const hit = logo.some((a) => items.some((b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom));
+          const gap = nav.querySelector('a').getBoundingClientRect().left - Math.max(...logo.map((b) => b.right));
+          const cta = header.querySelector('a[href="/tamogatas"]').getBoundingClientRect();
+          return { full: true, hit, gap: Math.round(gap), off: Math.round(cta.right - document.documentElement.clientWidth) };
+        });
+        const where = `header ${size} px text${dyslexic ? ' + dyslexic' : ''} at ${width} px`;
+        if (!r.full) {
+          if (!r.burger) { failures++; console.log(`FAIL ${where}: neither the full menu nor the menu button shows`); }
+        } else {
+          if (r.hit) { failures++; console.log(`FAIL ${where}: the logo runs into the menu`); }
+          else if (r.gap < 16) { failures++; console.log(`FAIL ${where}: only ${r.gap} px between the logo and the menu (16 px expected)`); }
+          if (r.off > 0) { failures++; console.log(`FAIL ${where}: "Támogatás" ends ${r.off} px outside the window`); }
+        }
+      }
+    } finally {
+      await ctx.close();
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
+  }
+
   // the menu and the skip link, driven with the keyboard
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   const fail = (m) => { failures++; console.log(`FAIL menu/skip 1280px: ${m}`); };
@@ -295,5 +355,5 @@ try {
 } finally {
   stop();
 }
-console.log(failures ? `${failures} contrast/heading/width/menu problem(s)` : `contrast, headings, width, one-line header and menu keyboard OK on ${ROUTES.length} routes at 1440, 1366, 1280, 1180, 1024, 768, 375, 360 and 320 px`);
+console.log(failures ? `${failures} contrast/heading/width/menu problem(s)` : `contrast, headings, width, one-line header and menu keyboard OK on ${ROUTES.length} routes at 1440, 1366, 1280, 1180, 1024, 768, 375, 360 and 320 px; logo and menu apart at 1360-1920 px with Chrome text at 16, 20 and 24 px, with and without the dyslexic spacing`);
 process.exit(failures ? 1 : 0);

@@ -10,7 +10,7 @@ const read = (f) => fs.readFileSync(f, 'utf8');
 test('the switch sits in the phone controls, right before the menu button', () => {
   const h = read('src/components/layout/Header.tsx');
   const mobile = h.slice(h.indexOf('{/* Mobile controls'), h.indexOf('aria-controls="fo-menu"'));
-  assert.match(mobile, /min-\[1360px\]:hidden/);
+  assert.match(mobile, /tooNarrow \? '' : 'min-\[85rem\]:hidden'/);
   assert.match(mobile, /<ThemeToggleIcon \/>\s*<button\s+ref=\{menuButtonRef\}/);
 });
 

@@ -7,36 +7,61 @@
 // looked at again (its list is empty, the key goes), and by a timer of its own if it never comes back. A
 // refused message adds nothing, so it does not keep the address any longer.
 //
+// A real timer may fire a millisecond before Date.now() says the message is a full window old (measured
+// by the Ellenőr, 8187: 13-18 percent with a 300 ms window). Such a timer finds the message still inside
+// the window; it then waits again for the time that is left, so an early firing is never the last look.
+//
 // It lives here, not in the route file, because a Next route file may export only its handlers, and the
-// tests need to see what is held (holds()).
+// tests need to see what is held (holds()) and to run the same code with a short window (createBrake).
 
 export const WINDOW_MS = 10 * 60_000;
 export const MAX = 5;
 
-const hits = new Map<string, number[]>();
+export type Brake = {
+  /** True when this address already sent `max` messages in the window; otherwise counts this one. */
+  limited(ip: string): boolean;
+  /** Whether the brake holds this address now. */
+  holds(ip: string): boolean;
+};
 
-/** Drops what left the window; an address with nothing left is forgotten. Returns what is left. */
-function prune(ip: string, now: number): number[] {
-  const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
-  if (recent.length === 0) hits.delete(ip);
-  else hits.set(ip, recent);
-  return recent;
+export function createBrake({ windowMs, max }: { windowMs: number; max: number }): Brake {
+  const hits = new Map<string, number[]>();
+
+  /** Drops what left the window; an address with nothing left is forgotten. Returns what is left. */
+  const prune = (ip: string, now: number): number[] => {
+    const recent = (hits.get(ip) ?? []).filter((t) => now - t < windowMs);
+    if (recent.length === 0) hits.delete(ip);
+    else hits.set(ip, recent);
+    return recent;
+  };
+
+  /** Looks at the address again after `delay`; while something is left, again when the oldest leaves the window. */
+  const lookAgain = (ip: string, delay: number) => {
+    const timer = setTimeout(() => {
+      const now = Date.now();
+      const left = prune(ip, now);
+      if (left.length > 0) lookAgain(ip, left[0] + windowMs - now);
+    }, Math.max(1, delay));
+    // unref: the timer does not keep the process alive.
+    (timer as { unref?: () => void }).unref?.();
+  };
+
+  return {
+    limited(ip) {
+      const now = Date.now();
+      const recent = prune(ip, now);
+      if (recent.length >= max) return true;
+      hits.set(ip, [...recent, now]);
+      lookAgain(ip, windowMs);
+      return false;
+    },
+    holds: (ip) => hits.has(ip),
+  };
 }
 
-/** True when this address already sent MAX messages in the window; otherwise counts this one. */
-export function limited(ip: string): boolean {
-  const now = Date.now();
-  const recent = prune(ip, now);
-  if (recent.length >= MAX) return true;
-  hits.set(ip, [...recent, now]);
-  // When this message leaves the window the address is looked at again, even if it never comes back.
-  // unref: the timer does not keep the process alive.
-  const timer = setTimeout(() => prune(ip, Date.now()), WINDOW_MS);
-  (timer as { unref?: () => void }).unref?.();
-  return false;
-}
+const brake = createBrake({ windowMs: WINDOW_MS, max: MAX });
 
-/** Whether the brake holds this address now. For the tests: what the data notice promises is measured on it. */
-export function holds(ip: string): boolean {
-  return hits.has(ip);
-}
+/** The contact form's brake, as the route uses it. */
+export const limited = (ip: string): boolean => brake.limited(ip);
+/** Whether the contact form's brake holds this address now. For the tests. */
+export const holds = (ip: string): boolean => brake.holds(ip);

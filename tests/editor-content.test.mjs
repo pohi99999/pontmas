@@ -8,7 +8,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { src } from './helpers/load.mjs';
-import { MAIN_NEWS, MAIN_PROGRAMS } from './fixtures/main-items.mjs';
+import { ADDED_NEWS_IDS, MAIN_NEWS, MAIN_PROGRAMS } from './fixtures/main-items.mjs';
 import { htmlText, imageFor, inOrder } from './helpers/fixtures.mjs';
 
 const { renderToStaticMarkup } = await import('react-dom/server');
@@ -21,6 +21,7 @@ const { MemoryContentStore } = await src('content/store.ts');
 const cards = await src('components/content/ContentCards.tsx');
 
 const NEW_KEYS = ['id', 'publishedAt', 'hidden'];
+const mainSeedNews = () => seed.SEED_NEWS.filter((n) => !ADDED_NEWS_IDS.has(n.id));
 const strip = (items) => items.map((it) => Object.fromEntries(Object.entries(it).filter(([k]) => !NEW_KEYS.includes(k))));
 
 async function renderPage(p) {
@@ -36,8 +37,9 @@ async function renderPage(p) {
   }
 }
 
-test('seed: the items of main, verbatim, plus only id, publishedAt and hidden', () => {
-  assert.deepEqual(strip(seed.SEED_NEWS), MAIN_NEWS);
+test('seed: the items of main, verbatim, plus only id, publishedAt and hidden; added news only ahead of them', () => {
+  assert.deepEqual(strip(mainSeedNews()), MAIN_NEWS);
+  assert.deepEqual(seed.SEED_NEWS.slice(0, ADDED_NEWS_IDS.size).map((n) => n.id), [...ADDED_NEWS_IDS], 'the added news come first');
   assert.deepEqual(strip(seed.SEED_PROGRAMS), MAIN_PROGRAMS);
   for (const it of [...seed.SEED_NEWS, ...seed.SEED_PROGRAMS]) {
     assert.equal(it.hidden, false);
@@ -86,12 +88,12 @@ test('fallback: empty, failing or invalid store content means the seed', async (
   assert.equal((await pub.readContentSafely(async () => broken)).source, 'seed');
   const good = await pub.readContentSafely(async () => ({ ...seed.SEED_CONTENT, news: seed.SEED_NEWS.slice(1) }));
   assert.equal(good.source, 'store');
-  assert.equal(good.content.news.length, MAIN_NEWS.length - 1);
+  assert.equal(good.content.news.length, seed.SEED_NEWS.length - 1);
 });
 
 test('the banner is the first visible featured item; hidden items are not shown', () => {
   // the seed's first item is the ended 2024-10-26 club (never a banner); under another id it shows the rule
-  const news = seed.SEED_NEWS.map((n, i) => ({ ...n, ...(i === 0 ? { id: 'szuloklub-kovetkezo' } : {}) }));
+  const news = mainSeedNews().map((n, i) => ({ ...n, ...(i === 0 ? { id: 'szuloklub-kovetkezo' } : {}) }));
   let s = pub.splitNews(news);
   assert.equal(s.featured.id, news[0].id);
   assert.deepEqual(s.rest.map((n) => n.id), news.slice(1).map((n) => n.id));
@@ -146,7 +148,7 @@ test('an image renders only with the child photo declaration, as a plain lazy <i
 });
 
 test('stored content with an undeclared image: the site keeps the stored content and just hides that image', () => {
-  const stored = { ...seed.SEED_CONTENT, updatedAt: '2026-11-04T09:00:00.000Z', news: [{ ...seed.SEED_NEWS[0], title: 'Tárolt cím', image: imageFor(null, { declared: false }) }, ...seed.SEED_NEWS.slice(1)] };
+  const stored = { ...seed.SEED_CONTENT, updatedAt: '2026-11-04T09:00:00.000Z', news: [{ ...mainSeedNews()[0], title: 'Tárolt cím', image: imageFor(null, { declared: false }) }, ...mainSeedNews().slice(1)] };
   const picked = pub.pickContent(stored);
   assert.equal(picked.source, 'store', 'not the seed');
   assert.equal(picked.content.news[0].title, 'Tárolt cím');

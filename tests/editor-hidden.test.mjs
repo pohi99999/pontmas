@@ -116,10 +116,10 @@ test('the same for a program', async () => {
   assert.ok((await publicProgramsHtml(deps.store)).includes('Új teszt program'), 'published: public');
 });
 
-test('the existing 4 news items and 4 programs are unchanged, whatever happens to a hidden item', async () => {
+test('the existing news items and 4 programs are unchanged, whatever happens to a hidden item', async () => {
   const { deps, put } = setup();
   const before = { news: (await publicNewsHtml(deps.store)).html, programs: await publicProgramsHtml(deps.store) };
-  assert.equal(SEED_NEWS.length, 4);
+  assert.equal(SEED_NEWS.length, 5, "main's 4 items and the cake sale of 2026-12-19");
   assert.equal(SEED_PROGRAMS.length, 4);
   assert.ok(SEED_NEWS.every((n) => n.hidden === false) && SEED_PROGRAMS.every((p) => p.hidden === false), 'all of them are public');
   // as the visitor sees them: the ended 2024-10-26 club under its past-event title (Marveen 7374)

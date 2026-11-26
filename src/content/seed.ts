@@ -1,10 +1,29 @@
 // The content the site showed before the editor existed, moved here verbatim from
 // src/app/hirek/page.tsx and src/app/programok/page.tsx (only id, publishedAt and hidden are new).
+// Items added since then by a reviewed pull request come first (newest first); the test lists them by id.
 // The public pages show this whenever the store is empty, not configured or unreachable.
 // tests/editor-content.test.mjs compares it with a copy of main's arrays.
 import type { NewsItem, ProgramItem, SiteContent } from './types';
 
 export const SEED_NEWS: NewsItem[] = [
+    // Edina 2026-11-26 (Marveen 9386, Péter 18477): her text verbatim (the e-mail's line wraps joined, her
+    // paragraphs kept); the bold parts and the poster are in hirMegjelenes.ts. Her signature's phone number,
+    // address and tax number are left out: they never go into the editable content (types.ts).
+    {
+      id: "sutivasar-2026-12-19",
+      publishedAt: "2026-11-26",
+      hidden: false,
+      featured: true,
+      badge: "Esemény • Jótékonysági sütivásár",
+      title: "Jótékonysági sütivásár a Family Centerben – találkozzunk december 19-én!",
+      date: "2026. december 19. (szombat) 10:00–16:00",
+      location: "Family Center Szombathely, 9700 Szombathely, Varasd u. 1.",
+      speaker: "",
+      description: "Advent idején különösen sokat jelent minden apró segítség. December 19-én a PontMás Vas Megyei Autista Gyermekekért Alapítvány is ott lesz a Family Center Szombathely jótékonysági sütivásárán.\n\nA vásár 10:00 és 16:00 óra között várja az érdeklődőket a Family Center Szombathelyben, 9700 Szombathely, Varasd u. 1. alatt.\n\nAzok, akik süteménnyel támogatják az alapítványt és a helyszínre hozzák felajánlásukat, 9:00–9:30 között tudják átadni a süteményeket.\n\nA sütivásár bevételével közvetlenül a PontMás Alapítvány munkáját lehet támogatni, ezért minden egyes vásárlás segítség számunkra.\n\nNagyon köszönjük mindazoknak, akik süteményt ajánlottak fel, segítenek a szervezésben, vagy vásárlóként csatlakoznak hozzánk.\n\nTalálkozzunk december 19-én a Family Centerben!\n\nRumi Edina\nPontMás Vas Megyei Autista Gyermekekért Alapítvány",
+      highlights: [],
+      actionText: "",
+      actionHref: "",
+    },
     {
       id: "szuloklub-2024-10-26",
       publishedAt: "2024-10-26",

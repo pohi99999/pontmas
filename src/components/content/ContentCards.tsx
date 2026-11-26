@@ -6,6 +6,7 @@ import { ArrowRight, Calendar, CheckCircle2, ExternalLink, GraduationCap, MapPin
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { publicImage } from '@/content/public';
+import { descriptionBlocks, HIR_KIEMELES, HIR_PLAKAT, type NewsPoster } from '@/content/hirMegjelenes';
 import type { ContentImage, NewsItem, ProgramItem } from '@/content/types';
 
 /** Shown only with the child photo declaration (publicImage); a draft image renders nothing. */
@@ -28,14 +29,73 @@ export function ContentImageView({ image, className = '' }: { image?: ContentIma
   );
 }
 
-/** The large banner of /hirek (on main: newsItems[0]). */
-export function NewsFeaturedCard({ item }: { item: NewsItem }) {
+/**
+ * The description: paragraphs at blank lines, line breaks kept, the author's bold parts (HIR_KIEMELES) in
+ * <strong>. A text without newlines is the one <p> it always was.
+ */
+export function NewsDescription({ item, className }: { item: NewsItem; className: string }) {
+  const blocks = descriptionBlocks(item.description, HIR_KIEMELES.get(item.id));
   return (
-    <div className="rounded-[2.5rem] bg-blue-50 p-6 sm:p-8 md:p-12 space-y-6">
-      <ContentImageView image={item.image} />
+    <>
+      {blocks.map((lines, pi) => (
+        <p key={pi} className={className}>
+          {lines.map((segs, li) => [
+            li > 0 ? <br key={`br${li}`} /> : null,
+            ...segs.map((s, si) => (s.bold ? <strong key={`${li}-${si}`} className="font-bold text-slate-900">{s.text}</strong> : s.text)),
+          ])}
+        </p>
+      ))}
+    </>
+  );
+}
+
+/** A poster from the repository (HIR_PLAKAT): whole, never cropped, at its own aspect ratio. */
+export function NewsPosterView({ poster, className = '' }: { poster: NewsPoster; className?: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={poster.src}
+      srcSet={`${poster.srcSmall} 560w, ${poster.src} ${poster.width}w`}
+      sizes="(min-width: 768px) 40vw, 100vw"
+      alt={poster.alt}
+      width={poster.width}
+      height={poster.height}
+      loading="lazy"
+      decoding="async"
+      data-plakat
+      className={`w-full h-auto rounded-2xl bg-white shadow-sm ${className}`.trim()}
+    />
+  );
+}
+
+/** The large banner of /hirek (on main: newsItems[0]). With a poster: the poster beside the text from 768 px. */
+export function NewsFeaturedCard({ item }: { item: NewsItem }) {
+  const poster = HIR_PLAKAT.get(item.id);
+  const body = <NewsFeaturedBody item={item} />;
+  if (!poster) {
+    return (
+      <div className="rounded-[2.5rem] bg-blue-50 p-6 sm:p-8 md:p-12 space-y-6">
+        <ContentImageView image={item.image} />
+        {body}
+      </div>
+    );
+  }
+  return (
+    <div className="rounded-[2.5rem] bg-blue-50 p-6 sm:p-8 md:p-12 md:grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-10 md:items-start">
+      <div className="mx-auto mb-6 max-w-[420px] md:mb-0 md:max-w-none">
+        <NewsPosterView poster={poster} />
+      </div>
+      <div className="min-w-0 space-y-6">{body}</div>
+    </div>
+  );
+}
+
+function NewsFeaturedBody({ item }: { item: NewsItem }) {
+  return (
+    <>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Badge variant="info">
-          Legközelebbi Szülőklub
+          {item.badge}
         </Badge>
         <div className="flex items-center gap-2 text-xs font-semibold text-blue-800 bg-blue-100/80 px-3 py-1.5 rounded-full">
           <Calendar className="h-4 w-4" />
@@ -70,9 +130,9 @@ export function NewsFeaturedCard({ item }: { item: NewsItem }) {
         </div>
       )}
 
-      <p className="text-base text-slate-700 leading-relaxed">
-        {item.description}
-      </p>
+      <div className="space-y-4">
+        <NewsDescription item={item} className="text-base text-slate-700 leading-relaxed" />
+      </div>
 
       {item.highlights.length > 0 && (
         <div className="space-y-2 border-t border-blue-100 pt-4">
@@ -113,7 +173,7 @@ export function NewsFeaturedCard({ item }: { item: NewsItem }) {
           )}
         </div>
       )}
-    </div>
+    </>
   );
 }
 
@@ -124,7 +184,9 @@ export function NewsCard({ item }: { item: NewsItem }) {
       className="min-w-0 flex flex-col justify-between rounded-[2rem] border border-slate-200 bg-white p-7"
     >
       <div className="space-y-4">
-        {publicImage(item.image) ? (
+        {HIR_PLAKAT.get(item.id) ? (
+          <NewsPosterView poster={HIR_PLAKAT.get(item.id)!} className="mx-auto max-w-[420px]" />
+        ) : publicImage(item.image) ? (
           <ContentImageView image={item.image} />
         ) : (
           // No photo (Péter 15566, Lumen's proposal 3): a calm band in the brand's blue with the logo's still
@@ -150,9 +212,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
           {item.title}
         </h3>
 
-        <p className="text-sm text-slate-600 leading-relaxed">
-          {item.description}
-        </p>
+        <NewsDescription item={item} className="text-sm text-slate-600 leading-relaxed" />
 
         {item.highlights.length > 0 && (
           <div className="border-t border-slate-100 pt-3 space-y-2">

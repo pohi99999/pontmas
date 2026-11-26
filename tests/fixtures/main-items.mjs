@@ -1,5 +1,9 @@
 // Verbatim copy of the item arrays on main before the editor (src/app/hirek/page.tsx lines 32-96,
 // src/app/programok/page.tsx lines 12-47). The seed and the rendered pages are compared against these.
+// News added to the seed after the editor, by a reviewed pull request (newest first, ahead of main's items).
+// Everything else in the seed must stay main's items verbatim.
+export const ADDED_NEWS_IDS = new Set(['sutivasar-2026-12-19']);
+
 export const MAIN_NEWS = [
     {
       featured: true,
